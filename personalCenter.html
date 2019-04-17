@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>个人中心</title>
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<script src="js/flexible.js"></script>
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
+	<script src="js/vue-i18n.js"></script>
+	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
+    <link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/footer.css">
+	<link rel="stylesheet" href="css/personalCenter.css">
+</head>
+<body>
+	<div id="personalCenter" v-cloak>
+		<div class="header">
+			<div class="logos">
+				<img class="logor" src="images/logor.png">
+			</div>
+			<svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
+			    <use xlink:href="#icon-caidan"></use>
+			</svg>
+			<transition name="fade" mode="out-in">
+					<button class="back-to-top" :key="topshow" v-on:click='top()' v-html="$t('header.top')"></button>
+			</transition>
+			<transition name="fadel" mode="out-in">
+			<button class="language-switch" :key="enshow" v-on:click='change()'>{{enshow}}</button>
+			</transition>
+			<transition name="fadeo" mode="out-in">
+					<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
+			</transition>
+			<transition name="slide-fade">
+				<div v-if="show">
+					<div class="mask" v-on:click="show = !show">
+					</div>
+					<div class="nav-menu">
+						<ul>
+							<li>
+								<a href="index.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-xiazai45"></use>
+									</svg>
+									<span>{{ $t("header.home") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="buy.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-car"></use>
+									</svg>
+									<span>{{ $t("header.buy") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="sale.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-maiche"></use>
+									</svg>
+									<span>{{ $t("header.sale") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="bargain.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-cart"></use>
+									</svg>
+									<span>{{ $t("header.bargain") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="installment.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-huankuanri"></use>
+									</svg>
+									<span>{{ $t("header.hire") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="about.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-chehangBmen"></use>
+									</svg>
+									<span>{{ $t("header.about") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</transition>
+		</div>
+		<div class="user-info">
+			<div class="head-img">
+				<img src="images/user01.jpg">
+			</div>
+			<div class="user-num">17759500581</div>
+			<button>切换账号</button>
+		</div>
+		<div class="record-type">
+			<ul>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-icon_goumaijilunor"></use>
+						</svg>
+						<span>直购记录</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-tubiaolunkuo_huaban"></use>
+						</svg>
+						<span>卖车申请</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-yigouxiangmu"></use>
+						</svg>
+						<span>已购车辆</span>
+					</a>
+				</li>
+				<li>
+					<a href="collection.html">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-wodeshoucang"></use>
+						</svg>
+						<span>我的收藏</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-liulanjilu"></use>
+						</svg>
+						<span>浏览记录</span>
+					</a>
+				</li>
+				<li>
+					<a href="feedback.html">
+						<svg class="icon" aria-hidden="true">
+						    <use xlink:href="#icon-yijianfankui"></use>
+						</svg>
+						<span>意见反馈</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<button type="button" class="sign-out" v-on:click="signout()">退出登录</button>
+	</div>
+</body>
+<script type="text/javascript">
+	var locale = localStorage.locale;
+	new Vue({
+		i18n,
+		data: {
+			show: false,
+			topshow: false,
+			botshow: false,
+			enshow: "english",
+		},
+		mounted() {
+			if(locale){
+				i18n.locale = locale;
+				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
+			}else{
+				(locale = i18n.locale);
+			}
+		},
+		methods: {
+			signout:function() {
+				localStorage.login = false;
+				window.location.href = "index.html";
+			},
+			change :function() {
+			    this.enshow = this.enshow == 'english' ? "中文" : "english";
+			    var that = this;
+			    setTimeout(function(){
+					if(i18n.locale == 'en'){
+						i18n.locale = 'zh-cn';
+					}else if(i18n.locale == 'zh-cn'){
+						i18n.locale = 'en';
+					}
+					localStorage.locale = i18n.locale;
+			    },1100)
+			},
+			top:function(){
+				this.topshow = !this.topshow;
+				$('html,body').animate({scrollTop: '0'}, 700);
+			},
+			consult:function(){
+				this.botshow = !this.botshow;
+				setTimeout(function(){
+					alert("功能完善中！")
+				},700)
+			}
+		}
+	}).$mount('#personalCenter')
+	// 现在应用程序已经准备好了！
+</script>
+</html>

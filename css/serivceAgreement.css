@@ -1,0 +1,29 @@
+.serviceA-carimg{
+	width: 100%;
+}
+.content-sy{
+	margin: 0.4px;
+	box-sizing: border-box;
+}
+h3{
+	font-size: 0.5px;
+	margin: 0.3px 0;
+}
+h4{
+	font-size: 0.45px;
+	margin: 0.2px 0;
+}
+h5{
+	font-size: 0.4px;
+	margin: 0.1px 0;
+}
+p{
+	font-size: 0.35px;
+	line-height: 0.8px;
+}
+.content-sy-f p{
+	font-size: 0.35px;
+}
+.content-sy-b{
+	font-size: 0.4px;
+}

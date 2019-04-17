@@ -1,0 +1,119 @@
+.ins-carimg{
+	width: 100%;
+}
+#installment .service{
+	font-size: 0.35px;
+	margin: 0.5px 0 0.3px 0;
+}
+.ins-info{
+	width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+.ins-info li{
+	margin-bottom: 0.4px;
+}
+.ins-info li label{
+	font-size: 0.35px;
+	color: #969696;
+}
+.ins-info .input {
+    font-size: 0.35px;
+    background-color: #F3F3F3;
+    border: 1px solid #E4E4E4;
+    width: 100%;
+    height: 0.9px;
+    border-radius: 0.3px;
+    padding: 0.2px;
+    box-sizing: border-box;
+    outline: none;
+}
+.ins-info .checkcode {
+    display: flex;
+    justify-content: space-between;
+}
+#check {
+    width: 50%;
+}
+.ins-info .checkcode img {
+    width: 4px;
+    height: 1.5px;
+}
+
+.ins-info .choose-radio{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-top: 0.2px;
+}
+.ins-info .choose-radio .mr{
+	margin-right: 0.4px;
+}
+.ins-info .choose-radio input{
+	margin-right: 0.2px;
+}
+.ins-info .trait{
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	font-size: 0.35px;
+	text-align: center;
+	margin-top: 0.8px;
+}
+.ins-info .trait .img-item{
+	padding: 0.2px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+.ins-info .trait .icon{
+	width: 1px;
+	height: 1px;
+	margin-bottom: 0.2px;
+}
+.ins-info .loan-process .title{
+	font-size: 0.4px;
+    height: 0.8px;
+    border-bottom: 1px solid #f3f3f3;
+    margin-bottom: 0.4px;
+}
+.ins-info .loan-process .img-item span{
+	font-size: 0.4px;
+	color: #495056;
+	padding-left: 0.5px;
+	position: relative;
+}
+.ins-info .loan-process .img-item .step-num{
+	width: 0.5px;
+	height: 0.5px;
+	line-height: 0.5px;
+	text-align: center;
+    display: inline;
+	position: absolute;
+	border: 1px solid #f4f4f4;
+	border-radius: 50%;
+	background-color: #f1f3f6;
+	left: -0.25px;
+	top: 0;
+}
+.ins-info .loan-process .img-item p{
+	font-size: 0.35px;
+	padding-top: 0.2px;
+	padding-left: 0.5px;
+	border-left: 1px solid #f3f3f3;
+	color: #757F89;
+	box-sizing: border-box;
+}
+.ins-info .submit {
+    color: #fff;
+    background: #da2515;
+    width: 95%;
+    height: 1px;
+    border-radius: 0.5px;
+    border: none;
+    outline: none;
+    position: relative;
+    left: 2.5%;
+	margin: 0.2px 0;
+}

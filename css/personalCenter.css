@@ -1,0 +1,98 @@
+#personalCenter{
+}
+.user-info{
+	box-sizing: border-box;
+	width: 100%;
+	height: 3px;
+	padding: 0.4px;
+	position: relative;
+}
+.head-img{
+	float: left;
+}
+.head-img img{
+	width: 2px;
+	height: 2px;
+	border-radius: 50%;
+}
+.user-num{
+	float: left;
+	color: lightgrey;
+	font-size: 0.4px;
+	margin-top: 1.5px;
+	margin-left: 0.2px;
+}
+.user-info button{
+	float: right;
+	background-color: white;
+    display: block;
+    height: 0.7px;
+    line-height: 0.7px;
+    border: 1px solid #dde4ea;
+    border-radius: .4px;
+    text-align: center;
+    width: 2px;
+    color: #9ea2a6;
+    font-size: 0.3px;
+	margin-top: 0.8px;
+	outline: none;
+}
+.record-type li{
+    height: 1.2px;
+}
+.record-type a{
+	display: block;
+    height: 100%;
+    width: 100%;
+    border-bottom: 1px solid #dde4ea;
+    color: #495056;
+    font-size: .4px;
+    position: relative;
+}
+.record-type a svg{
+	width: 0.5px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0.4px;
+	margin: auto;
+}
+.record-type li:nth-child(1) svg{
+	width: 0.7px;
+	margin-left: -0.1px;
+}
+.record-type a span{
+	width: 2px;
+	height: 0.5px;
+	position: absolute;
+	left: 1.4px;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+.record-type a:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    width: 8px;
+    height: 8px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin-top: -4px;
+    border-top: 1px solid #9ea2a6;
+    border-right: 1px solid #9ea2a6;
+}
+.sign-out{
+	color: #fff;
+    background: #da2515;
+    width: 95%;
+    height: 1px;
+    border-radius: 0.5px;
+    border: none;
+    outline: none;
+    position: relative;
+    left: 2.5%;
+	margin-top: 0.4px;
+	font-size: 0.4px;
+}

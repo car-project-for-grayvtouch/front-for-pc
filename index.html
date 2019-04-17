@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="renderer" content="webkit">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta http-equiv="mobile-agent" content="format=html5; url=http://m.championcargroup.com/">
+	<title>CHAMPION-index</title>
+	<meta name="location" content="province=福建;city=福州;coord=">
+	<meta name="keywords" content="福州二手车,福州二手车市场,福州二手车交易,福州二手车交易市场">
+	<meta name="description" content="人人车福州二手车市场,福州二手车交易市场,为您提供福州二手车交易信息,福州二手车出手转让信息,免费提供福州二手车评估,福州二手车报价,详询4000350113！">
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script src="js/vue-i18n.js"></script>
+	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/swiper.min.js"></script>
+	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+	<div id="index" v-cloak>
+		<div class="header">
+			<div class="logos">
+				<img class="logor" src="images/logor.png">
+			</div>
+			<svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
+			    <use xlink:href="#icon-caidan"></use>
+			</svg>
+			<div class="person">
+				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+				<a v-else href="personalCenter.html">
+					<svg class="icon" aria-hidden="true">
+						<use xlink:href="#icon-yidenglu"></use>
+					</svg>
+				</a>
+			</div>
+			<transition name="fade" mode="out-in">
+					<button class="back-to-top" :key="topshow" v-on:click='top()' v-html="$t('header.top')"></button>
+			</transition>
+			<transition name="fadel" mode="out-in">
+			<button class="language-switch" :key="enshow" v-on:click='change()'>{{enshow}}</button>
+			</transition>
+			<transition name="fadeo" mode="out-in">
+					<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
+			</transition>
+			<transition name="slide-fade">
+				<div v-if="show">
+					<div class="mask" v-on:click="show = !show">
+					</div>
+					<div class="nav-menu">
+						<ul>
+							<li>
+								<a href="index.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-xiazai45"></use>
+									</svg>
+									<span>{{ $t("header.home") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="buy.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-car"></use>
+									</svg>
+									<span>{{ $t("header.buy") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="sale.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-maiche"></use>
+									</svg>
+									<span>{{ $t("header.sale") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="bargain.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-cart"></use>
+									</svg>
+									<span>{{ $t("header.bargain") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="installment.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-huankuanri"></use>
+									</svg>
+									<span>{{ $t("header.hire") }}</span>
+								</a>
+							</li>
+							<li>
+								<a href="about.html">
+									<svg class="icon" aria-hidden="true">
+									    <use xlink:href="#icon-chehangBmen"></use>
+									</svg>
+									<span>{{ $t("header.about") }}</span>
+								</a>
+							</li>
+							<li>
+								
+							</li>
+							<li>
+								<a href="">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</transition>
+			<transition name="searchfade">
+				<div class="login-page" v-if="loginshow">
+					<div class="loginMask" v-on:click="loginshow = !loginshow">
+					</div>
+					<div class="login">
+						<div class="close" v-on:click="loginshow = !loginshow">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-close"></use>
+							</svg>
+						</div>
+						<div class="login-item">
+							<input type="number" class="defa" v-model="logindata.phonenum" placeholder="手机号"/>
+						</div>
+						<div class="login-item">
+							<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
+							<input type="button" class="getcode" value="获取验证码" />
+						</div>
+						<input type="button" class="btn-login" value="登录" v-on:click="login()">
+						<div class="login-tips">
+							<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+						</div>
+					</div>
+				</div>
+			</transition>
+		</div>
+		<div id="search">
+			<input type="text" value="" :placeholder="$t('search.place')" v-on:focus="searchshow = !searchshow"/>
+		</div>
+		<transition name="searchfade">
+			<div class="search-page" v-if="searchshow">
+				<div class="sear-top">
+					<div class="close" v-on:click="searchshow = !searchshow">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-close"></use>
+						</svg>
+					</div>
+					<div class="content">
+						<input type="text">
+					</div>
+					<div class="search">
+						<a href="buy.html">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-search1187938easyiconnet"></use>
+							</svg>
+						</a>
+					</div>
+				</div>
+				<div class="search-record">
+					<ul>
+						<a href="buy.html"><li class="record-item">大众</li></a>
+						<a href="buy.html"><li class="record-item">福特</li></a>
+						<a href=""><li class="clear">清除历史搜索记录</li></a>
+					</ul>
+				</div>
+				<div class="hot-search">
+					<div class="title">
+						热门搜索
+					</div>
+					<ul>
+						<a href="buy.html"><li>大众</li></a>
+						<a href="buy.html"><li>福特</li></a>
+						<a href="buy.html"><li>兰博基尼</li></a>
+						<a href="buy.html"><li>兰博基尼</li></a>
+						<a href="buy.html"><li>兰博基尼</li></a>
+						<a href="buy.html"><li>兰博基尼兰博基尼兰博基尼</li></a>
+					</ul>
+				</div>
+			</div>
+		</transition>
+	  <div class="swiper-container">
+	    <div class="swiper-wrapper">
+	      <div class="swiper-slide" v-for="item in slideArr"><a href="carDetail.html"><img :src="'images/' + item"></a></div>
+	    </div>
+	    <div class="swiper-pagination"></div>
+	  </div>
+		<div id="tips">
+			<svg class="icon" aria-hidden="true">
+				<use xlink:href="#icon-ling"></use>
+			</svg>
+			<div class="text text-container">
+				<ul class="swiper-wrapper">
+					<li class="swiper-slide" v-for="item in tipsArr">{{item}}</li>
+				</ul>
+			</div>
+		</div>
+		<span class="price-title">CAR Price <a href="buy.html">查看更多&nbsp;></a></span>
+		<div class="price-btns">
+			<button class="btn" type="button" v-for="item in $t('price')" style="border: none;"><a href="buy.html">{{item}}</a></button>
+		</div>
+		<span class="price-title">CAR brand</span>
+		<div class="cartype-btns">
+			<button type="button" v-for="item in $t('cartype')">
+				<a href="buy.html">
+					<div class="img-c">
+						<img :src="'images/'+item.logo" >
+					</div>
+					<span class="cartype-name">{{item.name}}</span>
+				</a>
+			</button>
+			<button type="button" class="moretype">
+				<a href="buy.html">
+					<div class="img-c">
+						...
+					</div>
+					<div>{{ $t("more") }}</div>
+				</a>
+			</button>
+		</div>
+		<div class="recommoned">
+			<span class="re-title">{{ $t("recom") }}</span>
+			<div class="sel-type">
+				<ul>
+					<li v-for="item in $t('seltype')" v-on:click="selected($event)">{{item}}</li>
+				</ul>
+			</div>
+			<div class="car-detail">
+				<div class="car-item" v-for="item in $t('explain')">
+					<a href="carDetail.html">
+						<img class="bg" src="images/car-1.jpg">
+						<img class="favorite" src="images/favorite.png">
+						<div class="car-explain">
+							<div class="explain-t">
+								<div class="car-name">
+									{{item.name}}
+								</div>
+								<div class="car-price">
+									{{item.price}}
+								</div>
+							</div>
+							<div class="distance">
+								{{item.distance}}
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="recommoned">
+			<span class="re-title">{{ $t("mediaVoice") }}</span>
+				<div class="media-detail">
+					<div class="media-item" v-for="item in $t('media')">
+						<a href="#">
+							<img class="bg" src="images/car-1.jpg">
+							<div class="media-title">
+								{{item.title}}
+							</div>
+							<div class="media-art">
+								{{item.art}}
+							</div>
+						</a>
+					</div>
+				</div>
+		</div>
+		<div class="contact">
+			<div class="top">
+					<div class="logo"><img src="images/logor.png" ></div>
+				<div class="wx">
+					<a>
+						<img src="images/humacar.png" >
+						<span>CHAMPION</span>
+					</a>
+				</div>
+				<div class="phone">
+					<a>
+						<img src="images/phone.png" >
+						<span>+1(888)-888-6518</span>
+					</a>
+				</div>
+			</div>
+			</div>
+		<div class="adress">
+			<ul>
+				<a href="#">
+					<li>
+						<span>洛杉矶旗舰店地址</span>
+						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+					</li>
+				</a>
+				<a href="#">
+					<li>
+						<span>洛杉矶旗舰店地址</span>
+						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+					</li>
+				</a>
+				<a href="#">
+					<li>
+						<span>洛杉矶旗舰店地址</span>
+						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+					</li>
+				</a>
+			</ul>
+		</div>
+		<div class="misc">
+			<ul>
+				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
+			</ul>
+		</div>
+		<div class="copy">
+			<span>
+        Copyright@2016 CHAMPION Inc. Privacy Terms
+    </span>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var locale = localStorage.locale;
+	new Vue({
+		i18n,
+		data: {
+			show: false,
+			topshow: false,
+			botshow: false,
+			enshow: "english",
+			searchshow: false,
+			loginshow: false,
+			switchlogin: true,
+			logindata: {
+				phonenum:'',
+				checkcode:''
+			},
+			slideArr: ['index_masthead0cn.jpg','index_masthead1.jpg','index_masthead0cn.jpg','index_masthead1.jpg'],
+			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
+		},
+		mounted() {
+			$('.sel-type').find('li').eq(0).addClass('sel').css('border-bottom','1px solid #C21B36');
+			if(locale){
+				i18n.locale = locale;
+				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
+			}else{
+				(locale = i18n.locale);
+			}
+			var login;
+			 if(localStorage.login){
+				login = JSON.parse(localStorage.login);
+			 }
+			if(login){
+				this.switchlogin = false;
+			}else{
+				this.switchlogin = true;
+			}
+		},
+		methods: {
+			login: function() {
+				if(this.logindata.phonenum == ''){
+					alert("请填写手机号!");
+					return;
+				}
+				else if(this.logindata.checkcode == ''){
+					alert("请填写验证码!");
+					return;
+				}
+				this.switchlogin = !this.switchlogin;
+				this.loginshow = !this.loginshow;
+				alert('登录成功!');
+				localStorage.login = true;
+			},
+			change :function() {
+				this.enshow = this.enshow == 'english' ? "中文" : "english";
+				var that = this;
+				setTimeout(function(){
+					if(i18n.locale == 'en'){
+						i18n.locale = 'zh-cn';
+					}else if(i18n.locale == 'zh-cn'){
+						i18n.locale = 'en';
+					}
+					localStorage.locale = i18n.locale;
+				},1100)
+			  // console.log(localStorage.locale)
+			 
+			},
+			selected:function(e) {
+				var len = e.target.parentNode.children.length;
+				var node = e.target.parentNode.children;
+				for(i=0; i < len; i++){
+					node[i].classList.remove('sel');
+					node[i].style.borderBottom = '1px solid #EAEAEA';
+				}
+				e.target.classList.add('sel');
+				e.target.style.borderBottom = '1px solid #C21B36';
+			},
+			top:function(){
+				this.topshow = !this.topshow;
+				$('html,body').animate({scrollTop: '0'}, 700);
+			},
+			consult:function(){
+				this.botshow = !this.botshow;
+				setTimeout(function(){
+					alert("功能完善中！")
+				},700)
+			}
+		}
+	}).$mount('#index')
+	new Swiper('.swiper-container', {
+        autoHeight: true,
+        pagination: {
+			el: '.swiper-pagination',
+			dynamicBullets: true,
+			clickable: true,
+        },
+        loop:true,
+        autoplay: {
+			delay: 2500,
+			disableOnInteraction:false
+        }
+    });
+	new Swiper('.text-container', {
+		direction:'vertical',
+		loop:true,
+		autoplay: {
+			delay: 2500,
+			disableOnInteraction:false
+		}
+	});
+	// 现在应用程序已经准备好了！
+</script>
+</html>
