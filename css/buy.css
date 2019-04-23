@@ -1,6 +1,27 @@
 #buy{
 	box-sizing: border-box;
 }
+.choose-tag{
+	background-color: white;
+}
+.choose-tag .choose-top{
+	height: 50px;
+	padding: 0 40px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.choose-top .title{
+	border-right: 1px solid #a2a2a2;
+}
+.choose-top .tags{
+	display: flex;
+	justify-content: flex-start;
+	padding: 0 20px;
+}
+.choose-top .tags li{
+	margin-right: 20px;
+}
 .buy-sel{
 	width: 100%;
 }
@@ -11,12 +32,12 @@
 }
 .buy-sel ul li{
 	width: 100%;
-	height: 0.9px;
-	font-size: 0.35px;
+	height: 40px;
+	font-size: 14px;
 	text-align: center;
 	border-top: 1px solid #DEDEDE;
 	border-bottom: 1px solid #DEDEDE;
-	padding: 0.1px;
+	padding: 10px;
 	color: #969696;
 	display: flex;
 	align-items: center;
@@ -39,17 +60,17 @@
 #buy .order ul{
 	width: 100%;
 	height: 100%;
-	padding: 0.2px 0 0 0;
+	padding: 10px 0 0 0;
 	display: flex;
-	font-size: 0.3px;
+	font-size: 14px;
 	flex-wrap: wrap;
 	justify-content: space-around;
 }
 #buy .order ul li{
 	background-color: white;
-	padding: 0.15px;
+	padding: 10px;
 	box-sizing: border-box;
-	margin-bottom: 0.2px;
+	margin-bottom: 10px;
 }
 #buy .order ul li:nth-child(1){
 	background-color: #DA2515;

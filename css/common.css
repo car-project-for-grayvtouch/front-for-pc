@@ -155,3 +155,6 @@
     -webkit-line-clamp: 1;
     overflow: hidden;
 }
+.margin{
+	margin: 0 150px;
+}
