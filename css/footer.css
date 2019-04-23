@@ -1,21 +1,30 @@
+.footer{
+	display: flex;
+	justify-content: space-between;
+	background-color: #F6F6F6;
+}
 .contact{
-	height: 100px;
+	width: 40%;
 	margin: 10px 10px 0 10px;
 	}
 .contact a{
 	color: #969696;
 }
 .contact .top{
-	width: 100%;
-	height: 95px;
+	height: 100%;
 	display: flex;
-	padding: 10px 0;
 	box-sizing: border-box;
-	justify-content: space-between;
+	justify-content: space-around;
+	padding: 0 40px;
+}
+.con-top-r{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-direction: column;
 }
 .contact .top .logo{
 	width: 150px;
-	border-right: 1px solid #EAEAEA;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -24,7 +33,8 @@
 .contact .top .wx a,.contact .top .phone a{
 	width: 100%;
 	height: 100%;
-	font-size: 12px;
+	line-height: 50px;
+	font-size: 14px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -32,17 +42,18 @@
 }
 .contact .top .logo img{
 	width: 100px;
+	height: 150px;
 	border-radius: 20px;
 }
 .contact .top .wx img,.contact .top .phone img{
 	width: 60px;
 }
 .adress{
-	background-color: #F6F6F6;
-	width: 100%;
+	width: 60%;
 	box-sizing: border-box;
 	padding: 10px 10px 0 10px;
 	text-align: center;
+	border-left: 1px solid white;
 }
 .adress li{
 	padding-bottom: 15px;
@@ -61,8 +72,12 @@
 }
 .misc{
 	background: #F6F6F6;
+	margin-top: 20px;
+	padding: 10px 20px;
+	border-bottom: 1px solid white;
 }
 .misc ul{
+	width: 40%;
 	padding:5px 4px;
 	display: flex;
 	font-size: 15px;
@@ -73,6 +88,8 @@
 	color: #969696;
 }
 .copy{
+	width: 100%;
+	line-height: 40px;
 	background-color: #DA2515;
 	color: white;
 	font-size: 15px;

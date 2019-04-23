@@ -7,26 +7,26 @@ a{
 	color: black;
 }
 body{
-	padding: 100px;
+	min-width: 1412px;
 	background: white;
 }
 ul{
 	list-style: none;
 }
 .header{
-	background: #A2352E;
 	width: 100%;
-	height: 55px;
-	position: fixed;
+	height: 60px;
+	position: relative;
+	border-top: 1px solid #c7c7c7;
+    border-bottom: 1px solid #c7c7c7;
+    background-color: #fbfbfb;
 	z-index: 99;
-	top: 0;
 }
 .header .logos{
-	width: 50px;
-	height: 40px;
+	width: 106px;
+	height: 60px;
 	position: absolute;
-	left: 0;
-	right: 0;
+	left: 50px;
 	top: 0;
 	bottom: 0;
 	margin: auto;
@@ -47,7 +47,7 @@ ul{
 }
 .header .person{
     position: absolute;
-    right: 10px;
+    right: 25px;
     top: 0px;
     bottom: 0;
     margin: auto;
@@ -55,44 +55,40 @@ ul{
 	height: 40px;
 	line-height: 40px;
 	font-size: 15px;
-	color: white;
+	/* color: white; */
+}
+.person span:hover{
+	color: #A2352E;
+	cursor: pointer;
 }
 .header .person .icon{
 	width: 25px;
     height: 25px;
-	color: white;
-}
-.header .nav-menu-switch{
-	width: 40px;
-    height: 40px;
-	position: absolute;
-	left: 10px;
-	top: 0;
-	bottom: 0;
-	margin: auto;
 }
 .header .language-switch,.header .back-to-top,.header .online-consultation{
 	width: 50px;
 	height: 50px;
 	position: fixed;
-	right: 10px;
+	right: 40px;
 	border-radius: 50%;
 	outline: none;
 	color: #C21B36;
 	font-size: 12px;
 	opacity: 0.8;
+	border: none;
+	box-shadow: 0 0 5px rgba(0, 0, 0, .5);
 }
 .header .language-switch{
 	background-color: white;
-	bottom: 20px;
+	bottom: 140px;
 }
 .header .back-to-top{
-	bottom: 100px;
+	bottom: 220px;
 	background-color: white;
 	color: #C21B36;
 }
 .header .online-consultation{
-	bottom: 180px;
+	bottom: 60px;
 	background-color: #C21B36;
 	color: white;
 }
@@ -106,23 +102,24 @@ ul{
 .header .nav-menu{
 	position: absolute;
 	width: 55%;
-	left: 60px;
+	left: 200px;
 	padding: 5px;
+	top: 0;
+	bottom: 0;
+	margin: auto;
 	box-sizing: border-box;
-	background: #f8f8f8;
 	z-index: 999;
 	font-size: 25px;
 }
 .nav-menu ul{
+	width: 100%;
+	height: 100%;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	flex-wrap: wrap;
 }
-.nav-menu ul li{
-	/* padding: 10px; */
-}
 .nav-menu ul li a{
-	width: 50px;
 	color: black;
 	text-decoration: none;
 	display: flex;
@@ -132,16 +129,11 @@ ul{
 	position: relative;
 	align-items: center;
 }
-.nav-menu .icon{
-	width: 30px;
-	height: 30px;
-	background: #C21B36;
-	border-radius: 5px;
-	padding: 5px;
-	box-sizing: border-box;
+.nav-menu ul li a:hover{
+	color: #A2352E;
 }
 .nav-menu span{
-	font-size: 12px;
+	font-size: 16px;
 }
 [v-cloak]{
 	display: none;
@@ -190,6 +182,7 @@ ul{
 	width: 100%;
 	height: 100%;
 	position: fixed;
+	z-index: 999;
 }
 .login-page .loginMask{
 	position: fixed;

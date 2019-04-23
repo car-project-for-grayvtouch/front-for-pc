@@ -1,44 +1,47 @@
 #personalCenter{
 }
+.pc-content{
+	margin: 0 150px;
+}
 .user-info{
 	box-sizing: border-box;
 	width: 100%;
-	height: 3px;
-	padding: 0.4px;
+	height: 150px;
+	padding: 25px;
 	position: relative;
 }
 .head-img{
 	float: left;
 }
 .head-img img{
-	width: 2px;
-	height: 2px;
+	width: 100px;
+	height: 100px;
 	border-radius: 50%;
 }
 .user-num{
 	float: left;
 	color: lightgrey;
-	font-size: 0.4px;
-	margin-top: 1.5px;
-	margin-left: 0.2px;
+	font-size: 14px;
+	margin-top: 80px;
+	margin-left: 10px;
 }
 .user-info button{
 	float: right;
 	background-color: white;
     display: block;
-    height: 0.7px;
-    line-height: 0.7px;
+    height: 40px;
+    line-height: 40px;
     border: 1px solid #dde4ea;
-    border-radius: .4px;
+    border-radius: 10px;
     text-align: center;
-    width: 2px;
+    width: 100px;
     color: #9ea2a6;
-    font-size: 0.3px;
-	margin-top: 0.8px;
+    font-size: 14px;
+	margin-top: 70px;
 	outline: none;
 }
 .record-type li{
-    height: 1.2px;
+    height: 60px;
 }
 .record-type a{
 	display: block;
@@ -46,26 +49,26 @@
     width: 100%;
     border-bottom: 1px solid #dde4ea;
     color: #495056;
-    font-size: .4px;
+    font-size: 14px;
     position: relative;
 }
 .record-type a svg{
-	width: 0.5px;
+	width: 40px;
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	left: 0.4px;
+	left: 20px;
 	margin: auto;
 }
 .record-type li:nth-child(1) svg{
-	width: 0.7px;
-	margin-left: -0.1px;
+	width: 50px;
+	margin-left: -7px;
 }
 .record-type a span{
-	width: 2px;
-	height: 0.5px;
+	width: 100px;
+	height: 20px;
 	position: absolute;
-	left: 1.4px;
+	left: 70px;
 	top: 0;
 	bottom: 0;
 	margin: auto;
@@ -87,12 +90,12 @@
 	color: #fff;
     background: #da2515;
     width: 95%;
-    height: 1px;
-    border-radius: 0.5px;
+    height: 50px;
+    border-radius: 50px;
     border: none;
     outline: none;
     position: relative;
     left: 2.5%;
-	margin-top: 0.4px;
-	font-size: 0.4px;
+	margin-top: 20px;
+	font-size: 14px;
 }

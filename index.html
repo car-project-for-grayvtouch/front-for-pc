@@ -17,12 +17,15 @@
 	<script src="js/vue-i18n.js"></script>
 	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/swiper.min.js"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
+	<script src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
+	<style type="text/css">
+		
+	</style>
 </head>
 <body>
 	<div id="index" v-cloak>
@@ -30,9 +33,6 @@
 			<div class="logos">
 				<img class="logor" src="images/logor.png">
 			</div>
-			<svg class="icon nav-menu-switch" aria-hidden="true" v-on:click="show = !show">
-			    <use xlink:href="#icon-caidan"></use>
-			</svg>
 			<div class="person">
 				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
 				<a v-else href="personalCenter.html">
@@ -50,57 +50,35 @@
 			<transition name="fadeo" mode="out-in">
 					<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
 			</transition>
-			<transition name="slide-fade">
-				<div v-if="show">
-					<div class="mask" v-on:click="show = !show">
-					</div>
 					<div class="nav-menu">
 						<ul>
 							<li>
 								<a href="index.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-xiazai45"></use>
-									</svg>
 									<span>{{ $t("header.home") }}</span>
 								</a>
 							</li>
 							<li>
 								<a href="buy.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-car"></use>
-									</svg>
 									<span>{{ $t("header.buy") }}</span>
 								</a>
 							</li>
 							<li>
 								<a href="sale.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-maiche"></use>
-									</svg>
 									<span>{{ $t("header.sale") }}</span>
 								</a>
 							</li>
 							<li>
 								<a href="bargain.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-cart"></use>
-									</svg>
 									<span>{{ $t("header.bargain") }}</span>
 								</a>
 							</li>
 							<li>
 								<a href="installment.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-huankuanri"></use>
-									</svg>
 									<span>{{ $t("header.hire") }}</span>
 								</a>
 							</li>
 							<li>
 								<a href="about.html">
-									<svg class="icon" aria-hidden="true">
-									    <use xlink:href="#icon-chehangBmen"></use>
-									</svg>
 									<span>{{ $t("header.about") }}</span>
 								</a>
 							</li>
@@ -113,8 +91,16 @@
 							</li>
 						</ul>
 					</div>
-				</div>
-			</transition>
+					<div id="tips">
+						<svg class="icon" aria-hidden="true">
+							<use xlink:href="#icon-ling"></use>
+						</svg>
+						<div class="text text-container">
+							<ul class="swiper-wrapper">
+								<li class="swiper-slide" v-for="item in tipsArr">{{item}}</li>
+							</ul>
+						</div>
+					</div>
 			<transition name="searchfade">
 				<div class="login-page" v-if="loginshow">
 					<div class="loginMask" v-on:click="loginshow = !loginshow">
@@ -140,182 +126,233 @@
 				</div>
 			</transition>
 		</div>
-		<div id="search">
-			<input type="text" value="" :placeholder="$t('search.place')" v-on:focus="searchshow = !searchshow"/>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+			  <div class="swiper-slide" v-for="item in slideArr"><a href="carDetail.html"><img :src="'images/' + item"></a></div>
+			</div>
+			<div class="swiper-pagination"></div>
 		</div>
-		<transition name="searchfade">
-			<div class="search-page" v-if="searchshow">
-				<div class="sear-top">
-					<div class="close" v-on:click="searchshow = !searchshow">
-						<svg class="icon" aria-hidden="true">
-							<use xlink:href="#icon-close"></use>
-						</svg>
+		<div class="margin">
+			<div class="center-important">
+				<div class="center-l">
+					<div class="center-l-t">
+						<span class="buy-title">
+							我要买车
+						</span>
+						<div id="search">
+							<input type="text" value="" :placeholder="$t('search.place')" v-on:focus="searchshow = !searchshow"/>
+							<transition name="searchfade">
+								<div class="search-page" v-if="searchshow">
+									<div class="sear-top">
+										<div class="close" v-on:click="searchshow = !searchshow">
+											<svg class="icon" aria-hidden="true">
+												<use xlink:href="#icon-close"></use>
+											</svg>
+										</div>
+										<div class="content">
+											<input type="text">
+										</div>
+										<div class="search">
+											<a href="buy.html">
+												<svg class="icon" aria-hidden="true">
+													<use xlink:href="#icon-search1187938easyiconnet"></use>
+												</svg>
+											</a>
+										</div>
+									</div>
+									<div class="search-record">
+										<ul>
+											<a href="buy.html"><li class="record-item">大众</li></a>
+											<a href="buy.html"><li class="record-item">福特</li></a>
+											<a href=""><li class="clear">清除历史搜索记录</li></a>
+										</ul>
+									</div>
+									
+								</div>
+							</transition>
+						</div>
+						
 					</div>
-					<div class="content">
-						<input type="text">
+					<span class="price-title">CAR Price <a href="buy.html">查看更多&nbsp;></a></span>
+					<div class="price-btns">
+						<button class="btn" type="button" v-for="item in $t('price')" style="border: none;"><a href="buy.html">{{item}}</a></button>
 					</div>
-					<div class="search">
-						<a href="buy.html">
-							<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-search1187938easyiconnet"></use>
-							</svg>
+					<span class="price-title">CAR brand</span>
+					<div class="cartype-btns">
+						<button type="button" v-for="item in $t('cartype')">
+							<a href="buy.html">
+								<div class="img-c">
+									<img :src="'images/'+item.logo" >
+								</div>
+								<span class="cartype-name">{{item.name}}</span>
+							</a>
+						</button>
+						<button type="button" class="moretype">
+							<a href="buy.html">
+								<div class="img-c">
+									...
+								</div>
+								<div>{{ $t("more") }}</div>
+							</a>
+						</button>
+					</div>
+				</div>
+				<div class="center-r">
+					<span class="sale-title">
+						热门搜索
+					</span>
+					<!-- <div class="c-t-i">
+						<input type="text" id="" value="" placeholder="请输入手机号"/>
+						<div class="btn-sale">
+							卖车
+						</div>
+					</div> -->
+					<!-- <div class="hot-search">
+						<ul>
+							<a href="buy.html"><li>大众</li></a>
+							<a href="buy.html"><li>福特</li></a>
+							<a href="buy.html"><li>兰博基尼</li></a>
+							<a href="buy.html"><li>兰博基尼</li></a>
+							<a href="buy.html"><li>兰博基尼</li></a>
+							<a href="buy.html"><li>兰博基尼兰博基尼兰博基尼</li></a>
+							<a href="buy.html"><li>兰博基尼兰博基尼兰博基尼</li></a>
+							<a href="buy.html"><li>兰博基尼兰博基尼兰博基尼</li></a>
+							<a href="buy.html"><li>兰博基尼兰博基尼兰博基尼</li></a>
+							<a href="buy.html"><li>兰博基尼兰博基尼兰博基尼</li></a>
+						</ul>
+					</div> -->
+					<div class="tagList">
+					    <div class="circle">
+					        <h2>BMW 3系</h2>
+					    </div>
+					    <div class="circle">
+					        <h2>法拉利</h2>
+					    </div>
+					    <div class="circle">
+					        <h2>丰田</h2>
+					    </div>
+					    <div class="circle">
+					        <h2>宝马</h2>
+					    </div>
+					    <div class="circle">
+					        <h2>本田</h2>
+					    </div>
+					    <div class="circle">
+					        <h2>奔驰</h2>
+					    </div>
+					    <div class="circle">
+					        <h2>福特野马</h2>
+					    </div>
+						<div class="circle">
+						    <h2>奥迪A5</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+		  
+			
+			
+			<div class="recommoned">
+				<span class="re-title">{{ $t("recom") }}</span>
+				<div class="sel-type">
+					<ul>
+						<li v-for="item in $t('seltype')" v-on:click="selected($event)">{{item}}</li>
+					</ul>
+				</div>
+				<div class="car-detail">
+					<div class="car-item" v-for="item in $t('explain')">
+						<a href="carDetail.html">
+							<img class="bg" src="images/car-1.jpg">
+							<img class="favorite" src="images/favorite.png">
+							<div class="car-explain">
+								<div class="explain-t">
+									<div class="car-name">
+										{{item.name}}
+									</div>
+									<div class="car-price">
+										{{item.price}}
+									</div>
+								</div>
+								<div class="distance">
+									{{item.distance}}
+								</div>
+							</div>
 						</a>
 					</div>
 				</div>
-				<div class="search-record">
-					<ul>
-						<a href="buy.html"><li class="record-item">大众</li></a>
-						<a href="buy.html"><li class="record-item">福特</li></a>
-						<a href=""><li class="clear">清除历史搜索记录</li></a>
-					</ul>
-				</div>
-				<div class="hot-search">
-					<div class="title">
-						热门搜索
-					</div>
-					<ul>
-						<a href="buy.html"><li>大众</li></a>
-						<a href="buy.html"><li>福特</li></a>
-						<a href="buy.html"><li>兰博基尼</li></a>
-						<a href="buy.html"><li>兰博基尼</li></a>
-						<a href="buy.html"><li>兰博基尼</li></a>
-						<a href="buy.html"><li>兰博基尼兰博基尼兰博基尼</li></a>
-					</ul>
-				</div>
 			</div>
-		</transition>
-	  <div class="swiper-container">
-	    <div class="swiper-wrapper">
-	      <div class="swiper-slide" v-for="item in slideArr"><a href="carDetail.html"><img :src="'images/' + item"></a></div>
-	    </div>
-	    <div class="swiper-pagination"></div>
-	  </div>
-		<div id="tips">
-			<svg class="icon" aria-hidden="true">
-				<use xlink:href="#icon-ling"></use>
-			</svg>
-			<div class="text text-container">
-				<ul class="swiper-wrapper">
-					<li class="swiper-slide" v-for="item in tipsArr">{{item}}</li>
-				</ul>
+			<div class="recommoned">
+				<span class="re-title">{{ $t("mediaVoice") }}</span>
+					<div class="media-detail">
+						<div class="media-item" v-for="item in $t('media')">
+							<a href="#">
+								<img class="bg" src="images/car-1.jpg">
+								<div class="media-title">
+									{{item.title}}
+								</div>
+								<div class="media-art">
+									{{item.art}}
+								</div>
+							</a>
+						</div>
+					</div>
 			</div>
-		</div>
-		<span class="price-title">CAR Price <a href="buy.html">查看更多&nbsp;></a></span>
-		<div class="price-btns">
-			<button class="btn" type="button" v-for="item in $t('price')" style="border: none;"><a href="buy.html">{{item}}</a></button>
-		</div>
-		<span class="price-title">CAR brand</span>
-		<div class="cartype-btns">
-			<button type="button" v-for="item in $t('cartype')">
-				<a href="buy.html">
-					<div class="img-c">
-						<img :src="'images/'+item.logo" >
-					</div>
-					<span class="cartype-name">{{item.name}}</span>
-				</a>
-			</button>
-			<button type="button" class="moretype">
-				<a href="buy.html">
-					<div class="img-c">
-						...
-					</div>
-					<div>{{ $t("more") }}</div>
-				</a>
-			</button>
-		</div>
-		<div class="recommoned">
-			<span class="re-title">{{ $t("recom") }}</span>
-			<div class="sel-type">
+			<div class="misc">
 				<ul>
-					<li v-for="item in $t('seltype')" v-on:click="selected($event)">{{item}}</li>
+					<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
 				</ul>
 			</div>
-			<div class="car-detail">
-				<div class="car-item" v-for="item in $t('explain')">
-					<a href="carDetail.html">
-						<img class="bg" src="images/car-1.jpg">
-						<img class="favorite" src="images/favorite.png">
-						<div class="car-explain">
-							<div class="explain-t">
-								<div class="car-name">
-									{{item.name}}
-								</div>
-								<div class="car-price">
-									{{item.price}}
-								</div>
+			<div class="footer">
+				<div class="contact">
+					<div class="top">
+						<div class="logo"><img src="images/logo.jpg" ></div>
+						<div class="con-top-r">
+							<div class="wx">
+								<a>
+									<img src="images/humacar.png" >
+									<span>CHAMPION</span>
+								</a>
 							</div>
-							<div class="distance">
-								{{item.distance}}
+							<div class="phone">
+								<a>
+									<img src="images/phone.png" >
+									<span>+1(888)-888-6518</span>
+								</a>
 							</div>
 						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="recommoned">
-			<span class="re-title">{{ $t("mediaVoice") }}</span>
-				<div class="media-detail">
-					<div class="media-item" v-for="item in $t('media')">
-						<a href="#">
-							<img class="bg" src="images/car-1.jpg">
-							<div class="media-title">
-								{{item.title}}
-							</div>
-							<div class="media-art">
-								{{item.art}}
-							</div>
-						</a>
 					</div>
-				</div>
-		</div>
-		<div class="contact">
-			<div class="top">
-					<div class="logo"><img src="images/logor.png" ></div>
-				<div class="wx">
-					<a>
-						<img src="images/humacar.png" >
-						<span>CHAMPION</span>
-					</a>
-				</div>
-				<div class="phone">
-					<a>
-						<img src="images/phone.png" >
-						<span>+1(888)-888-6518</span>
-					</a>
+					</div>
+				<div class="adress">
+					<ul>
+						<a href="#">
+							<li>
+								<span>洛杉矶旗舰店地址</span>
+								<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+							</li>
+						</a>
+						<a href="#">
+							<li>
+								<span>洛杉矶旗舰店地址</span>
+								<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+							</li>
+						</a>
+						<a href="#">
+							<li>
+								<span>洛杉矶旗舰店地址</span>
+								<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+							</li>
+						</a>
+					</ul>
 				</div>
 			</div>
+			
+			<div class="copy">
+				<span>
+					Copyright@2016 CHAMPION Inc. Privacy Terms
+				</span>
 			</div>
-		<div class="adress">
-			<ul>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-			</ul>
-		</div>
-		<div class="misc">
-			<ul>
-				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
-			</ul>
-		</div>
-		<div class="copy">
-			<span>
-        Copyright@2016 CHAMPION Inc. Privacy Terms
-    </span>
 		</div>
 	</div>
 </body>
@@ -355,6 +392,135 @@
 			}else{
 				this.switchlogin = true;
 			}
+			
+			var userTags = {
+				color: ['#4B82FF', '#FF747B', '#15D5E0', '#FFB178', '#8871FF', '#ED59F8'],
+				circleAttr: {minWidth: 60,maxWidth: 80},
+				circlePosi: [{cl: 25,ct: 130},
+				{cl: 100,ct: 20},
+				{cl: 200,ct: 50},
+				{cl: 300,ct: 20},
+				{cl: 400,ct: 20},
+				{cl: 500,ct: 190},
+				{cl: 550,ct: 180}],
+				parAttr:{width: 427,height: 370},
+				bigFont: 12,
+				smallFont: 12,
+				length: 10,
+				posiArr: [],
+				getDefault: function() { //获取当前tagList的高度和circle的个数
+					var w = $('.tagList').width();
+					if (w > this.parAttr.width) {
+						this.parAttr.width = w;
+					}
+					this.length = $('.circle').length;
+					if(this.length > 7){
+						//制定比例，外部盒子宽度越小，circle个数越多。circle宽高越小，内部上下两块字体越小 1450 : 7 ：140 ：21 ：14
+						var userAgent = navigator.userAgent;
+						var isChrome = userAgent.indexOf("Chrome") > -1;//浏览器适配
+						if(isChrome){
+							this.circleAttr.minWidth = this.circleAttr.minWidth - (this.length - 7) * 140 / 15;
+							this.circleAttr.maxWidth = this.circleAttr.maxWidth - (this.length - 7) * 140 / 15;
+							this.bigFont = this.bigFont - (this.length - 7) * 21 / 4;
+							this.smallFont = this.smallFont - (this.length - 7) * 14 / 4;
+						}
+					}
+					if(this.length > 9){
+						$('.circle').find('h2').css('margin-bottom','0');
+					}
+				},
+				getRandomNum: function(max, min) { //随机获取两个数中间的数值
+					if (min > max) {
+						var median = min;
+						min = max;
+						max = median;
+					}
+					var n = Math.round(Math.random() * (max - min) + min);
+					return n;
+				},
+				overlap: function(j) {
+					//验证是否重叠,利用组合算法的思想
+					
+					var mw = this.circleAttr.maxWidth;
+					var len = this.posiArr.length;
+					for(var i = 0; i < len - 1; i++){
+						for(var j = i + 1; j < len; j++){
+							if(Math.abs(this.posiArr[i].cl - this.posiArr[j].cl) <= (mw - 25) && Math.abs(this.posiArr[i].ct - this.posiArr[j].ct) <= (mw - 25)){
+								return this.getPosi();
+							}
+						}
+					}
+					
+				},
+				getPosi: function() {
+					var i = 0;
+					for( ; i < this.length; i++){//获取circle长度的位置数据
+						if(this.posiArr[i]){
+		
+						}else{
+							this.posiArr[i] = {};
+						}
+						var cl = this.getRandomNum(0, this.parAttr.width - this.circleAttr.maxWidth);
+						var ct = this.getRandomNum(0, this.parAttr.height - this.circleAttr.maxWidth);
+						this.posiArr[i]['cl'] = cl;
+						this.posiArr[i]['ct'] = ct;
+					}
+					
+					this.overlap();
+				},
+				random: function() {//给每个circle随机设置属性
+					
+					var bacRan,
+					colorIndex,
+					cw,
+					ch;
+					for(var i = 0; i < this.length; i++){
+						colorIndex = this.getRandomNum(0, this.color.length - 1);
+						bacRan = this.color[colorIndex];
+						cw = ch = this.getRandomNum(this.circleAttr.minWidth,this.circleAttr.maxWidth);
+						$('.circle').eq(i).css({'background': bacRan, 'width' : cw + 'px', 'height' : ch + 'px', 'left' : this.posiArr[i].cl + 'px', 'top' : this.posiArr[i].ct + 'px'}).find('h2').css({'font-size':this.bigFont + 'px'}).end().find('span').css({'font-size':this.smallFont + 'px'});
+					}
+					// debugger
+				},
+				regular: function() {
+					var originNum = 800;
+					if(this.length > 7){
+						for(var i = 0; i < this.length - 7; i++){
+							this.circlePosi.push({'cl': 800 + (i + 1) * 150,'ct': 140});
+						}
+					}
+				},
+				ani: function() {
+					setInterval(function(){
+						for (var i = 0; i<$(".circle").length; i++) {
+							var originTop = parseInt($(".circle").eq(i).css("top"));
+							var aniLen = parseInt($(".circle").eq(i).css("width"))
+							$(".circle").eq(i).animate({
+								top: originTop - aniLen/4 + 'px'
+							},'slow');
+							$(".circle").eq(i).animate({
+								top: originTop + 'px'
+							},'slow');
+						}
+					},1350)
+				},
+				init: function() {
+					this.getDefault();
+					//如果栈溢出了，使用默认的position
+					try{
+						this.getPosi();
+					}catch(err){
+						console.log('栈溢出了！');
+						this.regular();
+						this.posiArr = this.circlePosi;
+					}
+					this.random();
+					this.ani();
+				},
+			}
+    
+			userTags.init();
+			
 		},
 		methods: {
 			login: function() {

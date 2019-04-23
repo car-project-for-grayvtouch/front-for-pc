@@ -1,5 +1,5 @@
 // 通过选项创建 VueI18n 实例
-	const i18n = new VueI18n({
+	let i18n = new VueI18n({
 	  locale: localStorage.getItem('locale') || 'zh-cn', // 设置地区
 	  messages: {
 		  en: {
@@ -27,6 +27,7 @@
 				recom: 'CHAMPION Recommoned',
 				seltype: ['Hot Deal','ECO-Car','Like new'],
 				explain: [{'name':'2017 Audi A4 2.0L','price':'22,599','distance':'33,213Miles·0Dr·front wheel drive·4-Cyl·2.0L Turbocharger·Automatic'},
+				{'name':'2017 Audi A4 2.0L','price':'22,599','distance':'33,213Miles·0Dr·front wheel drive·4-Cyl·2.0L Turbocharger·Automatic'},
 				{'name':'2017 Audi A4 2.0L','price':'22,599','distance':'33,213Miles·0Dr·front wheel drive·4-Cyl·2.0L Turbocharger·Automatic'},
 				{'name':'2017 Audi A4 2.0L','price':'22,599','distance':'33,213Miles·0Dr·front wheel drive·4-Cyl·2.0L Turbocharger·Automatic'}],
 				mediaVoice: 'Media voice',
@@ -68,6 +69,7 @@
 				seltype: ['热门车型','经济车型','最新车型'],
 				explain: [{'name':'2017 奥迪 A4 2.0L','price':'22,599','distance':'33,213英里·0门·前轮驱动·4缸·2.0L涡轮增压·自动'},
 				{'name':'2017 奥迪 A4 2.0L','price':'22,599','distance':'33,213英里·0门·前轮驱动·4缸·2.0L涡轮增压·自动'},
+				{'name':'2017 奥迪 A4 2.0L','price':'22,599','distance':'33,213英里·0门·前轮驱动·4缸·2.0L涡轮增压·自动'},
 				{'name':'2017 奥迪 A4 2.0L','price':'22,599','distance':'33,213英里·0门·前轮驱动·4缸·2.0L涡轮增压·自动'}],
 				mediaVoice: '媒体声音',
 				media: [{
@@ -76,7 +78,17 @@
 				},{
 					title: '2018纽约车展：全新斯巴鲁森林人亮相',
 					art: '日前，有海外媒体发布了一组2019款现代Santa Fe的图片，据悉，现代汽车公司直至2020年，将推出8款全新或重新设计的跨界多用途车型，Santa Fe系列未来也将推出一款8座SUV车型，并将以全新名称进行命名。据悉，2019款Santa Fe将推出一款长轴距版7座车型，新车将采用三排座椅布局，并命名为Santa Fe XL，此外现代汽车公司表示还将推出一款8座版SUV车型，并将采用全新名称进行命名。力方面，Santa Fe系列产品将提供2.4L发动机以及2.0T发动机可供选择，其最大功率分别为185马力、235马力。此外，还将提供一款可输出190马力的2.2LCRDi涡轮增压柴油机，传动方面与其匹配的均为8速自动变速箱。'
-				}],
+				},{
+					title: '2018纽约车展：全新斯巴鲁森林人亮相',
+					art: '日前，有海外媒体发布了一组2019款现代Santa Fe的图片，据悉，现代汽车公司直至2020年，将推出8款全新或重新设计的跨界多用途车型，Santa Fe系列未来也将推出一款8座SUV车型，并将以全新名称进行命名。据悉，2019款Santa Fe将推出一款长轴距版7座车型，新车将采用三排座椅布局，并命名为Santa Fe XL，此外现代汽车公司表示还将推出一款8座版SUV车型，并将采用全新名称进行命名。力方面，Santa Fe系列产品将提供2.4L发动机以及2.0T发动机可供选择，其最大功率分别为185马力、235马力。此外，还将提供一款可输出190马力的2.2LCRDi涡轮增压柴油机，传动方面与其匹配的均为8速自动变速箱。'
+				},{
+					title: '2018纽约车展：全新斯巴鲁森林人亮相',
+					art: '日前，有海外媒体发布了一组2019款现代Santa Fe的图片，据悉，现代汽车公司直至2020年，将推出8款全新或重新设计的跨界多用途车型，Santa Fe系列未来也将推出一款8座SUV车型，并将以全新名称进行命名。据悉，2019款Santa Fe将推出一款长轴距版7座车型，新车将采用三排座椅布局，并命名为Santa Fe XL，此外现代汽车公司表示还将推出一款8座版SUV车型，并将采用全新名称进行命名。力方面，Santa Fe系列产品将提供2.4L发动机以及2.0T发动机可供选择，其最大功率分别为185马力、235马力。此外，还将提供一款可输出190马力的2.2LCRDi涡轮增压柴油机，传动方面与其匹配的均为8速自动变速箱。'
+				},{
+					title: '2018纽约车展：全新斯巴鲁森林人亮相',
+					art: '日前，有海外媒体发布了一组2019款现代Santa Fe的图片，据悉，现代汽车公司直至2020年，将推出8款全新或重新设计的跨界多用途车型，Santa Fe系列未来也将推出一款8座SUV车型，并将以全新名称进行命名。据悉，2019款Santa Fe将推出一款长轴距版7座车型，新车将采用三排座椅布局，并命名为Santa Fe XL，此外现代汽车公司表示还将推出一款8座版SUV车型，并将采用全新名称进行命名。力方面，Santa Fe系列产品将提供2.4L发动机以及2.0T发动机可供选择，其最大功率分别为185马力、235马力。此外，还将提供一款可输出190马力的2.2LCRDi涡轮增压柴油机，传动方面与其匹配的均为8速自动变速箱。'
+				},
+				],
 				misc: [{"content":'服务协议','src':"serivceAgreement.html"},
 				{"content":'隐私声明','src':"private.html"},
 				{"content":'意见反馈','src':"feedback.html"},
