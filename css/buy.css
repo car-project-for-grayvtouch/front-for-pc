@@ -1,27 +1,62 @@
 #buy{
 	box-sizing: border-box;
+	background-color: #ECECEC;
 }
 .choose-tag{
 	background-color: white;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
 }
 .choose-tag .choose-top{
-	height: 50px;
+	height: 60px;
 	padding: 0 40px;
 	display: flex;
-	justify-content: flex-start;
+	justify-content: space-between;
 	align-items: center;
+	margin-top: 20px;
 }
 .choose-top .title{
 	border-right: 1px solid #a2a2a2;
+	font-size: 14px;
+	padding-right: 20px;
 }
 .choose-top .tags{
+	width: 75%;
 	display: flex;
 	justify-content: flex-start;
-	padding: 0 20px;
 }
 .choose-top .tags li{
 	margin-right: 20px;
+	position: relative;
+    float: left;
+    padding: 6px 35px 6px 15px;
+    margin: 0 10px;
+    border: 1px solid #969696;
+    border-radius: 5px;
+    color: #555555;
+    font-size: 13px;
 }
+.choose-top .tags li img{
+	position: absolute;
+    background-size: 10px;
+    width: 10px;
+    height: 10px;
+    right: 10px;
+    top: 11px;
+    cursor: pointer;
+}
+.choose-tag .choose-top .clearall{
+	font-size: 14px;
+    cursor: pointer;
+}
+/* .choose-tag .choose-top .selsure{
+	font-size: 14px;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 10px;
+	background-color: #DA2515;
+	color: white;
+} */
 .buy-sel{
 	width: 100%;
 }
