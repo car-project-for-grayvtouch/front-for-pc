@@ -90,10 +90,11 @@
 }
 #buy .order{
 	/* height: 1px; */
+	width: 100%;
 	background-color: #F4F4F4;
 }
 #buy .order ul{
-	width: 100%;
+	width: 400px;
 	height: 100%;
 	padding: 10px 0 0 0;
 	display: flex;

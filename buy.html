@@ -10,11 +10,12 @@
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script type="text/javascript" src="js/global.js"></script>
-	<script type="text/javascript" src="iview/iview.min.js"></script>
+	<script type="text/javascript" src="iview/iview.js"></script>
 	<script src="js/vue-i18n.js"></script>
 	<script src="js/swiper.min.js"></script>
 	<link rel="stylesheet" href="css/swiper.min.css">
 	<link rel="stylesheet" href="iview/iview.css">
+	<link rel="stylesheet" href="iview/main.css">
 	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
 	<script src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
     <link rel="stylesheet" href="css/header.css">
@@ -135,10 +136,14 @@
 							<img src="images/tag_close.png" >
 						</li>
 					</ul>
-					<i-button type="warning">删除</i-button>
+					<i-button type="warning">清除所有</i-button>
 					<i-button type="primary">确定筛选</i-button>
 				</div>
 				<div class="buy-sel">
+					<Select v-model="model1" style="width:200px">
+						<Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+					</Select>
+	
 					<ul>
 						<li><span>品牌</span></li>
 						<li><span>价格</span></li>
@@ -146,6 +151,8 @@
 						<li><span>清除<br>筛选</span></li>
 					</ul>
 				</div>
+			</div>
+			<div class="recommoned">
 				<div class="order">
 					<ul><Icon type="arrow-swap"></Icon>
 						<li>默认排序</li>
@@ -154,8 +161,6 @@
 						<li>按里程排序</li>
 					</ul>
 				</div>
-			</div>
-			<div class="recommoned">
 				<div class="car-detail">
 					<div class="car-item" v-for="item in $t('explain')">
 						<a href="#">
@@ -250,6 +255,33 @@
 				checkcode:''
 			},
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
+			cityList: [
+                    {
+                        value: 'New York',
+                        label: 'New York'
+                    },
+                    {
+                        value: 'London',
+                        label: 'London'
+                    },
+                    {
+                        value: 'Sydney',
+                        label: 'Sydney'
+                    },
+                    {
+                        value: 'Ottawa',
+                        label: 'Ottawa'
+                    },
+                    {
+                        value: 'Paris',
+                        label: 'Paris'
+                    },
+                    {
+                        value: 'Canberra',
+                        label: 'Canberra'
+                    }
+                ],
+                model1: ''
 		},
 		mounted() {
 			if(locale){
