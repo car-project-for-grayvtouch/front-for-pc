@@ -10,12 +10,16 @@
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script type="text/javascript" src="js/global.js"></script>
-	<script type="text/javascript" src="iview/iview.js"></script>
+	<script async="" src="https://www.google-analytics.com/analytics.js"></script>
 	<script src="js/vue-i18n.js"></script>
 	<script src="js/swiper.min.js"></script>
 	<link rel="stylesheet" href="css/swiper.min.css">
-	<link rel="stylesheet" href="iview/iview.css">
-	<link rel="stylesheet" href="iview/main.css">
+	
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="dist/styles/iview.css">
+    <!-- 引入组件库 -->
+    <script src="dist/iview.min.js"></script>
+	
 	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
 	<script src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
     <link rel="stylesheet" href="css/header.css">
@@ -136,25 +140,53 @@
 							<img src="images/tag_close.png" >
 						</li>
 					</ul>
-					<i-button type="warning">清除所有</i-button>
+					<i-button type="warning">清除所有 <Icon type="md-trash" /></i-button>
 					<i-button type="primary">确定筛选</i-button>
 				</div>
 				<div class="buy-sel">
-					<Select v-model="model1" style="width:200px">
-						<Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-					</Select>
-	
-					<ul>
-						<li><span>品牌</span></li>
-						<li><span>价格</span></li>
-						<li><span>车龄</span></li>
-						<li><span>清除<br>筛选</span></li>
-					</ul>
+					<div class="buy-sel-item">
+						<div class="title">
+							品牌
+						</div>
+						<Cascader :data="data" v-model="value1" style="width:300px"></Cascader>
+					</div>
+					<div class="buy-sel-item">
+						<div class="title">
+							车系
+						</div>
+						<i-select v-model="model1" style="width:300px">
+							<i-option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						</i-select>
+					</div>
+					<div class="buy-sel-item">
+						<div class="title">
+							价格
+						</div>
+						<i-select v-model="model1" style="width:300px">
+							<i-option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						</i-select>
+					</div>
+					<div class="buy-sel-item">
+						<div class="title">
+							车型
+						</div>
+						<i-select v-model="model1" style="width:300px">
+							<i-option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						</i-select>
+					</div>
+					<div class="buy-sel-item">
+						<div class="title">
+							里程
+						</div>
+						<i-select v-model="model1" style="width:300px">
+							<i-option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						</i-select>
+					</div>
 				</div>
 			</div>
 			<div class="recommoned">
 				<div class="order">
-					<ul><Icon type="arrow-swap"></Icon>
+					<ul>
 						<li>默认排序</li>
 						<li>按价格排序</li>
 						<li>按车龄排序</li>
@@ -281,7 +313,57 @@
                         label: 'Canberra'
                     }
                 ],
-                model1: ''
+				value1: [],
+                data: [{
+                    value: 'beijing',
+                    label: '北京',
+                    children: [
+                        {
+                            value: 'gugong',
+                            label: '故宫'
+                        },
+                        {
+                            value: 'tiantan',
+                            label: '天坛'
+                        },
+                        {
+                            value: 'wangfujing',
+                            label: '王府井'
+                        }
+                    ]
+                }, {
+                    value: 'jiangsu',
+                    label: '江苏',
+                    children: [
+                        {
+                            value: 'nanjing',
+                            label: '南京',
+                            children: [
+                                {
+                                    value: 'fuzimiao',
+                                    label: '夫子庙',
+                                }
+                            ]
+                        },
+                        {
+                            value: 'suzhou',
+                            label: '苏州',
+                            children: [
+                                {
+                                    value: 'zhuozhengyuan',
+                                    label: '拙政园',
+                                },
+                                {
+                                    value: 'shizilin',
+                                    label: '狮子林',
+                                }
+                            ]
+                        }
+                    ],
+                }],
+                model1: '',
+				value: '',
+				button6: '北京'
 		},
 		mounted() {
 			if(locale){
