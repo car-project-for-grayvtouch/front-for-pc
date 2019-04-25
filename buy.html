@@ -151,35 +151,45 @@
 						<Cascader :data="data" v-model="value1" style="width:300px"></Cascader>
 					</div>
 					<div class="buy-sel-item">
-						<div class="title">
-							车系
-						</div>
+						<div class="title">车系</div>
 						<i-select v-model="model1" style="width:300px">
-							<i-option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+							<i-option v-for="item in carseries" :value="item.value" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
-						<div class="title">
-							价格
-						</div>
-						<i-select v-model="model1" style="width:300px">
-							<i-option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						<div class="title">价格</div>
+						<i-select v-model="model2" style="width:300px">
+							<i-option v-for="item in price" :value="item.value" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
-						<div class="title">
-							车型
-						</div>
-						<i-select v-model="model1" style="width:300px">
-							<i-option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						<div class="title">车型</div>
+						<i-select v-model="model3" style="width:300px">
+							<i-option v-for="item in cartype" :value="item.value" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
-						<div class="title">
-							里程
-						</div>
-						<i-select v-model="model1" style="width:300px">
-							<i-option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						<div class="title">里程</div>
+						<i-select v-model="model4" style="width:300px">
+							<i-option v-for="item in mileage" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						</i-select>
+					</div>
+					<div class="buy-sel-item">
+						<div class="title">车龄</div>
+						<i-select v-model="model5" style="width:300px">
+							<i-option v-for="item in mileage" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						</i-select>
+					</div>
+					<div class="buy-sel-item">
+						<div class="title">变速箱</div>
+						<i-select v-model="model6" style="width:300px">
+							<i-option v-for="item in mileage" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						</i-select>
+					</div>
+					<div class="buy-sel-item">
+						<div class="title">颜色</div>
+						<i-select v-model="model7" style="width:300px">
+							<i-option v-for="item in mileage" :value="item.value" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 				</div>
@@ -214,7 +224,11 @@
 						</a>
 					</div>
 				</div>
+				<div>
+					<Page :total="100" show-elevator />
+				</div>
 			</div>
+			
 			<div class="misc">
 				<ul>
 					<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
@@ -286,84 +300,291 @@
 				phonenum:'',
 				checkcode:''
 			},
+			model1: '',
+			model2: '',
+			model3: '',
+			model4: '',
+			model5: '',
+			model6: '',
+			model7: '',
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
-			cityList: [
-                    {
-                        value: 'New York',
-                        label: 'New York'
-                    },
-                    {
-                        value: 'London',
-                        label: 'London'
-                    },
-                    {
-                        value: 'Sydney',
-                        label: 'Sydney'
-                    },
-                    {
-                        value: 'Ottawa',
-                        label: 'Ottawa'
-                    },
-                    {
-                        value: 'Paris',
-                        label: 'Paris'
-                    },
-                    {
-                        value: 'Canberra',
-                        label: 'Canberra'
-                    }
-                ],
 				value1: [],
                 data: [{
-                    value: 'beijing',
-                    label: '北京',
+                    value: 'hot',
+                    label: '热门品牌',
                     children: [
                         {
-                            value: 'gugong',
-                            label: '故宫'
+                            value: 'unlimited',
+                            label: '不限'
                         },
                         {
-                            value: 'tiantan',
-                            label: '天坛'
+                            value: 'baoma',
+                            label: '宝马'
                         },
                         {
-                            value: 'wangfujing',
-                            label: '王府井'
+                            value: 'benchi',
+                            label: '奔驰'
+                        },
+                        {
+                            value: 'fengtian',
+                            label: '丰田'
+                        },
+                        {
+                            value: 'aodi',
+                            label: '奥迪'
+                        },
+                        {
+                            value: 'richan',
+                            label: '日产'
+                        },
+                        {
+                            value: 'dazhong',
+                            label: '大众'
                         }
                     ]
-                }, {
-                    value: 'jiangsu',
-                    label: '江苏',
+                }, 
+				{
+                    value: 'A',
+                    label: 'A',
                     children: [
                         {
-                            value: 'nanjing',
-                            label: '南京',
-                            children: [
-                                {
-                                    value: 'fuzimiao',
-                                    label: '夫子庙',
-                                }
-                            ]
+                            value: 'aerfaluomiou',
+                            label: '阿尔法罗密欧',
                         },
                         {
-                            value: 'suzhou',
-                            label: '苏州',
-                            children: [
-                                {
-                                    value: 'zhuozhengyuan',
-                                    label: '拙政园',
-                                },
-                                {
-                                    value: 'shizilin',
-                                    label: '狮子林',
-                                }
-                            ]
+                            value: 'AMC',
+                            label: 'AMC',
+                        },
+                        {
+                            value: 'aodi',
+                            label: '奥迪',
+                        },
+                        {
+                            value: 'aozimobier',
+                            label: '奥兹莫比尔',
+                        },
+                        {
+                            value: 'asidunmading',
+                            label: '阿斯顿马丁',
+                        }
+                    ],
+                }, 
+				{
+                    value: 'B',
+                    label: 'B',
+                    children: [
+                        {
+                            value: 'baoma',
+                            label: '宝马',
+                        },
+                        {
+                            value: 'baoshijie',
+                            label: '保时捷',
+                        },
+                        {
+                            value: 'benchi',
+                            label: '奔驰',
+                        },
+                        {
+                            value: 'bentian',
+                            label: '本田',
+                        },
+                        {
+                            value: 'biaozhi',
+                            label: '标致',
+                        },
+                        {
+                            value: 'bieke',
+                            label: '别克',
+                        },
+                        {
+                            value: 'binli',
+                            label: '宾利',
+                        }
+                    ],
+                }, 
+				{
+                    value: 'D',
+                    label: 'D',
+                    children: [
+                        {
+                            value: 'daoqi',
+                            label: '道奇',
+                        },
+                        {
+                            value: 'datesang',
+                            label: '达特桑',
+                        },
+                        {
+                            value: 'dayu',
+                            label: '大宇',
+                        },
+                        {
+                            value: 'dazhong',
+                            label: '大众',
+                        },
+                        {
+                            value: 'delaoruien',
+                            label: '德劳瑞恩',
+                        }
+                    ],
+                },
+				{
+                    value: 'F',
+                    label: 'F',
+                    children: [
+                        {
+                            value: 'falali',
+                            label: '法拉利',
+                        },
+                        {
+                            value: 'feiyate',
+                            label: '菲亚特',
+                        },
+                        {
+                            value: 'FIAT',
+                            label: 'FIAT',
+                        },
+                        {
+                            value: 'fengtian',
+                            label: '丰田',
+                        },
+                        {
+                            value: 'fulaina',
+                            label: '福莱纳',
+                        },
+                        {
+                            value: 'fute',
+                            label: '福特',
                         }
                     ],
                 }],
-                model1: '',
-				value: '',
-				button6: '北京'
+                
+				carseries: [
+					{
+                        value: '不限',
+                        label: '不限'
+                    },
+                    {
+                        value: '宝马 3系',
+                        label: '宝马 3系'
+                    },
+                    {
+                        value: '奔驰 C系',
+                        label: '奔驰 C系'
+                    },
+                    {
+                        value: '丰田 凯美瑞',
+                        label: '丰田 凯美瑞'
+                    },
+                    {
+                        value: '宝马 5系',
+                        label: '宝马 5系'
+                    },
+                    {
+                        value: '奔驰 E系',
+                        label: '奔驰 E系'
+                    },
+                    {
+                        value: '福特 野马',
+                        label: '福特 野马'
+                    },
+                    {
+                        value: '保时捷 卡宴',
+                        label: '保时捷 卡宴'
+                    },
+                    {
+                        value: '本田 雅阁',
+                        label: '本田 雅阁'
+                    },
+                    {
+                        value: '丰田 卡罗拉',
+                        label: '丰田 卡罗拉'
+                    },
+                    {
+                        value: '本田 思域',
+                        label: '本田 思域'
+                    }],
+				cartype: [{
+                        value: '不限',
+                        label: '不限'
+                    },
+                    {
+                        value: '轿车',
+                        label: '轿车'
+                    },
+                    {
+                        value: '跑车',
+                        label: '跑车'
+                    },
+                    {
+                        value: '皮卡',
+                        label: '皮卡'
+                    },
+                    {
+                        value: 'SUV',
+                        label: 'SUV'
+                    },
+                    {
+                        value: 'MPV',
+                        label: 'MPV'
+                    }],
+				price: [{
+                        value: '不限',
+                        label: '不限'
+                    },
+                    {
+                        value: '$10,000以下',
+                        label: '$10,000以下'
+                    },
+                    {
+                        value: '$10,000-$15,000',
+                        label: '$10,000-$15,000'
+                    },
+                    {
+                        value: '$15,000-$20,000',
+                        label: '$15,000-$20,000'
+                    },
+                    {
+                        value: '$20,000-$30,000',
+                        label: '$20,000-$30,000'
+                    },
+                    {
+                        value: '$30,000-$40,000',
+                        label: '$30,000-$40,000'
+                    },
+                    {
+                        value: '$40,000以上',
+                        label: '$40,000以上'
+                    }],
+				mileage: [{
+                        value: '不限',
+                        label: '不限'
+                    },
+                    {
+                        value: '1万英里以内',
+                        label: '1万英里以内'
+                    },
+                    {
+                        value: '3万英里以内',
+                        label: '3万英里以内'
+                    },
+                    {
+                        value: '5万英里以内',
+                        label: '5万英里以内'
+                    },
+                    {
+                        value: '8万英里以内',
+                        label: '8万英里以内'
+                    },
+                    {
+                        value: '10万英里以内',
+                        label: '10万英里以内'
+                    },
+                    {
+                        value: '15万英里以内',
+                        label: '15万英里以内'
+                    }],
 		},
 		mounted() {
 			if(locale){
