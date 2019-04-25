@@ -131,16 +131,16 @@
 				<div class="choose-top">
 					<span class="title">条件筛选</span>
 					<ul class="tags">
-						<li>
-							<span>丰田</span>
+						<li v-for="item in defaultmodels">
+							<span>{{item}}</span>
 							<img src="images/tag_close.png" >
 						</li>
-						<li>
+						<!-- <li>
 							<span>丰田</span>
 							<img src="images/tag_close.png" >
-						</li>
+						</li> -->
 					</ul>
-					<i-button type="warning">清除所有 <Icon type="md-trash" /></i-button>
+					<i-button type="warning" @click='clearall()'>清除所有 <Icon type="md-trash" /></i-button>
 					<i-button type="primary">确定筛选</i-button>
 				</div>
 				<div class="buy-sel">
@@ -148,48 +148,48 @@
 						<div class="title">
 							品牌
 						</div>
-						<Cascader :data="data" v-model="value1" style="width:300px"></Cascader>
+						<Cascader :data="brandList" v-model="value1" style="width:300px"></Cascader>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">车系</div>
-						<i-select v-model="model1" style="width:300px">
+						<i-select v-model="models.model1" style="width:300px">
 							<i-option v-for="item in carseries" :value="item.value" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">价格</div>
-						<i-select v-model="model2" style="width:300px">
-							<i-option v-for="item in price" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						<i-select v-model="models.model2" style="width:300px">
+							<i-option v-for="item in price" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">车型</div>
-						<i-select v-model="model3" style="width:300px">
-							<i-option v-for="item in cartype" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						<i-select v-model="models.model3" style="width:300px">
+							<i-option v-for="item in cartype" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">里程</div>
-						<i-select v-model="model4" style="width:300px">
-							<i-option v-for="item in mileage" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						<i-select v-model="models.model4" style="width:300px">
+							<i-option v-for="item in mileage" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">车龄</div>
-						<i-select v-model="model5" style="width:300px">
-							<i-option v-for="item in mileage" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						<i-select v-model="models.model5" style="width:300px">
+							<i-option v-for="item in mileage" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">变速箱</div>
-						<i-select v-model="model6" style="width:300px">
-							<i-option v-for="item in mileage" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						<i-select v-model="models.model6" style="width:300px">
+							<i-option v-for="item in mileage" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">颜色</div>
-						<i-select v-model="model7" style="width:300px">
-							<i-option v-for="item in mileage" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						<i-select v-model="models.model7" style="width:300px">
+							<i-option v-for="item in mileage" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 				</div>
@@ -300,29 +300,33 @@
 				phonenum:'',
 				checkcode:''
 			},
-			model1: '',
-			model2: '',
-			model3: '',
-			model4: '',
-			model5: '',
-			model6: '',
-			model7: '',
+			value1: [],
+			defaultmodels: [],
+			models: {
+				model0: '',
+				model1: '',
+				model2: '',
+				model3: '',
+				model4: '',
+				model5: '',
+				model6: '',
+				model7: '',
+			},
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
-				value1: [],
-                data: [{
+                brandList: [{
                     value: 'hot',
                     label: '热门品牌',
                     children: [
                         {
-                            value: 'unlimited',
+                            value: '不限',
                             label: '不限'
                         },
                         {
-                            value: 'baoma',
+                            value: '宝马',
                             label: '宝马'
                         },
                         {
-                            value: 'benchi',
+                            value: '奔驰',
                             label: '奔驰'
                         },
                         {
@@ -606,6 +610,43 @@
 				$(this).css({'background-color':'#DA2515','color':'white'}).siblings().css({'background-color':'white','color':'black'});
 			});
 		},
+		watch: {
+			value1: {
+				handler:function(newv,oldv){
+					this.models.model0 = newv[1];
+				}
+			},
+			models: {
+				handler:function(newv,oldv){
+					var curmodel = [];
+					for(var key in newv){
+						if(newv[key] !== ''){
+							curmodel.push(newv[key]);
+						}
+					}
+					this.defaultmodels = curmodel;
+				},
+			deep: true,
+			immidiate: true
+			}
+		},
+		computed: {
+// 			defaultmodels :{
+// 				get: function() {
+// 					var curmodel = [];
+// 					for(var key in this.models){
+// 						if(this.models[key] !== ''){
+// 							curmodel.push(this.models[key]);
+// 						}
+// 					}
+// 					return curmodel;
+// 				},
+// 				set: function(newvalue) {
+// 					// console.log(this)
+// 					// this.defaultmodels = newvalue;
+// 				}
+// 			} 
+		},
 		methods: {
 			login: function() {
 				if(this.logindata.phonenum == ''){
@@ -621,7 +662,7 @@
 				alert('登录成功!');
 				localStorage.login = true;
 			},
-			change :function() {
+			change: function() {
 			    this.enshow = this.enshow == 'english' ? "中文" : "english";
 			    var that = this;
 			    setTimeout(function(){
@@ -633,15 +674,27 @@
 					localStorage.locale = i18n.locale;
 			    },1100)
 			},
-			top:function(){
+			top: function(){
 				this.topshow = !this.topshow;
 				$('html,body').animate({scrollTop: '0'}, 700);
 			},
-			consult:function(){
+			consult: function(){
 				this.botshow = !this.botshow;
 				setTimeout(function(){
 					alert("功能完善中！")
 				},700)
+			},
+			clearall: function() {
+				var that = this;
+				new Promise(function(resolve,reject){
+					for (let key in that.models) {
+						that.models[key] = '';
+					}
+					that.value1 = [];
+					resolve();
+				}).then(function(){
+					that.defaultmodels = [];
+				})
 			}
 		}
 	}).$mount('#buy')
