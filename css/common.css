@@ -1,15 +1,15 @@
 .recommoned{
 	margin-top: 20px;
-	background-color: #F9F9F9;
+	background-color: white;
 	padding: 20px;
 }
-.recommoned .re-title{
+.re-title{
 	width: 100%;
 	display: block;
 	height: 40px;
 	line-height: 40px;
 	font-size: 15px;
-	/* border-bottom: 1px solid #EAEAEA; */
+	border-bottom: 1px solid #EAEAEA;
 }
 .sel-type ul{
 	display: flex;
@@ -46,6 +46,7 @@
 	margin-top: 10px;
 	background-color: white;
 	margin-right: 20px;
+	border: 1px solid #dcdee2;
 }
 .car-item:hover{
 	box-shadow: 0 0 15px rgba(0, 0, 0, .2);
@@ -86,7 +87,7 @@
 	font-size: 15px;
 }
 .distance{
-	color: #BFBFBF;
+	color: rgba(0,0,0,.6);
 	font-size: 15px;
 	line-height: 22px;
 	word-break: break-all;

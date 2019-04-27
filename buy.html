@@ -13,13 +13,10 @@
 	<script async="" src="https://www.google-analytics.com/analytics.js"></script>
 	<script src="js/vue-i18n.js"></script>
 	<script src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
 	<link rel="stylesheet" href="css/swiper.min.css">
-	
-    <!-- 引入样式 -->
     <link rel="stylesheet" href="dist/styles/iview.css">
-    <!-- 引入组件库 -->
     <script src="dist/iview.min.js"></script>
-	
 	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
 	<script src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
     <link rel="stylesheet" href="css/header.css">
@@ -631,21 +628,7 @@
 			}
 		},
 		computed: {
-// 			defaultmodels :{
-// 				get: function() {
-// 					var curmodel = [];
-// 					for(var key in this.models){
-// 						if(this.models[key] !== ''){
-// 							curmodel.push(this.models[key]);
-// 						}
-// 					}
-// 					return curmodel;
-// 				},
-// 				set: function(newvalue) {
-// 					// console.log(this)
-// 					// this.defaultmodels = newvalue;
-// 				}
-// 			} 
+
 		},
 		methods: {
 			login: function() {
@@ -686,26 +669,21 @@
 			},
 			clearall: function() {
 				var that = this;
-				new Promise(function(resolve,reject){
+				// new Promise(function(resolve,reject){
 					for (let key in that.models) {
 						that.models[key] = '';
 					}
 					that.value1 = [];
-					resolve();
-				}).then(function(){
-					that.defaultmodels = [];
-				})
+					// resolve();
+				// }).then(function(){
+					this.$nextTick(function(){
+						
+						that.defaultmodels = [];
+					})
+				// })
 			}
 		}
 	}).$mount('#buy')
-	new Swiper('.text-container', {
-		direction:'vertical',
-		loop:true,
-		autoplay: {
-			delay: 2500,
-			disableOnInteraction:false
-		}
-	});
 	// 现在应用程序已经准备好了！
 </script>
 </html>

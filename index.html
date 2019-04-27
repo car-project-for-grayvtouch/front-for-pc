@@ -9,16 +9,20 @@
 	<meta http-equiv="mobile-agent" content="format=html5; url=http://m.championcargroup.com/">
 	<title>CHAMPION-index</title>
 	<meta name="location" content="province=福建;city=福州;coord=">
-	<meta name="keywords" content="福州二手车,福州二手车市场,福州二手车交易,福州二手车交易市场">
+	<meta name="keywords" content="CHAMPION,CHAMPIONAUTO,CHAMPIONCAR,CHAMPIONAUTOGROUP">
 	<meta name="description" content="人人车福州二手车市场,福州二手车交易市场,为您提供福州二手车交易信息,福州二手车出手转让信息,免费提供福州二手车评估,福州二手车报价,详询4000350113！">
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="js/vue.js"></script>
-	<script src="js/vue-i18n.js"></script>
-	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/swiper.min.js"></script>
-    <link rel="stylesheet" href="css/swiper.min.css">
-	<script src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
+	<script type="text/javascript" src="js/vue-i18n.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js/language.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
+	<script type="text/javascript" src="dist/iview.min.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<link rel="stylesheet" href="dist/styles/iview.css">
+	<link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/common.css">
@@ -126,11 +130,20 @@
 				</div>
 			</transition>
 		</div>
-		<div class="swiper-container">
-			<div class="swiper-wrapper">
-			  <div class="swiper-slide" v-for="item in slideArr"><a href="carDetail.html"><img :src="'images/' + item"></a></div>
-			</div>
-			<div class="swiper-pagination"></div>
+		<div class="swiper">
+			<Carousel
+				v-model="value3"
+				:autoplay="setting.autoplay"
+				:autoplay-speed="setting.autoplaySpeed"
+				:dots="setting.dots"
+				:radius-dot="setting.radiusDot"
+				:trigger="setting.trigger"
+				:arrow="setting.arrow">
+				<Carousel-Item  v-for="item in slideArr" v-bind:key='item.id'>
+					<img class="carouselimg" :src="item.path" >
+					<!-- <div class="demo-carousel">1</div> -->
+				</Carousel-Item>
+			</Carousel>
 		</div>
 		<div class="margin">
 			<div class="center-important">
@@ -201,86 +214,80 @@
 					<span class="sale-title">
 						热门搜索
 					</span>
-					<!-- <div class="c-t-i">
-						<input type="text" id="" value="" placeholder="请输入手机号"/>
-						<div class="btn-sale">
-							卖车
-						</div>
-					</div> -->
-					<!-- <div class="hot-search">
-						<ul>
-							<a href="buy.html"><li>大众</li></a>
-							<a href="buy.html"><li>福特</li></a>
-							<a href="buy.html"><li>兰博基尼</li></a>
-							<a href="buy.html"><li>兰博基尼</li></a>
-							<a href="buy.html"><li>兰博基尼</li></a>
-							<a href="buy.html"><li>兰博基尼兰博基尼兰博基尼</li></a>
-							<a href="buy.html"><li>兰博基尼兰博基尼兰博基尼</li></a>
-							<a href="buy.html"><li>兰博基尼兰博基尼兰博基尼</li></a>
-							<a href="buy.html"><li>兰博基尼兰博基尼兰博基尼</li></a>
-							<a href="buy.html"><li>兰博基尼兰博基尼兰博基尼</li></a>
-						</ul>
-					</div> -->
+				
 					<div class="tagList">
-					    <div class="circle">
-					        <h2>BMW 3系</h2>
+					    <div class="circle" v-for="item in hotsearch">
+					        <h2 v-if="item.type === 'brand'">{{item.brand?item.brand.name:''}}</h2>
+					        <h2 v-else-if="item.type === 'series'">{{item.series?item.series.name:''}}</h2>
+					        <h2 v-else-if="item.type === 'keyword'">{{item.value}}</h2>
+					        <h2 v-else>其他</h2>
 					    </div>
-					    <div class="circle">
-					        <h2>法拉利</h2>
-					    </div>
-					    <div class="circle">
-					        <h2>丰田</h2>
-					    </div>
-					    <div class="circle">
-					        <h2>宝马</h2>
-					    </div>
-					    <div class="circle">
-					        <h2>本田</h2>
-					    </div>
-					    <div class="circle">
-					        <h2>奔驰</h2>
-					    </div>
-					    <div class="circle">
-					        <h2>福特野马</h2>
-					    </div>
-						<div class="circle">
-						    <h2>奥迪A5</h2>
-						</div>
 					</div>
 				</div>
 			</div>
-			
-			
-		  
-			
-			
-			<div class="recommoned">
+			<div class="recommoned" v-cloak>
 				<span class="re-title">{{ $t("recom") }}</span>
 				<div class="sel-type">
 					<ul>
-						<li v-for="item in $t('seltype')" v-on:click="selected($event)">{{item}}</li>
+						<li v-for="(item, index) in $t('seltype')" v-on:click="selected($event)" @click="recommonedata(index)">{{item}}</li>
 					</ul>
 				</div>
 				<div class="car-detail">
 					<div class="car-item" v-for="item in $t('explain')">
 						<a href="carDetail.html">
-							<img class="bg" src="images/car-1.jpg">
+							<img class="bg" :src="item.thumb">
 							<img class="favorite" src="images/favorite.png">
 							<div class="car-explain">
 								<div class="explain-t">
 									<div class="car-name">
-										{{item.name}}
+										{{ item.model?item.model.year:''}}&nbsp;
+										{{item.series?item.series.name:''}}&nbsp;
+										{{item.model?item.model.displacement:''}}L
 									</div>
 									<div class="car-price">
-										{{item.price}}
+										${{item.price}}
 									</div>
 								</div>
 								<div class="distance">
-									{{item.distance}}
+									{{item.mileage}} 英里·{{item.model?item.model.door_count:''}}门·
+									{{item.model?item.model.drive_type:''}}·
+									{{item.model?item.model.cylinder_count:''}}缸·
+									{{item.model?item.model.displacement:''}}L·
+									{{item.model?item.model.intake_type:''}}·
+									{{item.model?item.model.gearbox:''}}
 								</div>
 							</div>
 						</a>
 					</div>
+				</div>
+			</div>
+			<div class="comment">
+				<span class="re-title">CHAMPION故事</span>
+				<div class="com-content">
+					<Card style="width:350px"  v-for="item in comment" v-bind:key="item.id">
+						<p slot="title">
+							{{item.car?item.car.title:''}}
+						</p>
+						<ul>
+							<li>
+								<img class="bg" :src="item.image[0]?item.image[0].url:''" style="width: 100%;">
+								<div class="buy-describle">
+									购车描述
+								</div>
+								<div class="media-art">
+									{{item.content}}
+								</div>
+								<div class="com-bot">
+									<div class="from">
+										来自{{item.user?item.user.username:''}}的评价
+									</div>
+									<div class="">
+										强烈推荐<span class="score">{{item.product_score}}</span>分
+									</div>
+								</div>
+							</li>
+						</ul>
+					</Card>
 				</div>
 			</div>
 			<div class="recommoned">
@@ -288,12 +295,20 @@
 					<div class="media-detail">
 						<div class="media-item" v-for="item in $t('media')">
 							<a href="#">
-								<img class="bg" src="images/car-1.jpg">
-								<div class="media-title">
-									{{item.title}}
-								</div>
-								<div class="media-art">
-									{{item.art}}
+								<img class="bg" :src="item.thumb">
+								<div class="media-r">
+									<div class="media-title">
+										{{item.title}}
+									</div>
+									<div class="media-time">
+										{{item.update_time}}
+									</div>
+									<div class="media-art">
+										{{item.content?item.content.content:''}}
+									</div>
+									<div class="media-more">
+										更多<Icon type="ios-play-outline" />
+									</div>
 								</div>
 							</a>
 						</div>
@@ -372,26 +387,22 @@
 				phonenum:'',
 				checkcode:''
 			},
-			slideArr: ['index_masthead0cn.jpg','index_masthead1.jpg','index_masthead0cn.jpg','index_masthead1.jpg'],
+			slideArr: [],
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
+			value3: 0,
+			setting: {
+				autoplay: true,
+				autoplaySpeed: 2000,
+				dots: 'inside',
+				radiusDot: false,
+				trigger: 'hover',
+				arrow: 'hover'
+			},
+			comment: [],
+			hotsearch: [],
 		},
 		mounted() {
-			$('.sel-type').find('li').eq(0).addClass('sel').css('border-bottom','1px solid #C21B36');
-			if(locale){
-				i18n.locale = locale;
-				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
-			}else{
-				(locale = i18n.locale);
-			}
-			var login;
-			 if(localStorage.login){
-				login = JSON.parse(localStorage.login);
-			 }
-			if(login){
-				this.switchlogin = false;
-			}else{
-				this.switchlogin = true;
-			}
+			var that = this;
 			
 			var userTags = {
 				color: ['#4B82FF', '#FF747B', '#15D5E0', '#FFB178', '#8871FF', '#ED59F8'],
@@ -414,17 +425,17 @@
 						this.parAttr.width = w;
 					}
 					this.length = $('.circle').length;
-					if(this.length > 7){
-						//制定比例，外部盒子宽度越小，circle个数越多。circle宽高越小，内部上下两块字体越小 1450 : 7 ：140 ：21 ：14
-						var userAgent = navigator.userAgent;
-						var isChrome = userAgent.indexOf("Chrome") > -1;//浏览器适配
-						if(isChrome){
-							this.circleAttr.minWidth = this.circleAttr.minWidth - (this.length - 7) * 140 / 15;
-							this.circleAttr.maxWidth = this.circleAttr.maxWidth - (this.length - 7) * 140 / 15;
-							this.bigFont = this.bigFont - (this.length - 7) * 21 / 4;
-							this.smallFont = this.smallFont - (this.length - 7) * 14 / 4;
-						}
-					}
+// 					if(this.length > 7){
+// 						//制定比例，外部盒子宽度越小，circle个数越多。circle宽高越小，内部上下两块字体越小 1450 : 7 ：140 ：21 ：14
+// 						var userAgent = navigator.userAgent;
+// 						var isChrome = userAgent.indexOf("Chrome") > -1;//浏览器适配
+// 						if(isChrome){
+// 							this.circleAttr.minWidth = this.circleAttr.minWidth - (this.length - 7) * 140 / 15;
+// 							this.circleAttr.maxWidth = this.circleAttr.maxWidth - (this.length - 7) * 140 / 15;
+// 							this.bigFont = this.bigFont - (this.length - 7) * 21 / 4;
+// 							this.smallFont = this.smallFont - (this.length - 7) * 14 / 4;
+// 						}
+// 					}
 					if(this.length > 9){
 						$('.circle').find('h2').css('margin-bottom','0');
 					}
@@ -456,7 +467,7 @@
 					var i = 0;
 					for( ; i < this.length; i++){//获取circle长度的位置数据
 						if(this.posiArr[i]){
-		
+					
 						}else{
 							this.posiArr[i] = {};
 						}
@@ -518,11 +529,77 @@
 					this.ani();
 				},
 			}
-    
-			userTags.init();
+			//轮播图数据
+			data.common('ShowImage/home',function(d){
+				that.slideArr = d;
+			})
+			// 车行推荐默认最新最热数据
+			this.recommonedata(0);
+			// 文章列表
+			data.common('Article/listForHome',function(d){
+				// console.log(d)
+				that.$i18n._vm.messages['zh-cn'].media = d;
+				that.$i18n._vm.messages['en'].media = d;
+			})
+			// 评论
+			data.common('Car/featuredComment',function(d){
+				// console.log(d)
+				that.comment = d;
+			})
+			// 热门搜索
+			data.common('SearchLog/hot',function(d){
+				console.log(d)
+				that.hotsearch = d;
+				that.$nextTick(function(){
+					userTags.init();
+				})
+			})
+			
+			$('.sel-type').find('li').eq(0).addClass('sel').css('border-bottom','1px solid #C21B36');
+			if(locale){
+				i18n.locale = locale;
+				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
+			}else{
+				(locale = i18n.locale);
+			}
+			var login;
+			 if(localStorage.login){
+				login = JSON.parse(localStorage.login);
+			 }
+			if(login){
+				this.switchlogin = false;
+			}else{
+				this.switchlogin = true;
+			}
 			
 		},
 		methods: {
+			
+			recommonedata:function(index) {
+				var that = this;
+				var form = {'type':'luxury'};
+				switch(index){
+					case 0:
+					form = {'type':'newAndHot'};
+					break;
+					case 1:
+					form = {'type':'affordable'};
+					break;
+					case 2:
+					form = {'type':'new'};
+					break;
+					case 3:
+					form = {'type':'luxury'};
+					break;
+					default:
+					form = {};
+				}
+				data.common('Car/listForHome',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['zh-cn'].explain = d;
+					that.$i18n._vm.messages['en'].explain = d;
+				},form)
+			},
 			login: function() {
 				if(this.logindata.phonenum == ''){
 					alert("请填写手机号!");
@@ -573,27 +650,6 @@
 			}
 		}
 	}).$mount('#index')
-	new Swiper('.swiper-container', {
-        autoHeight: true,
-        pagination: {
-			el: '.swiper-pagination',
-			dynamicBullets: true,
-			clickable: true,
-        },
-        loop:true,
-        autoplay: {
-			delay: 2500,
-			disableOnInteraction:false
-        }
-    });
-	new Swiper('.text-container', {
-		direction:'vertical',
-		loop:true,
-		autoplay: {
-			delay: 2500,
-			disableOnInteraction:false
-		}
-	});
 	// 现在应用程序已经准备好了！
 </script>
 </html>

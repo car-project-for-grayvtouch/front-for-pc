@@ -56,13 +56,14 @@
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: flex-start;
 	padding: 0 40px;
 }
 .buy-sel-item{
 	display: flex;
 	align-items: center;
 	margin-bottom: 15px;
+	margin-right: 34px;
 }
 .buy-sel-item .title{
 	font-size: 15px;
@@ -76,9 +77,9 @@
 #buy .order ul{
 	width: 400px;
 	height: 100%;
-	padding: 10px 0 0 0;
+	padding: 10px 0 10px 0;
 	display: flex;
-	font-size: 14px;
+	font-size: 13px;
 	flex-wrap: wrap;
 	justify-content: space-around;
 	align-items: center;
