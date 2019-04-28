@@ -5,20 +5,19 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>隐私申明</title>
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-	<script src="js/flexible.js"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
+	<link rel="stylesheet" type="text/css" href="css/serivceAgreement.css">
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
-	<script type="text/javascript" src="js/global.js"></script>
-	<script src="js/vue-i18n.js"></script>
-	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/swiper.min.js"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
-    <link rel="stylesheet" href="css/swiper.min.css">
-    <link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/serivceAgreement.css">
+	<script type="text/javascript" src="js/vue-i18n.js"></script>
+	<script type="text/javascript" src="js/language.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>	
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
 </head>
 <body>
 	<div id="private" v-cloak>
@@ -119,7 +118,11 @@
 				</div>
 			</transition>
 		</div>
+		<div class="margin">
+			
+		<div class="protocol">
 		<img class="serviceA-carimg" src="images/index_masthead0cn.jpg" alt="car">
+		<div class="notimg">
 		<div class="content-sy">
             <h3>用户隐私权政策</h3>
         
@@ -223,55 +226,62 @@
             2）如发现个人信息可能被泄露或需要更正个人信息、注销个人账户的，您可以通过拨打400-861-0500处理；<br>
             3）如果您对CHAMPION平台的回复不满意，特别是您认为CHAMPION平台的个人信息处理行为损害了您的合法权益，您还可以通过向被告住所地有管辖权的法院提起诉讼来寻求解决方案。
         </p>
-    </div>
-		<div class="contact">
-			<div class="top">
-					<div class="logo"><img src="images/logor.png" ></div>
-				<div class="wx">
-					<a href="#">
-						<img src="images/humacar.png" >
-						<span>CAR</span>
-					</a>
-				</div>
-				<div class="phone">
-					<a href="#">
-						<img src="images/phone.png" >
-						<span>+1(888)-888-6518</span>
-					</a>
-				</div>
-			</div>
-			</div>
-		<div class="adress">
-			<ul>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-			</ul>
 		</div>
+		</div>
+		</div>
+    </div>
 		<div class="misc">
 			<ul>
 				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
 			</ul>
 		</div>
+		<div class="footer">
+			<div class="contact">
+				<div class="top">
+					<div class="logo"><img src="images/logo.jpg" ></div>
+					<div class="con-top-r">
+						<div class="wx">
+							<a>
+								<img src="images/humacar.png" >
+								<span>CHAMPION</span>
+							</a>
+						</div>
+						<div class="phone">
+							<a>
+								<img src="images/phone.png" >
+								<span>+1(888)-888-6518</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				</div>
+			<div class="adress">
+				<ul>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+				</ul>
+			</div>
+		</div>
 		<div class="copy">
 			<span>
-        Copyright@2016 CHAMPION Inc. Privacy Terms
-    </span>
+				Copyright@2016 CHAMPION Inc. Privacy Terms
+			</span>
 		</div>
 	</div>
 </body>
@@ -286,6 +296,7 @@
 			enshow: "english",
 			loginshow: false,
 			switchlogin: true,
+			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
 			logindata: {
 				phonenum:'',
 				checkcode:''

@@ -5,21 +5,19 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>关于我们</title>
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-	<script src="js/flexible.js"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
+	<link rel="stylesheet" type="text/css" href="css/about.css">
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
-	<script type="text/javascript" src="js/global.js"></script>
-	<script src="js/vue-i18n.js"></script>
-	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/swiper.min.js"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
+	<script type="text/javascript" src="js/vue-i18n.js"></script>
+	<script type="text/javascript" src="js/language.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
-    <link rel="stylesheet" href="css/swiper.min.css">
-    <link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/about.css">
 </head>
 <body>
 	<div id="about" v-cloak>
@@ -120,63 +118,26 @@
 				</div>
 			</transition>
 		</div>
-		<img class="about-carimg" src="images/index_masthead0cn.jpg" alt="car">
-		<ul class="article">
-			<li>
-				<p>Q：CHAMPION是一家怎样的公司呢？</p>
-				<p>A：CHIMPON是北美第一家整合线下优质资源的O2O汽车服务平台，我们为用户提供租车、学车、购车、贷款、维修保养等本地化服务的一站式中文汽车平台，让每一个用户，省钱安心购好车。
-            </p>
-			</li>
-			<li>
-				<p>Q：购车流程是怎样的？</p>
-				<p>A：1. 拨打看车电话/在线预约<br>
-				2. 顾问电话确认并接你看车<br>
-				3. 严选车辆，经过 300 项检测<br>
-				4. 选定爱车，帮你代办一切手续<br>
+		<div class="margin">
+			<img class="about-carimg" src="images/index_masthead0cn.jpg" alt="car">
+			<ul class="article">
+				<li>
+					<p>Q：CHAMPION是一家怎样的公司呢？</p>
+					<p>A：CHIMPON是北美第一家整合线下优质资源的O2O汽车服务平台，我们为用户提供租车、学车、购车、贷款、维修保养等本地化服务的一站式中文汽车平台，让每一个用户，省钱安心购好车。
 				</p>
-			</li>
-			<li>
-				<p>Q：卖车需要准备什么材料？</p>
-				<p>A：您只需在线上卖车处填写完整的信息，我们的工作人员会联系您并安排线下给您的爱车做全面的检测</p>
-			</li>
-		</ul>
-		<div class="contact">
-			<div class="top">
-					<div class="logo"><img src="images/logor.png" ></div>
-				<div class="wx">
-					<a href="#">
-						<img src="images/humacar.png" >
-						<span>CAR</span>
-					</a>
-				</div>
-				<div class="phone">
-					<a href="#">
-						<img src="images/phone.png" >
-						<span>+1(888)-888-6518</span>
-					</a>
-				</div>
-			</div>
-			</div>
-		<div class="adress">
-			<ul>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
+				</li>
+				<li>
+					<p>Q：购车流程是怎样的？</p>
+					<p>A：1. 拨打看车电话/在线预约<br>
+					2. 顾问电话确认并接你看车<br>
+					3. 严选车辆，经过 300 项检测<br>
+					4. 选定爱车，帮你代办一切手续<br>
+					</p>
+				</li>
+				<li>
+					<p>Q：卖车需要准备什么材料？</p>
+					<p>A：您只需在线上卖车处填写完整的信息，我们的工作人员会联系您并安排线下给您的爱车做全面的检测</p>
+				</li>
 			</ul>
 		</div>
 		<div class="misc">
@@ -184,10 +145,53 @@
 				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
 			</ul>
 		</div>
+		<div class="footer">
+			<div class="contact">
+				<div class="top">
+					<div class="logo"><img src="images/logo.jpg" ></div>
+					<div class="con-top-r">
+						<div class="wx">
+							<a>
+								<img src="images/humacar.png" >
+								<span>CHAMPION</span>
+							</a>
+						</div>
+						<div class="phone">
+							<a>
+								<img src="images/phone.png" >
+								<span>+1(888)-888-6518</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				</div>
+			<div class="adress">
+				<ul>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+				</ul>
+			</div>
+		</div>
 		<div class="copy">
 			<span>
-        Copyright@2016 CHAMPION Inc. Privacy Terms
-    </span>
+				Copyright@2016 CHAMPION Inc. Privacy Terms
+			</span>
 		</div>
 	</div>
 </body>
@@ -202,6 +206,7 @@
 			enshow: "english",
 			loginshow: false,
 			switchlogin: true,
+			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
 			logindata: {
 				phonenum:'',
 				checkcode:''
