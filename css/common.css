@@ -41,7 +41,7 @@
 }
 .car-item{
 	width: 269px;
-	height: 300px;
+	height: 350px;
 	position: relative;
 	margin-top: 10px;
 	background-color: white;
@@ -55,7 +55,7 @@
 }
 .car-item .bg{
 	width: 100%;
-	height: 70%;
+	height: 60%;
 }
 .favorite{
 	position: absolute;
@@ -66,14 +66,19 @@
 }
 .car-explain{
 	position: absolute;
-	top: 70%;
+	top: 60%;
 	width: 100%;
+	height: 40%;
 	padding: 0 10px 5px 10px;
 	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 }
 .explain-t{
 	font-family: PingFangSC-Light;
 	box-sizing: border-box;
+	line-height: 30px;
 }
 .car-name,.car-price{
 	font-size: 20px;
@@ -94,7 +99,7 @@
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 5;
+	-webkit-line-clamp: 2;
 	overflow: hidden;
 }
 .back{

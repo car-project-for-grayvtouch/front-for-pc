@@ -6,22 +6,23 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>我要买车</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-	<script src="js/flexible.js"></script>
+	<script type="text/javascript" src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script type="text/javascript" src="js/global.js"></script>
-	<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-	<script src="js/vue-i18n.js"></script>
-	<script src="js/swiper.min.js"></script>
+	<!-- <script async="" src="https://www.google-analytics.com/analytics.js"></script> -->
+	<script type="text/javascript" src="js/vue-i18n.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="dist/iview.min.js"></script>
+	<script type="text/javascript" src="js/language.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
 	<link rel="stylesheet" href="css/swiper.min.css">
-    <link rel="stylesheet" href="dist/styles/iview.css">
-    <script src="dist/iview.min.js"></script>
-	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="dist/styles/iview.css">
 	<link rel="stylesheet" href="css/buy.css">
 </head>
 <body>
@@ -174,19 +175,19 @@
 					<div class="buy-sel-item">
 						<div class="title">车龄</div>
 						<i-select v-model="models.model5" style="width:300px">
-							<i-option v-for="item in mileage" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+							<i-option v-for="item in age" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">变速箱</div>
 						<i-select v-model="models.model6" style="width:300px">
-							<i-option v-for="item in mileage" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+							<i-option v-for="item in gearbox" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">颜色</div>
 						<i-select v-model="models.model7" style="width:300px">
-							<i-option v-for="item in mileage" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+							<i-option v-for="item in color" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 				</div>
@@ -531,61 +532,175 @@
                         label: 'MPV'
                     }],
 				price: [{
-                        value: '不限',
+                        value: '',
                         label: '不限'
                     },
                     {
-                        value: '$10,000以下',
+                        value: '1',
                         label: '$10,000以下'
                     },
                     {
-                        value: '$10,000-$15,000',
+                        value: '2',
                         label: '$10,000-$15,000'
                     },
                     {
-                        value: '$15,000-$20,000',
+                        value: '3',
                         label: '$15,000-$20,000'
                     },
                     {
-                        value: '$20,000-$30,000',
+                        value: '4',
                         label: '$20,000-$30,000'
                     },
                     {
-                        value: '$30,000-$40,000',
+                        value: '5',
                         label: '$30,000-$40,000'
                     },
                     {
-                        value: '$40,000以上',
+                        value: '6',
                         label: '$40,000以上'
                     }],
 				mileage: [{
-                        value: '不限',
+                        value: '',
                         label: '不限'
                     },
                     {
-                        value: '1万英里以内',
+                        value: '1',
                         label: '1万英里以内'
                     },
                     {
-                        value: '3万英里以内',
+                        value: '2',
                         label: '3万英里以内'
                     },
                     {
-                        value: '5万英里以内',
+                        value: '3',
                         label: '5万英里以内'
                     },
                     {
-                        value: '8万英里以内',
+                        value: '4',
                         label: '8万英里以内'
                     },
                     {
-                        value: '10万英里以内',
+                        value: '5',
                         label: '10万英里以内'
                     },
                     {
-                        value: '15万英里以内',
+                        value: '6',
                         label: '15万英里以内'
                     }],
+				age: [{
+				        value: '',
+				        label: '不限'
+				    },
+				    {
+				        value: '1',
+				        label: '1年以内'
+				    },
+				    {
+				        value: '2',
+				        label: '3年以内'
+				    },
+				    {
+				        value: '3',
+				        label: '5年以内'
+				    },
+				    {
+				        value: '4',
+				        label: '6年以内'
+				    },
+				    {
+				        value: '5',
+				        label: '8年以内'
+				    },
+				    {
+				        value: '6',
+				        label: '8年以上'
+				    }],
+				gearbox: [{
+				        value: '',
+				        label: '不限'
+				    },{
+				        value: '手动',
+				        label: '手动'
+				    },
+				    {
+				        value: '自动',
+				        label: '自动'
+				    },
+				    {
+				        value: '手自一体',
+				        label: '手自一体'
+				    },
+				    {
+				        value: '无级变速',
+				        label: '无级变速'
+				    },
+				    {
+				        value: '双离合',
+				        label: '双离合'
+				    },
+				    {
+				        value: '机械自动变速箱',
+				        label: '机械自动变速箱'
+				    },
+				    {
+				        value: '直驱',
+				        label: '直驱'
+				    }],
+				color: [{
+				        value: '',
+				        label: '不限'
+				    },{
+				        value: '白色',
+				        label: '白色'
+				    },
+				    {
+				        value: '黑色',
+				        label: '黑色'
+				    },
+				    {
+				        value: '银灰',
+				        label: '银灰'
+				    },
+				    {
+				        value: '灰色',
+				        label: '灰色'
+				    },
+				    {
+				        value: '黄色',
+				        label: '黄色'
+				    },
+				    {
+				        value: '香槟',
+				        label: '香槟'
+				    },
+				    {
+				        value: '红色',
+				        label: '红色'
+				    },
+				    {
+				        value: '粉色',
+				        label: '粉色'
+				    },
+				    {
+				        value: '紫色',
+				        label: '紫色'
+				    },
+				    {
+				        value: '蓝色',
+				        label: '蓝色'
+				    },
+				    {
+				        value: '绿色',
+				        label: '绿色'
+				    },
+				    {
+				        value: '咖啡',
+				        label: '咖啡'
+				    },
+				    {
+				        value: '其他',
+				        label: '其他'
+				    }],
 		},
 		mounted() {
 			if(locale){
@@ -606,6 +721,20 @@
 			$('.order').find('li').click(function(){
 				$(this).css({'background-color':'#DA2515','color':'white'}).siblings().css({'background-color':'white','color':'black'});
 			});
+			// 筛选条件
+			data.common('Brand/all',function(d){
+				console.log(d)
+				var cd = [{
+                    value: 'hot',
+                    label: '热门品牌',
+                    children: []
+                }];
+				for(var k in d){
+					
+				}
+// 				that.$i18n._vm.messages['zh-cn'].media = d;
+// 				that.$i18n._vm.messages['en'].media = d;
+			})
 		},
 		watch: {
 			value1: {
