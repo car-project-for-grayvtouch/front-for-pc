@@ -10,7 +10,6 @@
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script type="text/javascript" src="js/global.js"></script>
-	<!-- <script async="" src="https://www.google-analytics.com/analytics.js"></script> -->
 	<script type="text/javascript" src="js/vue-i18n.js"></script>
 	<script type="text/javascript" src="js/swiper.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
@@ -202,27 +201,34 @@
 					</ul>
 				</div>
 				<div class="car-detail">
-					<div class="car-item" v-for="item in $t('explain')">
+					<div class="car-item" v-for="item in searchArr">
 						<a href="#">
 							<img class="bg" src="images/car-1.jpg">
 							<img class="favorite" src="images/favorite.png">
 							<div class="car-explain">
 								<div class="explain-t">
 									<div class="car-name">
-										{{item.name}}
+										{{ item.model?item.model.year:''}}&nbsp;
+										{{item.series?item.series.name:''}}&nbsp;
+										{{item.model?item.model.displacement:''}}L
 									</div>
 									<div class="car-price">
 										{{item.price}}
 									</div>
 								</div>
 								<div class="distance">
-									{{item.distance}}
+									{{item.mileage}} 英里·{{item.model?item.model.door_count:''}}门·
+									{{item.model?item.model.drive_type:''}}·
+									{{item.model?item.model.cylinder_count:''}}缸·
+									{{item.model?item.model.displacement:''}}L·
+									{{item.model?item.model.intake_type:''}}·
+									{{item.model?item.model.gearbox:''}}
 								</div>
 							</div>
 						</a>
 					</div>
 				</div>
-				<div>
+				<div class="redirectTopage">
 					<Page :total="100" show-elevator />
 				</div>
 			</div>
@@ -701,8 +707,10 @@
 				        value: '其他',
 				        label: '其他'
 				    }],
+					searchArr: [],
 		},
 		mounted() {
+			var that = this;
 			if(locale){
 				i18n.locale = locale;
 				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
@@ -722,8 +730,9 @@
 				$(this).css({'background-color':'#DA2515','color':'white'}).siblings().css({'background-color':'white','color':'black'});
 			});
 			// 筛选条件
-			data.common('Brand/all',function(d){
+			data.common('Car/list',function(d){
 				console.log(d)
+				that.searchArr = d.data;
 				var cd = [{
                     value: 'hot',
                     label: '热门品牌',

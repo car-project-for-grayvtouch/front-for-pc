@@ -94,3 +94,10 @@
 	background-color: #DA2515;
 	color: white;
 }
+.redirectTopage{
+	padding: 20px;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
