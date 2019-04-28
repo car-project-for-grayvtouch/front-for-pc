@@ -266,7 +266,7 @@
 				<div class="com-content">
 					<Card style="width:350px"  v-for="item in comment" v-bind:key="item.id">
 						<p slot="title">
-							{{item.car?item.car.title:''}}
+							{{item.product?item.product.thing?item.product.thing.title:'':''}}
 						</p>
 						<ul>
 							<li>
@@ -543,12 +543,12 @@
 			})
 			// 评论
 			data.common('Car/featuredComment',function(d){
-				// console.log(d)
+				console.log(d)
 				that.comment = d;
 			})
 			// 热门搜索
 			data.common('SearchLog/hot',function(d){
-				console.log(d)
+				// console.log(d)
 				that.hotsearch = d;
 				that.$nextTick(function(){
 					userTags.init();
