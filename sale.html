@@ -5,18 +5,21 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>我要卖车</title>
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
+	<link rel="stylesheet" type="text/css" href="css/sale.css">
 	<script src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script type="text/javascript" src="js/global.js"></script>
-	<script src="js/vue-i18n.js"></script>
-	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
-    <link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/sale.css">
+	<script type="text/javascript" src="js/vue-i18n.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="js/language.js"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
 </head>
 <body>
 	<div id="sale" v-cloak>
@@ -117,111 +120,117 @@
 				</div>
 			</transition>
 		</div>
-		<img class="sale-carimg" src="images/index_masthead0cn.jpg" alt="car">
-		<div class="sale-info">
-			<ul>
-				<li>
-					<label for="vin">vin*</label>
-					<input type="text" name="vin" id="vin" placeholder="请输入17位的vin码"/>
-				</li>
-				<li>
-					<label for="mileage">行驶里程*</label>
-					<input type="text" name="mileage" id="mileage" placeholder="请输入当前英里数"/>
-				</li>
-				<li>
-					<label for="preprice">预期价格*</label>
-					<input type="text" name="preprice" id="preprice" placeholder="多少美元"/>
-				</li>
-				<li>
-					<label for="address">请输入您的所在地*</label>
-					<input type="text" name="address" id="address" placeholder="所在地"/>
-				</li>
-				<li>
-					<div class="facecolor">
-						<label class="">车身颜色*</label>
-						<select v-model="faceselected">
-						  <option v-for="option in facecolor" v-bind:value="option.value">
-							{{ option.text }}
-						  </option>
-						</select>
-					</div>
-				</li>
-				<li>
-					<div class="facecolor">
-						<label>内饰颜色*</label>
-						<select v-model="insideselected">
-						  <option v-for="option in insidecolor" v-bind:value="option.value">
-							{{ option.text }}
-						  </option>
-						</select>
-					</div>
-				</li>
-				<li>
-					<label class="remarkcolor">备注*</label>
-					<textarea class="remark" placeholder="请输入您爱车的配置,以、号隔开,以便我们对您的车辆有更多的了解">
-						
-					</textarea>
-				</li>
-				<li>
-					<label>车主信息*</label>
-					<input type="text" name="phoneNum" id="phoneNum" placeholder="请输入您的手机号"/>
-					<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的微信号"/>
-					<div class="checkcode">
-						<input type="text" name="check" id="check" placeholder="请输入您的验证码"/>
-						<img src="images/check.jpg" >
-					</div>
-				</li>
-			</ul>
-			<button class="submit" type="button">确认提交</button>
-		</div>
-		<div class="contact">
-			<div class="top">
-					<div class="logo"><img src="images/logor.png" ></div>
-				<div class="wx">
-					<a href="#">
-						<img src="images/humacar.png" >
-						<span>CAR</span>
-					</a>
-				</div>
-				<div class="phone">
-					<a href="#">
-						<img src="images/phone.png" >
-						<span>+1(888)-888-6518</span>
-					</a>
-				</div>
+		<div class="margin">
+			<img class="sale-carimg" src="images/index_masthead0cn.jpg" alt="car">
+			<div class="sale-info">
+				<ul>
+					<li>
+						<label for="vin">vin*</label>
+						<input type="text" name="vin" id="vin" placeholder="请输入17位的vin码"/>
+					</li>
+					<li>
+						<label for="mileage">行驶里程*</label>
+						<input type="text" name="mileage" id="mileage" placeholder="请输入当前英里数"/>
+					</li>
+					<li>
+						<label for="preprice">预期价格*</label>
+						<input type="text" name="preprice" id="preprice" placeholder="多少美元"/>
+					</li>
+					<li>
+						<label for="address">请输入您的所在地*</label>
+						<input type="text" name="address" id="address" placeholder="所在地"/>
+					</li>
+					<li>
+						<div class="facecolor">
+							<label class="">车身颜色*</label>
+							<select v-model="faceselected">
+							  <option v-for="option in facecolor" v-bind:value="option.value">
+								{{ option.text }}
+							  </option>
+							</select>
+						</div>
+					</li>
+					<li>
+						<div class="facecolor">
+							<label>内饰颜色*</label>
+							<select v-model="insideselected">
+							  <option v-for="option in insidecolor" v-bind:value="option.value">
+								{{ option.text }}
+							  </option>
+							</select>
+						</div>
+					</li>
+					<li>
+						<label class="remarkcolor">备注*</label>
+						<textarea class="remark" placeholder="请输入您爱车的配置,以、号隔开,以便我们对您的车辆有更多的了解">
+							
+						</textarea>
+					</li>
+					<li>
+						<label>车主信息*</label>
+						<input type="text" name="phoneNum" id="phoneNum" placeholder="请输入您的手机号"/>
+						<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的微信号"/>
+						<div class="checkcode">
+							<input type="text" name="check" id="check" placeholder="请输入您的验证码"/>
+							<img src="images/check.jpg" >
+						</div>
+					</li>
+				</ul>
+				<button class="submit" type="button">确认提交</button>
 			</div>
-			</div>
-		<div class="adress">
-			<ul>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-			</ul>
 		</div>
 		<div class="misc">
 			<ul>
 				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
 			</ul>
 		</div>
+		<div class="footer">
+			<div class="contact">
+				<div class="top">
+					<div class="logo"><img src="images/logo.jpg" ></div>
+					<div class="con-top-r">
+						<div class="wx">
+							<a>
+								<img src="images/humacar.png" >
+								<span>CHAMPION</span>
+							</a>
+						</div>
+						<div class="phone">
+							<a>
+								<img src="images/phone.png" >
+								<span>+1(888)-888-6518</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				</div>
+			<div class="adress">
+				<ul>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+				</ul>
+			</div>
+		</div>
 		<div class="copy">
 			<span>
-        Copyright@2016 CHAMPION Inc. Privacy Terms
-    </span>
+				Copyright@2016 CHAMPION Inc. Privacy Terms
+			</span>
 		</div>
 	</div>
 </body>
@@ -238,6 +247,7 @@
 			insideselected: 'A',
 			loginshow: false,
 			switchlogin: true,
+			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
 			logindata: {
 				phonenum:'',
 				checkcode:''
