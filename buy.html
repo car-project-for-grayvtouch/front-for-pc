@@ -126,14 +126,12 @@
 				<div class="choose-top">
 					<span class="title">条件筛选</span>
 					<ul class="tags">
+						<li v-if="value1!=''">
+							<span>{{value1[1]}}</span>
+						</li>
 						<li v-for="item in defaultmodels">
 							<span>{{item}}</span>
-							<img src="images/tag_close.png" >
 						</li>
-						<!-- <li>
-							<span>丰田</span>
-							<img src="images/tag_close.png" >
-						</li> -->
 					</ul>
 					<i-button type="warning" @click='clearall()'>清除所有 <Icon type="md-trash" /></i-button>
 					<i-button type="primary">确定筛选</i-button>
@@ -147,43 +145,43 @@
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">车系</div>
-						<i-select v-model="models.model1" style="width:300px">
+						<i-select v-model="models[0]" clearable style="width:300px">
 							<i-option v-for="item in carseries" :value="item.value" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">价格</div>
-						<i-select v-model="models.model2" style="width:300px">
+						<i-select v-model="models[1]" clearable style="width:300px">
 							<i-option v-for="item in price" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">车型</div>
-						<i-select v-model="models.model3" style="width:300px">
+						<i-select v-model="models[2]" clearable style="width:300px">
 							<i-option v-for="item in cartype" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">里程</div>
-						<i-select v-model="models.model4" style="width:300px">
+						<i-select v-model="models[3]" clearable style="width:300px">
 							<i-option v-for="item in mileage" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">车龄</div>
-						<i-select v-model="models.model5" style="width:300px">
+						<i-select v-model="models[4]" clearable style="width:300px">
 							<i-option v-for="item in age" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">变速箱</div>
-						<i-select v-model="models.model6" style="width:300px">
+						<i-select v-model="models[5]" clearable style="width:300px">
 							<i-option v-for="item in gearbox" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">颜色</div>
-						<i-select v-model="models.model7" style="width:300px">
+						<i-select v-model="models[6]" clearable style="width:300px">
 							<i-option v-for="item in color" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
@@ -304,17 +302,7 @@
 				checkcode:''
 			},
 			value1: [],
-			defaultmodels: [],
-			models: {
-				model0: '',
-				model1: '',
-				model2: '',
-				model3: '',
-				model4: '',
-				model5: '',
-				model6: '',
-				model7: '',
-			},
+			models:['','','','','','',''],
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
                 brandList: [{
                     value: 'hot',
@@ -745,27 +733,17 @@
 			})
 		},
 		watch: {
-			value1: {
-				handler:function(newv,oldv){
-					this.models.model0 = newv[1];
-				}
-			},
-			models: {
-				handler:function(newv,oldv){
-					var curmodel = [];
-					for(var key in newv){
-						if(newv[key] !== ''){
-							curmodel.push(newv[key]);
-						}
-					}
-					this.defaultmodels = curmodel;
-				},
-			deep: true,
-			immidiate: true
-			}
+
 		},
 		computed: {
 
+			defaultmodels: function () {
+				return this.models.filter(function(str){
+					if(str !== ''){
+						return str;
+					}
+				})
+			}
 		},
 		methods: {
 			login: function() {
@@ -813,10 +791,10 @@
 					that.value1 = [];
 					// resolve();
 				// }).then(function(){
-					this.$nextTick(function(){
-						
-						that.defaultmodels = [];
-					})
+// 					this.$nextTick(function(){
+// 						
+// 						that.defaultmodels = [];
+// 					})
 				// })
 			}
 		}

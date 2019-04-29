@@ -22,7 +22,7 @@
 				{'logo':'make1.png','name':'BMW'},
 				{'logo':'make2.png','name':'Ford'},
 				{'logo':'make3.png','name':'Honda'},
-				{'logo':'make4.png','name':'Merced...'}],
+				{'logo':'make4.png','name':'Mercedes-Benz'}],
 				more: 'More',
 				recom: 'CHAMPION Recommoned',
 				seltype: ['Latest-hot','ECO-Car','Prospective-new-car','luxury-car'],
