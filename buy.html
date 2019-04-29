@@ -19,6 +19,7 @@
 	<script type="text/javascript" src="js/common.js"></script>
     <script type="text/javascript" src="dist/iview.min.js"></script>
 	<script type="text/javascript" src="js/language.js"></script>
+	<script type="text/javascript" src="js/screeningCondition.js"></script>
 	<script type="text/javascript" src="js/data.js"></script>
 	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
 </head>
@@ -141,48 +142,48 @@
 						<div class="title">
 							品牌
 						</div>
-						<Cascader :data="brandList" v-model="value1" style="width:300px"></Cascader>
+						<Cascader :data="screeningCondition.brand" v-model="value1" style="width:300px"></Cascader>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">车系</div>
 						<i-select v-model="models[0]" clearable style="width:300px">
-							<i-option v-for="item in carseries" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+							<i-option v-for="item in screeningCondition.carseries" :value="item.value" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">价格</div>
 						<i-select v-model="models[1]" clearable style="width:300px">
-							<i-option v-for="item in price" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+							<i-option v-for="item in screeningCondition.price" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">车型</div>
 						<i-select v-model="models[2]" clearable style="width:300px">
-							<i-option v-for="item in cartype" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+							<i-option v-for="item in screeningCondition.cartype" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">里程</div>
 						<i-select v-model="models[3]" clearable style="width:300px">
-							<i-option v-for="item in mileage" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+							<i-option v-for="item in screeningCondition.mileage" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">车龄</div>
 						<i-select v-model="models[4]" clearable style="width:300px">
-							<i-option v-for="item in age" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+							<i-option v-for="item in screeningCondition.age" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">变速箱</div>
 						<i-select v-model="models[5]" clearable style="width:300px">
-							<i-option v-for="item in gearbox" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+							<i-option v-for="item in screeningCondition.gearbox" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">颜色</div>
 						<i-select v-model="models[6]" clearable style="width:300px">
-							<i-option v-for="item in color" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+							<i-option v-for="item in screeningCondition.color" :value="item.label" :key="item.value">{{ item.label }}</i-option>
 						</i-select>
 					</div>
 				</div>
@@ -225,11 +226,15 @@
 					</div>
 				</div>
 				<div class="redirectTopage">
-					<Page :total="100" show-elevator />
+					<Page 
+					:current="page.index" 
+					:total="page.total" 
+					:page-size="page.size"
+					show-elevator 
+					show-total
+					@on-change="currentpage" />
 				</div>
 			</div>
-			
-			
 		</div>
 		<div class="misc">
 			<ul>
@@ -301,403 +306,20 @@
 				phonenum:'',
 				checkcode:''
 			},
+			screeningCondition: {},
 			value1: [],
 			models:['','','','','','',''],
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
-                brandList: [{
-                    value: 'hot',
-                    label: '热门品牌',
-                    children: [
-                        {
-                            value: '不限',
-                            label: '不限'
-                        },
-                        {
-                            value: '宝马',
-                            label: '宝马'
-                        },
-                        {
-                            value: '奔驰',
-                            label: '奔驰'
-                        },
-                        {
-                            value: 'fengtian',
-                            label: '丰田'
-                        },
-                        {
-                            value: 'aodi',
-                            label: '奥迪'
-                        },
-                        {
-                            value: 'richan',
-                            label: '日产'
-                        },
-                        {
-                            value: 'dazhong',
-                            label: '大众'
-                        }
-                    ]
-                }, 
-				{
-                    value: 'A',
-                    label: 'A',
-                    children: [
-                        {
-                            value: 'aerfaluomiou',
-                            label: '阿尔法罗密欧',
-                        },
-                        {
-                            value: 'AMC',
-                            label: 'AMC',
-                        },
-                        {
-                            value: 'aodi',
-                            label: '奥迪',
-                        },
-                        {
-                            value: 'aozimobier',
-                            label: '奥兹莫比尔',
-                        },
-                        {
-                            value: 'asidunmading',
-                            label: '阿斯顿马丁',
-                        }
-                    ],
-                }, 
-				{
-                    value: 'B',
-                    label: 'B',
-                    children: [
-                        {
-                            value: 'baoma',
-                            label: '宝马',
-                        },
-                        {
-                            value: 'baoshijie',
-                            label: '保时捷',
-                        },
-                        {
-                            value: 'benchi',
-                            label: '奔驰',
-                        },
-                        {
-                            value: 'bentian',
-                            label: '本田',
-                        },
-                        {
-                            value: 'biaozhi',
-                            label: '标致',
-                        },
-                        {
-                            value: 'bieke',
-                            label: '别克',
-                        },
-                        {
-                            value: 'binli',
-                            label: '宾利',
-                        }
-                    ],
-                }, 
-				{
-                    value: 'D',
-                    label: 'D',
-                    children: [
-                        {
-                            value: 'daoqi',
-                            label: '道奇',
-                        },
-                        {
-                            value: 'datesang',
-                            label: '达特桑',
-                        },
-                        {
-                            value: 'dayu',
-                            label: '大宇',
-                        },
-                        {
-                            value: 'dazhong',
-                            label: '大众',
-                        },
-                        {
-                            value: 'delaoruien',
-                            label: '德劳瑞恩',
-                        }
-                    ],
-                },
-				{
-                    value: 'F',
-                    label: 'F',
-                    children: [
-                        {
-                            value: 'falali',
-                            label: '法拉利',
-                        },
-                        {
-                            value: 'feiyate',
-                            label: '菲亚特',
-                        },
-                        {
-                            value: 'FIAT',
-                            label: 'FIAT',
-                        },
-                        {
-                            value: 'fengtian',
-                            label: '丰田',
-                        },
-                        {
-                            value: 'fulaina',
-                            label: '福莱纳',
-                        },
-                        {
-                            value: 'fute',
-                            label: '福特',
-                        }
-                    ],
-                }],
-                
-				carseries: [
-					{
-                        value: '不限',
-                        label: '不限'
-                    },
-                    {
-                        value: '宝马 3系',
-                        label: '宝马 3系'
-                    },
-                    {
-                        value: '奔驰 C系',
-                        label: '奔驰 C系'
-                    },
-                    {
-                        value: '丰田 凯美瑞',
-                        label: '丰田 凯美瑞'
-                    },
-                    {
-                        value: '宝马 5系',
-                        label: '宝马 5系'
-                    },
-                    {
-                        value: '奔驰 E系',
-                        label: '奔驰 E系'
-                    },
-                    {
-                        value: '福特 野马',
-                        label: '福特 野马'
-                    },
-                    {
-                        value: '保时捷 卡宴',
-                        label: '保时捷 卡宴'
-                    },
-                    {
-                        value: '本田 雅阁',
-                        label: '本田 雅阁'
-                    },
-                    {
-                        value: '丰田 卡罗拉',
-                        label: '丰田 卡罗拉'
-                    },
-                    {
-                        value: '本田 思域',
-                        label: '本田 思域'
-                    }],
-				cartype: [{
-                        value: '不限',
-                        label: '不限'
-                    },
-                    {
-                        value: '轿车',
-                        label: '轿车'
-                    },
-                    {
-                        value: '跑车',
-                        label: '跑车'
-                    },
-                    {
-                        value: '皮卡',
-                        label: '皮卡'
-                    },
-                    {
-                        value: 'SUV',
-                        label: 'SUV'
-                    },
-                    {
-                        value: 'MPV',
-                        label: 'MPV'
-                    }],
-				price: [{
-                        value: '',
-                        label: '不限'
-                    },
-                    {
-                        value: '1',
-                        label: '$10,000以下'
-                    },
-                    {
-                        value: '2',
-                        label: '$10,000-$15,000'
-                    },
-                    {
-                        value: '3',
-                        label: '$15,000-$20,000'
-                    },
-                    {
-                        value: '4',
-                        label: '$20,000-$30,000'
-                    },
-                    {
-                        value: '5',
-                        label: '$30,000-$40,000'
-                    },
-                    {
-                        value: '6',
-                        label: '$40,000以上'
-                    }],
-				mileage: [{
-                        value: '',
-                        label: '不限'
-                    },
-                    {
-                        value: '1',
-                        label: '1万英里以内'
-                    },
-                    {
-                        value: '2',
-                        label: '3万英里以内'
-                    },
-                    {
-                        value: '3',
-                        label: '5万英里以内'
-                    },
-                    {
-                        value: '4',
-                        label: '8万英里以内'
-                    },
-                    {
-                        value: '5',
-                        label: '10万英里以内'
-                    },
-                    {
-                        value: '6',
-                        label: '15万英里以内'
-                    }],
-				age: [{
-				        value: '',
-				        label: '不限'
-				    },
-				    {
-				        value: '1',
-				        label: '1年以内'
-				    },
-				    {
-				        value: '2',
-				        label: '3年以内'
-				    },
-				    {
-				        value: '3',
-				        label: '5年以内'
-				    },
-				    {
-				        value: '4',
-				        label: '6年以内'
-				    },
-				    {
-				        value: '5',
-				        label: '8年以内'
-				    },
-				    {
-				        value: '6',
-				        label: '8年以上'
-				    }],
-				gearbox: [{
-				        value: '',
-				        label: '不限'
-				    },{
-				        value: '手动',
-				        label: '手动'
-				    },
-				    {
-				        value: '自动',
-				        label: '自动'
-				    },
-				    {
-				        value: '手自一体',
-				        label: '手自一体'
-				    },
-				    {
-				        value: '无级变速',
-				        label: '无级变速'
-				    },
-				    {
-				        value: '双离合',
-				        label: '双离合'
-				    },
-				    {
-				        value: '机械自动变速箱',
-				        label: '机械自动变速箱'
-				    },
-				    {
-				        value: '直驱',
-				        label: '直驱'
-				    }],
-				color: [{
-				        value: '',
-				        label: '不限'
-				    },{
-				        value: '白色',
-				        label: '白色'
-				    },
-				    {
-				        value: '黑色',
-				        label: '黑色'
-				    },
-				    {
-				        value: '银灰',
-				        label: '银灰'
-				    },
-				    {
-				        value: '灰色',
-				        label: '灰色'
-				    },
-				    {
-				        value: '黄色',
-				        label: '黄色'
-				    },
-				    {
-				        value: '香槟',
-				        label: '香槟'
-				    },
-				    {
-				        value: '红色',
-				        label: '红色'
-				    },
-				    {
-				        value: '粉色',
-				        label: '粉色'
-				    },
-				    {
-				        value: '紫色',
-				        label: '紫色'
-				    },
-				    {
-				        value: '蓝色',
-				        label: '蓝色'
-				    },
-				    {
-				        value: '绿色',
-				        label: '绿色'
-				    },
-				    {
-				        value: '咖啡',
-				        label: '咖啡'
-				    },
-				    {
-				        value: '其他',
-				        label: '其他'
-				    }],
-					searchArr: [],
+			searchArr: [],
+			page: {
+				total: 10,
+				index: 1,
+				size: 20
+			}
 		},
 		mounted() {
 			var that = this;
+			this.carlistdata({});
 			if(locale){
 				i18n.locale = locale;
 				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
@@ -716,27 +338,48 @@
 			$('.order').find('li').click(function(){
 				$(this).css({'background-color':'#DA2515','color':'white'}).siblings().css({'background-color':'white','color':'black'});
 			});
-			// 筛选条件
-			data.common('Car/list',function(d){
+			
+			
+			// 品牌可选筛选条件
+			data.common('Brand/all',function(d){
+				var sb = that.screeningCondition;
 				console.log(d)
-				that.searchArr = d.data;
-				var cd = [{
-                    value: 'hot',
-                    label: '热门品牌',
-                    children: []
-                }];
-				for(var k in d){
-					
+				// console.log(screeningCondition.brand.length)
+				
+				// 根据获取到的品牌数据创建符合条件的数据结构
+				if(sb.brand){
+					console.log('已存在brand数组');
+				}else{
+					sb.brand = [];
 				}
-// 				that.$i18n._vm.messages['zh-cn'].media = d;
-// 				that.$i18n._vm.messages['en'].media = d;
+				for(var k in d){
+					// 查看数组中是否已有符合条件的一级数据,没有自行创建
+					var inarr = false,
+					index;
+					for(var s in sb){
+						if(d[k].letter !== sb[s].label){
+							// console.log('不符合')
+						}else{
+							inarr = true;
+							index = s;
+							// console.log('符合' + s)
+						}
+					}
+					if(inarr){
+						sb.brand[index].children.push({value:d[k].id,label:d[k].name})
+					}else{
+						// console.log(d[k].letter, d[k].id, d[k].name)
+						sb.brand.push({value: d[k].letter,label: d[k].letter,children: [{value:d[k].id,label:d[k].name}]})
+					}
+				}
+				// console.log(sb)
+				that.screeningCondition = sb;
 			})
 		},
 		watch: {
-
+			
 		},
 		computed: {
-
 			defaultmodels: function () {
 				return this.models.filter(function(str){
 					if(str !== ''){
@@ -746,6 +389,18 @@
 			}
 		},
 		methods: {
+			currentpage: function(curpage) {
+				this.carlistdata({'page':curpage});
+			},
+			// 车辆列表
+			carlistdata:function(form) {
+				var that = this;
+				data.common('Car/list',function(d){
+					console.log(d)
+					that.searchArr = d.data;
+					that.page.total = d.total;
+				},form)
+			},
 			login: function() {
 				if(this.logindata.phonenum == ''){
 					alert("请填写手机号!");
