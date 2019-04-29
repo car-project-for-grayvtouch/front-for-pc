@@ -369,7 +369,7 @@
 						sb.brand[index].children.push({value:d[k].id,label:d[k].name})
 					}else{
 						// console.log(d[k].letter, d[k].id, d[k].name)
-						sb.brand.push({value: d[k].letter,label: d[k].letter,children: [{value:d[k].id,label:d[k].name}]})
+						sb.brand.push({value: d[k].letter,label: d[k].letter,children: [{dataId:d[k].id,value:d[k].name,label:d[k].name}]})
 					}
 				}
 				// console.log(sb)
