@@ -5,18 +5,19 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>分期购车</title>
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-	<script src="js/flexible.js"></script>
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
+	<link rel="stylesheet" type="text/css" href="css/installment.css">
+	<link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
+	<script type="text/javascript" src="js/swiper.min.js"></script>
 	<script type="text/javascript" src="js/vue.js"></script>
-	<script type="text/javascript" src="js/global.js"></script>
-	<script src="js/vue-i18n.js"></script>
-	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
-    <link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/installment.css">
+	<script type="text/javascript" src="js/vue-i18n.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/language.js" charset="utf-8"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
 </head>
 <body>
 	<div id="installment" v-cloak>
@@ -117,135 +118,141 @@
 				</div>
 			</transition>
 		</div>
-		<img class="ins-carimg" src="images/index_masthead0cn.jpg" alt="car">
-		<div class="ins-info">
-			<p class="service">请确保您的手机号可用，支持中国，美国手机号</p>
-			<ul>
-				<li>
-					<input class="input" type="text" name="phoneNum" id="phoneNum" placeholder="请输入您的手机号"/>
-				</li>
-				<li>
-					<div class="checkcode">
-						<input class="input" type="text" name="check" id="check" placeholder="请输入您的验证码"/>
-						<img src="images/check.jpg" >
-					</div>
-				</li>
-				<li>
-					<label>选择你的身份</label>
-					<div class="choose-radio">
-						<input type="radio" id="one" value="One" v-model="picked">
-						<label class="mr" for="one">平民</label>
-						<input type="radio" id="two" value="Two" v-model="picked">
-						<label class="mr" for="two">国王</label>
-						<input type="radio" id="three" value="Three" v-model="picked">
-						<label class="mr" for="three">工作</label>
-						<input type="radio" id="four" value="Four" v-model="picked">
-						<label class="mr" for="four">流浪</label>
-					</div>
-				</li>
-				<li>
-					<label>是否有SSN</label>
-					<div class="choose-radio">
-						<input type="radio" id="one" value="One" v-model="ssnpicked">
-						<label class="mr" for="one">是</label>
-						<input type="radio" id="two" value="Two" v-model="ssnpicked">
-						<label class="mr" for="two">否</label>
-					</div>
-				</li>
-				<button class="submit" type="button">立即申请</button>
-				<li>
-					<div class="trait">
-						<div class="img-item">
-							<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-shoufu"></use>
-							</svg>
-							<span>低首付</span>
+		<div class="margin">
+			<img class="ins-carimg" src="images/index_masthead0cn.jpg" alt="car">
+			<div class="ins-info">
+				<p class="service">请确保您的手机号可用，支持中国，美国手机号</p>
+				<ul>
+					<li>
+						<input class="input" type="text" name="phoneNum" id="phoneNum" placeholder="请输入您的手机号"/>
+					</li>
+					<li>
+						<div class="checkcode">
+							<input class="input" type="text" name="check" id="check" placeholder="请输入您的验证码"/>
+							<img src="images/check.jpg" >
 						</div>
-						<div class="img-item">
-							<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-yuegongdai"></use>
-							</svg>
-							<span>低月供</span>
+					</li>
+					<li>
+						<label>选择你的身份</label>
+						<div class="choose-radio">
+							<input type="radio" id="one" value="One" v-model="picked">
+							<label class="mr" for="one">平民</label>
+							<input type="radio" id="two" value="Two" v-model="picked">
+							<label class="mr" for="two">国王</label>
+							<input type="radio" id="three" value="Three" v-model="picked">
+							<label class="mr" for="three">工作</label>
+							<input type="radio" id="four" value="Four" v-model="picked">
+							<label class="mr" for="four">流浪</label>
 						</div>
-						<div class="img-item">
-							<svg class="icon" aria-hidden="true">
-							    <use xlink:href="#icon-yiduiyifuwu"></use>
-							</svg>
-							<span>一对一服务</span>
+					</li>
+					<li>
+						<label>是否有SSN</label>
+						<div class="choose-radio">
+							<input type="radio" id="one" value="One" v-model="ssnpicked">
+							<label class="mr" for="one">是</label>
+							<input type="radio" id="two" value="Two" v-model="ssnpicked">
+							<label class="mr" for="two">否</label>
 						</div>
-					</div>
-				</li>
-				<li>
-					<div class="loan-process">
-						<div class="title">贷款流程</div>
-						<div class="img-item">
-							<span><div class="step-num">1</div>30秒申请</span>
-							<p>在线填写4项基本信息（姓名、身份证号、储蓄卡号、手机号)，秒出结果</p>
+					</li>
+					<button class="submit" type="button">立即申请</button>
+					<li>
+						<div class="trait">
+							<div class="img-item">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-shoufu"></use>
+								</svg>
+								<span>低首付</span>
+							</div>
+							<div class="img-item">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-yuegongdai"></use>
+								</svg>
+								<span>低月供</span>
+							</div>
+							<div class="img-item">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-yiduiyifuwu"></use>
+								</svg>
+								<span>一对一服务</span>
+							</div>
 						</div>
-						<div class="img-item">
-							<span><div class="step-num">2</div>预约看车</span>
-							<p>在线挑选爱车，线下售车顾问一对一全程陪同讲解</p>
+					</li>
+					<li>
+						<div class="loan-process">
+							<div class="title">贷款流程</div>
+							<div class="img-item">
+								<span><div class="step-num">1</div>30秒申请</span>
+								<p>在线填写4项基本信息（姓名、身份证号、储蓄卡号、手机号)，秒出结果</p>
+							</div>
+							<div class="img-item">
+								<span><div class="step-num">2</div>预约看车</span>
+								<p>在线挑选爱车，线下售车顾问一对一全程陪同讲解</p>
+							</div>
+							<div class="img-item">
+								<span><div class="step-num">3</div>线上审批</span>
+								<p>资料提交后立即审批，免流水、免家访，最快30分钟出结果</p>
+							</div>
+							<div class="img-item">
+								<span><div class="step-num">4</div>放款提车</span>
+								<p>瓜子助您完成车辆过户、抵押等手续后，当天放款</p>
+							</div>
 						</div>
-						<div class="img-item">
-							<span><div class="step-num">3</div>线上审批</span>
-							<p>资料提交后立即审批，免流水、免家访，最快30分钟出结果</p>
-						</div>
-						<div class="img-item">
-							<span><div class="step-num">4</div>放款提车</span>
-							<p>瓜子助您完成车辆过户、抵押等手续后，当天放款</p>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-		<div class="contact">
-			<div class="top">
-					<div class="logo"><img src="images/logor.png" ></div>
-				<div class="wx">
-					<a href="#">
-						<img src="images/humacar.png" >
-						<span>CAR</span>
-					</a>
-				</div>
-				<div class="phone">
-					<a href="#">
-						<img src="images/phone.png" >
-						<span>+1(888)-888-6518</span>
-					</a>
-				</div>
+					</li>
+				</ul>
 			</div>
-			</div>
-		<div class="adress">
-			<ul>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-				<a href="#">
-					<li>
-						<span>洛杉矶旗舰店地址</span>
-						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-					</li>
-				</a>
-			</ul>
 		</div>
 		<div class="misc">
 			<ul>
 				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
 			</ul>
 		</div>
+		<div class="footer">
+			<div class="contact">
+				<div class="top">
+					<div class="logo"><img src="images/logo.jpg" ></div>
+					<div class="con-top-r">
+						<div class="wx">
+							<a>
+								<img src="images/humacar.png" >
+								<span>CHAMPION</span>
+							</a>
+						</div>
+						<div class="phone">
+							<a>
+								<img src="images/phone.png" >
+								<span>+1(888)-888-6518</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				</div>
+			<div class="adress">
+				<ul>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+				</ul>
+			</div>
+		</div>
 		<div class="copy">
 			<span>
-        Copyright@2016 CHAMPION Inc. Privacy Terms
-    </span>
+				Copyright@2016 CHAMPION Inc. Privacy Terms
+			</span>
 		</div>
 	</div>
 </body>
@@ -259,6 +266,7 @@
 			botshow: false,
 			enshow: "english",
 			loginshow: false,
+			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
 			switchlogin: true,
 			logindata: {
 				phonenum:'',

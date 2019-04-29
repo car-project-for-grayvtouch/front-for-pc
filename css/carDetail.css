@@ -1,9 +1,22 @@
+.tops{
+	display: flex;
+	background-color: white;
+}
+.top-right{
+	flex: 1.5;
+	padding: 10px 0;
+	box-sizing: border-box;
+}
+.space{
+	flex: 0.1;
+}
 .swiper-container {
-	width: 100%;
+	background-color: white;
+	height: 400px;
 	position: relative;
 	left: 0;
-	right: 0;
 	z-index: 0;
+	flex: 1.7;
 }
 .swiper-slide {
 	display: -webkit-box;
@@ -13,117 +26,151 @@
 	-webkit-align-items: center;
 	align-items: center;
 }
-
 .swiper-slide img{
 	width: 100%;
-	height: 100%;
+	height: 400px;
 }
 .swiper-pagination{
 	color: white;
-	font-size: 0.4px;
+	font-size: 15px;
 }
 .swiper-button-prev{
 	/* width: 1px; */
-	height: 0.8px;
+	height: 20px;
 	outline: none;
 }
 .swiper-button-next{
 	outline: none;
-	height: 0.8px;
+	height: 20px;
 	/* width: 1px; */
 }
 .car-info{
-	margin: 0.4px;
+	margin: 40px 0;
+	background-color: white;
+	padding: 40px;
+	box-sizing: border-box;
 }
-.car-info .default{
-	height: 1.5px;
+.default{
+	height: 100px;
 	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
 }
-.car-info .default-top{
+.default-top{
 	display: flex;
 	align-items: center;
-	position: relative;
+	background-color: #f3f3f3;
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
 }
-.car-info .name{
-	font-size: 0.5px;
+.name{
+	font-size: 20px;
 }
-.car-info .coll img{
-	width: 1px;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	margin: auto;
+.coll img{
+	width: 30px;
+	margin-left: 10px;
 }
-.car-info .price{
-	font-size: 0.35px;
-	margin-top: 0.2px;
+.default-left{
+	width: 100%;
+	height: 200px;
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 0;
 }
-.car-info .price span{
+.price{
+	font-size: 15px;
+	margin-top: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	border-right: 1px solid #EEEEEE;
+	padding: 0 30px;
+	box-sizing: border-box;
+}
+.price span{
 	color: red;
-	font-size: 0.45px;
+	font-size: 30px;
 }
-.car-info button{
+.loan{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	font-size: 13px;
+}
+.min span{
+	font-size: 22px;
+	color: red;
+}
+.look:hover{
+	cursor: pointer;
+}
+.pbtn{
+	height: 120px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+button{
 	color: #fff;
     background: #da2515;
-    width: 30%;
-    height: 1px;
-    border-radius: 0.5px;
+    width: 100px;
+    height: 40px;
+    border-radius: 30px;
     border: none;
     outline: none;
-    position: relative;
-	right: 0;
 }
-.car-info .config{
-	margin-top: 0.2px;
+.config{
+	margin-top: 10px;
 	border-top: 1px solid #f2f2f2;
 	border-bottom: 1px solid #f2f2f2;
-	padding: 0.2px 0;
+	padding: 10px 0;
 }
-.car-info .config ul{
+.config ul{
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
-.car-info .config li{
+.config li{
 	width: 45%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 0.2px;
+	margin-bottom: 10px;
 }
-.car-info .config li:nth-last-child(1){
+.config li:nth-last-child(1){
 	margin-top: 0.4px;
 }
-.car-info .config .icon{
-	padding: 0.2px;
-	width: 1px;
-	height: 1px;
+.config .icon{
+	padding: 5px;
+	width: 40px;
+	height: 40px;
 	color: black;
 	box-sizing: border-box;
 	background-color: #F3F3F3;
 }
-.car-info .config{
-	font-size: 0.35px;
+.config{
+	font-size: 15px;
 }
-.car-info .config .config-r{
+.config .config-r{
 	width: 65%;
 }
-.car-info .config .more a{
+.config .more a{
 	display: flex;
 	align-items: center;
 	color: #7B8389;
 }
-.car-info .config .arrow-r{
-	width: 0.15px;
+.config .arrow-r{
+	width: 8px;
 }
-.car-info .level{
+.level{
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
-	font-size: 0.35px;
+	font-size: 15px;
 }
-.car-info .level-item{
+.level-item{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -133,67 +180,65 @@
     width: 33%;
     text-align: center;
     box-sizing: border-box;
-    padding: 0.2px;
+    padding: 15px;
 }
-.car-info .level-item span:nth-child(2){
-	margin-top: 0.15px;
+.level-item span:nth-child(2){
+	margin-top: 10px;
 	color: #da2515;
 }
-.car-info .point{
-	margin: 0.6px 0;
+.point{
+	margin: 20px 0;
 }
-.car-info .point .title,.car-info .report .title,.recommoned .title{
-	font-size: 0.4px;
-	height: 0.8px;
+.point .title,.report .title,.recommoned .title{
+	font-size: 15px;
+	height: 30px;
 	border-bottom: 1px solid #f3f3f3;
-	margin-bottom: 0.4px;
+	margin-bottom: 5px;
 }
-.car-info .point ul{
+.point ul{
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	font-size: 0.35px;
+	font-size: 14px;
 	color: #969696;
     margin-bottom: 5px;
 }
-.car-info .point ul li{
-	margin-right: 0.4px;
-	padding-bottom: 0.2px;
+.point ul li{
+	margin-right: 15px;
+	padding: 20px;
 }
-.car-info .report{
+.report{
 	position: relative;
 }
-.car-info .report ul{
+.report ul{
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
-	font-size: 0.35px;
+	font-size: 14px;
 	text-align: center;
-	margin-bottom: 0.5px;
+	margin-bottom: 30px;
 }
-.car-info .report ul li{
+.report ul li{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
 }
-.car-info .report ul li .icon{
-	padding: 0.1px;
+.report ul li .icon{
+	padding: 5px;
 	box-sizing: border-box;
-	width: 1.5px;
-	height: 1.5px;
+	width: 70px;
+	height: 70px;
 	background-color: #f3f3f3;
-	margin-bottom: 0.2px;
+	margin-bottom: 10px;
 }
-.car-info .report .report-detail{
-	width: 4px;
-	padding: 0.1px;
+.report .report-detail{
+	padding: 10px;
 	border: 1px solid #abafb3;
-	display: inline;
 	left: 50%;
-	margin-left: -1.8px;
-	font-size: 0.35px;
+	font-size: 15px;
 	position: relative;
+	margin-left: -70.6px;
 	
 }
 .recommoned .car-item{

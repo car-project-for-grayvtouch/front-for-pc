@@ -10,8 +10,14 @@
 	<title>CHAMPION-index</title>
 	<meta name="location" content="province=福建;city=福州;coord=">
 	<meta name="keywords" content="CHAMPION,CHAMPIONAUTO,CHAMPIONCAR,CHAMPIONAUTOGROUP">
-	<meta name="description" content="人人车福州二手车市场,福州二手车交易市场,为您提供福州二手车交易信息,福州二手车出手转让信息,免费提供福州二手车评估,福州二手车报价,详询4000350113！">
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+	<meta name="description" content="福州二手车市场,福州二手车交易市场,为您提供福州二手车交易信息,福州二手车出手转让信息,免费提供福州二手车评估,福州二手车报价,详询12315！">
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="dist/styles/iview.css">
+	<link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script type="text/javascript" src="js/vue-i18n.js"></script>
@@ -21,15 +27,6 @@
 	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
 	<script type="text/javascript" src="dist/iview.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
-	<link rel="stylesheet" href="dist/styles/iview.css">
-	<link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
-    <link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/index.css">
-	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/footer.css">
-	<style type="text/css">
-		
-	</style>
 </head>
 <body>
 	<div id="index" v-cloak>
@@ -266,7 +263,7 @@
 				<div class="com-content">
 					<Card style="width:350px"  v-for="item in comment" v-bind:key="item.id">
 						<p slot="title">
-							{{item.product?item.product.thing?item.product.thing.title:'':''}}
+							{{item.car?item.car.title:''}}
 						</p>
 						<ul>
 							<li>
@@ -314,60 +311,61 @@
 						</div>
 					</div>
 			</div>
-			<div class="misc">
-				<ul>
-					<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
-				</ul>
-			</div>
-			<div class="footer">
-				<div class="contact">
-					<div class="top">
-						<div class="logo"><img src="images/logo.jpg" ></div>
-						<div class="con-top-r">
-							<div class="wx">
-								<a>
-									<img src="images/humacar.png" >
-									<span>CHAMPION</span>
-								</a>
-							</div>
-							<div class="phone">
-								<a>
-									<img src="images/phone.png" >
-									<span>+1(888)-888-6518</span>
-								</a>
-							</div>
+			
+			
+		</div>
+		<div class="misc">
+			<ul>
+				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
+			</ul>
+		</div>
+		<div class="footer">
+			<div class="contact">
+				<div class="top">
+					<div class="logo"><img src="images/logo.jpg" ></div>
+					<div class="con-top-r">
+						<div class="wx">
+							<a>
+								<img src="images/humacar.png" >
+								<span>CHAMPION</span>
+							</a>
+						</div>
+						<div class="phone">
+							<a>
+								<img src="images/phone.png" >
+								<span>+1(888)-888-6518</span>
+							</a>
 						</div>
 					</div>
-					</div>
-				<div class="adress">
-					<ul>
-						<a href="#">
-							<li>
-								<span>洛杉矶旗舰店地址</span>
-								<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-							</li>
-						</a>
-						<a href="#">
-							<li>
-								<span>洛杉矶旗舰店地址</span>
-								<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-							</li>
-						</a>
-						<a href="#">
-							<li>
-								<span>洛杉矶旗舰店地址</span>
-								<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-							</li>
-						</a>
-					</ul>
 				</div>
+				</div>
+			<div class="adress">
+				<ul>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+					<a href="#">
+						<li>
+							<span>洛杉矶旗舰店地址</span>
+							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+						</li>
+					</a>
+				</ul>
 			</div>
-			
-			<div class="copy">
-				<span>
-					Copyright@2016 CHAMPION Inc. Privacy Terms
-				</span>
-			</div>
+		</div>
+		<div class="copy">
+			<span>
+				Copyright@2016 CHAMPION Inc. Privacy Terms
+			</span>
 		</div>
 	</div>
 </body>
@@ -549,12 +547,12 @@
 			})
 			// 评论
 			data.common('Car/featuredComment',function(d){
-				console.log(d)
+				// console.log(d)
 				that.comment = d;
 			})
 			// 热门搜索
 			data.common('SearchLog/hot',function(d){
-				// console.log(d)
+				console.log(d)
 				that.hotsearch = d;
 				that.$nextTick(function(){
 					userTags.init();

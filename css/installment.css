@@ -2,29 +2,31 @@
 	width: 100%;
 }
 #installment .service{
-	font-size: 0.35px;
-	margin: 0.5px 0 0.3px 0;
+	font-size: 15px;
+	margin: 10px 0 10px 0;
 }
 .ins-info{
-	width: 90%;
+	width: 100%;
     margin: 0 auto;
     position: relative;
+	background-color: white;
+	padding: 20px;
+	box-sizing: border-box;
 }
 .ins-info li{
-	margin-bottom: 0.4px;
+	margin-bottom: 20px;
 }
 .ins-info li label{
-	font-size: 0.35px;
+	font-size: 15px;
 	color: #969696;
 }
 .ins-info .input {
-    font-size: 0.35px;
+    font-size: 15px;
     background-color: #F3F3F3;
     border: 1px solid #E4E4E4;
     width: 100%;
-    height: 0.9px;
-    border-radius: 0.3px;
-    padding: 0.2px;
+    height: 40px;
+    padding: 10px;
     box-sizing: border-box;
     outline: none;
 }
@@ -36,71 +38,71 @@
     width: 50%;
 }
 .ins-info .checkcode img {
-    width: 4px;
-    height: 1.5px;
+    width: 140px;
+    height: 50px;
 }
 
 .ins-info .choose-radio{
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
-	margin-top: 0.2px;
+	margin-top: 10px;
 }
 .ins-info .choose-radio .mr{
-	margin-right: 0.4px;
+	margin-right: 20px;
 }
 .ins-info .choose-radio input{
-	margin-right: 0.2px;
+	margin-right: 10px;
 }
 .ins-info .trait{
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
-	font-size: 0.35px;
+	font-size: 15px;
 	text-align: center;
-	margin-top: 0.8px;
+	margin-top: 10px;
 }
 .ins-info .trait .img-item{
-	padding: 0.2px;
+	padding: 10px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
 }
 .ins-info .trait .icon{
-	width: 1px;
-	height: 1px;
-	margin-bottom: 0.2px;
+	width: 40px;
+	height: 40px;
+	margin-bottom: 10px;
 }
 .ins-info .loan-process .title{
-	font-size: 0.4px;
-    height: 0.8px;
+	font-size: 15px;
+    height: 40px;
     border-bottom: 1px solid #f3f3f3;
-    margin-bottom: 0.4px;
+    margin-bottom: 10px;
 }
 .ins-info .loan-process .img-item span{
-	font-size: 0.4px;
+	font-size: 15px;
 	color: #495056;
-	padding-left: 0.5px;
+	padding-left: 20px;
 	position: relative;
 }
 .ins-info .loan-process .img-item .step-num{
-	width: 0.5px;
-	height: 0.5px;
-	line-height: 0.5px;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
 	text-align: center;
     display: inline;
 	position: absolute;
 	border: 1px solid #f4f4f4;
 	border-radius: 50%;
 	background-color: #f1f3f6;
-	left: -0.25px;
+	left: -10px;
 	top: 0;
 }
 .ins-info .loan-process .img-item p{
-	font-size: 0.35px;
-	padding-top: 0.2px;
-	padding-left: 0.5px;
+	font-size: 15px;
+	padding-top: 20px;
+	padding-left: 20px;
 	border-left: 1px solid #f3f3f3;
 	color: #757F89;
 	box-sizing: border-box;
@@ -109,11 +111,14 @@
     color: #fff;
     background: #da2515;
     width: 95%;
-    height: 1px;
+    height: 40px;
     border-radius: 0.5px;
     border: none;
     outline: none;
     position: relative;
     left: 2.5%;
-	margin: 0.2px 0;
+	margin: 10px 0;
+}
+.img-item{
+	margin-bottom: 20px;
 }
