@@ -502,7 +502,12 @@
 					}
 				},
 				ani: function() {
+					var isani = false;
 					setInterval(function(){
+						if(isani){
+							return;
+						}
+						isani = true;
 						for (var i = 0; i<$(".circle").length; i++) {
 							var originTop = parseInt($(".circle").eq(i).css("top"));
 							var aniLen = parseInt($(".circle").eq(i).css("width"))
@@ -513,6 +518,7 @@
 								top: originTop + 'px'
 							},'slow');
 						}
+						isani = false;
 					},1350)
 				},
 				init: function() {
