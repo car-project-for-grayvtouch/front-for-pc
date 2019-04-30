@@ -135,55 +135,55 @@
 						</li>
 					</ul>
 					<i-button type="warning" @click='clearall()'>清除所有 <Icon type="md-trash" /></i-button>
-					<i-button type="primary">确定筛选</i-button>
+					<i-button type="primary" @click='post'>确定筛选</i-button>
 				</div>
 				<div class="buy-sel">
 					<div class="buy-sel-item">
 						<div class="title">
 							品牌
 						</div>
-						<Cascader :data="screeningCondition.brand" v-model="value1" style="width:300px"></Cascader>
+						<Cascader :data="screeningCondition.brand" trigger="hover" v-model="value1" style="width:300px" @on-change='getvaluebrand'></Cascader>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">车系</div>
-						<i-select v-model="models[0]" clearable style="width:300px">
-							<i-option v-for="item in screeningCondition.carseries" :value="item.value" :key="item.value">{{ item.label }}</i-option>
+						<i-select v-model="models[0]" clearable label-in-value @on-clear='getindex(0)' style="width:300px">
+							<i-option v-for="item in screeningCondition.carseries" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvalueseries'>{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">价格</div>
-						<i-select v-model="models[1]" clearable style="width:300px">
-							<i-option v-for="item in screeningCondition.price" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+						<i-select v-model="models[1]" clearable label-in-value @on-clear='getindex(1)' style="width:300px">
+							<i-option v-for="item in screeningCondition.price" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvalueprice'>{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">车型</div>
-						<i-select v-model="models[2]" clearable style="width:300px">
-							<i-option v-for="item in screeningCondition.cartype" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+						<i-select v-model="models[2]" clearable label-in-value @on-clear='getindex(2)' style="width:300px">
+							<i-option v-for="item in screeningCondition.cartype" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvaluecartype'>{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">里程</div>
-						<i-select v-model="models[3]" clearable style="width:300px">
-							<i-option v-for="item in screeningCondition.mileage" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+						<i-select v-model="models[3]" clearable label-in-value @on-clear='getindex(3)' style="width:300px">
+							<i-option v-for="item in screeningCondition.mileage" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvaluemileage'>{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">车龄</div>
-						<i-select v-model="models[4]" clearable style="width:300px">
-							<i-option v-for="item in screeningCondition.age" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+						<i-select v-model="models[4]" clearable label-in-value @on-clear='getindex(4)' style="width:300px">
+							<i-option v-for="item in screeningCondition.age" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvalueage'>{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">变速箱</div>
-						<i-select v-model="models[5]" clearable style="width:300px">
-							<i-option v-for="item in screeningCondition.gearbox" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+						<i-select v-model="models[5]" clearable label-in-value @on-clear='getindex(5)' style="width:300px">
+							<i-option v-for="item in screeningCondition.gearbox" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvaluegearbox'>{{ item.label }}</i-option>
 						</i-select>
 					</div>
 					<div class="buy-sel-item">
 						<div class="title">颜色</div>
-						<i-select v-model="models[6]" clearable style="width:300px">
-							<i-option v-for="item in screeningCondition.color" :value="item.label" :key="item.value">{{ item.label }}</i-option>
+						<i-select v-model="models[6]" clearable label-in-value @on-clear='getindex(6)' style="width:300px">
+							<i-option v-for="item in screeningCondition.color" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvaluecolor'>{{ item.label }}</i-option>
 						</i-select>
 					</div>
 				</div>
@@ -306,7 +306,7 @@
 				phonenum:'',
 				checkcode:''
 			},
-			screeningCondition: {},
+			screeningCondition: screeningCondition,
 			value1: [],
 			models:['','','','','','',''],
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
@@ -315,6 +315,19 @@
 				total: 10,
 				index: 1,
 				size: 20
+			},
+			postbody:{
+				brand_id: '',
+				car_series_id: '',
+				car_type_id: '',
+				price: '',
+				mileage: '',
+				age: '',
+				gearbox: '',
+				color: '',
+				keyword: '',
+				sale_point: '',
+				page: '',
 			}
 		},
 		mounted() {
@@ -343,8 +356,7 @@
 			// 品牌可选筛选条件
 			data.common('Brand/all',function(d){
 				var sb = that.screeningCondition;
-				console.log(d)
-				// console.log(screeningCondition.brand.length)
+				// console.log(d)
 				
 				// 根据获取到的品牌数据创建符合条件的数据结构
 				if(sb.brand){
@@ -356,28 +368,90 @@
 					// 查看数组中是否已有符合条件的一级数据,没有自行创建
 					var inarr = false,
 					index;
-					for(var s in sb){
-						if(d[k].letter !== sb[s].label){
-							// console.log('不符合')
-						}else{
+					for(var s in sb.brand){
+						// console.log(d[k].letter,sb.brand[s].label)
+						if(d[k].letter == sb.brand[s].label){
 							inarr = true;
 							index = s;
 							// console.log('符合' + s)
+						}else{
+							// console.log('不符合')
 						}
 					}
+					// console.log(inarr);
 					if(inarr){
-						sb.brand[index].children.push({value:d[k].id,label:d[k].name})
+						sb.brand[index].children.push({id:d[k].id,value:d[k].id,label:d[k].name})
 					}else{
 						// console.log(d[k].letter, d[k].id, d[k].name)
-						sb.brand.push({value: d[k].letter,label: d[k].letter,children: [{dataId:d[k].id,value:d[k].name,label:d[k].name}]})
+						sb.brand.push({value: d[k].letter,label: d[k].letter,children: [{id:d[k].id,value:d[k].name,label:d[k].name}]})
 					}
 				}
 				// console.log(sb)
-				that.screeningCondition = sb;
+				that.$nextTick(function() {
+					that.screeningCondition.brand = sb.brand;
+					console.log('数据更新')
+				})
+			})
+			//车系可筛选条件
+			data.common('CarSeries/all',function(d){
+				that.$nextTick(function(){
+					// console.log(d)
+					var sb = that.screeningCondition;
+					if(sb.carseries){
+						console.log('已存在carseries数组');
+					}else{
+						sb.carseries = [];
+					}
+					for(var k in d){
+						sb.carseries.push({value:d[k].id,label:d[k].name});
+					}
+					// console.log(sb);
+					that.screeningCondition = sb;
+				})
+			})
+			//车型可筛选条件
+			data.common('CarType/all',function(d){
+				// console.log(d)
+				that.$nextTick(function(){
+					var sb = that.screeningCondition;
+					if(sb.cartype){
+						console.log('已存在cartype数组');
+					}else{
+						sb.cartype = [];
+					}
+					for(var k in d){
+						sb.cartype.push({value:d[k].id,label:d[k].name});
+					}
+					// console.log(sb);
+					that.screeningCondition = sb;
+					// console.log(that.screeningCondition)
+				})
 			})
 		},
 		watch: {
-			
+			postbody: {
+				handler(news,olds){
+					// console.log(news);
+				},
+				deep: true,
+				immediate: true
+			},
+			models: {
+				handler(news,olds){
+					
+					// console.log(news);
+				},
+				deep: true,
+				immediate: true
+			},
+			screeningCondition: {
+				handler(news,olds){
+					
+					console.log(news);
+				},
+				deep: true,
+				immediate: true
+			},
 		},
 		computed: {
 			defaultmodels: function () {
@@ -389,8 +463,101 @@
 			}
 		},
 		methods: {
+			post: function() {
+				this.carlistdata(this.postbody);
+			},
+			getvaluebrand: function(e) {
+				// console.log(e);
+				if(e.length == 0){
+					this.postbody.brand_id = '';
+				}else{
+					var b = this.screeningCondition.brand,
+					levelone,
+					leveltwo;
+					for(var k in b){
+						// console.log(b[k].value,e[0])
+						if(b[k].value == e[0]){
+							levelone = k;
+						}
+					}
+					// console.log(levelone)
+					// console.log(b[levelone])
+					if(b[levelone]){
+						var c = b[levelone].children;
+						for(var s in c){
+							if(c[s].value == e[1]){
+								leveltwo = s;
+							}
+						}
+						this.postbody.brand_id = b[levelone].children[leveltwo].id;
+				}
+				}
+				// console.log(b[levelone].children[leveltwo].id);
+			},
+			getvalueseries: function(e) {
+				this.postbody.car_series_id = e.target.dataset.info;
+				// console.log(this.postbody)
+				// console.log(e.target.dataset.info)
+			},
+			getvalueprice: function(e) {
+				this.postbody.price = e.target.dataset.info;
+
+				// console.log(e.target.dataset.info)
+			},
+			getvaluecartype: function(e) {
+				this.postbody.car_type_id = e.target.dataset.info;
+
+				// console.log(e.target.dataset.info)
+			},
+			getvaluecolor: function(e) {
+				this.postbody.color = e.target.dataset.info;
+
+				// console.log(e.target.dataset.info)
+			},
+			getvaluegearbox: function(e) {
+				this.postbody.gearbox = e.target.dataset.info;
+
+				// console.log(e.target.dataset.info)
+			},
+			getvaluemileage: function(e) {
+				this.postbody.mileage = e.target.dataset.info;
+
+				// console.log(e.target.dataset.info)
+			},
+			getvalueage: function(e) {
+				this.postbody.age = e.target.dataset.info;
+				// console.log(e.target.dataset.info)
+			},
 			currentpage: function(curpage) {
 				this.carlistdata({'page':curpage});
+			},
+			getindex: function(index){
+				switch (index){
+					case 0:
+					this.postbody.car_series_id = '';
+					break;
+					case 1:
+					this.postbody.price = '';
+					break;
+					case 2:
+					this.postbody.car_type_id = '';
+					break;
+					case 3:
+					this.postbody.mileage = '';
+					break;
+					case 4:
+					this.postbody.age = '';
+					break;
+					case 5:
+					this.postbody.gearbox = '';
+					break;
+					case 6:
+					this.postbody.color = '';
+					break;
+					default:
+					break;
+				}
+				// console.log(index);
 			},
 			// 车辆列表
 			carlistdata:function(form) {

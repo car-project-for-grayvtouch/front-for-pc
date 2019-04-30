@@ -1,138 +1,5 @@
+
 var screeningCondition = {
-	brand: [{
-		value: 'A',
-		label: 'A',
-		children: [{value:'阿尔法罗密欧',label:'阿尔法罗密欧'},{value:'AMC',label:'AMC'},{value:'奥迪',label:'奥迪'},{value:'奥兹莫比尔',label:'奥兹莫比尔'},{value:'阿斯顿马丁',label:'阿斯顿马丁'}],
-		},{
-		value: 'B',
-		label: 'B',
-		children: [{value:'宝马',label:'宝马'},{value:'保时捷',label:'保时捷'},{value:'奔驰',label:'奔驰'},{value:'本田',label:'本田'},{value:'标致',label:'标致'},{value:'别克',label:'别克'},{value:'宾利',label:'宾利'},],
-		},{
-		value: 'D',
-		label: 'D',
-		children: [{value:'道奇RAM',label:'道奇RAM'},{value:'道奇',label:'道奇'},{value:'达特桑',label:'达特桑'},{value:'大宇',label:'大宇'},{value:'大众',label:'大众'},{value:'德劳瑞恩',label:'德劳瑞恩'},],
-		},{
-		value: 'F',
-		label: 'F',
-		children: [],
-		},{
-		value: 'G',
-		label: 'G',
-		children: [],
-		},{
-		value: 'H',
-		label: 'H',
-		children: [],
-		},{
-		value: 'I',
-		label: 'I',
-		children: [],
-		},{
-		value: 'J',
-		label: 'J',
-		children: [],
-		},{
-		value: 'K',
-		label: 'K',
-		children: [],
-		},{
-		value: 'L',
-		label: 'L',
-		children: [],
-		},{
-		value: 'M',
-		label: 'M',
-		children: [],
-		},{
-		value: 'O',
-		label: 'O',
-		children: [],
-		},{
-		value: 'P',
-		label: 'P',
-		children: [],
-		},{
-		value: 'Q',
-		label: 'Q',
-		children: [],
-		},{
-		value: 'R',
-		label: 'R',
-		children: [],
-		},{
-		value: 'S',
-		label: 'S',
-		children: [],
-		},{
-		value: 'T',
-		label: 'T',
-		children: [],
-		},{
-		value: 'w',
-		label: 'w',
-		children: [],
-		},{
-		value: 'X',
-		label: 'X',
-		children: [],
-		},{
-		value: 'Y',
-		label: 'Y',
-		children: [],
-		}],
-	carseries: [{
-		value: '不限',
-		label: '不限'
-	},{
-		value: '宝马 3系',
-		label: '宝马 3系'
-	},{
-		value: '奔驰 C系',
-		label: '奔驰 C系'
-	},{
-		value: '丰田 凯美瑞',
-		label: '丰田 凯美瑞'
-	},{
-		value: '宝马 5系',
-		label: '宝马 5系'
-	},{
-		value: '奔驰 E系',
-		label: '奔驰 E系'
-	},{
-		value: '福特 野马',
-		label: '福特 野马'
-	},{
-		value: '保时捷 卡宴',
-		label: '保时捷 卡宴'
-	},{
-		value: '本田 雅阁',
-		label: '本田 雅阁'
-	},{
-		value: '丰田 卡罗拉',
-		label: '丰田 卡罗拉'
-	},{
-		value: '本田 思域',
-		label: '本田 思域'
-	}],
-	cartype: [{
-			value: '不限',
-			label: '不限'
-		},{
-			value: '轿车',
-			label: '轿车'
-		},{
-			value: '跑车',
-			label: '跑车'
-		},{
-			value: '皮卡',
-			label: '皮卡'
-		},{
-			value: 'SUV',
-			label: 'SUV'
-		},{
-			value: 'MPV',
-			label: 'MPV'
-		}],
 	price: [{
 			value: '',
 			label: '不限'
@@ -267,4 +134,141 @@ var screeningCondition = {
 			value: '其他',
 			label: '其他'
 		}],
+}
+
+var mayuse = {
+	brand: [{
+			value: 'A',
+			label: 'A',
+			children: [{value:'阿尔法罗密欧',label:'阿尔法罗密欧'},{value:'AMC',label:'AMC'},{value:'奥迪',label:'奥迪'},{value:'奥兹莫比尔',label:'奥兹莫比尔'},{value:'阿斯顿马丁',label:'阿斯顿马丁'}],
+			},{
+			value: 'B',
+			label: 'B',
+			children: [{value:'宝马',label:'宝马'},{value:'保时捷',label:'保时捷'},{value:'奔驰',label:'奔驰'},{value:'本田',label:'本田'},{value:'标致',label:'标致'},{value:'别克',label:'别克'},{value:'宾利',label:'宾利'},],
+			},{
+			value: 'D',
+			label: 'D',
+			children: [{value:'道奇RAM',label:'道奇RAM'},{value:'道奇',label:'道奇'},{value:'达特桑',label:'达特桑'},{value:'大宇',label:'大宇'},{value:'大众',label:'大众'},{value:'德劳瑞恩',label:'德劳瑞恩'},],
+			},{
+			value: 'F',
+			label: 'F',
+			children: [],
+			},{
+			value: 'G',
+			label: 'G',
+			children: [],
+			},{
+			value: 'H',
+			label: 'H',
+			children: [],
+			},{
+			value: 'I',
+			label: 'I',
+			children: [],
+			},{
+			value: 'J',
+			label: 'J',
+			children: [],
+			},{
+			value: 'K',
+			label: 'K',
+			children: [],
+			},{
+			value: 'L',
+			label: 'L',
+			children: [],
+			},{
+			value: 'M',
+			label: 'M',
+			children: [],
+			},{
+			value: 'O',
+			label: 'O',
+			children: [],
+			},{
+			value: 'P',
+			label: 'P',
+			children: [],
+			},{
+			value: 'Q',
+			label: 'Q',
+			children: [],
+			},{
+			value: 'R',
+			label: 'R',
+			children: [],
+			},{
+			value: 'S',
+			label: 'S',
+			children: [],
+			},{
+			value: 'T',
+			label: 'T',
+			children: [],
+			},{
+			value: 'w',
+			label: 'w',
+			children: [],
+			},{
+			value: 'X',
+			label: 'X',
+			children: [],
+			},{
+			value: 'Y',
+			label: 'Y',
+			children: [],
+			}],
+		carseries: [{
+			value: '不限',
+			label: '不限'
+		},{
+			value: '宝马 3系',
+			label: '宝马 3系'
+		},{
+			value: '奔驰 C系',
+			label: '奔驰 C系'
+		},{
+			value: '丰田 凯美瑞',
+			label: '丰田 凯美瑞'
+		},{
+			value: '宝马 5系',
+			label: '宝马 5系'
+		},{
+			value: '奔驰 E系',
+			label: '奔驰 E系'
+		},{
+			value: '福特 野马',
+			label: '福特 野马'
+		},{
+			value: '保时捷 卡宴',
+			label: '保时捷 卡宴'
+		},{
+			value: '本田 雅阁',
+			label: '本田 雅阁'
+		},{
+			value: '丰田 卡罗拉',
+			label: '丰田 卡罗拉'
+		},{
+			value: '本田 思域',
+			label: '本田 思域'
+		}],
+		cartype: [{
+				value: '不限',
+				label: '不限'
+			},{
+				value: '轿车',
+				label: '轿车'
+			},{
+				value: '跑车',
+				label: '跑车'
+			},{
+				value: '皮卡',
+				label: '皮卡'
+			},{
+				value: 'SUV',
+				label: 'SUV'
+			},{
+				value: 'MPV',
+				label: 'MPV'
+			}],
 }
