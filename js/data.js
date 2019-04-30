@@ -1,9 +1,9 @@
 var data = {
 	domain: 'http://admin.championcargroup.com/api/pc/',
 	common: function(url,fun,form){
-		var that = this;
+		var thatdata = this;
 		$.ajax({
-			url: that.domain + url,
+			url: thatdata.domain + url,
 			method: 'post' ,
 			data: form,
 			success(data) {

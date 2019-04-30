@@ -355,6 +355,7 @@
 			
 			// 品牌可选筛选条件
 			data.common('Brand/all',function(d){
+				console.log(that)
 				var sb = that.screeningCondition;
 				// console.log(d)
 				
@@ -563,7 +564,7 @@
 			carlistdata:function(form) {
 				var that = this;
 				data.common('Car/list',function(d){
-					console.log(d)
+					// console.log(d)
 					that.searchArr = d.data;
 					that.page.total = d.total;
 				},form)

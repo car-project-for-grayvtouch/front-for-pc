@@ -1,5 +1,8 @@
 
 var screeningCondition = {
+	brand: [],
+	carseries: [],
+	cartype: [],
 	price: [{
 			value: '',
 			label: '不限'
