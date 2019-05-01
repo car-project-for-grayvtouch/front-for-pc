@@ -31,21 +31,20 @@
 }
 .car-detail{
 	width: 100%;
-	display: flex;
-	justify-content: flex-start;
-	flex-wrap: wrap;
 	box-sizing: border-box;
 }
 .car-detail a{
 	color: white;
 }
 .car-item{
-	width: 269px;
+	width: 98%;
 	height: 350px;
 	position: relative;
+	left: 0;
+	right: 0;
+	margin: auto;
 	margin-top: 10px;
 	background-color: white;
-	margin-right: 20px;
 	border: 1px solid #dcdee2;
 }
 .car-item:hover{

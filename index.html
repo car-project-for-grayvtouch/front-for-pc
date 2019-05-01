@@ -230,32 +230,36 @@
 					</ul>
 				</div>
 				<div class="car-detail">
-					<div class="car-item" v-for="item in $t('explain')">
-						<a href="carDetail.html">
-							<img class="bg" :src="item.thumb">
-							<img class="favorite" src="images/favorite.png">
-							<div class="car-explain">
-								<div class="explain-t">
-									<div class="car-name">
-										{{ item.model?item.model.year:''}}&nbsp;
-										{{item.series?item.series.name:''}}&nbsp;
-										{{item.model?item.model.displacement:''}}L
+					<Row>
+						<i-col span="6" v-for="item in $t('explain')" :key='item.id'>
+							<div class="car-item">
+								<a href="carDetail.html">
+									<img class="bg" :src="item.thumb">
+									<img class="favorite" src="images/favorite.png">
+									<div class="car-explain">
+										<div class="explain-t">
+											<div class="car-name">
+												{{ item.model?item.model.year:''}}&nbsp;
+												{{item.series?item.series.name:''}}&nbsp;
+												{{item.model?item.model.displacement:''}}L
+											</div>
+											<div class="car-price">
+												{{item.price}}
+											</div>
+										</div>
+										<div class="distance">
+											{{item.mileage}} 英里·{{item.model?item.model.door_count:''}}门·
+											{{item.model?item.model.driver_type:''}}·
+											{{item.model?item.model.cylinder_count:''}}缸·
+											{{item.model?item.model.displacement:''}}L·
+											{{item.model?item.model.intake_type:''}}·
+											{{item.model?item.model.gearbox:''}}
+										</div>
 									</div>
-									<div class="car-price">
-										${{item.price}}
-									</div>
-								</div>
-								<div class="distance">
-									{{item.mileage}} 英里·{{item.model?item.model.door_count:''}}门·
-									{{item.model?item.model.drive_type:''}}·
-									{{item.model?item.model.cylinder_count:''}}缸·
-									{{item.model?item.model.displacement:''}}L·
-									{{item.model?item.model.intake_type:''}}·
-									{{item.model?item.model.gearbox:''}}
-								</div>
+								</a>
 							</div>
-						</a>
-					</div>
+						</i-col>
+					</Row>
 				</div>
 			</div>
 			<div class="comment">
@@ -343,8 +347,8 @@
 				<ul>
 					<a href="#">
 						<li>
-							<span>洛杉矶旗舰店地址</span>
-							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+							<span>Massachusetts state马塞诸塞州</span>
+							<p>134 east Howard st，Quincy，ma，02169，usa</p>
 						</li>
 					</a>
 					<a href="#">
@@ -552,7 +556,7 @@
 			})
 			// 热门搜索
 			data.common('SearchLog/hot',function(d){
-				console.log(d)
+				// console.log(d)
 				that.hotsearch = d;
 				that.$nextTick(function(){
 					userTags.init();

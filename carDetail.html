@@ -6,21 +6,22 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>车辆详情</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/footer.css">
+	<link rel="stylesheet" type="text/css" href="css/carDetail.css">
+	<link rel="stylesheet" type="text/css" href="dist/styles/iview.css">
 	<script type="text/javascript" src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
-	<script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript" src="js/vue-i18n.js"></script>
 	<script type="text/javascript" src="js/language.js"></script>
 	<script type="text/javascript" src="js/data.js"></script>
 	<script type="text/javascript" src="js/swiper.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
 	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
-    <link rel="stylesheet" href="css/swiper.min.css">
-    <link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/footer.css">
-	<link rel="stylesheet" href="css/carDetail.css">
+	<script type="text/javascript" src="dist/iview.min.js"></script>
 </head>
 <body>
 	<div id="about" v-cloak>
@@ -127,7 +128,7 @@
 			  <div class="swiper-wrapper">
 				<div class="swiper-slide" v-for="item in slideArr">
 					<!-- <a href="xx.html"> -->
-						<img :src="'images/' + item">
+						<img :src="item.url">
 					<!-- </a> -->
 				</div>
 			  </div>
@@ -136,13 +137,11 @@
 			  <div class="swiper-button-next"></div>
 			  <div class="swiper-button-prev"></div>
 			</div>
-			<div class="space">
-			</div>
 			<div class="top-right">
 				<div class="default">
 					<div class="default-top">
 						<div class="name">
-							哈弗H6HHH
+							{{topinfo.name}}
 						</div>
 						<div class="coll">
 							<img src="images/favorite.png" >
@@ -151,14 +150,14 @@
 					<div class="default-left">
 						<div class="price">
 							CHAMPION价格
-							<span>$12451.2</span>
+							<span>${{topinfo.price}}</span>
 						</div>
 						<div class="loan">
 							<div class="min">
 								最低贷款
-								<span>$26</span>
+								<span>${{min}}</span>
 							</div>
-							<div class="look">
+							<div class="look" @click="instance('info')">
 								查看贷款方案 >
 							</div>
 						</div>
@@ -167,27 +166,41 @@
 							<button type="button">在线咨询</button>
 						</div>
 					</div>
+					<div class="tips">
+						<img src="images/zhigou.png" >
+						<div class="tipsp">
+							<p>海量车源、定制需求！您可以选择CHAMPIONAUTO值购</p>
+							<a href="bargain.html">点击查看</a>
+						</div>
+					</div>
 					<div class="level">
 						<div class="level-item">
 							<span>行驶里程</span>
-							<span>33213英里</span>
+							<span>{{mileage}}英里</span>
 						</div>
 						<div class="level-item">
 							<span>复查等级</span>
-							<span>A</span>
+							<span>{{level}}</span>
 						</div>
 						<div class="level-item">
 							<span>过户记录</span>
-							<span>1次</span>
+							<span>{{transferRecord}}次</span>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="space">
-			</div>
 		</div>
+		
 		<div class="car-info">
-			
+			<div class="point">
+				<div class="title">亮点配置</div>
+				<ul>
+					<li v-for="item in point">
+						<img :src="item.image" >
+						<p>{{item.name}}</p>
+					</li>
+				</ul>
+			</div>
 			<div class="config">
 				<ul>
 					<li>
@@ -195,8 +208,8 @@
 						    <use xlink:href="#icon-socar_displacement_icon"></use>
 						</svg>
 						<div class="config-r">
-							<span>排量：</span>
-							<span>1.5L 2.0L</span>
+							<p>排量</p>
+							<p>{{config.displacement}}L</p>
 						</div>
 					</li>
 					<li>
@@ -204,8 +217,8 @@
 						    <use xlink:href="#icon-item-gear-box"></use>
 						</svg>
 						<div class="config-r">
-							<span>变速箱：</span>
-							<span>手动 双离合</span>
+							<p>变速箱</p>
+							<p>{{config.gearbox}}</p>
 						</div>
 					</li>
 					<li>
@@ -213,8 +226,8 @@
 						    <use xlink:href="#icon-youhao"></use>
 						</svg>
 						<div class="config-r">
-							<span>油耗：</span>
-							<span>7-8.3L/百公里</span>
+							<p>油耗</p>
+							<p>城市：{{config.cityfuelConsumption}}GL/高速：{{config.speedfuelConsumption}}GL</p>
 						</div>
 					</li>
 					<li>
@@ -222,8 +235,8 @@
 						    <use xlink:href="#icon-cf-c64"></use>
 						</svg>
 						<div class="config-r">
-							<span>级别：</span>
-							<span>SUV</span>
+							<p>级别</p>
+							<p>{{config.type}}</p>
 						</div>
 					</li>
 					<li>
@@ -231,8 +244,8 @@
 						    <use xlink:href="#icon-chicun"></use>
 						</svg>
 						<div class="config-r">
-							<span>尺寸：</span>
-							<span>4600*1860*1720</span>
+							<p>尺寸</p>
+							<p>{{config.size}}inch</p>
 						</div>
 					</li>
 					<li>
@@ -240,30 +253,83 @@
 						    <use xlink:href="#icon-zuoweishu-shi"></use>
 						</svg>
 						<div class="config-r">
-							<span>承载数量</span>
-							<span>5座</span>
+							<p>承载数量</p>
+							<p>{{config.seat}}座</p>
 						</div>
 					</li>
 					<li>
-						<span class="more"><a href="param.html">更多详细参数配置&nbsp;&nbsp;<img class="arrow-r" src="images/jiantou.png"></a></span>
+					</li>
+					<li>
 					</li>
 				</ul>
 			</div>
-			<div class="point">
-				<div class="title">亮点配置</div>
-				<ul>
-					<li>倒车影像</li>
-					<li>蓝牙链接</li>
-					<li>电动天窗</li>
-					<li>碰撞预警</li>
-					<li>胎压监测</li>
-					<li>防抱死系统</li>
-					<li>定速巡航</li>
-					<li>启动前自检</li>
-					<li>免提电话</li>
-					<li>铝合金轮毂</li>
-				</ul>
+			<i-table stripe :columns="columns" :data="data1"></i-table>
+			<div class="param">
+				<div class="record">
+					<ul>
+						<li class="title">车辆档案</li>
+						<li v-for="(value,key) in param.record">
+							<span>{{key}}</span>
+							<span>{{value}}</span>
+						</li>
+					</ul>
+				</div>
+				<div class="default-param">
+					<ul>
+						<li class="title">基本参数</li>
+						<li v-for="(value,key) in param.defaultparam">
+							<span>{{key}}</span>
+							<span>{{value}}</span>
+						</li>
+					</ul>
+				</div>
+				<div class="engine-param">
+					<ul>
+						<li class="title">发动机参数</li>
+						<li v-for="(value,key) in param.engineparam">
+							<span>{{key}}</span>
+							<span>{{value}}</span>
+						</li>
+					</ul>
+				</div>
+				<div class="chassis-braking">
+					<ul>
+						<li class="title">底盘及制动</li>
+						<li v-for="(value,key) in param.chassisbraking">
+							<span>{{key}}</span>
+							<span>{{value}}</span>
+						</li>
+					</ul>
+				</div>
+				<div class="security-config">
+					<ul>
+						<li class="title">安全配置</li>
+						<li v-for="(value,key) in param.securityconfig">
+							<span>{{key}}</span>
+							<span>{{value}}</span>
+						</li>
+					</ul>
+				</div>
+				<div class="external-config">
+					<ul>
+						<li class="title">外部配置</li>
+						<li v-for="(value,key) in param.externalconfig">
+							<span>{{key}}</span>
+							<span>{{value}}</span>
+						</li>
+					</ul>
+				</div>
+				<div class="interior-config">
+					<ul>
+						<li class="title">内部配置</li>
+						<li v-for="(value,key) in param.interiorconfig">
+							<span>{{key}}</span>
+							<span>{{value}}</span>
+						</li>
+					</ul>
+				</div>
 			</div>
+			
 			<div class="report">
 				<div class="title">检测报告</div>
 				<ul>
@@ -392,10 +458,89 @@
 				phonenum:'',
 				checkcode:''
 			},
-			slideArr: ['face.jpg','control.jpg','other.jpg','seat.jpg'],
+			slideArr: [],
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
+			param: {
+				record:{"上牌时间":"2016-01","表显里程":"6.55万公里","排放标准":"国五","变速箱":"自动","排量":"2.0","看车方式":"到店服务",
+				"车身颜色":"白色","归属地":"上海","过户次数":"0次","年检到期时间":"2020-1","交强险到期时间":"2019-6","商业险到期时间":"已过期"},
+				"defaultparam": {"证件品牌型号":"马自达牌CAM7200B5","厂商":"长安马自达","级别":"紧凑型车","发动机":"2.0L 158马力 L4",
+				"变速箱":"6档手自一体变速箱(AT)","车身结构":"5门5座两厢车","长*宽*高(mm)":"4461/1795/1474","轴距(mm)":"2700","行李箱容积(L)":"350",
+				"整备质量(kg)":"1359"},
+				"engineparam":{"排量(L)":"2.0","进气形式":"自然吸气","气缸":"L4","最大马力(Ps)":"158","最大扭矩(N*m)":"202",
+				"燃料类型":"汽油","燃油标号":"92号","供油方式":"直喷","排放标准":"国五"},
+				"chassisbraking": {"驱动方式":"前置前驱","助力类型":"电动助力","前悬挂类型":"麦弗逊式独立悬架","后悬挂类型":"多连杆独立悬架",
+				"前制动类型":"通风盘式","后制动类型":"盘式","驻车制动类型":"-","前轮胎规格":"215/45 R18","后轮胎规格":"215/45 R18"},
+				"securityconfig": {"主副驾驶安全气囊":"正常/正常","前后排侧气囊":"无/无","前后排头部气囊":"无/无","胎压检测":"无","车内中控锁":"标配",
+				"儿童座椅接口":"标配","无钥匙启动":"标配","防抱死系统(ABS)":"标配","车身稳定控制(ESP)":"标配"},
+				"externalconfig": {"电动天窗":"标配","全景天窗":"无","电动吸合门":"无","感应后备箱":"无","感应雨刷":"无","后雨刷":"标配","前后电动车窗":"标配/标配",
+				"后视镜电动调节":"标配","后视镜加热":"标配"},
+				"interiorconfig": {"多功能方向盘":"标配","定速巡航":"标配","空调":"标配","自动空调":"标配","GPS导航":"标配","倒车雷达":"标配",
+				"倒车影像系统":"标配","真车座椅":"标配","前后排座椅加热":"无/无"}
+			},
+			topinfo:{
+				name: '',
+				price: 0,
+			},
+			loanarr: [0.3,0.4,0.5,0.6,0.7],
+			defaultloanarr:[],
+			mileage: 0,
+			level: 'A',
+			transferRecord: 0,
+			point: [],
+			min: 0,
+			config: {
+				displacement: 0,
+				gearbox: '',
+				cityfuelConsumption: '0.00',
+				speedfuelConsumption: '0.00',
+				type: '',
+				size: '',
+				seat: 0,
+			},
+			columns: [
+				{
+					title: '基本参数',
+					key: '基本参数'
+				},
+				{
+					title: '发动机参数',
+					key: '发动机参数'
+				},
+				{
+					title: '底盘及制动',
+					key: '底盘及制动'
+				}
+			],
+			data1: [
+                    {
+                        name: 'John Brown',
+                        age: 18,
+                        address: 'New York No. 1 Lake Park',
+                        date: '2016-10-03'
+                    },
+                    {
+                        name: 'Jim Green',
+                        age: 24,
+                        address: 'London No. 1 Lake Park',
+                        date: '2016-10-01'
+                    },
+                    {
+                        name: 'Joe Black',
+                        age: 30,
+                        address: 'Sydney No. 1 Lake Park',
+                        date: '2016-10-02'
+                    },
+                    {
+                        name: 'Jon Snow',
+                        age: 26,
+                        address: 'Ottawa No. 2 Lake Park',
+                        date: '2016-10-04'
+                    }
+                ]
+			
 		},
 		mounted() {
+			var that = this;
 			if(locale){
 				i18n.locale = locale;
 				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
@@ -411,8 +556,108 @@
 			}else{
 				this.switchlogin = true;
 			}
+			data.common('Car/detail',function(d){
+				console.log(d)
+				var car = d.car;
+				var model = car.model;
+				that.slideArr = car.image;
+				that.topinfo.name = model.year + ' ' + car.brand.name+ ' ' + car.series.name + ' ' + model.displacement +'L';
+				that.topinfo.price = car.price;
+				that.mileage = car.mileage;
+				that.level = model.level;
+				that.transferRecord = car.transfer_record;
+				that.point = model.configuration;
+				that.loanfun();
+				that.config.displacement = model.displacement;
+				that.config.gearbox = model.gearbox;
+				that.config.cityfuelConsumption = model.city_fuel_consumption;
+				that.config.speedfuelConsumption = model.high_speed_fuel_consumption;
+				that.config.type = model.car_type.name;
+				that.config.size = model.size;
+				that.config.seat = model.seat_count;
+				
+				
+				var curdatade =[
+					{
+						name: '厂商' + model.company,
+						age: 18,
+						address: 'New York No. 1 Lake Park',
+						date: '2016-10-03'
+					},
+					{
+						name: 'Jim Green',
+						age: 24,
+						address: 'London No. 1 Lake Park',
+						date: '2016-10-01'
+					},
+					{
+						name: 'Joe Black',
+						age: 30,
+						address: 'Sydney No. 1 Lake Park',
+						date: '2016-10-02'
+					},
+					{
+						name: 'Jon Snow',
+						age: 26,
+						address: 'Ottawa No. 2 Lake Park',
+						date: '2016-10-04'
+					}
+				];
+			},{id:2})
+		},
+		computed: {
+			
 		},
 		methods: {
+			loanfun: function() {
+				for(var k in this.loanarr){
+					this.defaultloanarr[k] = Math.ceil((1 - this.loanarr[k]) * this.topinfo.price/60);
+				}
+				this.min = Math.ceil((1 - this.loanarr[this.loanarr.length-1]) * this.topinfo.price/60);
+			},
+			instance (type) {
+                const title = '贷款方案';
+                const content = '\
+				<div class = "loan-pop-up">\
+					<p class = "ptor">首付30%</p>\
+					<p class = "pbor">月还款金额<span>$'+ this.defaultloanarr[0] +'</span></p>\
+					<p class = "ptor">首付40%</p>\
+					<p class = "pbor">月还款金额<span>$'+ this.defaultloanarr[1] +'</span></p>\
+					<p class = "ptor">首付50%</p>\
+					<p class = "pbor">月还款金额<span>$'+ this.defaultloanarr[2]+'</span></p>\
+					<p class = "ptor">首付60%</p>\
+					<p class = "pbor">月还款金额<span>$'+ this.defaultloanarr[3] +'</span></p>\
+					<p class = "ptor">首付70%</p>\
+					<p class = "pbor">月还款金额<span>$'+ this.defaultloanarr[4] +'</span></p>\
+					<div class="lptp">该方案仅供参考,实际请与CHAMPION金融专员沟通后确认</div>\
+					<div class = "lpub">\
+						<div class = "lpub-item">\
+							<div class = "lpubit"\
+								<label>支持人群：</label>\
+								<span>学生</span>\
+							</div>\
+							<div class = "lpubib"\
+								<label>车辆价格：</label>\
+								<span>$'+ this.topinfo.price +'</span>\
+							</div>\
+						</div>\
+						<div class = "lpub-item">\
+							<div class = "lpubit"\
+								<label>证件类型：</label>\
+								<span>SSN</span>\
+							</div>\
+							<div class = "lpubib"\
+								<label>还款期限：</label>\
+								<span>60个月</span>\
+							</div>\
+						</div>\
+					</div>\
+				</div>';
+				this.$Modal.info({
+					title: title,
+					content: content
+				});
+            },
 			login: function() {
 				if(this.logindata.phonenum == ''){
 					alert("请填写手机号!");
@@ -462,6 +707,7 @@
 		  prevEl: '.swiper-button-prev',
 		},
 	    loop:true,
+		observer:true
 // 	    autoplay: {
 // 			delay: 2500,
 // 			disableOnInteraction:false

@@ -9,7 +9,7 @@
 }
 .choose-tag .choose-top{
 	/* height: 60px; */
-	padding: 20px 40px;
+	padding: 20px 20px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -53,20 +53,23 @@
 }
 .buy-sel{
 	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: flex-start;
-	padding: 0 40px;
+	padding: 0 20px;
 }
 .buy-sel-item{
 	display: flex;
 	align-items: center;
 	margin-bottom: 15px;
-	margin-right: 34px;
 }
 .buy-sel-item .title{
+	flex: 1;
 	font-size: 15px;
-	margin-right: 10px;
+	text-align: left;
+}
+.buy-sel-item .titler{
+	text-align: center;
+}
+.buy-sel-item .selin{
+	flex: 5;
 }
 #buy .order{
 	/* height: 1px; */
@@ -99,4 +102,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+.car-detail{
+	position: relative;
 }

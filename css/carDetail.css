@@ -1,22 +1,19 @@
 .tops{
+	height: 400px;
 	display: flex;
 	background-color: white;
+	justify-content: space-between;
 }
 .top-right{
-	flex: 1.5;
+	width: 50%;
 	padding: 10px 0;
 	box-sizing: border-box;
 }
-.space{
-	flex: 0.1;
-}
 .swiper-container {
+	width: 45%;
 	background-color: white;
-	height: 400px;
-	position: relative;
-	left: 0;
+	height: 100%;
 	z-index: 0;
-	flex: 1.7;
 }
 .swiper-slide {
 	display: -webkit-box;
@@ -45,9 +42,8 @@
 	/* width: 1px; */
 }
 .car-info{
-	margin: 40px 0;
 	background-color: white;
-	padding: 40px;
+	margin-top: 40px;
 	box-sizing: border-box;
 }
 .default{
@@ -64,6 +60,23 @@
 	width: 100%;
 	padding: 10px;
 	box-sizing: border-box;
+}
+.tips{
+	height: 150px;
+	width: 100%;
+	display: flex;
+	margin-bottom: 8px;
+	/* align-items: center; */
+}
+.tipsp{
+	margin-left: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.tips img{
+	width: 100px;
+	height: 100px;
 }
 .name{
 	font-size: 20px;
@@ -112,7 +125,7 @@
 	flex-direction: column;
 	justify-content: space-around;
 }
-button{
+.default-left button{
 	color: #fff;
     background: #da2515;
     width: 100px;
@@ -133,11 +146,12 @@ button{
 	justify-content: space-between;
 }
 .config li{
-	width: 45%;
+	width: 20%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 10px;
+	margin-bottom: 25px;
+	margin-right: 5px;
 }
 .config li:nth-last-child(1){
 	margin-top: 0.4px;
@@ -204,8 +218,22 @@ button{
     margin-bottom: 5px;
 }
 .point ul li{
-	margin-right: 15px;
-	padding: 20px;
+	width: 145px;
+	height: 155px;
+	/* padding: 10px 0px; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.point ul li img{
+	width: 70px;
+	margin-bottom: 5px;
+}
+.point ul li p{
+	padding: 5px;
+	background-color: #EEEEEE;
+	border-radius: 5px;
 }
 .report{
 	position: relative;
@@ -244,4 +272,72 @@ button{
 .recommoned .car-item{
 	box-shadow: none;
 	border: 1px solid #f3f3f3;
+}
+#params{
+	background-color: #F5F7FA;
+}
+.about-carimg{
+	width: 100%;
+}
+.param{
+	font-size: 15px;
+}
+.record,.default-param,.engine-param,.chassis-braking,.security-config,.external-config,.interior-config{
+	background-color: white;
+	margin-top: 20px;
+}
+.record ul,.default-param ul,.engine-param ul,.chassis-braking ul,.security-config ul,.external-config ul,.interior-config ul{
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+}
+.record ul .title,.default-param ul .title,.engine-param ul .title,.chassis-braking ul .title,.security-config ul .title,.external-config ul .title,.interior-config ul .title{
+	padding: 10px;
+	border-bottom: 1px solid #f5f5f5;
+	margin-bottom: 10px;
+	font-size: 16px;
+	justify-content: flex-start;
+	border-left: 4px solid #DA2515;
+}
+.record li,.default-param li,.engine-param li,.chassis-braking li,.security-config li,.external-config li,.interior-config li{
+	display: flex;
+	justify-content: space-around;
+	height: 30px;
+	line-height: 30px;
+}
+.record li span,.default-param li span,.engine-param li span,.chassis-braking li span,.security-config li span,.external-config li span,.interior-config li span{
+	width: 100%;
+}
+.record li span:nth-child(1),.default-param li span:nth-child(1),.engine-param li span:nth-child(1),.chassis-braking li span:nth-child(1),.security-config li span:nth-child(1),.external-config li span:nth-child(1),.interior-config li span:nth-child(1){
+	color: #757f89;
+}
+.record li span:nth-child(2),.default-param li span:nth-child(2),.engine-param li span:nth-child(2),.chassis-braking li span:nth-child(2),.security-config li span:nth-child(2),.external-config li span:nth-child(2),.interior-config li span:nth-child(2){
+    color: #495056;
+}
+.ptor{
+	color: #7b8a97;
+    font-size: 14px;
+	margin-bottom: 5px;
+}
+.pbor{
+	font-size: 14px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #EEEEEE;
+}
+.pbor span{
+	color: red;
+	margin-left: 5px;
+}
+.lptp{
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+.lpub label{
+	font-size: 12px;
+    color: #818181;
+}
+.lpub span{
+	color: #da2515;
+    font-size: 20px;
+    margin-left: 5px;
 }
