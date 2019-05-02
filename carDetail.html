@@ -553,6 +553,7 @@
 				Copyright@2016 CHAMPION Inc. Privacy Terms
 			</span>
 		</div>
+		<Spin size="large" fix v-if="spinShow"></Spin>
 	</div>
 </body>
 <script type="text/javascript">
@@ -651,8 +652,10 @@
 			dirveSysthree: [],
 			dirveSysfour: [],
 			dirveSysfive: [],
+			spinShow: false,
 		},
 		mounted() {
+			
 			var that = this;
 			if(locale){
 				i18n.locale = locale;
@@ -675,11 +678,13 @@
 			}else{
 				goodId = 2;
 			}
+			console.log(goodId);
+			that.spinShow = true;
 			data.common('Car/detail',function(d){
 				console.log(d)
 				var car = d.car;
 				var model = car.model;
-				var report = car.report;
+				
 				that.slideArr = car.image;
 				that.topinfo.name = model.year + ' ' + car.brand.name+ ' ' + car.series.name + ' ' + model.displacement +'L';
 				that.topinfo.price = car.price;
@@ -695,7 +700,7 @@
 				that.config.type = model.car_type.name;
 				that.config.size = model.size;
 				that.config.seat = model.seat_count;
-				that.reportTime = report.update_time;
+				
 				
 				// console.log(that.reportResult)
 				var datada =[
@@ -772,45 +777,51 @@
 				// console.log(datads)
 				that.datads = datads;
 				
-				var rm = report.module;
-				for(var c in rm){
-					that.reportResult[c].result = rm[c].result;
-					that.reportResult[c].name = rm[c].name;
-				}
-				var accident = rm[0].position;
-				var facecheck = rm[1].position;
-				var autodevice = rm[2].position;
-				var dirveSys = rm[3].position;
-				for(var k in accident){
-					if(k < 14){
-						that.accidentArrone.push(accident[k]);
-					}else if(k >= 14){
-						that.accidentArrtwo.push(accident[k]);
+				if(car.report){
+					var report = car.report;
+					that.reportTime = report.update_time;
+					var rm = report.module;
+					for(var c in rm){
+						that.reportResult[c].result = rm[c].result;
+						that.reportResult[c].name = rm[c].name;
 					}
-					
-				}
-				console.log(dirveSys)
-				that.facecheck = facecheck;
-				that.autodeviceone = autodevice[0];
-				that.autodevicetwo = autodevice[1];
-				that.autodevicethree = autodevice[2];
-				that.autodevicefour = autodevice[3];
-				that.autodevicefive = autodevice[4];
-				that.autodevicesix = autodevice[5];
 				
-				for(var k in dirveSys){
-					if(k < 2){
-						that.dirveSysone.push(dirveSys[k].item);
-					}else if(k >= 2 && k <5){
-						that.dirveSystwo.push(dirveSys[k].item);
-					}else if(k >= 5 && k < 8){
-						that.dirveSysthree.push(dirveSys[k].item);
-					}else if(k >=8 && k <13){
-						that.dirveSysfour.push(dirveSys[k].item);
-					}else{
-						that.dirveSysfive.push(dirveSys[k].item);
+					var accident = rm[0].position;
+					var facecheck = rm[1].position;
+					var autodevice = rm[2].position;
+					var dirveSys = rm[3].position;
+					for(var k in accident){
+						if(k < 14){
+							that.accidentArrone.push(accident[k]);
+						}else if(k >= 14){
+							that.accidentArrtwo.push(accident[k]);
+						}
+						
+					}
+					console.log(dirveSys)
+					that.facecheck = facecheck;
+					that.autodeviceone = autodevice[0];
+					that.autodevicetwo = autodevice[1];
+					that.autodevicethree = autodevice[2];
+					that.autodevicefour = autodevice[3];
+					that.autodevicefive = autodevice[4];
+					that.autodevicesix = autodevice[5];
+					
+					for(var k in dirveSys){
+						if(k < 2){
+							that.dirveSysone.push(dirveSys[k].item);
+						}else if(k >= 2 && k <5){
+							that.dirveSystwo.push(dirveSys[k].item);
+						}else if(k >= 5 && k < 8){
+							that.dirveSysthree.push(dirveSys[k].item);
+						}else if(k >=8 && k <13){
+							that.dirveSysfour.push(dirveSys[k].item);
+						}else{
+							that.dirveSysfive.push(dirveSys[k].item);
+						}
 					}
 				}
+				that.spinShow = false;
 			},{id:goodId})
 		},
 		computed: {

@@ -376,7 +376,7 @@
 }
 .report_accident{
 	width: 50%;
-	height: 693px;
+	height: 580px;
 }
 .table-con{
 	width: 50%;
@@ -675,9 +675,10 @@
 	width: 25%;
 }
 .buy-process{
-	height: 376px;
+	height: 325px;
+	overflow: hidden;
 }
 .process_cn{
 	width: 100%;
-	
+	height: 376px;
 }

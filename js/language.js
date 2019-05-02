@@ -17,7 +17,7 @@
 				search: {
 					place: "What's in your mind?"
 				},
-				price: ['Under $10000','$10000-$15000','$15000-$20000','$20000-$30000','$30000-$40000','$40000 Over'],
+				price: [{id:1, detail:'Under $10000'},{id:2, detail:'$10000-$15000'},{id:3, detail:'$15000-$20000'},{id:4,detail:'$20000-$30000'},{id:5,detail:'$30000-$40000'},{id:6,detail:'$40000 Over'}],
 				cartype:[{'logo':'make0.png','name':'Audi'},
 				{'logo':'make1.png','name':'BMW'},
 				{'logo':'make2.png','name':'Ford'},
@@ -55,7 +55,7 @@
 					search: {
 						place: "此处搜索车型！！！"
 					},
-					price: ['$1万以下','$1万-$1.5万','$1.5万-$2万','$2万-$3万','$3万-$4万','$4万以上'],
+					price: [{id:1,detail:'$1万以下'},{id:2,detail:'$1万-$1.5万'},{id:3,detail:'$1.5万-$2万'},{id:4,detail:'$2万-$3万'},{id:5,detail:'$3万-$4万'},{id:6,detail:'$4万以上'}],
 					cartype: [{'logo':'make0.png','name':'奥迪'},
 					{'logo':'make1.png','name':'宝马'},
 					{'logo':'make2.png','name':'福特'},

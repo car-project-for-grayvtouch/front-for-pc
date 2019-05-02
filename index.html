@@ -185,7 +185,7 @@
 					</div>
 					<span class="price-title">CAR Price <a href="buy.html">查看更多&nbsp;></a></span>
 					<div class="price-btns">
-						<button class="btn" type="button" v-for="item in $t('price')" style="border: none;"><a href="buy.html">{{item}}</a></button>
+						<button class="btn" type="button" v-for="item in $t('price')" style="border: none;"><a @click="navigateTopricebuy(item.id)">{{item.detail}}</a></button>
 					</div>
 					<span class="price-title">CAR brand</span>
 					<div class="cartype-btns">
@@ -213,10 +213,11 @@
 					</span>
 				
 					<div class="tagList">
-					    <div class="circle" v-for="item in hotsearch">
+					    <div class="circle" v-for="item in hotsearch" @click="navigateToSearchBuy(item)">
 					        <h2 v-if="item.type === 'brand'">{{item.brand?item.brand.name:''}}</h2>
 					        <h2 v-else-if="item.type === 'series'">{{item.series?item.series.name:''}}</h2>
 					        <h2 v-else-if="item.type === 'keyword'">{{item.value}}</h2>
+					        <h2 v-else-if="item.type === 'sale_point'">{{item.value}}</h2>
 					        <h2 v-else>其他</h2>
 					    </div>
 					</div>
@@ -231,9 +232,9 @@
 				</div>
 				<div class="car-detail">
 					<Row>
-						<i-col span="6" v-for="item in $t('explain')" :key='item.id' data-id = "item.id">
-							<div class="car-item">
-								<a href="carDetail.html">
+						<i-col span="6" v-for="item in $t('explain')" :key='item.id'>
+							<div :data-id = "item.id" @click = "navigatorToDetail(item.id)" class="car-item">
+								<a>
 									<img class="bg" :src="item.thumb">
 									<img class="favorite" src="images/favorite.png">
 									<div class="car-explain">
@@ -375,6 +376,7 @@
 </body>
 <script type="text/javascript">
 	var locale = localStorage.locale;
+	$(function(){
 	new Vue({
 		i18n,
 		data: {
@@ -405,7 +407,6 @@
 		},
 		mounted() {
 			var that = this;
-			
 			var userTags = {
 				color: ['#4B82FF', '#FF747B', '#15D5E0', '#FFB178', '#8871FF', '#ED59F8'],
 				circleAttr: {minWidth: 60,maxWidth: 80},
@@ -534,7 +535,7 @@
 						this.posiArr = this.circlePosi;
 					}
 					this.random();
-					this.ani();
+					// this.ani();
 				},
 			}
 			//轮播图数据
@@ -556,7 +557,7 @@
 			})
 			// 热门搜索
 			data.common('SearchLog/hot',function(d){
-				// console.log(d)
+				console.log(d)
 				that.hotsearch = d;
 				that.$nextTick(function(){
 					userTags.init();
@@ -582,7 +583,57 @@
 			
 		},
 		methods: {
-			
+			navigateToSearchBuy: function(e){
+				var postbody = {
+					brand_id: '',
+					car_series_id: '',
+					car_type_id: '',
+					price: '',
+					mileage: '',
+					age: '',
+					gearbox: '',
+					color: '',
+					keyword: '',
+					sale_point: '',
+					page: 1,
+					sort: ''
+				};
+				console.log(e)
+				var type = e.type;
+				if(type == 'series'){
+					type = 'car_series_id';
+				}else if(type == 'brand'){
+					type = 'brand_id';
+				}else if(type == 'type'){
+					type = 'car_type_id';
+				}
+				postbody[type] = e.value;
+				localStorage.postbody = JSON.stringify(postbody)
+				console.log(JSON.stringify(postbody))
+				window.location.href= "buy.html";
+			},
+			navigateTopricebuy: function(e){
+				console.log(e)
+				localStorage.postbody = JSON.stringify({
+					brand_id: '',
+					car_series_id: '',
+					car_type_id: '',
+					price: e,
+					mileage: '',
+					age: '',
+					gearbox: '',
+					color: '',
+					keyword: '',
+					sale_point: '',
+					page: 1,
+					sort: ''
+				})
+				window.location.href= "buy.html";
+			},
+			navigatorToDetail: function(e) {
+				window.location.href= "carDetail.html";
+				localStorage.goodId = e;
+			},
 			recommonedata:function(index) {
 				var that = this;
 				var form = {'type':'luxury'};
@@ -658,6 +709,12 @@
 			}
 		}
 	}).$mount('#index')
+	
+		$('.car-item').click(function(e){
+			var num = e.target;
+			console.log(num)
+		})
+	})
 	// 现在应用程序已经准备好了！
 </script>
 </html>
