@@ -231,7 +231,7 @@
 				</div>
 				<div class="car-detail">
 					<Row>
-						<i-col span="6" v-for="item in $t('explain')" :key='item.id'>
+						<i-col span="6" v-for="item in $t('explain')" :key='item.id' data-id = "item.id">
 							<div class="car-item">
 								<a href="carDetail.html">
 									<img class="bg" :src="item.thumb">
@@ -294,7 +294,7 @@
 			<div class="recommoned">
 				<span class="re-title">{{ $t("mediaVoice") }}</span>
 					<div class="media-detail">
-						<div class="media-item" v-for="item in $t('media')">
+						<div class="media-item" v-for="item in $t('media')" data-id = "item.id">
 							<a href="#">
 								<img class="bg" :src="item.thumb">
 								<div class="media-r">
@@ -603,7 +603,7 @@
 					form = {};
 				}
 				data.common('Car/listForHome',function(d){
-					// console.log(d)
+					console.log(d)
 					that.$i18n._vm.messages['zh-cn'].explain = d;
 					that.$i18n._vm.messages['en'].explain = d;
 				},form)

@@ -263,104 +263,216 @@
 					</li>
 				</ul>
 			</div>
-			<i-table stripe :columns="columns" :data="data1"></i-table>
-			<div class="param">
-				<div class="record">
-					<ul>
-						<li class="title">车辆档案</li>
-						<li v-for="(value,key) in param.record">
-							<span>{{key}}</span>
-							<span>{{value}}</span>
-						</li>
-					</ul>
+			<div class="title contitle">车辆配置</div>
+			<i-table stripe :columns="columns" :data="datada"></i-table>
+			<i-table class='allconfig' stripe :columns="columnss" :data="datads"></i-table>
+			<div class="report">
+				<div class="title">车辆检测报告<span>检测时间：{{reportTime}}</span><span>检测车型：{{topinfo.name}}</span></div>
+				<div class="curtitle">
+					<span class="ct-left">{{reportResult[0].name}}</span>
+					<span class="ct-right">{{reportResult[0].result}}</span>
 				</div>
-				<div class="default-param">
-					<ul>
-						<li class="title">基本参数</li>
-						<li v-for="(value,key) in param.defaultparam">
-							<span>{{key}}</span>
-							<span>{{value}}</span>
-						</li>
-					</ul>
+				<div class="r-content">
+					<img class="report_accident" src="images/report_accident.png" >
+					<div class="table-con">
+						<div class="table table-border">
+							<div class="table-item" v-for="item in accidentArrone">
+								<div>
+									<span class="t-i-left">{{item.detection_pos_id}}</span>
+									<span class="t-i-center">{{item.name}}</span>
+									<span class="t-i-right icnormal" v-if="item.item[0].value == 'normal'">
+										<Icon class="ic" type="ios-checkmark-circle-outline" />
+									</span>
+									<span class="t-i-right icexception" v-else>
+										<Icon type="ios-close-circle-outline" />
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="table tablew">
+							<div class="table-item" v-for="item in accidentArrtwo">
+								<div>
+									<span class="t-i-left" v-if="item.detection_pos_id<17">{{item.detection_pos_id}}</span>
+									<span class="t-i-center">{{item.name}}</span>
+									<span class="t-i-right icnormal" v-if="item.item[0].value == 'normal'">
+										<Icon class="ic" type="ios-checkmark-circle-outline" />
+									</span>
+									<span class="t-i-right icexception" v-else>
+										<Icon type="ios-close-circle-outline" />
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="engine-param">
-					<ul>
-						<li class="title">发动机参数</li>
-						<li v-for="(value,key) in param.engineparam">
-							<span>{{key}}</span>
-							<span>{{value}}</span>
-						</li>
-					</ul>
+				<div class="curtitle">
+					<span class="ct-left">{{reportResult[1].name}}</span>
+					<span class="ct-right">{{reportResult[1].result}}</span>
 				</div>
-				<div class="chassis-braking">
-					<ul>
-						<li class="title">底盘及制动</li>
-						<li v-for="(value,key) in param.chassisbraking">
-							<span>{{key}}</span>
-							<span>{{value}}</span>
-						</li>
-					</ul>
+				<div class="r-content facecheck-c">
+					<div class="title">
+						<div class="title-item">
+							<div class="normal"></div>
+							<span class="texts">正常</span>
+						</div>
+						<div class="title-item">
+							<div class="repair"></div>
+							<span class="texts">曾有钣金修复</span>
+						</div>
+						<div class="title-item">
+							<div class="update"></div>
+							<span class="texts">曾有覆盖件更换</span>
+						</div>
+						<div class="title-item">
+							<div class="norepair"></div>
+							<span class="texts">轻微瑕疵，尚未修复</span>
+						</div>
+					</div>
+					<div class="facecheck">
+						<img src="images/report_body.png" >
+						<div v-for="item in facecheck">
+							<span v-if="item.item[0].value == 'one'" style="background-color: #7FD441;"></span>
+							<span v-else-if="item.item[0].value == 'two'" style="background-color: #b2cce5;"></span>
+							<span v-if="item.item[0].value == 'three'" style="background-color: #ffb2b2;"></span>
+							<span v-if="item.item[0].value == 'four'" style="background-color: #ff9900;"></span>
+						</div>
+					</div>
 				</div>
-				<div class="security-config">
-					<ul>
-						<li class="title">安全配置</li>
-						<li v-for="(value,key) in param.securityconfig">
-							<span>{{key}}</span>
-							<span>{{value}}</span>
-						</li>
-					</ul>
+				<div class="curtitle">
+					<span class="ct-left">{{reportResult[2].name}}</span>
+					<span class="ct-right">{{reportResult[2].result}}</span>
 				</div>
-				<div class="external-config">
-					<ul>
-						<li class="title">外部配置</li>
-						<li v-for="(value,key) in param.externalconfig">
-							<span>{{key}}</span>
-							<span>{{value}}</span>
-						</li>
-					</ul>
+				<div class="r-content">
+					<div class="autocheck">
+						<img src="images/report_turnon.png" >
+						<div class="autocheck-cone" v-for="item in autodeviceone.item">
+							<span class="icnormal" v-if="item.value == 'normal'">{{item.name}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+							<span class="icexception" v-else>{{item.name}}<Icon type="ios-close-circle-outline" /></span>
+						</div>
+						<div class="autocheck-ctwo" v-for="item in autodevicetwo.item">
+							<span class="icnormal" v-if="item.value == 'normal'">{{item.name}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+							<span class="icexception" v-else>{{item.name}}<Icon type="ios-close-circle-outline" /></span>
+						</div>
+						<div class="autocheck-cthree" v-for="item in autodevicethree.item">
+							<span class="icnormal" v-if="item.value == 'normal'">{{item.name}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+							<span class="icexception" v-else>{{item.name}}<Icon type="ios-close-circle-outline" /></span>
+						</div>
+						<div class="autocheck-cfour" v-for="item in autodevicefour.item">
+							<span class="icnormal" v-if="item.value == 'normal'">{{item.name}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+							<span class="icexception" v-else>{{item.name}}<Icon type="ios-close-circle-outline" /></span>
+						</div>
+						<div class="autocheck-cfive" v-for="item in autodevicefive.item">
+							<span class="icnormal" v-if="item.value == 'normal'">{{item.name}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+							<span class="icexception" v-else>{{item.name}}<Icon type="ios-close-circle-outline" /></span>
+						</div>
+						<div class="autocheck-csix" v-for="item in autodevicesix.item">
+							<span class="icnormal" v-if="item.value == 'normal'">{{item.name}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+							<span class="icexception" v-else>{{item.name}}<Icon type="ios-close-circle-outline" /></span>
+						</div>
+					</div>
 				</div>
-				<div class="interior-config">
-					<ul>
-						<li class="title">内部配置</li>
-						<li v-for="(value,key) in param.interiorconfig">
-							<span>{{key}}</span>
-							<span>{{value}}</span>
-						</li>
-					</ul>
+				<div class="curtitle">
+					<span class="ct-left">{{reportResult[3].name}}</span>
+					<span class="ct-right">{{reportResult[3].result}}</span>
+				</div>
+				<div class="diriveSys">
+					<div class="table table-border">
+						<div class="table-item">
+							<div>
+								<span class="t-i-center">启动</span>
+							</div>
+						</div>
+						<div class="table-item" v-for="item in dirveSysone">
+							<div>
+								<span class="t-i-center">{{item[0].name}}</span>
+								<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
+									<Icon class="ic" type="ios-checkmark-circle-outline" />
+								</span>
+								<span class="t-i-right icexception" v-else>
+									<Icon type="ios-close-circle-outline" />
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="table table-border">
+						<div class="table-item">
+							<div>
+								<span class="t-i-center">起步</span>
+							</div>
+						</div>
+						<div class="table-item" v-for="item in dirveSystwo">
+							<div>
+								<span class="t-i-center">{{item[0].name}}</span>
+								<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
+									<Icon class="ic" type="ios-checkmark-circle-outline" />
+								</span>
+								<span class="t-i-right icexception" v-else>
+									<Icon type="ios-close-circle-outline" />
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="table table-border">
+						<div class="table-item">
+							<div>
+								<span class="t-i-center">加速</span>
+							</div>
+						</div>
+						<div class="table-item" v-for="item in dirveSysthree">
+							<div>
+								<span class="t-i-center">{{item[0].name}}</span>
+								<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
+									<Icon class="ic" type="ios-checkmark-circle-outline" />
+								</span>
+								<span class="t-i-right icexception" v-else>
+									<Icon type="ios-close-circle-outline" />
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="table table-border">
+						<div class="table-item">
+							<div>
+								<span class="t-i-center">匀速驾驶</span>
+							</div>
+						</div>
+						<div class="table-item" v-for="item in dirveSysfour">
+							<div>
+								<span class="t-i-center">{{item[0].name}}</span>
+								<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
+									<Icon class="ic" type="ios-checkmark-circle-outline" />
+								</span>
+								<span class="t-i-right icexception" v-else>
+									<Icon type="ios-close-circle-outline" />
+								</span>
+							</div>
+						</div>
+					</div>
+					<div class="table tablew">
+						<div class="table-item">
+							<div>
+								<span class="t-i-center">减速及制动</span>
+							</div>
+						</div>
+						<div class="table-item" v-for="item in dirveSysfive">
+							<div>
+								<span class="t-i-center">{{item[0].name}}</span>
+								<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
+									<Icon class="ic" type="ios-checkmark-circle-outline" />
+								</span>
+								<span class="t-i-right icexception" v-else>
+									<Icon type="ios-close-circle-outline" />
+								</span>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			
-			<div class="report">
-				<div class="title">检测报告</div>
-				<ul>
-					<li>
-						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-shigupaicha1"></use>
-						</svg>
-						<span>事故排查</span>
-					</li>
-					<li>
-						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-shebeijiance"></use>
-						</svg>
-						<span>设备检测</span>
-					</li>
-					<li>
-						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-waiguanneishijiancex"></use>
-						</svg>
-						<span>外观内饰检测</span>
-					</li>
-					<li>
-						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-jiance-copy"></use>
-						</svg>
-						<span>驾驶系统检测</span>
-					</li>
-				</ul>
-				<a class="report-detail" href="report.html">
-					查看详细检测报告
-				</a>
+		</div>
+		<div class="recommoned buy-process">
+			<div class="title">购车流程</div>
+			<div class="car-detail">
+				<img class="process_cn" src="images/process_cn.png" >
 			</div>
 		</div>
 		<div class="recommoned">
@@ -500,44 +612,45 @@
 			columns: [
 				{
 					title: '基本参数',
-					key: '基本参数'
-				},
-				{
+					key: 'name'
+				},{
 					title: '发动机参数',
-					key: '发动机参数'
-				},
-				{
+					key: 'age'
+				},{
 					title: '底盘及制动',
-					key: '底盘及制动'
+					key: 'address'
+				},
+			],
+			datada: [],
+			columnss: [
+				{
+					title: '安全配置',
+					key: 'name'
+				},{
+					title: '外部配置',
+					key: 'age'
+				},{
+					title: '内部配置',
+					key: 'address'
 				}
 			],
-			data1: [
-                    {
-                        name: 'John Brown',
-                        age: 18,
-                        address: 'New York No. 1 Lake Park',
-                        date: '2016-10-03'
-                    },
-                    {
-                        name: 'Jim Green',
-                        age: 24,
-                        address: 'London No. 1 Lake Park',
-                        date: '2016-10-01'
-                    },
-                    {
-                        name: 'Joe Black',
-                        age: 30,
-                        address: 'Sydney No. 1 Lake Park',
-                        date: '2016-10-02'
-                    },
-                    {
-                        name: 'Jon Snow',
-                        age: 26,
-                        address: 'Ottawa No. 2 Lake Park',
-                        date: '2016-10-04'
-                    }
-                ]
-			
+			datads: [],
+			reportTime: '',
+			reportResult: [{},{},{},{}],
+			accidentArrone: [],
+			accidentArrtwo: [],
+			facecheck: [],
+			autodeviceone: [],
+			autodevicetwo: [],
+			autodevicethree: [],
+			autodevicefour: [],
+			autodevicefive: [],
+			autodevicesix: [],
+			dirveSysone: [],
+			dirveSystwo: [],
+			dirveSysthree: [],
+			dirveSysfour: [],
+			dirveSysfive: [],
 		},
 		mounted() {
 			var that = this;
@@ -556,10 +669,17 @@
 			}else{
 				this.switchlogin = true;
 			}
+			var goodId;
+			if(localStorage.goodId){
+				goodId = localStorage.goodId;
+			}else{
+				goodId = 2;
+			}
 			data.common('Car/detail',function(d){
 				console.log(d)
 				var car = d.car;
 				var model = car.model;
+				var report = car.report;
 				that.slideArr = car.image;
 				that.topinfo.name = model.year + ' ' + car.brand.name+ ' ' + car.series.name + ' ' + model.displacement +'L';
 				that.topinfo.price = car.price;
@@ -575,35 +695,123 @@
 				that.config.type = model.car_type.name;
 				that.config.size = model.size;
 				that.config.seat = model.seat_count;
+				that.reportTime = report.update_time;
 				
-				
-				var curdatade =[
+				// console.log(that.reportResult)
+				var datada =[
 					{
-						name: '厂商' + model.company,
-						age: 18,
-						address: 'New York No. 1 Lake Park',
-						date: '2016-10-03'
-					},
-					{
-						name: 'Jim Green',
-						age: 24,
-						address: 'London No. 1 Lake Park',
-						date: '2016-10-01'
-					},
-					{
-						name: 'Joe Black',
-						age: 30,
-						address: 'Sydney No. 1 Lake Park',
-						date: '2016-10-02'
-					},
-					{
-						name: 'Jon Snow',
-						age: 26,
-						address: 'Ottawa No. 2 Lake Park',
-						date: '2016-10-04'
+						name: '厂商：' + model.company,
+						age: '发动机：' + model.engine + '马力',
+						address: '驱动方式：' + model.driver_type,
+					},{
+						name: '级别：' + model.level,
+						age: '排量(L)：' + model.displacement + 'L',
+						address: '助力类型：' + model.assist_type,
+					},{
+						name: '变速箱：' + model.gearbox,
+						age: '进气类型：' + model.intake_type,
+						address: '前悬挂类型：' + model.front_suspension_type,
+					},{
+						name: '车门数量：' + model.door_count,
+						age: '气缸：' + model.cylinder_count,
+						address: '后悬挂类型：' + model.back_suspension_type,
+					},{
+						name: '长*宽*高(inch)：'+ model.size,
+						age: '最大马力(Ps)：' + model.maximum_horsepower,
+						address: '前制动类型：' + model.front_brake_type,
+					},{
+						name: '轴距(inch)：' + model.wheelbase,
+						age: '最大扭矩(N*m)：' + model.maximum_torque,
+						address: '后制动类型：' + model.back_brake_type,
+					},{
+						name: '高速油耗(GL)：' + model.high_speed_fuel_consumption + 'GL',
+						age: '燃料类型：' + model.fuel_type,
+						address: '轮胎描述：' + model.tire_desc,
+					},{
+						name: '城市油耗(GL)：' + model.city_fuel_consumption + 'GL',
+						age: '发动机防盗系统：' + model.engine_anti_theft_system,
+						address: '',
 					}
 				];
-			},{id:2})
+				that.datada = datada;
+				var configone = d.configuration,
+				configtwo = model.configuration;
+				// 添加has属性
+				for(var k in configone){
+					var cd = configone[k].data;
+					for(var s in cd){
+						for(var p in configtwo){
+							if(cd[s].name == configtwo[p].name){
+								configone[k].data[s].has = true;
+							}else{
+								if(configone[k].data[s].has){
+									// 不用再次操作
+								}else{
+									configone[k].data[s].has = false;
+								}
+							}
+							// console.log(configtwo[s])
+						}
+					}
+				}
+				// console.log(configone)
+				// 整理数据结构
+				var datads = [{},{},{},{},{},{},{},{},{},{},];
+				for(var r in configone){
+					var cd = configone[r].data;
+					for(var e in cd){
+						if(r == 0){
+							datads[e].name = cd[e].name + '：' + (cd[e].has?'有':'无');
+						}else if(r == 1){
+							datads[e].age = cd[e].name + '：' + (cd[e].has?'有':'无');
+						}else{
+							datads[e].address = cd[e].name + '：' + (cd[e].has?'有':'无');
+						}
+					}
+				}
+				// console.log(datads)
+				that.datads = datads;
+				
+				var rm = report.module;
+				for(var c in rm){
+					that.reportResult[c].result = rm[c].result;
+					that.reportResult[c].name = rm[c].name;
+				}
+				var accident = rm[0].position;
+				var facecheck = rm[1].position;
+				var autodevice = rm[2].position;
+				var dirveSys = rm[3].position;
+				for(var k in accident){
+					if(k < 14){
+						that.accidentArrone.push(accident[k]);
+					}else if(k >= 14){
+						that.accidentArrtwo.push(accident[k]);
+					}
+					
+				}
+				console.log(dirveSys)
+				that.facecheck = facecheck;
+				that.autodeviceone = autodevice[0];
+				that.autodevicetwo = autodevice[1];
+				that.autodevicethree = autodevice[2];
+				that.autodevicefour = autodevice[3];
+				that.autodevicefive = autodevice[4];
+				that.autodevicesix = autodevice[5];
+				
+				for(var k in dirveSys){
+					if(k < 2){
+						that.dirveSysone.push(dirveSys[k].item);
+					}else if(k >= 2 && k <5){
+						that.dirveSystwo.push(dirveSys[k].item);
+					}else if(k >= 5 && k < 8){
+						that.dirveSysthree.push(dirveSys[k].item);
+					}else if(k >=8 && k <13){
+						that.dirveSysfour.push(dirveSys[k].item);
+					}else{
+						that.dirveSysfive.push(dirveSys[k].item);
+					}
+				}
+			},{id:goodId})
 		},
 		computed: {
 			
