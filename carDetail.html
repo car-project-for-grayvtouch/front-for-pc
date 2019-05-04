@@ -265,7 +265,8 @@
 			<div class="title contitle">车辆配置</div>
 			<i-table stripe :columns="columns" :data="datada"></i-table>
 			<i-table class='allconfig' stripe :columns="columnss" :data="datads"></i-table>
-			<div class="report">
+			
+			<div class="report" v-if="carreport">
 				<div class="title">车辆检测报告<span>检测时间：{{reportTime}}</span><span>检测车型：{{topinfo.name}}</span></div>
 				<div class="curtitle">
 					<span class="ct-left">{{reportResult[0].name}}</span>
@@ -330,10 +331,10 @@
 					<div class="facecheck">
 						<img src="images/report_body.png" >
 						<div v-for="item in facecheck">
-							<span v-if="item.item[0].value == 'one'" style="background-color: #7FD441;"></span>
-							<span v-else-if="item.item[0].value == 'two'" style="background-color: #b2cce5;"></span>
-							<span v-if="item.item[0].value == 'three'" style="background-color: #ffb2b2;"></span>
-							<span v-if="item.item[0].value == 'four'" style="background-color: #ff9900;"></span>
+							<span v-if="item.value == 'one'" style="background-color: #7FD441;"></span>
+							<span v-else-if="item.value == 'two'" style="background-color: #b2cce5;"></span>
+							<span v-if="item.value == 'three'" style="background-color: #ffb2b2;"></span>
+							<span v-if="item.value == 'four'" style="background-color: #ff9900;"></span>
 						</div>
 					</div>
 				</div>
@@ -344,29 +345,29 @@
 				<div class="r-content">
 					<div class="autocheck">
 						<img src="images/report_turnon.png" >
-						<div class="autocheck-cone" v-for="item in autodeviceone.item">
-							<span class="icnormal" v-if="item.value == 'normal'">{{item.name}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
-							<span class="icexception" v-else>{{item.name}}<Icon type="ios-close-circle-outline" /></span>
+						<div class="autocheck-cone" v-for="item in autodeviceone">
+							<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+							<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
 						</div>
-						<div class="autocheck-ctwo" v-for="item in autodevicetwo.item">
-							<span class="icnormal" v-if="item.value == 'normal'">{{item.name}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
-							<span class="icexception" v-else>{{item.name}}<Icon type="ios-close-circle-outline" /></span>
+						<div class="autocheck-ctwo" v-for="item in autodevicetwo">
+							<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+							<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
 						</div>
-						<div class="autocheck-cthree" v-for="item in autodevicethree.item">
-							<span class="icnormal" v-if="item.value == 'normal'">{{item.name}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
-							<span class="icexception" v-else>{{item.name}}<Icon type="ios-close-circle-outline" /></span>
+						<div class="autocheck-cthree" v-for="item in autodevicethree">
+							<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+							<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
 						</div>
-						<div class="autocheck-cfour" v-for="item in autodevicefour.item">
-							<span class="icnormal" v-if="item.value == 'normal'">{{item.name}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
-							<span class="icexception" v-else>{{item.name}}<Icon type="ios-close-circle-outline" /></span>
+						<div class="autocheck-cfour" v-for="item in autodevicefour">
+							<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+							<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
 						</div>
-						<div class="autocheck-cfive" v-for="item in autodevicefive.item">
-							<span class="icnormal" v-if="item.value == 'normal'">{{item.name}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
-							<span class="icexception" v-else>{{item.name}}<Icon type="ios-close-circle-outline" /></span>
+						<div class="autocheck-cfive" v-for="item in autodevicefive">
+							<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+							<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
 						</div>
-						<div class="autocheck-csix" v-for="item in autodevicesix.item">
-							<span class="icnormal" v-if="item.value == 'normal'">{{item.name}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
-							<span class="icexception" v-else>{{item.name}}<Icon type="ios-close-circle-outline" /></span>
+						<div class="autocheck-csix" v-for="item in autodevicesix">
+							<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+							<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
 						</div>
 					</div>
 				</div>
@@ -467,6 +468,11 @@
 					</div>
 				</div>
 			</div>
+			<Alert style="margin-top: 10px;" show-icon v-else>
+				提示
+				<Icon type="ios-bulb-outline" slot="icon"></Icon>
+				<template slot="desc">暂无车辆报告,等待检测</template>
+			</Alert>
 		</div>
 		<div class="recommoned buy-process">
 			<div class="title">购车流程</div>
@@ -652,6 +658,7 @@
 			dirveSysfour: [],
 			dirveSysfive: [],
 			spinShow: false,
+			carreport: true,
 		},
 		mounted() {
 			
@@ -677,21 +684,24 @@
 			}else{
 				goodId = 2;
 			}
-			console.log(goodId);
+			// console.log(goodId);
 			that.spinShow = true;
 			data.common('Car/detail',function(d){
-				console.log(d)
+				// console.log(d)
 				var car = d.car;
 				var model = car.model;
-				
+				// 顶部图片切换
 				that.slideArr = car.image;
+				// 顶部右侧车辆基础信息
 				that.topinfo.name = model.year + ' ' + car.brand.name+ ' ' + car.series.name + ' ' + model.displacement +'L';
 				that.topinfo.price = car.price;
 				that.mileage = car.mileage;
 				that.level = model.level;
 				that.transferRecord = car.transfer_record;
-				that.point = model.configuration;
+				//计算贷款方案
 				that.loanfun();
+				//亮点配置
+				that.point = model.configuration;
 				that.config.displacement = model.displacement;
 				that.config.gearbox = model.gearbox;
 				that.config.cityfuelConsumption = model.city_fuel_consumption;
@@ -700,7 +710,8 @@
 				that.config.size = model.size;
 				that.config.seat = model.seat_count;
 				
-				
+				//车辆配置
+				// 配置表格一
 				// console.log(that.reportResult)
 				var datada =[
 					{
@@ -738,6 +749,7 @@
 					}
 				];
 				that.datada = datada;
+				// 配置表格二
 				var configone = d.configuration,
 				configtwo = model.configuration;
 				// 添加has属性
@@ -776,20 +788,38 @@
 				// console.log(datads)
 				that.datads = datads;
 				
+				//车辆检测报告
 				if(car.report){
+					let find = function(rm, id, value) {
+						for(var k in rm){
+							// console.log(rm[k][id], value)
+							if (rm[k][id] == value) {
+								return rm[k];
+							}
+							
+						}
+					};
+					// 检测报告四条title
 					var report = car.report;
 					that.reportTime = report.update_time;
 					var rm = report.module;
-					for(var c in rm){
-						that.reportResult[c].result = rm[c].result;
-						that.reportResult[c].name = rm[c].name;
+					
+					var accident,
+					facecheck,
+					autodevice,
+					dirveSys;
+					for(var k in rm){
+						var f = find(rm, 'detection_module_id', Number(k) + 1);
+						that.reportResult[k].result = f.result;
+						that.reportResult[k].name = f.name;
 					}
-				
-					var accident = rm[0].position;
-					var facecheck = rm[1].position;
-					var autodevice = rm[2].position;
-					var dirveSys = rm[3].position;
-					console.log(accident)
+					accident = find(rm, 'detection_module_id', 1).position;
+					facecheck = find(rm, 'detection_module_id', 2).position;
+					autodevice = find(rm, 'detection_module_id', 3).position;
+					dirveSys = find(rm, 'detection_module_id', 4).position;
+					
+					// console.log(accident)
+					// 事故排查
 					for(var k in accident){
 						if(k < 14){
 							that.accidentArrone.push(accident[k]);
@@ -798,28 +828,80 @@
 						}
 						
 					}
-					console.log(dirveSys)
-					that.facecheck = facecheck;
-					that.autodeviceone = autodevice[0];
-					that.autodevicetwo = autodevice[1];
-					that.autodevicethree = autodevice[2];
-					that.autodevicefour = autodevice[3];
-					that.autodevicefive = autodevice[4];
-					that.autodevicesix = autodevice[5];
+					// 外观内饰
+					var facecheckArr = [
+						{
+							value: find(facecheck, 'name' ,'1')?find(facecheck, 'name' ,'1').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'2')?find(facecheck, 'name' ,'2').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'3')?find(facecheck, 'name' ,'3').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'4')?find(facecheck, 'name' ,'4').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'5')?find(facecheck, 'name' ,'5').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'6')?find(facecheck, 'name' ,'6').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'7')?find(facecheck, 'name' ,'7').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'8')?find(facecheck, 'name' ,'8').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'9')?find(facecheck, 'name' ,'9').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'10')?find(facecheck, 'name' ,'10').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'11')?find(facecheck, 'name' ,'11').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'12')?find(facecheck, 'name' ,'12').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'13')?find(facecheck, 'name' ,'13').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'14')?find(facecheck, 'name' ,'14').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'15')?find(facecheck, 'name' ,'15').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'16')?find(facecheck, 'name' ,'16').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'17')?find(facecheck, 'name' ,'17').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'18')?find(facecheck, 'name' ,'18').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'19')?find(facecheck, 'name' ,'19').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'20')?find(facecheck, 'name' ,'20').item[0].value:'one'
+						},{
+							value: find(facecheck, 'name' ,'21')?find(facecheck, 'name' ,'21').item[0].value:'one'
+						}
+					];
+					that.facecheck = facecheckArr;
 					
+					//启动设备检测
+					// console.log(autodevice)
+					that.autodeviceone = find(autodevice, 'name' ,'2')?find(autodevice, 'name' ,'2').item.slice(0, 1): [{value:'normal',desc:'车辆排气正常'}];
+					that.autodevicethree = find(autodevice, 'name' ,'3')?find(autodevice, 'name' ,'3').item.slice(0, 5): [{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警'},{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警 各类灯光调节功能正常'},{value:'normal',desc:'空调系统运转正常'},{value:'normal',desc:'泊车辅助系统工作正常'},{value:'normal',desc:'方向盘自由行程转角小于15度'}];
+					that.autodevicetwo = find(autodevice, 'name' ,'4')?find(autodevice, 'name' ,'4').item.slice(0, 1): [{value:'normal',desc:'脚踏板功能正常'}];
+					that.autodevicefour = find(autodevice, 'name' ,'5')?find(autodevice, 'name' ,'5').item.slice(0, 2): [{value:'normal',desc:'原地打转向时,转向机、转向柱、方向系统正常'},{value:'normal',desc:'变速箱换挡功能正常'}];
+					that.autodevicefive = find(autodevice, 'name' ,'6')?find(autodevice, 'name' ,'6').item.slice(0, 3): [{value:'normal',desc:'怠速运转时发动机运转稳定'},{value:'normal',desc:"空挡提速时发动机运转稳定"},{value:'normal',desc:" 驻车制动器工作正常"}];
+					that.autodevicesix = find(autodevice, 'name' ,'7')?find(autodevice, 'name' ,'7').item.slice(0, 1): [{value:'normal',desc:"车辆启动顺畅"}];
+					
+					//驾驶系统检测
+					// console.log(dirveSys)
 					for(var k in dirveSys){
-						if(k < 2){
+						if(dirveSys[k].detection_group_id == 1){
 							that.dirveSysone.push(dirveSys[k].item);
-						}else if(k >= 2 && k <5){
+						}else if(dirveSys[k].detection_group_id == 2){
 							that.dirveSystwo.push(dirveSys[k].item);
-						}else if(k >= 5 && k < 8){
+						}else if(dirveSys[k].detection_group_id == 3){
 							that.dirveSysthree.push(dirveSys[k].item);
-						}else if(k >=8 && k <13){
+						}else if(dirveSys[k].detection_group_id == 4){
 							that.dirveSysfour.push(dirveSys[k].item);
 						}else{
 							that.dirveSysfive.push(dirveSys[k].item);
 						}
 					}
+				}else{
+					that.carreport = false;
 				}
 				that.spinShow = false;
 			},{id:goodId})
@@ -828,12 +910,14 @@
 			
 		},
 		methods: {
+			//计算贷款方案
 			loanfun: function() {
 				for(var k in this.loanarr){
 					this.defaultloanarr[k] = Math.ceil((1 - this.loanarr[k]) * this.topinfo.price/60);
 				}
 				this.min = Math.ceil((1 - this.loanarr[this.loanarr.length-1]) * this.topinfo.price/60);
 			},
+			//贷款方案弹窗
 			instance (type) {
                 const title = '贷款方案';
                 const content = '\

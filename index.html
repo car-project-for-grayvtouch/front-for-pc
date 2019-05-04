@@ -59,7 +59,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="buy.html">
+								<a href="buy.html" @click="navTobuy">
 									<span>{{ $t("header.buy") }}</span>
 								</a>
 							</li>
@@ -652,6 +652,22 @@
 			
 		},
 		methods: {
+			navTobuy: function(){
+				localStorage.postbody = JSON.stringify({
+					brand_id: '',
+					car_series_id: '',
+					car_type_id: '',
+					price: '',
+					mileage: '',
+					age: '',
+					gearbox: '',
+					color: '',
+					keyword: '',
+					sale_point: '',
+					page: 1,
+					sort: ''
+				})
+			},
 			navigateToBrandBuy: function(e){
 				localStorage.postbody = JSON.stringify({
 					brand_id: e,

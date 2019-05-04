@@ -610,7 +610,7 @@
 .autocheck div{
 	position: absolute;
 	display: inline-block;
-	text-align: right;
+	/* text-align: right; */
 }
 .autocheck div span{
 	line-height: 30px;
