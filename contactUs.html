@@ -143,51 +143,55 @@
 			</div>
 		</div>
 		<div class="misc">
-			<ul>
-				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
-			</ul>
+			<div class="footer-margino">
+				<ul>
+					<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
+				</ul>
+			</div>
 		</div>
 		<div class="footer">
-			<div class="contact">
-				<div class="top">
-					<div class="logo"><img src="images/logo.jpg" ></div>
-					<div class="con-top-r">
-						<div class="wx">
-							<a>
-								<img src="images/humacar.png" >
-								<span>CHAMPION</span>
-							</a>
-						</div>
-						<div class="phone">
-							<a>
-								<img src="images/phone.png" >
-								<span>+1(888)-888-6518</span>
-							</a>
+			<div class="footer-margint">
+				<div class="contact">
+					<div class="top">
+						<div class="logo"><img src="images/logo.jpg" ></div>
+						<div class="con-top-r">
+							<div class="wx">
+								<a>
+									<img src="images/humacar.png" >
+									<span>CHAMPION</span>
+								</a>
+							</div>
+							<div class="phone">
+								<a>
+									<img src="images/phone.png" >
+									<span>+1(888)-888-6518</span>
+								</a>
+							</div>
 						</div>
 					</div>
+					</div>
+				<div class="adress">
+					<ul>
+						<a href="#">
+							<li>
+								<span>Massachusetts state马塞诸塞州</span>
+								<p>134 east Howard st，Quincy，ma，02169，usa</p>
+							</li>
+						</a>
+						<a href="#">
+							<li>
+								<span>洛杉矶旗舰店地址</span>
+								<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+							</li>
+						</a>
+						<a href="#">
+							<li>
+								<span>洛杉矶旗舰店地址</span>
+								<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+							</li>
+						</a>
+					</ul>
 				</div>
-				</div>
-			<div class="adress">
-				<ul>
-					<a href="#">
-						<li>
-							<span>洛杉矶旗舰店地址</span>
-							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-						</li>
-					</a>
-					<a href="#">
-						<li>
-							<span>洛杉矶旗舰店地址</span>
-							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-						</li>
-					</a>
-					<a href="#">
-						<li>
-							<span>洛杉矶旗舰店地址</span>
-							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-						</li>
-					</a>
-				</ul>
 			</div>
 		</div>
 		<div class="copy">
@@ -232,6 +236,22 @@
 			}
 		},
 		methods: {
+			navTobuy: function(){
+				localStorage.postbody = JSON.stringify({
+					brand_id: '',
+					car_series_id: '',
+					car_type_id: '',
+					price: '',
+					mileage: '',
+					age: '',
+					gearbox: '',
+					color: '',
+					keyword: '',
+					sale_point: '',
+					page: 1,
+					sort: ''
+				})
+			},
 			login: function() {
 				if(this.logindata.phonenum == ''){
 					alert("请填写手机号!");

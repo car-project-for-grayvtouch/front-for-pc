@@ -22,11 +22,17 @@ ul{
     background-color: white;
 	z-index: 99;
 }
+.header-margin{
+	width: 1280px;
+	height: 100%;
+	position: relative;
+	margin: 0 auto;
+}
 .header .logos{
 	width: 106px;
 	height: 60px;
 	position: absolute;
-	left: 50px;
+	left: 0;
 	top: 0;
 	bottom: 0;
 	margin: auto;
@@ -102,7 +108,7 @@ ul{
 .header .nav-menu{
 	position: absolute;
 	width: 55%;
-	left: 200px;
+	left: 150px;
 	padding: 5px;
 	top: 0;
 	bottom: 0;

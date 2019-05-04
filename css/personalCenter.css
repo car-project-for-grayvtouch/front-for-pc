@@ -54,6 +54,7 @@
 .update{
 	color: #ff6700;
 	font-size: 12px;
+	cursor: pointer;
 }
 .user-info button{
 	float: right;
@@ -143,4 +144,7 @@
 .icon-item .right p span{
 	font-size: 18px;
 	color: #ff6700;
+}
+.icon-item .right .lookmy{
+	cursor: pointer;
 }

@@ -25,262 +25,497 @@
 <body>
 	<div id="about" v-cloak>
 		<div class="header">
-			<div class="logos">
-				<img class="logor" src="images/logor.png">
-			</div>
-			<div class="person">
-				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
-				<a v-else href="personalCenter.html">
-					<svg class="icon" aria-hidden="true">
-						<use xlink:href="#icon-yidenglu"></use>
-					</svg>
-				</a>
-			</div>
-			<transition name="fade" mode="out-in">
-					<button class="back-to-top" :key="topshow" v-on:click='top()' v-html="$t('header.top')"></button>
-			</transition>
-			<transition name="fadel" mode="out-in">
-			<button class="language-switch" :key="enshow" v-on:click='change()'>{{enshow}}</button>
-			</transition>
-			<transition name="fadeo" mode="out-in">
-					<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
-			</transition>
-					<div class="nav-menu">
-						<ul>
-							<li>
-								<a href="index.html">
-									<span>{{ $t("header.home") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="buy.html">
-									<span>{{ $t("header.buy") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="sale.html">
-									<span>{{ $t("header.sale") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="bargain.html">
-									<span>{{ $t("header.bargain") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="installment.html">
-									<span>{{ $t("header.hire") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="about.html">
-									<span>{{ $t("header.about") }}</span>
-								</a>
-							</li>
-							<li>
-								
-							</li>
-							<li>
-								<a href="">
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div id="tips">
+			<div class="header-margin">
+				<div class="logos">
+					<img class="logor" src="images/logor.png">
+				</div>
+				<div class="person">
+					<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+					<a v-else href="personalCenter.html">
 						<svg class="icon" aria-hidden="true">
-							<use xlink:href="#icon-ling"></use>
+							<use xlink:href="#icon-yidenglu"></use>
 						</svg>
-						<div class="text text-container">
-							<ul class="swiper-wrapper">
-								<li class="swiper-slide" v-for="item in tipsArr">{{item}}</li>
+					</a>
+				</div>
+				<transition name="fade" mode="out-in">
+						<button class="back-to-top" :key="topshow" v-on:click='top()' v-html="$t('header.top')"></button>
+				</transition>
+				<transition name="fadel" mode="out-in">
+				<button class="language-switch" :key="enshow" v-on:click='change()'>{{enshow}}</button>
+				</transition>
+				<transition name="fadeo" mode="out-in">
+						<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
+				</transition>
+						<div class="nav-menu">
+							<ul>
+								<li>
+									<a href="index.html">
+										<span>{{ $t("header.home") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="buy.html" @click="navTobuy">
+										<span>{{ $t("header.buy") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="sale.html">
+										<span>{{ $t("header.sale") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="bargain.html">
+										<span>{{ $t("header.bargain") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="installment.html">
+										<span>{{ $t("header.hire") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="about.html">
+										<span>{{ $t("header.about") }}</span>
+									</a>
+								</li>
+								<li>
+									
+								</li>
+								<li>
+									<a href="">
+									</a>
+								</li>
 							</ul>
 						</div>
-					</div>
-			<transition name="searchfade">
-				<div class="login-page" v-if="loginshow">
-					<div class="loginMask" v-on:click="loginshow = !loginshow">
-					</div>
-					<div class="login">
-						<div class="close" v-on:click="loginshow = !loginshow">
+						<div id="tips">
 							<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-close"></use>
+								<use xlink:href="#icon-ling"></use>
 							</svg>
+							<div class="text text-container">
+								<ul class="swiper-wrapper">
+									<li class="swiper-slide" v-for="item in tipsArr">{{item}}</li>
+								</ul>
+							</div>
 						</div>
-						<div class="login-item">
-							<input type="number" class="defa" v-model="logindata.phonenum" placeholder="手机号"/>
+				<transition name="searchfade">
+					<div class="login-page" v-if="loginshow">
+						<div class="loginMask" v-on:click="loginshow = !loginshow">
 						</div>
-						<div class="login-item">
-							<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
-							<input type="button" class="getcode" value="获取验证码" />
-						</div>
-						<input type="button" class="btn-login" value="登录" v-on:click="login()">
-						<div class="login-tips">
-							<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+						<div class="loginCenter">
+							<div class="login">
+								<div class="close" v-on:click="loginshow = !loginshow">
+									<svg class="icon" aria-hidden="true">
+										<use xlink:href="#icon-close"></use>
+									</svg>
+								</div>
+								<Tabs value="name1">
+									<Tab-Pane label="登录" name="name1">
+										<div class="login-item">
+											<input type="text" class="defa" v-model="logindata.username" placeholder="请输入用户名"/>
+										</div>
+										<div class="login-item">
+											<input type="number" class="defa" v-model="logindata.password" placeholder="请输入密码"/>
+										</div>
+										<!-- <div class="login-item">
+											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
+											<input type="button" class="getcode" value="获取验证码" />
+										</div> -->
+										<input type="button" class="btn-login" value="登录" @click="login()">
+										<div class="login-tips">
+											<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+										</div>
+									</Tab-Pane>
+									<Tab-Pane label="注册" name="name2">
+										<div class="login-item">
+											<input type="text" class="defa" v-model="registerdata.username" placeholder="请输入用户名"/>
+										</div>
+										<div class="login-item">
+											<input type="number" class="defa" v-model="registerdata.password" placeholder="请输入密码"/>
+										</div>
+										<!-- <div class="login-item">
+											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
+											<input type="button" class="getcode" value="获取验证码" />
+										</div> -->
+										<input type="button" class="btn-login" value="注册" @click="register()">
+										<div class="login-tips">
+											<p class="legal">注册即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+										</div>
+									</Tab-Pane>
+								</Tabs>
+							</div>
 						</div>
 					</div>
-				</div>
-			</transition>
+				</transition>
+			</div>
 		</div>
 		<div class="margin">
-		<div class="tops">
-			<div class="swiper-container">
-			  <div class="swiper-wrapper">
-				<div class="swiper-slide" v-for="item in slideArr">
-					<!-- <a href="xx.html"> -->
-						<img :src="item.url">
-					<!-- </a> -->
-				</div>
-			  </div>
-			  <div class="swiper-pagination"></div>
-			  <!-- Add Arrows -->
-			  <div class="swiper-button-next"></div>
-			  <div class="swiper-button-prev"></div>
-			</div>
-			<div class="top-right">
-				<div class="default">
-					<div class="default-top">
-						<div class="name">
-							{{topinfo.name}}
-						</div>
-						<div class="coll">
-							<img src="images/favorite.png" >
-						</div>
+			<div class="tops">
+				<div class="swiper-container">
+				  <div class="swiper-wrapper">
+					<div class="swiper-slide" v-for="item in slideArr">
+						<!-- <a href="xx.html"> -->
+							<img :src="item.url">
+						<!-- </a> -->
 					</div>
-					<div class="default-left">
-						<div class="price">
-							CHAMPION价格
-							<span>${{topinfo.price}}</span>
-						</div>
-						<div class="loan">
-							<div class="min">
-								最低贷款
-								<span>${{min}}</span>
+				  </div>
+				  <div class="swiper-pagination"></div>
+				  <!-- Add Arrows -->
+				  <div class="swiper-button-next"></div>
+				  <div class="swiper-button-prev"></div>
+				</div>
+				<div class="top-right">
+					<div class="default">
+						<div class="default-top">
+							<div class="name">
+								{{topinfo.name}}
 							</div>
-							<div class="look" @click="instance('info')">
-								查看贷款方案 >
+							<div class="coll">
+								<img src="images/favorite.png" >
 							</div>
 						</div>
-						<div class="pbtn">
-							<button type="button">预约看车</button>
-							<button type="button">在线咨询</button>
+						<div class="default-left">
+							<div class="price">
+								CHAMPION价格
+								<span>${{topinfo.price}}</span>
+							</div>
+							<div class="loan">
+								<div class="min">
+									最低贷款
+									<span>${{min}}</span>
+								</div>
+								<div class="look" @click="instance('info')">
+									查看贷款方案 >
+								</div>
+							</div>
+							<div class="pbtn">
+								<button type="button" @click="preorder">预约看车</button>
+								<button type="button">在线咨询</button>
+							</div>
+							<div class="to-preorder">
+								<Modal
+									v-model="modal1"
+									title="预约看车"
+									@on-ok="ok"
+									@on-cancel="cancel"
+									:loading ="loading"
+									class="preorder">
+									<Row>
+										<i-col span="12">
+											<div class="">
+												选择日期：
+											</div>
+											<Date-Picker type="date" style="width: 200px" size="large" placeholder="Select date" @on-change="getdate"></Date-Picker>
+										</i-col>
+										<i-col span="12">
+											<div class="">
+												选择时间：
+											</div>
+											<Time-Picker type="time" style="width: 200px" size="large" format="HH:mm" placeholder="Select time" style="width: 168px" @on-change="gettime"></Time-Picker>
+										</i-col>
+									</Row>
+									<Row>
+										<i-col span="12">
+											<div class="">
+												手机号：
+											</div>
+											<i-input style="width: 200px;" v-model="value1" size="large" placeholder="enter the phone number" />
+										</i-col>
+										<i-col span="12">
+											<div class="">
+												微信号：
+											</div>
+											<i-input style="width: 200px;" v-model="value3" size="large" placeholder="enter the WeChat ID" />
+										</i-col>
+									</Row>
+									<Row>
+										<i-col span="12">
+											<div class="">
+												验证码：
+											</div>
+											<i-input style="width: 200px;" v-model="value2" size="large" placeholder="enter the verification code" />
+										</i-col>
+										<i-col span="12">
+											<img class="verifyCode" :src="verifyCode" @click="tranverifyCode">
+										</i-col>
+									</Row>
+								</Modal>
+							</div>
 						</div>
-					</div>
-					<div class="tips">
-						<img src="images/zhigou.png" >
-						<div class="tipsp">
-							<p>海量车源、定制需求！您可以选择CHAMPIONAUTO值购</p>
-							<a href="bargain.html">点击查看</a>
+						<div class="tips">
+							<img src="images/zhigou.png" >
+							<div class="tipsp">
+								<p>海量车源、定制需求！您可以选择CHAMPIONAUTO值购</p>
+								<a href="bargain.html">点击查看</a>
+							</div>
 						</div>
-					</div>
-					<div class="level">
-						<div class="level-item">
-							<span>行驶里程</span>
-							<span>{{mileage}}英里</span>
-						</div>
-						<div class="level-item">
-							<span>复查等级</span>
-							<span>{{level}}</span>
-						</div>
-						<div class="level-item">
-							<span>过户记录</span>
-							<span>{{transferRecord}}次</span>
+						<div class="level">
+							<div class="level-item">
+								<span>行驶里程</span>
+								<span>{{mileage}}英里</span>
+							</div>
+							<div class="level-item">
+								<span>复查等级</span>
+								<span>{{level}}</span>
+							</div>
+							<div class="level-item">
+								<span>过户记录</span>
+								<span>{{transferRecord}}次</span>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		<div class="car-info">
-			<div class="point">
-				<div class="title">亮点配置</div>
-				<ul>
-					<li v-for="item in point">
-						<img :src="item.image" >
-						<p>{{item.name}}</p>
-					</li>
-				</ul>
-			</div>
-			<div class="config">
-				<ul>
-					<li>
-						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-socar_displacement_icon"></use>
-						</svg>
-						<div class="config-r">
-							<p>排量</p>
-							<p>{{config.displacement}}L</p>
-						</div>
-					</li>
-					<li>
-						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-item-gear-box"></use>
-						</svg>
-						<div class="config-r">
-							<p>变速箱</p>
-							<p>{{config.gearbox}}</p>
-						</div>
-					</li>
-					<li>
-						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-youhao"></use>
-						</svg>
-						<div class="config-r">
-							<p>油耗</p>
-							<p>城市：{{config.cityfuelConsumption}}GL/高速：{{config.speedfuelConsumption}}GL</p>
-						</div>
-					</li>
-					<li>
-						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-cf-c64"></use>
-						</svg>
-						<div class="config-r">
-							<p>级别</p>
-							<p>{{config.type}}</p>
-						</div>
-					</li>
-					<li>
-						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-chicun"></use>
-						</svg>
-						<div class="config-r">
-							<p>尺寸</p>
-							<p>{{config.size}}inch</p>
-						</div>
-					</li>
-					<li>
-						<svg class="icon" aria-hidden="true">
-						    <use xlink:href="#icon-zuoweishu-shi"></use>
-						</svg>
-						<div class="config-r">
-							<p>承载数量</p>
-							<p>{{config.seat}}座</p>
-						</div>
-					</li>
-					<li>
-					</li>
-					<li>
-					</li>
-				</ul>
-			</div>
-			<div class="title contitle">车辆配置</div>
-			<i-table stripe :columns="columns" :data="datada"></i-table>
-			<i-table class='allconfig' stripe :columns="columnss" :data="datads"></i-table>
 			
-			<div class="report" v-if="carreport">
-				<div class="title">车辆检测报告<span>检测时间：{{reportTime}}</span><span>检测车型：{{topinfo.name}}</span></div>
-				<div class="curtitle">
-					<span class="ct-left">{{reportResult[0].name}}</span>
-					<span class="ct-right">{{reportResult[0].result}}</span>
+			<div class="car-info">
+				<div class="point">
+					<div class="title">亮点配置</div>
+					<ul>
+						<li v-for="item in point">
+							<img :src="item.image" >
+							<p>{{item.name}}</p>
+						</li>
+					</ul>
 				</div>
-				<div class="r-content">
-					<img class="report_accident" src="images/report_accident.png" >
-					<div class="table-con">
+				<div class="config">
+					<ul>
+						<li>
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-socar_displacement_icon"></use>
+							</svg>
+							<div class="config-r">
+								<p>排量</p>
+								<p>{{config.displacement}}L</p>
+							</div>
+						</li>
+						<li>
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-item-gear-box"></use>
+							</svg>
+							<div class="config-r">
+								<p>变速箱</p>
+								<p>{{config.gearbox}}</p>
+							</div>
+						</li>
+						<li>
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-youhao"></use>
+							</svg>
+							<div class="config-r">
+								<p>油耗</p>
+								<p>城市：{{config.cityfuelConsumption}}GL/高速：{{config.speedfuelConsumption}}GL</p>
+							</div>
+						</li>
+						<li>
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-cf-c64"></use>
+							</svg>
+							<div class="config-r">
+								<p>级别</p>
+								<p>{{config.type}}</p>
+							</div>
+						</li>
+						<li>
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-chicun"></use>
+							</svg>
+							<div class="config-r">
+								<p>尺寸</p>
+								<p>{{config.size}}inch</p>
+							</div>
+						</li>
+						<li>
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-zuoweishu-shi"></use>
+							</svg>
+							<div class="config-r">
+								<p>承载数量</p>
+								<p>{{config.seat}}座</p>
+							</div>
+						</li>
+						<li>
+						</li>
+						<li>
+						</li>
+					</ul>
+				</div>
+				<div class="title contitle">车辆配置</div>
+				<i-table stripe :columns="columns" :data="datada"></i-table>
+				<i-table class='allconfig' stripe :columns="columnss" :data="datads"></i-table>
+				
+				<div class="report" v-if="carreport">
+					<div class="title">车辆检测报告<span>检测时间：{{reportTime}}</span><span>检测车型：{{topinfo.name}}</span></div>
+					<div class="curtitle">
+						<span class="ct-left">{{reportResult[0].name}}</span>
+						<span class="ct-right">{{reportResult[0].result}}</span>
+					</div>
+					<div class="r-content">
+						<img class="report_accident" src="images/report_accident.png" >
+						<div class="table-con">
+							<div class="table table-border">
+								<div class="table-item" v-for="item in accidentArrone">
+									<div>
+										<span class="t-i-left">{{item.detection_pos_id}}</span>
+										<span class="t-i-center">{{item.name}}</span>
+										<span class="t-i-right icnormal" v-if="item.item[0].value == 'normal'">
+											<Icon class="ic" type="ios-checkmark-circle-outline" />
+										</span>
+										<span class="t-i-right icexception" v-else>
+											<Icon type="ios-close-circle-outline" />
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="table tablew">
+								<div class="table-item" v-for="item in accidentArrtwo">
+									<div>
+										<span class="t-i-left" v-if="item.detection_pos_id<17">{{item.detection_pos_id}}</span>
+										<span class="t-i-center">{{item.name}}</span>
+										<span class="t-i-right icnormal" v-if="item.item[0].value == 'normal'">
+											<Icon class="ic" type="ios-checkmark-circle-outline" />
+										</span>
+										<span class="t-i-right icexception" v-else>
+											<Icon type="ios-close-circle-outline" />
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="curtitle">
+						<span class="ct-left">{{reportResult[1].name}}</span>
+						<span class="ct-right">{{reportResult[1].result}}</span>
+					</div>
+					<div class="r-content facecheck-c">
+						<div class="title">
+							<div class="title-item">
+								<div class="normal"></div>
+								<span class="texts">正常</span>
+							</div>
+							<div class="title-item">
+								<div class="repair"></div>
+								<span class="texts">曾有钣金修复</span>
+							</div>
+							<div class="title-item">
+								<div class="update"></div>
+								<span class="texts">曾有覆盖件更换</span>
+							</div>
+							<div class="title-item">
+								<div class="norepair"></div>
+								<span class="texts">轻微瑕疵，尚未修复</span>
+							</div>
+						</div>
+						<div class="facecheck">
+							<img src="images/report_body.png" >
+							<div v-for="item in facecheck">
+								<span v-if="item.value == 'one'" style="background-color: #7FD441;"></span>
+								<span v-else-if="item.value == 'two'" style="background-color: #b2cce5;"></span>
+								<span v-if="item.value == 'three'" style="background-color: #ffb2b2;"></span>
+								<span v-if="item.value == 'four'" style="background-color: #ff9900;"></span>
+							</div>
+						</div>
+					</div>
+					<div class="curtitle">
+						<span class="ct-left">{{reportResult[2].name}}</span>
+						<span class="ct-right">{{reportResult[2].result}}</span>
+					</div>
+					<div class="r-content">
+						<div class="autocheck">
+							<img src="images/report_turnon.png" >
+							<div class="autocheck-cone" v-for="item in autodeviceone">
+								<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+								<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
+							</div>
+							<div class="autocheck-ctwo" v-for="item in autodevicetwo">
+								<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+								<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
+							</div>
+							<div class="autocheck-cthree" v-for="item in autodevicethree">
+								<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+								<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
+							</div>
+							<div class="autocheck-cfour" v-for="item in autodevicefour">
+								<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+								<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
+							</div>
+							<div class="autocheck-cfive" v-for="item in autodevicefive">
+								<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+								<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
+							</div>
+							<div class="autocheck-csix" v-for="item in autodevicesix">
+								<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
+								<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
+							</div>
+						</div>
+					</div>
+					<div class="curtitle">
+						<span class="ct-left">{{reportResult[3].name}}</span>
+						<span class="ct-right">{{reportResult[3].result}}</span>
+					</div>
+					<div class="diriveSys">
 						<div class="table table-border">
-							<div class="table-item" v-for="item in accidentArrone">
+							<div class="table-item">
 								<div>
-									<span class="t-i-left">{{item.detection_pos_id}}</span>
-									<span class="t-i-center">{{item.name}}</span>
-									<span class="t-i-right icnormal" v-if="item.item[0].value == 'normal'">
+									<span class="t-i-center">启动</span>
+								</div>
+							</div>
+							<div class="table-item" v-for="item in dirveSysone">
+								<div>
+									<span class="t-i-center">{{item[0].name}}</span>
+									<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
+										<Icon class="ic" type="ios-checkmark-circle-outline" />
+									</span>
+									<span class="t-i-right icexception" v-else>
+										<Icon type="ios-close-circle-outline" />
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="table table-border">
+							<div class="table-item">
+								<div>
+									<span class="t-i-center">起步</span>
+								</div>
+							</div>
+							<div class="table-item" v-for="item in dirveSystwo">
+								<div>
+									<span class="t-i-center">{{item[0].name}}</span>
+									<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
+										<Icon class="ic" type="ios-checkmark-circle-outline" />
+									</span>
+									<span class="t-i-right icexception" v-else>
+										<Icon type="ios-close-circle-outline" />
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="table table-border">
+							<div class="table-item">
+								<div>
+									<span class="t-i-center">加速</span>
+								</div>
+							</div>
+							<div class="table-item" v-for="item in dirveSysthree">
+								<div>
+									<span class="t-i-center">{{item[0].name}}</span>
+									<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
+										<Icon class="ic" type="ios-checkmark-circle-outline" />
+									</span>
+									<span class="t-i-right icexception" v-else>
+										<Icon type="ios-close-circle-outline" />
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="table table-border">
+							<div class="table-item">
+								<div>
+									<span class="t-i-center">匀速驾驶</span>
+								</div>
+							</div>
+							<div class="table-item" v-for="item in dirveSysfour">
+								<div>
+									<span class="t-i-center">{{item[0].name}}</span>
+									<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
 										<Icon class="ic" type="ios-checkmark-circle-outline" />
 									</span>
 									<span class="t-i-right icexception" v-else>
@@ -290,11 +525,15 @@
 							</div>
 						</div>
 						<div class="table tablew">
-							<div class="table-item" v-for="item in accidentArrtwo">
+							<div class="table-item">
 								<div>
-									<span class="t-i-left" v-if="item.detection_pos_id<17">{{item.detection_pos_id}}</span>
-									<span class="t-i-center">{{item.name}}</span>
-									<span class="t-i-right icnormal" v-if="item.item[0].value == 'normal'">
+									<span class="t-i-center">减速及制动</span>
+								</div>
+							</div>
+							<div class="table-item" v-for="item in dirveSysfive">
+								<div>
+									<span class="t-i-center">{{item[0].name}}</span>
+									<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
 										<Icon class="ic" type="ios-checkmark-circle-outline" />
 									</span>
 									<span class="t-i-right icexception" v-else>
@@ -305,260 +544,112 @@
 						</div>
 					</div>
 				</div>
-				<div class="curtitle">
-					<span class="ct-left">{{reportResult[1].name}}</span>
-					<span class="ct-right">{{reportResult[1].result}}</span>
-				</div>
-				<div class="r-content facecheck-c">
-					<div class="title">
-						<div class="title-item">
-							<div class="normal"></div>
-							<span class="texts">正常</span>
-						</div>
-						<div class="title-item">
-							<div class="repair"></div>
-							<span class="texts">曾有钣金修复</span>
-						</div>
-						<div class="title-item">
-							<div class="update"></div>
-							<span class="texts">曾有覆盖件更换</span>
-						</div>
-						<div class="title-item">
-							<div class="norepair"></div>
-							<span class="texts">轻微瑕疵，尚未修复</span>
-						</div>
-					</div>
-					<div class="facecheck">
-						<img src="images/report_body.png" >
-						<div v-for="item in facecheck">
-							<span v-if="item.value == 'one'" style="background-color: #7FD441;"></span>
-							<span v-else-if="item.value == 'two'" style="background-color: #b2cce5;"></span>
-							<span v-if="item.value == 'three'" style="background-color: #ffb2b2;"></span>
-							<span v-if="item.value == 'four'" style="background-color: #ff9900;"></span>
-						</div>
-					</div>
-				</div>
-				<div class="curtitle">
-					<span class="ct-left">{{reportResult[2].name}}</span>
-					<span class="ct-right">{{reportResult[2].result}}</span>
-				</div>
-				<div class="r-content">
-					<div class="autocheck">
-						<img src="images/report_turnon.png" >
-						<div class="autocheck-cone" v-for="item in autodeviceone">
-							<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
-							<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
-						</div>
-						<div class="autocheck-ctwo" v-for="item in autodevicetwo">
-							<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
-							<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
-						</div>
-						<div class="autocheck-cthree" v-for="item in autodevicethree">
-							<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
-							<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
-						</div>
-						<div class="autocheck-cfour" v-for="item in autodevicefour">
-							<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
-							<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
-						</div>
-						<div class="autocheck-cfive" v-for="item in autodevicefive">
-							<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
-							<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
-						</div>
-						<div class="autocheck-csix" v-for="item in autodevicesix">
-							<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
-							<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
-						</div>
-					</div>
-				</div>
-				<div class="curtitle">
-					<span class="ct-left">{{reportResult[3].name}}</span>
-					<span class="ct-right">{{reportResult[3].result}}</span>
-				</div>
-				<div class="diriveSys">
-					<div class="table table-border">
-						<div class="table-item">
-							<div>
-								<span class="t-i-center">启动</span>
-							</div>
-						</div>
-						<div class="table-item" v-for="item in dirveSysone">
-							<div>
-								<span class="t-i-center">{{item[0].name}}</span>
-								<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
-									<Icon class="ic" type="ios-checkmark-circle-outline" />
-								</span>
-								<span class="t-i-right icexception" v-else>
-									<Icon type="ios-close-circle-outline" />
-								</span>
-							</div>
-						</div>
-					</div>
-					<div class="table table-border">
-						<div class="table-item">
-							<div>
-								<span class="t-i-center">起步</span>
-							</div>
-						</div>
-						<div class="table-item" v-for="item in dirveSystwo">
-							<div>
-								<span class="t-i-center">{{item[0].name}}</span>
-								<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
-									<Icon class="ic" type="ios-checkmark-circle-outline" />
-								</span>
-								<span class="t-i-right icexception" v-else>
-									<Icon type="ios-close-circle-outline" />
-								</span>
-							</div>
-						</div>
-					</div>
-					<div class="table table-border">
-						<div class="table-item">
-							<div>
-								<span class="t-i-center">加速</span>
-							</div>
-						</div>
-						<div class="table-item" v-for="item in dirveSysthree">
-							<div>
-								<span class="t-i-center">{{item[0].name}}</span>
-								<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
-									<Icon class="ic" type="ios-checkmark-circle-outline" />
-								</span>
-								<span class="t-i-right icexception" v-else>
-									<Icon type="ios-close-circle-outline" />
-								</span>
-							</div>
-						</div>
-					</div>
-					<div class="table table-border">
-						<div class="table-item">
-							<div>
-								<span class="t-i-center">匀速驾驶</span>
-							</div>
-						</div>
-						<div class="table-item" v-for="item in dirveSysfour">
-							<div>
-								<span class="t-i-center">{{item[0].name}}</span>
-								<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
-									<Icon class="ic" type="ios-checkmark-circle-outline" />
-								</span>
-								<span class="t-i-right icexception" v-else>
-									<Icon type="ios-close-circle-outline" />
-								</span>
-							</div>
-						</div>
-					</div>
-					<div class="table tablew">
-						<div class="table-item">
-							<div>
-								<span class="t-i-center">减速及制动</span>
-							</div>
-						</div>
-						<div class="table-item" v-for="item in dirveSysfive">
-							<div>
-								<span class="t-i-center">{{item[0].name}}</span>
-								<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
-									<Icon class="ic" type="ios-checkmark-circle-outline" />
-								</span>
-								<span class="t-i-right icexception" v-else>
-									<Icon type="ios-close-circle-outline" />
-								</span>
-							</div>
-						</div>
-					</div>
+				<Alert style="margin-top: 10px;" show-icon v-else>
+					提示
+					<Icon type="ios-bulb-outline" slot="icon"></Icon>
+					<template slot="desc">暂无车辆报告,等待检测</template>
+				</Alert>
+			</div>
+			<div class="recommoned buy-process" style="margin-top: 20px;">
+				<div class="title" style="margin-bottom: 20px;">购车流程</div>
+				<div class="car-detail">
+					<img class="process_cn" src="images/process_cn.png" >
 				</div>
 			</div>
-			<Alert style="margin-top: 10px;" show-icon v-else>
-				提示
-				<Icon type="ios-bulb-outline" slot="icon"></Icon>
-				<template slot="desc">暂无车辆报告,等待检测</template>
-			</Alert>
-		</div>
-		<div class="recommoned buy-process">
-			<div class="title">购车流程</div>
-			<div class="car-detail">
-				<img class="process_cn" src="images/process_cn.png" >
+			<div class="recommoned" style="margin-top: 20px;">
+				<div class="title">猜你想看</div>
+				<div class="car-detail">
+					<Row>
+						<i-col span="6" v-for="item in guesswant" :key='item.id'>
+							<div @click = "navigatorToDetail(item.id)" class="car-item">
+								<a>
+									<img class="bg" :src="item.thumb">
+									<img class="favorite" src="images/favorite.png">
+									<div class="car-explain">
+										<div class="explain-t">
+											<div class="car-name">
+												{{ item.model?item.model.year:''}}&nbsp;
+												{{item.series?item.series.name:''}}&nbsp;
+												{{item.model?item.model.displacement:''}}L
+											</div>
+											<div class="car-price">
+												{{item.price}}
+											</div>
+										</div>
+										<div class="distance">
+											{{item.mileage}} 英里·{{item.model?item.model.door_count:''}}门·
+											{{item.model?item.model.driver_type:''}}·
+											{{item.model?item.model.cylinder_count:''}}缸·
+											{{item.model?item.model.displacement:''}}L·
+											{{item.model?item.model.intake_type:''}}·
+											{{item.model?item.model.gearbox:''}}
+										</div>
+									</div>
+								</a>
+							</div>
+						</i-col>
+					</Row>
+				</div>
 			</div>
-		</div>
-		<div class="recommoned">
-			<div class="title">猜你想看</div>
-			<div class="car-detail">
-				<div class="car-item" v-for="item in $t('explain')">
-					<a href="#">
-						<img class="bg" src="images/car-1.jpg">
-						<div class="car-explain">
-							<div class="explain-t">
-								<div class="car-name">
-									{{item.name}}
+			<div class="misc">
+				<div class="footer-margino">
+					<ul>
+						<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
+					</ul>
+				</div>
+			</div>
+			<div class="footer">
+				<div class="footer-margint">
+					<div class="contact">
+						<div class="top">
+							<div class="logo"><img src="images/logo.jpg" ></div>
+							<div class="con-top-r">
+								<div class="wx">
+									<a>
+										<img src="images/humacar.png" >
+										<span>CHAMPION</span>
+									</a>
 								</div>
-								<div class="car-price">
-									{{item.price}}
+								<div class="phone">
+									<a>
+										<img src="images/phone.png" >
+										<span>+1(888)-888-6518</span>
+									</a>
 								</div>
 							</div>
-							<div class="distance">
-								{{item.distance}}
-							</div>
 						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-		</div>
-		<div class="misc">
-			<ul>
-				<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
-			</ul>
-		</div>
-		<div class="footer">
-			<div class="contact">
-				<div class="top">
-					<div class="logo"><img src="images/logo.jpg" ></div>
-					<div class="con-top-r">
-						<div class="wx">
-							<a>
-								<img src="images/humacar.png" >
-								<span>CHAMPION</span>
+						</div>
+					<div class="adress">
+						<ul>
+							<a href="#">
+								<li>
+									<span>Massachusetts state马塞诸塞州</span>
+									<p>134 east Howard st，Quincy，ma，02169，usa</p>
+								</li>
 							</a>
-						</div>
-						<div class="phone">
-							<a>
-								<img src="images/phone.png" >
-								<span>+1(888)-888-6518</span>
+							<a href="#">
+								<li>
+									<span>洛杉矶旗舰店地址</span>
+									<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+								</li>
 							</a>
-						</div>
+							<a href="#">
+								<li>
+									<span>洛杉矶旗舰店地址</span>
+									<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+								</li>
+							</a>
+						</ul>
 					</div>
 				</div>
-				</div>
-			<div class="adress">
-				<ul>
-					<a href="#">
-						<li>
-							<span>洛杉矶旗舰店地址</span>
-							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-						</li>
-					</a>
-					<a href="#">
-						<li>
-							<span>洛杉矶旗舰店地址</span>
-							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-						</li>
-					</a>
-					<a href="#">
-						<li>
-							<span>洛杉矶旗舰店地址</span>
-							<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
-						</li>
-					</a>
-				</ul>
 			</div>
+			<div class="copy">
+				<span>
+					Copyright@2016 CHAMPION Inc. Privacy Terms
+				</span>
+			</div>
+			<Spin size="large" fix v-if="spinShow"></Spin>
 		</div>
-		
-		<div class="copy">
-			<span>
-				Copyright@2016 CHAMPION Inc. Privacy Terms
-			</span>
-		</div>
-		<Spin size="large" fix v-if="spinShow"></Spin>
 	</div>
 </body>
 <script type="text/javascript">
@@ -576,25 +667,9 @@
 				phonenum:'',
 				checkcode:''
 			},
-			slideArr: [],
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
-			param: {
-				record:{"上牌时间":"2016-01","表显里程":"6.55万公里","排放标准":"国五","变速箱":"自动","排量":"2.0","看车方式":"到店服务",
-				"车身颜色":"白色","归属地":"上海","过户次数":"0次","年检到期时间":"2020-1","交强险到期时间":"2019-6","商业险到期时间":"已过期"},
-				"defaultparam": {"证件品牌型号":"马自达牌CAM7200B5","厂商":"长安马自达","级别":"紧凑型车","发动机":"2.0L 158马力 L4",
-				"变速箱":"6档手自一体变速箱(AT)","车身结构":"5门5座两厢车","长*宽*高(mm)":"4461/1795/1474","轴距(mm)":"2700","行李箱容积(L)":"350",
-				"整备质量(kg)":"1359"},
-				"engineparam":{"排量(L)":"2.0","进气形式":"自然吸气","气缸":"L4","最大马力(Ps)":"158","最大扭矩(N*m)":"202",
-				"燃料类型":"汽油","燃油标号":"92号","供油方式":"直喷","排放标准":"国五"},
-				"chassisbraking": {"驱动方式":"前置前驱","助力类型":"电动助力","前悬挂类型":"麦弗逊式独立悬架","后悬挂类型":"多连杆独立悬架",
-				"前制动类型":"通风盘式","后制动类型":"盘式","驻车制动类型":"-","前轮胎规格":"215/45 R18","后轮胎规格":"215/45 R18"},
-				"securityconfig": {"主副驾驶安全气囊":"正常/正常","前后排侧气囊":"无/无","前后排头部气囊":"无/无","胎压检测":"无","车内中控锁":"标配",
-				"儿童座椅接口":"标配","无钥匙启动":"标配","防抱死系统(ABS)":"标配","车身稳定控制(ESP)":"标配"},
-				"externalconfig": {"电动天窗":"标配","全景天窗":"无","电动吸合门":"无","感应后备箱":"无","感应雨刷":"无","后雨刷":"标配","前后电动车窗":"标配/标配",
-				"后视镜电动调节":"标配","后视镜加热":"标配"},
-				"interiorconfig": {"多功能方向盘":"标配","定速巡航":"标配","空调":"标配","自动空调":"标配","GPS导航":"标配","倒车雷达":"标配",
-				"倒车影像系统":"标配","真车座椅":"标配","前后排座椅加热":"无/无"}
-			},
+			slideArr: [],
+			//顶部右侧车辆基础信息
 			topinfo:{
 				name: '',
 				price: 0,
@@ -606,6 +681,7 @@
 			transferRecord: 0,
 			point: [],
 			min: 0,
+			// 初始配置
 			config: {
 				displacement: 0,
 				gearbox: '',
@@ -615,6 +691,7 @@
 				size: '',
 				seat: 0,
 			},
+			// 配置表格一
 			columns: [
 				{
 					title: '基本参数',
@@ -628,6 +705,7 @@
 				},
 			],
 			datada: [],
+			// 配置表格二
 			columnss: [
 				{
 					title: '安全配置',
@@ -641,6 +719,7 @@
 				}
 			],
 			datads: [],
+			// 检测报告
 			reportTime: '',
 			reportResult: [{},{},{},{}],
 			accidentArrone: [],
@@ -659,6 +738,17 @@
 			dirveSysfive: [],
 			spinShow: false,
 			carreport: true,
+			// 猜你想看
+			guesswant: [],
+			//预约看车
+			modal1: false,
+			verifyCode: '',
+			value1: '',
+			value2: '',
+			value3: '',
+			date: '',
+			time: '',
+			loading: true,
 		},
 		mounted() {
 			
@@ -905,11 +995,117 @@
 				}
 				that.spinShow = false;
 			},{id:goodId})
+			// 猜你想看
+			data.common('Car/recommendation',function(d){
+				// console.log(d)
+				that.guesswant = d.slice(0,4);
+			})
+			this.tranverifyCode();
 		},
 		computed: {
 			
 		},
 		methods: {
+			getdate: function(e) {
+				this.date = e;
+			},
+			gettime: function(e) {
+				this.time = e;
+			},
+			preorder: function() {
+				this.modal1 = true;
+				if(!localStorage.token){
+					this.$Message.warn('请先登录!');
+				}
+			},
+			tranverifyCode: function() {
+				var that = this;
+				data.common('Misc/verifyCode',function(d){
+					// console.log(d)
+					that.verifyCode = d.img;
+					localStorage.verifyKey = d.key;
+				})
+			},
+			ok: function() {
+				var that = this;
+				if(!localStorage.token){
+					this.$Message.warn('请先登录!');
+					this.loading = false;
+					return;
+				}
+				if(this.date == ''){
+					this.$Message.info('请选择日期!');
+					this.loading = false;
+					return;
+				}
+				if(this.time == ''){
+					this.$Message.info('请选择时间!');
+					this.loading = false;
+					return;
+				}
+				if(this.value1 == ''){
+					this.$Message.info('请填写手机号!');
+					this.loading = false;
+					return;
+				}
+				if(this.value2 == ''){
+					this.$Message.info('请填写验证码!');
+					this.loading = false;
+					return;
+				}
+				if(this.value3 == ''){
+					this.$Message.info('请填写微信号!');
+					this.loading = false;
+					return;
+				}
+				this.loading = true;
+				var pbody = {
+					phone: this.value1,
+					weixin: this.value3,
+					appointment: this.date + ' ' + this.time,
+					verify_code_key: localStorage.verifyKey,
+					verify_code: this.value2,
+				}
+				// console.log(pbody)
+				data.commonheader('CarWithAuth/reservation',function(d){
+					if(d != 400 && d != 'undefined'){
+						// console.log(d);
+						that.$Notice.success({
+							title: 'Notification',
+							desc:'预约成功,等待通知!',
+							duration: 0
+						});
+						that.modal1 = false;
+					}else{
+						that.$Message.error('预约失败!');
+						this.loading = false;
+					}
+					
+				},pbody);
+            },
+            cancel: function() {
+                
+            },
+			navigatorToDetail: function(e) {
+				localStorage.goodId = e;
+				window.location.href= "carDetail.html";
+			},
+			navTobuy: function(){
+				localStorage.postbody = JSON.stringify({
+					brand_id: '',
+					car_series_id: '',
+					car_type_id: '',
+					price: '',
+					mileage: '',
+					age: '',
+					gearbox: '',
+					color: '',
+					keyword: '',
+					sale_point: '',
+					page: 1,
+					sort: ''
+				})
+			},
 			//计算贷款方案
 			loanfun: function() {
 				for(var k in this.loanarr){
