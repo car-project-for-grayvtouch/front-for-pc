@@ -3,12 +3,19 @@
 .user-info{
 	box-sizing: border-box;
 	width: 100%;
-	height: 150px;
+	height: 160px;
 	padding: 25px;
-	position: relative;
+	display: flex;
 }
 .head-img{
+	border-radius: 50%;
 	float: left;
+	padding: 3px;
+	border: 1px solid #e0e0e0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
 }
 .head-img img{
 	width: 100px;
@@ -16,11 +23,37 @@
 	border-radius: 50%;
 }
 .user-num{
-	float: left;
+	width: 200px;
 	color: lightgrey;
+	height: 100%;
 	font-size: 14px;
-	margin-top: 80px;
-	margin-left: 10px;
+	margin-left: 25px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.un1{
+	height: 36px;
+	font-size: 24px;
+    font-weight: 400;
+    color: #616161;
+}
+.un2{
+	height: 20.8px;
+	display: flex;
+	align-items: center;
+}
+.un3{
+	height: 36px;
+	line-height: 36px;
+}
+.unr{
+	color: #757575;
+	font-size: 14px;
+}
+.update{
+	color: #ff6700;
+	font-size: 12px;
 }
 .user-info button{
 	float: right;
@@ -37,52 +70,6 @@
 	margin-top: 70px;
 	outline: none;
 }
-.record-type li{
-    height: 60px;
-}
-.record-type a{
-	display: block;
-    height: 100%;
-    width: 100%;
-    border-bottom: 1px solid #dde4ea;
-    color: #495056;
-    font-size: 14px;
-    position: relative;
-}
-.record-type a svg{
-	width: 40px;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 20px;
-	margin: auto;
-}
-.record-type li:nth-child(1) svg{
-	width: 50px;
-	margin-left: -7px;
-}
-.record-type a span{
-	width: 100px;
-	height: 20px;
-	position: absolute;
-	left: 70px;
-	top: 0;
-	bottom: 0;
-	margin: auto;
-}
-.record-type a:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    width: 8px;
-    height: 8px;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-    margin-top: -4px;
-    border-top: 1px solid #9ea2a6;
-    border-right: 1px solid #9ea2a6;
-}
 .sign-out{
 	color: #fff;
     background: #da2515;
@@ -95,4 +82,65 @@
     left: 2.5%;
 	margin-top: 20px;
 	font-size: 14px;
+}
+.margin{
+	display: flex;
+	background-color: white;
+}
+.icons{
+	width: 700px;
+	display: flex;
+	padding: 25px;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.icons .icon{
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	line-height: 90px;
+	display: inline-block;
+	font-size: 70px;
+	border-radius: 50%;
+	color: white;
+	margin-bottom: 20px;
+}
+.icon-item{
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin-bottom: 40px;
+}
+.icon-item:nth-child(1) .icon{
+	background-color: #FF6709;
+	
+}
+.icon-item:nth-child(2) .icon{
+	background-color: #8BC34A;
+	
+}
+.icon-item:nth-child(3) .icon{
+	background-color: #2196F3;
+}
+.icon-item:nth-child(4) .icon{
+	background-color: #FFAB00;
+	
+}
+.icon-item .right{
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.icon-item .right p{
+	font-size: 18px;
+}
+.icon-item .right span{
+	font-size: 14px;
+}
+.icon-item .right p span{
+	font-size: 18px;
+	color: #ff6700;
 }

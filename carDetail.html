@@ -12,7 +12,6 @@
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
 	<link rel="stylesheet" type="text/css" href="css/carDetail.css">
 	<link rel="stylesheet" type="text/css" href="dist/styles/iview.css">
-	<script type="text/javascript" src="js/flexible.js"></script>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script type="text/javascript" src="js/vue-i18n.js"></script>
@@ -790,6 +789,7 @@
 					var facecheck = rm[1].position;
 					var autodevice = rm[2].position;
 					var dirveSys = rm[3].position;
+					console.log(accident)
 					for(var k in accident){
 						if(k < 14){
 							that.accidentArrone.push(accident[k]);

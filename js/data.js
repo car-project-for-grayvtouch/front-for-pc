@@ -9,7 +9,15 @@ var data = {
 			success(data) {
 				if(data.code == 200){
 					fun(data.data);
+				}else if(data.code == 400){
+					fun(data.code);
 				}
+				else{
+					console.log(data);
+				}
+			},
+			error(data){
+				console.log('请求出错了!' + data);
 			}
 		});
 	}

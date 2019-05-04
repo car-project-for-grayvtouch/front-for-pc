@@ -593,11 +593,13 @@
 	background-color: #00C261;
 }
 .autocheck{
-	width: 100%;
+	width: 1112px;
 	height: 400px;
 	position: relative;
+	margin: 0 auto;
 }
 .autocheck img{
+	width: 578.84px;
 	height: 100%;
 	position: absolute;
 	left: 0;

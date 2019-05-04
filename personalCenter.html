@@ -6,19 +6,20 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>个人中心</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-	<script src="js/flexible.js"></script>
-	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
-	<script type="text/javascript" src="js/vue.js"></script>
-	<script type="text/javascript" src="js/global.js"></script>
-	<script src="js/vue-i18n.js"></script>
-	<script src="js/language.js" type="text/javascript" charset="utf-8"></script>
-	<script src="js/swiper.min.js"></script>
-	<script src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
+	<link rel="stylesheet" type="text/css" href="dist/styles/iview.css">
 	<link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/header.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/footer.css">
 	<link rel="stylesheet" href="css/personalCenter.css">
+	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/vue-i18n.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
+	<script type="text/javascript" src="dist/iview.min.js"></script>
+	<script type="text/javascript" src="js/language.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
 </head>
 <body>
 	<div id="personalCenter" v-cloak>
@@ -120,68 +121,178 @@
 			</transition>
 		</div>
 		<div class="margin">
-			
-			<div class="user-info">
-				<div class="head-img">
-					<img src="images/user01.jpg">
+			<i-menu :theme="theme3" active-name="1" @on-select="getIndex">
+				<Menu-Group title="基本信息">
+					<Menu-Item name="1">
+						<Icon type="md-person"></Icon>
+						用户信息
+					</Menu-Item>
+					<Menu-Item name="2">
+						<Icon type="md-person-add"></Icon>
+						完善信息
+					</Menu-Item>
+					<Menu-Item name="3">
+						<Icon type="md-keypad"></Icon>
+						修改密码
+					</Menu-Item>
+				</Menu-Group>
+				<Menu-Group title="我的车库">
+					<Menu-Item name="4">
+						<Icon type="md-clock"></Icon>
+						卖车申请
+					</Menu-Item>
+					<Menu-Item name="5">
+						<Icon type="md-clipboard"></Icon>
+						值购记录
+					</Menu-Item>
+					<Menu-Item name="6">
+						<Icon type="md-cart"></Icon>
+						已购车辆
+					</Menu-Item>
+				</Menu-Group>
+				<Menu-Group title="关注中心">
+					<Menu-Item name="7">
+						<Icon type="md-at"></Icon>
+						我的关注
+					</Menu-Item>
+					<Menu-Item name="8">
+						<Icon type="md-basket"></Icon>
+						我的收藏
+					</Menu-Item>
+					<Menu-Item name="9">
+						<Icon type="md-easel"></Icon>
+						浏览记录
+					</Menu-Item>
+					<Menu-Item name="10">
+						<Icon type="md-chatboxes"></Icon>
+						意见反馈
+					</Menu-Item>
+				</Menu-Group>
+			</i-menu>
+			<div class="user-right">
+				<div class="right-one">
+					<div class="user-info">
+						<div class="head-img">
+							<img src="images/user01.jpg">
+						</div>
+						<div class="user-num">
+							<div class="un1">
+								aflsnfweioafkd
+							</div>
+							<div class="un2">
+								你好
+							</div>
+							<div class="un2 update">
+								修改个人信息>
+							</div>
+						</div>
+						<div class="user-num unr">
+							<div class="un3">注册时间：2018-09-12</div>
+							<div class="un2">最近一次登录时间：2018-09-12</div>
+							<div class="un2">
+								<Icon type="md-phone-portrait" ></Icon>
+								<span>17759500581</span>
+							</div>
+						</div>
+					</div>
+					<div class="icons">
+						<div class="icon-item">
+							<div class="icon">
+								<Icon type="md-at"></Icon>
+							</div>
+							<div class="right">
+								<p>我的关注: <span>0</span></p>
+								<span>查看我的关注></span>
+							</div>
+						</div>
+						<div class="icon-item">
+							<div class="icon">
+								<Icon type="md-basket"></Icon>
+							</div>
+							<div class="right">
+								<p>我的收藏: <span>0</span></p>
+								<span>查看我的收藏></span>
+							</div>
+						</div>
+						<div class="icon-item">
+							<div class="icon">
+								<Icon type="md-easel"></Icon>
+							</div>
+							<div class="right">
+								<p>浏览记录: <span>0</span></p>
+								<span>查看浏览记录></span>
+							</div>
+						</div>
+						<div class="icon-item">
+							<div class="icon">
+								<Icon type="md-chatboxes"></Icon>
+							</div>
+							<div class="right">
+								<p>意见反馈: <span>0</span></p>
+								<span>查看意见反馈></span>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="user-num">17759500581</div>
-				<button>切换账号</button>
+				<div class="right-tow">
+					
+				</div>
 			</div>
-			<div class="record-type">
-				<ul>
-					<li>
-						<a href="#">
-							<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-icon_goumaijilunor"></use>
-							</svg>
-							<span>直购记录</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-tubiaolunkuo_huaban"></use>
-							</svg>
-							<span>卖车申请</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-yigouxiangmu"></use>
-							</svg>
-							<span>已购车辆</span>
-						</a>
-					</li>
-					<li>
-						<a href="collection.html">
-							<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-wodeshoucang"></use>
-							</svg>
-							<span>我的收藏</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-liulanjilu"></use>
-							</svg>
-							<span>浏览记录</span>
-						</a>
-					</li>
-					<li>
-						<a href="feedback.html">
-							<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-yijianfankui"></use>
-							</svg>
-							<span>意见反馈</span>
-						</a>
-					</li>
-				</ul>
-			</div>
-			<button type="button" class="sign-out" v-on:click="signout()">退出登录</button>
+			<!-- <button type="button" class="sign-out" v-on:click="signout()">退出登录</button> -->
 		</div>
+	<div class="misc">
+		<ul>
+			<a v-for="item in $t('misc')" :href="item.src"><li>{{item.content}}</li></a>
+		</ul>
+	</div>
+	<div class="footer">
+		<div class="contact">
+			<div class="top">
+				<div class="logo"><img src="images/logo.jpg" ></div>
+				<div class="con-top-r">
+					<div class="wx">
+						<a>
+							<img src="images/humacar.png" >
+							<span>CHAMPION</span>
+						</a>
+					</div>
+					<div class="phone">
+						<a>
+							<img src="images/phone.png" >
+							<span>+1(888)-888-6518</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			</div>
+		<div class="adress">
+			<ul>
+				<a href="#">
+					<li>
+						<span>Massachusetts state马塞诸塞州</span>
+						<p>134 east Howard st，Quincy，ma，02169，usa</p>
+					</li>
+				</a>
+				<a href="#">
+					<li>
+						<span>洛杉矶旗舰店地址</span>
+						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+					</li>
+				</a>
+				<a href="#">
+					<li>
+						<span>洛杉矶旗舰店地址</span>
+						<p>19575 E Walnut Dr S Ste C13&C14 City of Industry CA 91748</p>
+					</li>
+				</a>
+			</ul>
+		</div>
+	</div>
+	<div class="copy">
+		<span>
+			Copyright@2016 CHAMPION Inc. Privacy Terms
+		</span>
+	</div>
 	</div>
 </body>
 <script type="text/javascript">
@@ -200,6 +311,8 @@
 			},
 			enshow: "english",
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
+			theme3: 'light',
+			sidecur: 1,
 		},
 		mounted() {
 			if(locale){
@@ -217,9 +330,15 @@
 			}else{
 				this.switchlogin = true;
 			}
+			data.common('User/info',function(d){
+				console.log(d)
+			})
 		},
 		methods: {
-			signout:function() {
+			getIndex: function(e) {
+				console.log(e)
+			},
+			signout: function() {
 				localStorage.login = false;
 				window.location.href = "index.html";
 			},

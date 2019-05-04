@@ -106,22 +106,47 @@
 				<div class="login-page" v-if="loginshow">
 					<div class="loginMask" v-on:click="loginshow = !loginshow">
 					</div>
-					<div class="login">
-						<div class="close" v-on:click="loginshow = !loginshow">
-							<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-close"></use>
-							</svg>
-						</div>
-						<div class="login-item">
-							<input type="number" class="defa" v-model="logindata.phonenum" placeholder="手机号"/>
-						</div>
-						<div class="login-item">
-							<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
-							<input type="button" class="getcode" value="获取验证码" />
-						</div>
-						<input type="button" class="btn-login" value="登录" v-on:click="login()">
-						<div class="login-tips">
-							<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+					<div class="loginCenter">
+						<div class="login">
+							<div class="close" v-on:click="loginshow = !loginshow">
+								<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-close"></use>
+								</svg>
+							</div>
+							<Tabs value="name1">
+								<Tab-Pane label="登录" name="name1">
+									<div class="login-item">
+										<input type="text" class="defa" v-model="logindata.username" placeholder="请输入用户名"/>
+									</div>
+									<div class="login-item">
+										<input type="number" class="defa" v-model="logindata.password" placeholder="请输入密码"/>
+									</div>
+									<!-- <div class="login-item">
+										<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
+										<input type="button" class="getcode" value="获取验证码" />
+									</div> -->
+									<input type="button" class="btn-login" value="登录" @click="login()">
+									<div class="login-tips">
+										<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+									</div>
+								</Tab-Pane>
+								<Tab-Pane label="注册" name="name2">
+									<div class="login-item">
+										<input type="text" class="defa" v-model="registerdata.username" placeholder="请输入用户名"/>
+									</div>
+									<div class="login-item">
+										<input type="number" class="defa" v-model="registerdata.password" placeholder="请输入密码"/>
+									</div>
+									<!-- <div class="login-item">
+										<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
+										<input type="button" class="getcode" value="获取验证码" />
+									</div> -->
+									<input type="button" class="btn-login" value="注册" @click="register()">
+									<div class="login-tips">
+										<p class="legal">注册即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+									</div>
+								</Tab-Pane>
+							</Tabs>
 						</div>
 					</div>
 				</div>
@@ -189,10 +214,10 @@
 					</div>
 					<span class="price-title">CAR brand</span>
 					<div class="cartype-btns">
-						<button type="button" v-for="item in $t('cartype')">
+						<button type="button" v-for="item in $t('cartype')" @click="navigateToBrandBuy(item.id)">
 							<a href="buy.html">
 								<div class="img-c">
-									<img :src="'images/'+item.logo" >
+									<img :src="item.logo" >
 								</div>
 								<span class="cartype-name">{{item.name}}</span>
 							</a>
@@ -223,7 +248,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="recommoned" v-cloak>
+			<div class="recommoned">
 				<span class="re-title">{{ $t("recom") }}</span>
 				<div class="sel-type">
 					<ul>
@@ -231,6 +256,7 @@
 					</ul>
 				</div>
 				<div class="car-detail">
+					<Spin size="large" fix v-if="spinShow"></Spin>
 					<Row>
 						<i-col span="6" v-for="item in $t('explain')" :key='item.id'>
 							<div :data-id = "item.id" @click = "navigatorToDetail(item.id)" class="car-item">
@@ -263,32 +289,58 @@
 					</Row>
 				</div>
 			</div>
+			<img class="adv1" src="images/ad1.jpg" >
+			<div class="step">
+				<Steps :current="-1">
+					<Step title="步骤一" content="这里是该步骤的描述信息"><img src="images/index_buying_step0cn.png" ></Step>
+					<Step title="步骤二" content="这里是该步骤的描述信息"><img src="images/index_buying_step1cn.png" ></Step>
+					<Step title="步骤三" content="这里是该步骤的描述信息"><img src="images/index_buying_step2cn.png" ></Step>
+					<Step title="步骤四" content="这里是该步骤的描述信息"><img src="images/index_buying_step3cn.png" ></Step>
+					<Step title="步骤五" content="这里是该步骤的描述信息"><img src="images/index_buying_step4cn.png" ></Step>
+					<Step title="步骤六" content="这里是该步骤的描述信息"><img src="images/index_buying_step5cn.png" ></Step>
+				</Steps>
+			</div>
+			<div class="adv2">
+				<div class="adv2-item">
+					<img src="images/operate_img0.jpg" >
+				</div>
+				<div class="adv2-item">
+					<img src="images/operate_img1.jpg" >
+					<img src="images/operate_img2.jpg" >
+				</div>
+				<div class="adv2-item">
+					<img src="images/operate_img4.jpg" >
+				</div>
+				<div class="adv2-item">
+					<img src="images/operate_img3.jpg" >
+				</div>
+			</div>
 			<div class="comment">
 				<span class="re-title">CHAMPION故事</span>
 				<div class="com-content">
-					<Card style="width:350px"  v-for="item in comment" v-bind:key="item.id">
+					<Card style="width:calc(25% - 10px);margin-right: 10px;"  v-for="item in comment" v-bind:key="item.id">
 						<p slot="title">
-							{{item.car?item.car.title:''}}
+							{{item.title}}
 						</p>
 						<ul>
 							<li>
-								<img class="bg" :src="item.image[0]?item.image[0].url:''" style="width: 100%;">
+								<img class="bg" :src="item.image" style="width: 100%;">
 								<div class="buy-describle">
 									购车描述
 								</div>
 								<div class="media-art">
 									{{item.content}}
 								</div>
-								<div class="com-bot">
-									<div class="from">
-										来自{{item.user?item.user.username:''}}的评价
-									</div>
-									<div class="">
-										强烈推荐<span class="score">{{item.product_score}}</span>分
-									</div>
-								</div>
 							</li>
 						</ul>
+						<div class="com-bot">
+							<div class="from">
+								来自{{item.username}}的评价
+							</div>
+							<div class="">
+								强烈推荐<span class="score">{{item.score}}</span>分
+							</div>
+						</div>
 					</Card>
 				</div>
 			</div>
@@ -316,8 +368,6 @@
 						</div>
 					</div>
 			</div>
-			
-			
 		</div>
 		<div class="misc">
 			<ul>
@@ -376,8 +426,7 @@
 </body>
 <script type="text/javascript">
 	var locale = localStorage.locale;
-	$(function(){
-	new Vue({
+	var vm = new Vue({
 		i18n,
 		data: {
 			show: false,
@@ -388,8 +437,13 @@
 			loginshow: false,
 			switchlogin: true,
 			logindata: {
-				phonenum:'',
-				checkcode:''
+				username: '',
+				password: '',
+				remember: 'y'
+			},
+			registerdata: {
+				username: '',
+				password: ''
 			},
 			slideArr: [],
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
@@ -404,6 +458,7 @@
 			},
 			comment: [],
 			hotsearch: [],
+			spinShow: true,
 		},
 		mounted() {
 			var that = this;
@@ -542,6 +597,13 @@
 			data.common('ShowImage/home',function(d){
 				that.slideArr = d;
 			})
+			// 可选品牌
+			data.common('Brand/all',function(d){
+				// that.slideArr = d;
+				// console.log(d);
+				that.$i18n._vm.messages['zh-cn'].cartype = d;
+				that.$i18n._vm.messages['en'].cartype = d;
+			})
 			// 车行推荐默认最新最热数据
 			this.recommonedata(0);
 			// 文章列表
@@ -551,14 +613,21 @@
 				that.$i18n._vm.messages['en'].media = d;
 			})
 			// 评论
-			data.common('Car/featuredComment',function(d){
-				// console.log(d)
+			data.common('Story/listForHome',function(d){
+				console.log(d)
 				that.comment = d;
 			})
 			// 热门搜索
 			data.common('SearchLog/hot',function(d){
 				console.log(d)
-				that.hotsearch = d;
+				var curd = d;
+// 				for(var k in curd){
+// 					if(curd[k].series == null){
+// 						curd.splice(k,1);
+// 						return inge(curd);
+// 					}else{}
+// 				}
+				that.hotsearch = curd;
 				that.$nextTick(function(){
 					userTags.init();
 				})
@@ -583,6 +652,23 @@
 			
 		},
 		methods: {
+			navigateToBrandBuy: function(e){
+				localStorage.postbody = JSON.stringify({
+					brand_id: e,
+					car_series_id: '',
+					car_type_id: '',
+					price: '',
+					mileage: '',
+					age: '',
+					gearbox: '',
+					color: '',
+					keyword: '',
+					sale_point: '',
+					page: 1,
+					sort: ''
+				})
+				window.location.href= "buy.html";
+			},
 			navigateToSearchBuy: function(e){
 				var postbody = {
 					brand_id: '',
@@ -636,6 +722,7 @@
 			},
 			recommonedata:function(index) {
 				var that = this;
+				that.spinShow = true;
 				var form = {'type':'luxury'};
 				switch(index){
 					case 0:
@@ -654,24 +741,69 @@
 					form = {};
 				}
 				data.common('Car/listForHome',function(d){
-					console.log(d)
+					// console.log(d)
 					that.$i18n._vm.messages['zh-cn'].explain = d;
 					that.$i18n._vm.messages['en'].explain = d;
+					that.spinShow = false;
 				},form)
 			},
 			login: function() {
-				if(this.logindata.phonenum == ''){
-					alert("请填写手机号!");
+				var that = this;
+				if(this.logindata.username == ''){
+					// alert("请填写用户名!");
+					this.$Message.warning('请填写用户名!');
 					return;
 				}
-				else if(this.logindata.checkcode == ''){
-					alert("请填写验证码!");
+				else if(this.logindata.password == ''){
+					// alert("请填写密码!");
+					this.$Message.warning('请填写密码!');
 					return;
 				}
-				this.switchlogin = !this.switchlogin;
-				this.loginshow = !this.loginshow;
-				alert('登录成功!');
-				localStorage.login = true;
+				data.common('Login/login',function(d){
+					// that.slideArr = d;
+					if(d != 400){
+						// console.log(d)
+						localStorage.token = d;
+						that.switchlogin = !that.switchlogin;
+						that.loginshow = !that.loginshow;
+						that.$Notice.open({
+							title: '登录成功! ',
+						});
+						localStorage.login = true;
+					}
+				},this.logindata)
+				
+			},
+			register: function() {
+				var that = this;
+				if(this.registerdata.username == ''){
+					// alert("请填写用户名!");
+					this.$Message.warning('请填写用户名!');
+					return;
+				}
+				else if(this.registerdata.password == ''){
+					// alert("请填写密码!");
+					this.$Message.warning('请填写密码!');
+					return;
+				}
+				data.common('Login/register',function(d){
+						if(d == 400){
+							that && that.$Message.warning('此用户名已被使用，请更换!');
+						}else{
+							that.$Notice.open({
+								title: '注册成功!去登陆>>',
+							});
+						}
+// 					else if(da.code == 400){
+// 						that && that.$Message.warning('此用户名已被使用，请更换!');
+// 					}else if(da.code == 404){
+// 						that && that.$Message.warning('未找到数据!,请求返回代号');
+// 					}else if(da.code == 403){
+// 						that && that.$Message.warning('禁止操作!,请求返回代号');
+// 					}else{
+// 						that && that.$Message.warning('未知错误!');
+// 					}
+				},that.registerdata)
 			},
 			change :function() {
 				this.enshow = this.enshow == 'english' ? "中文" : "english";
@@ -709,12 +841,6 @@
 			}
 		}
 	}).$mount('#index')
-	
-		$('.car-item').click(function(e){
-			var num = e.target;
-			console.log(num)
-		})
-	})
 	// 现在应用程序已经准备好了！
 </script>
 </html>
