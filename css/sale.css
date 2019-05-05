@@ -1,3 +1,6 @@
+body{
+	background: #F5F5F5;
+}
 .sale-carimg{
 	width: 100%;
 }
@@ -8,16 +11,28 @@
 	background-color: white;
 	padding: 20px;
 	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+}
+.sale-info ul{
+	width: 48%;
+}
+.setw{
+	display: flex;
+	justify-content: space-between;
+}
+.setwi{
+	width: 48%;
 }
 .sale-info li{
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 }
 .sale-info label{
 	font-size: 15px;
 	display: block;
 	margin-bottom: 20px;
 }
-.sale-info input{
+/* .sale-info input{
 	font-size: 14px;
 	background-color: #F3F3F3;
 	border: 1px solid #E4E4E4;
@@ -27,16 +42,26 @@
 	padding: 10px;
 	box-sizing: border-box;
 	outline: none;
-}
+} */
 .sale-info .facecolor,.sale-info .insidecolor{
-	height: 40px;
 	border-bottom: 1px solid #F3F3F3;
+	font-size: 15px;
 }
 .sale-info .facecolor select{
 	outline: none;
 	background-color: #F3F3F3;
 	width: 100%;
 	height: 40px;
+}
+.face-con,.inside-con{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.fc-item{
+	margin-right: 20px;
+	cursor: pointer;
+	margin-bottom: 20px;
 }
 .sale-info .face-right{
 	float: right;
@@ -65,22 +90,17 @@
 	display: flex;
 	justify-content: space-between;
 }
-#check{
-	width: 50%;
-}
 .sale-info .checkcode img{
 	width: 150px;
 	height: 50px;
 }
-.sale-info .submit{
-	color: #fff;
-	background: #da2515;
-	width: 95%;
-	height: 40px;
-	border-radius: 0.5px;
-	border: none;
-	outline: none;
+.btnsub{
+	width: 400px;
+	margin-bottom: 30px;
 	position: relative;
-	left: 2.5%;
-	
+	left: 50%;
+	margin-left: -200px;
+}
+.btnc{
+	background-color: white;
 }

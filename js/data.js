@@ -10,7 +10,7 @@ var data = {
 				if(data.code == 200){
 					fun(data.data);
 				}else if(data.code == 400){
-					fun(data.code);
+					fun(data);
 				}
 				else{
 					console.log(data);
@@ -34,7 +34,8 @@ var data = {
 				if(data.code == 200){
 					fun(data.data);
 				}else if(data.code == 400){
-					fun(data.code);
+					fun(data);
+					console.log(data)
 				}
 				else{
 					console.log(data);

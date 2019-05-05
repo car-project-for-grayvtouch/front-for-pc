@@ -111,7 +111,7 @@
 											<input type="text" class="defa" v-model="logindata.username" placeholder="请输入用户名"/>
 										</div>
 										<div class="login-item">
-											<input type="number" class="defa" v-model="logindata.password" placeholder="请输入密码"/>
+											<input type="text" class="defa" v-model="logindata.password" placeholder="请输入密码"/>
 										</div>
 										<!-- <div class="login-item">
 											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
@@ -127,7 +127,7 @@
 											<input type="text" class="defa" v-model="registerdata.username" placeholder="请输入用户名"/>
 										</div>
 										<div class="login-item">
-											<input type="number" class="defa" v-model="registerdata.password" placeholder="请输入密码"/>
+											<input type="text" class="defa" v-model="registerdata.password" placeholder="请输入密码"/>
 										</div>
 										<!-- <div class="login-item">
 											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
@@ -329,8 +329,13 @@
 			switchlogin: true,
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
 			logindata: {
-				phonenum:'',
-				checkcode:''
+				username: '',
+				password: '',
+				remember: 'y'
+			},
+			registerdata: {
+				username: '',
+				password: ''
 			},
 		},
 		mounted() {
@@ -351,6 +356,28 @@
 			}
 		},
 		methods: {
+			register: function() {
+				var that = this;
+				if(this.registerdata.username == ''){
+					// alert("请填写用户名!");
+					this.$Message.warning('请填写用户名!');
+					return;
+				}
+				else if(this.registerdata.password == ''){
+					// alert("请填写密码!");
+					this.$Message.warning('请填写密码!');
+					return;
+				}
+				data.common('Login/register',function(d){
+						if(d == 400){
+							that && that.$Message.warning('此用户名已被使用，请更换!');
+						}else{
+							that.$Notice.success({
+								title: '注册成功!去登陆>>',
+							});
+						}
+				},that.registerdata)
+			},
 			navTobuy: function(){
 				localStorage.postbody = JSON.stringify({
 					brand_id: '',
@@ -368,18 +395,31 @@
 				})
 			},
 			login: function() {
-				if(this.logindata.phonenum == ''){
-					alert("请填写手机号!");
+				var that = this;
+				if(this.logindata.username == ''){
+					// alert("请填写用户名!");
+					this.$Message.warning('请填写用户名!');
 					return;
 				}
-				else if(this.logindata.checkcode == ''){
-					alert("请填写验证码!");
+				else if(this.logindata.password == ''){
+					// alert("请填写密码!");
+					this.$Message.warning('请填写密码!');
 					return;
 				}
-				this.switchlogin = !this.switchlogin;
-				this.loginshow = !this.loginshow;
-				alert('登录成功!');
-				localStorage.login = true;
+				data.common('Login/login',function(d){
+					// that.slideArr = d;
+					if(d != 400){
+						// console.log(d)
+						localStorage.token = d;
+						that.switchlogin = !that.switchlogin;
+						that.loginshow = !that.loginshow;
+						that.$Notice.success({
+							title: '登录成功! ',
+						});
+						localStorage.login = true;
+					}
+				},this.logindata)
+				
 			},
 			change :function() {
 			    this.enshow = this.enshow == 'english' ? "中文" : "english";

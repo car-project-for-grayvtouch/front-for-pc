@@ -22,101 +22,128 @@
 <body>
 	<div id="private" v-cloak>
 		<div class="header">
-			<div class="logos">
-				<img class="logor" src="images/logor.png">
-			</div>
-			<div class="person">
-				<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
-				<a v-else href="personalCenter.html">
-					<svg class="icon" aria-hidden="true">
-						<use xlink:href="#icon-yidenglu"></use>
-					</svg>
-				</a>
-			</div>
-			<transition name="fade" mode="out-in">
-					<button class="back-to-top" :key="topshow" v-on:click='top()' v-html="$t('header.top')"></button>
-			</transition>
-			<transition name="fadel" mode="out-in">
-			<button class="language-switch" :key="enshow" v-on:click='change()'>{{enshow}}</button>
-			</transition>
-			<transition name="fadeo" mode="out-in">
-					<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
-			</transition>
-					<div class="nav-menu">
-						<ul>
-							<li>
-								<a href="index.html">
-									<span>{{ $t("header.home") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="buy.html">
-									<span>{{ $t("header.buy") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="sale.html">
-									<span>{{ $t("header.sale") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="bargain.html">
-									<span>{{ $t("header.bargain") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="installment.html">
-									<span>{{ $t("header.hire") }}</span>
-								</a>
-							</li>
-							<li>
-								<a href="about.html">
-									<span>{{ $t("header.about") }}</span>
-								</a>
-							</li>
-							<li>
-								
-							</li>
-							<li>
-								<a href="">
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div id="tips">
+			<div class="header-margin">
+				<div class="logos">
+					<img class="logor" src="images/logor.png">
+				</div>
+				<div class="person">
+					<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+					<a v-else href="personalCenter.html">
 						<svg class="icon" aria-hidden="true">
-							<use xlink:href="#icon-ling"></use>
+							<use xlink:href="#icon-yidenglu"></use>
 						</svg>
-						<div class="text text-container">
-							<ul class="swiper-wrapper">
-								<li class="swiper-slide" v-for="item in tipsArr">{{item}}</li>
+					</a>
+				</div>
+				<transition name="fade" mode="out-in">
+						<button class="back-to-top" :key="topshow" v-on:click='top()' v-html="$t('header.top')"></button>
+				</transition>
+				<transition name="fadel" mode="out-in">
+				<button class="language-switch" :key="enshow" v-on:click='change()'>{{enshow}}</button>
+				</transition>
+				<transition name="fadeo" mode="out-in">
+						<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
+				</transition>
+						<div class="nav-menu">
+							<ul>
+								<li>
+									<a href="index.html">
+										<span>{{ $t("header.home") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="buy.html" @click="navTobuy">
+										<span>{{ $t("header.buy") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="sale.html">
+										<span>{{ $t("header.sale") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="bargain.html">
+										<span>{{ $t("header.bargain") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="installment.html">
+										<span>{{ $t("header.hire") }}</span>
+									</a>
+								</li>
+								<li>
+									<a href="about.html">
+										<span>{{ $t("header.about") }}</span>
+									</a>
+								</li>
+								<li>
+									
+								</li>
+								<li>
+									<a href="">
+									</a>
+								</li>
 							</ul>
 						</div>
-					</div>
-			<transition name="searchfade">
-				<div class="login-page" v-if="loginshow">
-					<div class="loginMask" v-on:click="loginshow = !loginshow">
-					</div>
-					<div class="login">
-						<div class="close" v-on:click="loginshow = !loginshow">
+						<div id="tips">
 							<svg class="icon" aria-hidden="true">
-								<use xlink:href="#icon-close"></use>
+								<use xlink:href="#icon-ling"></use>
 							</svg>
+							<div class="text text-container">
+								<ul class="swiper-wrapper">
+									<li class="swiper-slide" v-for="item in tipsArr">{{item}}</li>
+								</ul>
+							</div>
 						</div>
-						<div class="login-item">
-							<input type="number" class="defa" v-model="logindata.phonenum" placeholder="手机号"/>
+				<transition name="searchfade">
+					<div class="login-page" v-if="loginshow">
+						<div class="loginMask" v-on:click="loginshow = !loginshow">
 						</div>
-						<div class="login-item">
-							<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
-							<input type="button" class="getcode" value="获取验证码" />
-						</div>
-						<input type="button" class="btn-login" value="登录" v-on:click="login()">
-						<div class="login-tips">
-							<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+						<div class="loginCenter">
+							<div class="login">
+								<div class="close" v-on:click="loginshow = !loginshow">
+									<svg class="icon" aria-hidden="true">
+										<use xlink:href="#icon-close"></use>
+									</svg>
+								</div>
+								<Tabs value="name1">
+									<Tab-Pane label="登录" name="name1">
+										<div class="login-item">
+											<input type="text" class="defa" v-model="logindata.username" placeholder="请输入用户名"/>
+										</div>
+										<div class="login-item">
+											<input type="text" class="defa" v-model="logindata.password" placeholder="请输入密码"/>
+										</div>
+										<!-- <div class="login-item">
+											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
+											<input type="button" class="getcode" value="获取验证码" />
+										</div> -->
+										<input type="button" class="btn-login" value="登录" @click="login()">
+										<div class="login-tips">
+											<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+										</div>
+									</Tab-Pane>
+									<Tab-Pane label="注册" name="name2">
+										<div class="login-item">
+											<input type="text" class="defa" v-model="registerdata.username" placeholder="请输入用户名"/>
+										</div>
+										<div class="login-item">
+											<input type="text" class="defa" v-model="registerdata.password" placeholder="请输入密码"/>
+										</div>
+										<!-- <div class="login-item">
+											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
+											<input type="button" class="getcode" value="获取验证码" />
+										</div> -->
+										<input type="button" class="btn-login" value="注册" @click="register()">
+										<div class="login-tips">
+											<p class="legal">注册即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+										</div>
+									</Tab-Pane>
+								</Tabs>
+							</div>
 						</div>
 					</div>
-				</div>
-			</transition>
+				</transition>
+			</div>
 		</div>
 		<div class="margin">
 			<div class="content">
@@ -214,8 +241,13 @@
 			switchlogin: true,
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
 			logindata: {
-				phonenum:'',
-				checkcode:''
+				username: '',
+				password: '',
+				remember: 'y'
+			},
+			registerdata: {
+				username: '',
+				password: ''
 			},
 		},
 		mounted() {
@@ -236,6 +268,28 @@
 			}
 		},
 		methods: {
+			register: function() {
+				var that = this;
+				if(this.registerdata.username == ''){
+					// alert("请填写用户名!");
+					this.$Message.warning('请填写用户名!');
+					return;
+				}
+				else if(this.registerdata.password == ''){
+					// alert("请填写密码!");
+					this.$Message.warning('请填写密码!');
+					return;
+				}
+				data.common('Login/register',function(d){
+						if(d == 400){
+							that && that.$Message.warning('此用户名已被使用，请更换!');
+						}else{
+							that.$Notice.success({
+								title: '注册成功!去登陆>>',
+							});
+						}
+				},that.registerdata)
+			},
 			navTobuy: function(){
 				localStorage.postbody = JSON.stringify({
 					brand_id: '',
@@ -253,18 +307,33 @@
 				})
 			},
 			login: function() {
-				if(this.logindata.phonenum == ''){
-					alert("请填写手机号!");
+				var that = this;
+				if(this.logindata.username == ''){
+					// alert("请填写用户名!");
+					this.$Message.warning('请填写用户名!');
 					return;
 				}
-				else if(this.logindata.checkcode == ''){
-					alert("请填写验证码!");
+				else if(this.logindata.password == ''){
+					// alert("请填写密码!");
+					this.$Message.warning('请填写密码!');
 					return;
 				}
-				this.switchlogin = !this.switchlogin;
-				this.loginshow = !this.loginshow;
-				alert('登录成功!');
-				localStorage.login = true;
+				data.common('Login/login',function(d){
+					// that.slideArr = d;
+					if(d != 400){
+						// console.log(d)
+						localStorage.token = d;
+						that.switchlogin = !that.switchlogin;
+						that.loginshow = !that.loginshow;
+						that.$Notice.success({
+							title: '登录成功! ',
+						});
+						localStorage.login = true;
+					}else{
+						that.$Message.warning('登录失败,请检查用户名或密码是否正确!');
+					}
+				},this.logindata)
+				
 			},
 			change :function() {
 			    this.enshow = this.enshow == 'english' ? "中文" : "english";

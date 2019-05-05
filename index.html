@@ -120,7 +120,7 @@
 											<input type="text" class="defa" v-model="logindata.username" placeholder="请输入用户名"/>
 										</div>
 										<div class="login-item">
-											<input type="number" class="defa" v-model="logindata.password" placeholder="请输入密码"/>
+											<input type="text" class="defa" v-model="logindata.password" placeholder="请输入密码"/>
 										</div>
 										<!-- <div class="login-item">
 											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
@@ -136,7 +136,7 @@
 											<input type="text" class="defa" v-model="registerdata.username" placeholder="请输入用户名"/>
 										</div>
 										<div class="login-item">
-											<input type="number" class="defa" v-model="registerdata.password" placeholder="请输入密码"/>
+											<input type="text" class="defa" v-model="registerdata.password" placeholder="请输入密码"/>
 										</div>
 										<!-- <div class="login-item">
 											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
@@ -788,10 +788,12 @@
 						localStorage.token = d;
 						that.switchlogin = !that.switchlogin;
 						that.loginshow = !that.loginshow;
-						that.$Notice.open({
+						that.$Notice.success({
 							title: '登录成功! ',
 						});
 						localStorage.login = true;
+					}else{
+						that.$Message.warning('登录失败,请检查用户名或密码是否正确!');
 					}
 				},this.logindata)
 				
@@ -812,19 +814,10 @@
 						if(d == 400){
 							that && that.$Message.warning('此用户名已被使用，请更换!');
 						}else{
-							that.$Notice.open({
+							that.$Notice.success({
 								title: '注册成功!去登陆>>',
 							});
 						}
-// 					else if(da.code == 400){
-// 						that && that.$Message.warning('此用户名已被使用，请更换!');
-// 					}else if(da.code == 404){
-// 						that && that.$Message.warning('未找到数据!,请求返回代号');
-// 					}else if(da.code == 403){
-// 						that && that.$Message.warning('禁止操作!,请求返回代号');
-// 					}else{
-// 						that && that.$Message.warning('未知错误!');
-// 					}
 				},that.registerdata)
 			},
 			change :function() {
