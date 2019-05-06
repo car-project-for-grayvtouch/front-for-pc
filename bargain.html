@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1, minimum-scale=1">
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>CHAMPION值购</title>
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
 	<link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
+	<link rel="stylesheet" type="text/css" href="dist/styles/iview.css">
 	<link rel="stylesheet" type="text/css" href="css/bargin.css">
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/vue.js"></script>
@@ -17,6 +18,8 @@
 	<script type="text/javascript" src="js/vue-i18n.js"></script>
 	<script type="text/javascript" src="js/language.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="dist/iview.min.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
 	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
 </head>
 <body>
@@ -147,60 +150,109 @@
 		</div>
 		<div class="margin">
 			<img class="bargin-carimg" src="images/index_masthead0cn.jpg" alt="car">
-			<p class="bargain-total"> 已有&nbsp;<span>225</span>&nbsp;人提交了车辆需求</p>
 			<div class="bargin-info">
-				<p class="service">CHAMPION 为您服务</p>
-				<p class="service">请确保您的手机号可用，支持中国，美国手机号</p>
-				<ul>
+			<div class="bargain-total"> 
+				<div class="point">
+					<img src="images/formbannericon0cn.png" >
+					<img src="images/formbannericon1cn.png" >
+					<img src="images/formbannericon2cn.png" >
+				</div>
+				<div class="point-p">
+					<p>已有&nbsp;<span>225</span>&nbsp;人提交了车辆需求</p>
+					<p>寻找爱车的路上不孤单，留下您的联系方式，我们联系您!</p>
+				</div>
+			</div>
+			<p class="service"><span>CHAMPION 为您服务</span><br></p>
+			<div class="service-con">
+				<ul class="firul">
 					<li>
-						<input type="text" name="phoneNum" id="phoneNum" placeholder="请输入您的手机号"/>
-					</li>
-					<li>
-						<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的微信号"/>
-					</li>
-					<li>
-						<div class="checkcode">
-							<input type="text" name="check" id="check" placeholder="请输入您的验证码"/>
-							<img src="images/check.jpg" >
+						<div class="setw">
+							<i-input type="text" v-model="postbody.name" name="address" placeholder="请输入您心仪的品牌和车型"/>
 						</div>
-					</li>
-					<li>
-						<input type="text" name="wxnum" id="wxnum" placeholder="请输入您心仪的品牌和车型"/>
 						<label>例:2016年BMW428i</label>
 					</li>
 					<li>
-						<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的预期价格"/>
+						<div class="setw">
+							<i-input type="text" v-model="postbody.price" name="address" placeholder="请输入您的预期价格"/>
+						</div>
 						<label>例:3w-4.5w</label>
 					</li>
 					<li>
-						<input type="text" name="wxnum" id="wxnum" placeholder="请输入您的预期里程"/>
+						<div class="setw">
+							<i-input type="text" v-model="postbody.mileage" name="address" placeholder="请输入您的预期里程"/>
+						</div>
 						<label>例:10000-30000(英里)</label>
 					</li>
+					<li><span class="tip">请确保您的手机号可用，支持中国，美国手机号</span></li>
+					
+				</ul>
+				<ul class="secul">
 					<li>
 						<label class="remarkcolor">备注*</label>
-						<textarea class="remark" placeholder="请输入您爱车的配置,以、号隔开,以便我们对您的车辆有更多的了解">
-							
-						</textarea>
-					</li>
-					<li>
-						<label class="remarkcolor">CHAMPION值购车特点</label>
-						<div class="imgs">
-							<div class="img-item">
-								
-							</div>
-							<div class="img-item">
-								
-							</div>
-							<div class="img-item">
-								
-							</div>
-							<div class="img-item">
-								
-							</div>
-						</div>
+						<i-input v-model="postbody.remark" type="textarea" :rows="4" placeholder="请输入您爱车的配置,以便我们对您的车辆有更多的了解。" />
 					</li>
 				</ul>
-				<button class="submit" type="button">确认提交</button>
+			</div>
+			<ul class="thrul">
+				<li>
+					<i-input type="text" v-model="postbody.phone" name="address" placeholder="请输入您的手机号"/>
+				</li>
+				<li>
+					<i-input type="text" v-model="postbody.weixin" name="address" placeholder="请输入您的微信号"/>
+				</li>
+				<li>
+					<div class="checkcode">
+						<div class="setw">
+							<i-input type="text" v-model="postbody.verify_code" name="address" placeholder="请输入您的验证码"/>
+						</div>
+						<img  :src="verifyImg" @click="getVerifyImg" >
+					</div>
+				</li>
+			</ul>
+			<div class="btnc">
+				<i-button class="btnsub" type="success" long @click="post">确认提交</i-button>
+			</div>
+			<label class="remarkcolor service">CHAMPION值购车特点</label>
+			<ul class="fouul">
+				<div class="img-item">
+					<img src="images/c0.png" >
+					<p>优质车源批发价</p>
+				</div>
+				<div class="img-item">
+					<img src="images/c1.png" >
+					<p>无需现场看车直接网上购买</p>
+				</div>
+				<div class="img-item">
+					<img src="images/c2.png" >
+					<p>ASE认证工程师300+项全车检测</p>
+				</div>
+				<div class="img-item">
+					<img src="images/c3.png" >
+					<p>全美49个州7日内送达</p>
+				</div>
+			</ul>
+			<label class="remarkcolor service">CHAMPION值购车流程</label>
+			<ul class="fouul fiveul">
+				<div class="img-item">
+					<img src="images/l0.png" >
+					<p>客服会在适当的时间与您联系</p>
+				</div>
+				<img src="images/next.png" >
+				<div class="img-item">
+					<img src="images/l1.png" >
+					<p>CHAM会更精确的帮您选择您的爱车</p>
+				</div>
+				<img src="images/next.png" >
+				<div class="img-item">
+					<img src="images/l2.png" >
+					<p>值购车源抢先看</p>
+				</div>
+				<img src="images/next.png" >
+				<div class="img-item">
+					<img src="images/l3.png" >
+					<p>CHAM及时响应您的需求</p>
+				</div>
+			</ul>
 			</div>
 		</div>
 		<div class="misc">
@@ -283,6 +335,17 @@
 				username: '',
 				password: ''
 			},
+			verifyImg: '',
+			postbody: {
+				phone: '',
+				mileage: '',
+				price: '',
+				weixin: '',
+				remark: '',
+				verify_code_key: '',
+				verify_code: '',
+				name: '',
+			}
 		},
 		mounted() {
 			if(locale){
@@ -300,8 +363,75 @@
 			}else{
 				this.switchlogin = true;
 			}
+			this.getVerifyImg();
 		},
 		methods: {
+			post: function(){
+				var that = this;
+				if(!localStorage.token){
+					that && that.$Message.warning('请登录后进行申请!');
+					return;
+				}
+				if(this.postbody.name == ''){
+					that && that.$Message.warning('品牌和车型不能为空!');
+					return;
+				}
+				if(this.postbody.verify_code_key == ''){
+					that && that.$Message.warning('验证码尚未刷新!');
+					return;
+				}
+				if(this.postbody.price == ''){
+					that && that.$Message.warning('价格不能为空!');
+					return;
+				}
+				if(this.postbody.mileage == ''){
+					that && that.$Message.warning('里程不能为空!');
+					return;
+				}
+				if(this.postbody.remark == ''){
+					that && that.$Message.warning('备注留言不能为空!');
+					return;
+				}
+				if(this.postbody.phone == ''){
+					that && that.$Message.warning('手机号不能为空!');
+					return;
+				}
+				if(this.postbody.weixin == ''){
+					that && that.$Message.warning('微信号不能为空!');
+					return;
+				}
+				if(this.postbody.verify_code == ''){
+					that && that.$Message.warning('验证码不能为空!');
+					return;
+				}
+				// console.log(this.postbody)
+				data.commonheader('CarWithAuth/recommendationApplication',function(d){
+					console.log(d)
+						if(d.code !== 400){
+							that.$Notice.success({
+								title: '车辆需求提交成功! ',
+							});
+						}else{
+							var s = '';
+							for(var k in d.data){
+								s = s + d.data[k];
+							}
+							that.$Message.warning(s);
+						}
+				},this.postbody)
+			},
+			getVerifyImg: function(){
+				var that = this;
+				data.common('Misc/verifyCode',function(d){
+					// console.log(d)
+						if(d.code !== 400){
+							that.verifyImg = d.img;
+							that.postbody.verify_code_key = d.key;
+						}else{
+							console.log('请求验证码失败')
+						}
+				})
+			},
 			register: function() {
 				var that = this;
 				if(this.registerdata.username == ''){

@@ -1,19 +1,55 @@
+body{
+	background-color: #F5F5F5;
+}
 .bargin-carimg{
 	width: 100%;
 }
 .bargain-total{
 	width: 100%;
-	height: 40px;
+	height: 70px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-size: 15px;
+	padding: 0 20px;
+	box-sizing: border-box;
 	margin-bottom: 10px;
-	background-color: #DFECF5;
+	/* background-color: orangered; */
+}
+.point{
+	height: 100%;
+	display: flex;
+	align-items: center;
+	background-color: #2db7f5;
+}
+.point img{
+	height: 80%;
+	border-right: 1px solid white;
+	padding: 0 40px;
+}
+.point-p{
+	width: 900px;
+	padding-left: 40px;
+	height: 100%;
+	line-height: 70px;
+	background: url(../images/barginad.png);
+	background-size: cover;
+}
+.point-p p{
+	height: 50%;
+	display: flex;
+	align-items: center;
+}
+.point img:nth-last-child(1){
+	border-right: none;
 }
 #bargain .service{
+	font-size: 18px;
+	padding: 20px;
+	box-sizing: border-box;
+}
+.tip{
 	font-size: 15px;
-	margin-bottom: 15px;
 }
 .bargain-total span{
 	color: red;
@@ -24,7 +60,7 @@
     margin: 0 auto;
     position: relative;
 	background-color: white;
-	padding: 20px;
+	padding: 20px 0;
 	box-sizing: border-box;
 }
 .bargin-info li{
@@ -34,22 +70,22 @@
 	font-size: 15px;
 	color: #969696;
 }
-.bargin-info input {
+/* .bargin-info input {
     font-size: 15px;
     background-color: #F3F3F3;
     border: 1px solid #E4E4E4;
     width: 100%;
     height: 40px;
     border-radius: 0.3px;
-    padding: 10px;
     box-sizing: border-box;
     outline: none;
 	margin-bottom: 10px;
-}
+} */
 .bargin-info .checkcode {
     display: flex;
     justify-content: space-between;
 }
+
 #check {
     width: 50%;
 }
@@ -67,4 +103,79 @@
     outline: none;
     position: relative;
     left: 2.5%;
+}
+.service-con{
+	display: flex;
+	justify-content: space-between;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+.service-con ul{
+	width: 48%;
+}
+.firul li{
+	display: flex;
+	align-items: center;
+}
+.firul li .setw{
+	width: 50%;
+}
+.firul li label{
+	margin-left: 30px;
+}
+.secul li .ivu-input-wrapper{
+	height: 150px;
+}
+.secul li textarea{
+	height: 110px;
+}
+.thrul{
+	display: flex;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+.thrul li{
+	width: 24%;
+	margin-right: 30px;
+}
+.thrul li:nth-last-child(1){
+	width: 35%;
+}
+.thrul .setw{
+	width: 60%;
+}
+.btnsub {
+    width: 400px;
+    margin-bottom: 30px;
+    position: relative;
+    left: 50%;
+    margin-left: -200px;
+}
+.fouul{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 40px 20px;
+	box-sizing: border-box;
+}
+.fouul p{
+	text-align: center;
+	font-size: 15px;
+	margin-top: 20px;
+}
+.fouul .img-item{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.fouul .img-item img{
+	width: 180px;
+}
+.fiveul .img-item{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.fiveul .img-item img{
+	width: 130px;
 }
