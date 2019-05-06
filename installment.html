@@ -10,12 +10,15 @@
 	<link rel="stylesheet" type="text/css" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/footer.css">
 	<link rel="stylesheet" type="text/css" href="css/installment.css">
+	<link rel="stylesheet" type="text/css" href="dist/styles/iview.css">
 	<link rel="stylesheet" type="text/css" href="css/swiper.min.css"/>
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>	
 	<script type="text/javascript" src="js/swiper.min.js"></script>
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script type="text/javascript" src="js/vue-i18n.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="dist/iview.min.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
 	<script type="text/javascript" src="js/language.js" charset="utf-8"></script>
 	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_dsv54txqsew.js"></script>
 </head>
@@ -146,65 +149,71 @@
 			</div>
 		</div>
 		<div class="margin">
-			<img class="ins-carimg" src="images/index_masthead0cn.jpg" alt="car">
+			<div class="ins-carimg">
+				<img class="ins-carimgg" src="images/install.png" alt="car">
+				<div class="ins-post">
+					<p class="service">请确保您的手机号可用，支持中国，美国手机号</p>
+					<ul>
+						<li>
+							<i-input type="text" v-model="postbody.phone" placeholder="请输入您的手机号"/>
+						</li>
+						<li>
+							<i-input type="text" v-model="postbody.weixin" placeholder="请输入您的微信号"/>
+						</li>
+						<li>
+							<div class="">
+								<i-input type="text" v-model="postbody.verify_code" placeholder="请输入您的验证码"/>
+							</div>
+							<img :src="verifyImg" @click="getVerifyImg" >
+						</li>
+						<li>
+							<label>选择你的身份</label>
+							<div class="choose-radio">
+								<Radio-Group v-model="cprofession" @on-change="changeProfession">
+									<Radio label="工作"></Radio>
+									<Radio label="学生"></Radio>
+								</Radio-Group>
+							</div>
+						</li>
+						<li>
+							<label>是否有SSN</label>
+							<div class="choose-radio">
+								<Radio-Group v-model="cssn" @on-change="changeSsn">
+									<Radio label="是"></Radio>
+									<Radio label="否"></Radio>
+								</Radio-Group>
+							</div>
+						</li>
+						<i-button class="btnsub" type="success" long @click="post">立即申请</i-button>
+					</div>
+			</div>
 			<div class="ins-info">
-				<p class="service">请确保您的手机号可用，支持中国，美国手机号</p>
-				<ul>
-					<li>
-						<input class="input" type="text" name="phoneNum" id="phoneNum" placeholder="请输入您的手机号"/>
-					</li>
-					<li>
-						<div class="checkcode">
-							<input class="input" type="text" name="check" id="check" placeholder="请输入您的验证码"/>
-							<img src="images/check.jpg" >
-						</div>
-					</li>
-					<li>
-						<label>选择你的身份</label>
-						<div class="choose-radio">
-							<input type="radio" id="one" value="One" v-model="picked">
-							<label class="mr" for="one">平民</label>
-							<input type="radio" id="two" value="Two" v-model="picked">
-							<label class="mr" for="two">国王</label>
-							<input type="radio" id="three" value="Three" v-model="picked">
-							<label class="mr" for="three">工作</label>
-							<input type="radio" id="four" value="Four" v-model="picked">
-							<label class="mr" for="four">流浪</label>
-						</div>
-					</li>
-					<li>
-						<label>是否有SSN</label>
-						<div class="choose-radio">
-							<input type="radio" id="one" value="One" v-model="ssnpicked">
-							<label class="mr" for="one">是</label>
-							<input type="radio" id="two" value="Two" v-model="ssnpicked">
-							<label class="mr" for="two">否</label>
-						</div>
-					</li>
-					<button class="submit" type="button">立即申请</button>
 					<li>
 						<div class="trait">
 							<div class="img-item">
-								<svg class="icon" aria-hidden="true">
-									<use xlink:href="#icon-shoufu"></use>
-								</svg>
-								<span>低首付</span>
+								<img src="images/r0.png" >
+								<div class="">
+									<span>审核快</span>
+									<p>最快30分钟完成</p>
+								</div>
 							</div>
 							<div class="img-item">
-								<svg class="icon" aria-hidden="true">
-									<use xlink:href="#icon-yuegongdai"></use>
-								</svg>
-								<span>低月供</span>
+								<img src="images/r1.png" >
+								<div class="">
+									<span>通过率高</span>
+									<p>98%以上申请可通过</p>
+								</div>
 							</div>
 							<div class="img-item">
-								<svg class="icon" aria-hidden="true">
-									<use xlink:href="#icon-yiduiyifuwu"></use>
-								</svg>
-								<span>一对一服务</span>
+								<img src="images/r2.png" >
+								<div class="">
+									<span>一对一服务</span>
+									<p>金融专员全程服务</p>
+								</div>
 							</div>
 						</div>
 					</li>
-					<li>
+					<li class="lprogress">
 						<div class="loan-process">
 							<div class="title">贷款流程</div>
 							<div class="img-item">
@@ -212,16 +221,19 @@
 								<p>在线填写4项基本信息（姓名、身份证号、储蓄卡号、手机号)，秒出结果</p>
 							</div>
 							<div class="img-item">
-								<span><div class="step-num">2</div>预约看车</span>
-								<p>在线挑选爱车，线下售车顾问一对一全程陪同讲解</p>
+								<span><div class="step-num">2</div>电话回访</span>
+								<p>金融专员一对一讲解，定制金融方案</p>
 							</div>
+						</div>
+						<div class="loan-process">
+							<div class="title"><br></div>
 							<div class="img-item">
 								<span><div class="step-num">3</div>线上审批</span>
 								<p>资料提交后立即审批，免流水、免家访，最快30分钟出结果</p>
 							</div>
 							<div class="img-item">
 								<span><div class="step-num">4</div>放款提车</span>
-								<p>瓜子助您完成车辆过户、抵押等手续后，当天放款</p>
+								<p>CHAM助您完成车辆过户、抵押等手续后，当天放款</p>
 							</div>
 						</div>
 					</li>
@@ -308,6 +320,17 @@
 				username: '',
 				password: ''
 			},
+			postbody: {
+				phone: '',
+				weixin: '',
+				profession: '',
+				ssn: '',
+				verify_code_key: '',
+				verify_code: ''
+			},
+			verifyImg: '',
+			cprofession: '',
+			cssn: '',
 			picked: '',
 			ssnpicked: '',
 		},
@@ -327,8 +350,85 @@
 			}else{
 				this.switchlogin = true;
 			}
+			this.getVerifyImg();
 		},
 		methods: {
+			changeProfession: function(){
+				if(this.cprofession == "学生"){
+					this.postbody.profession = 'student';
+				}else if(this.cprofession == "工作"){
+					this.postbody.profession = 'work';
+				}else{
+					this.postbody.profession = this.cprofession;
+				}
+			},
+			changeSsn: function(){
+				if(this.cssn == "是"){
+					this.postbody.ssn = 'y';
+				}else if(this.cssn == "否"){
+					this.postbody.ssn = 'n';
+				}else{
+					this.postbody.ssn = this.cssn;
+				}
+			},
+			post: function(){
+				var that = this;
+				if(!localStorage.token){
+					that && that.$Message.warning('请登录后进行申请!');
+					return;
+				}
+				if(this.postbody.verify_code_key == ''){
+					that && that.$Message.warning('验证码尚未刷新!');
+					return;
+				}
+				if(this.postbody.phone == ''){
+					that && that.$Message.warning('手机号不能为空!');
+					return;
+				}
+				if(this.postbody.weixin == ''){
+					that && that.$Message.warning('微信号不能为空!');
+					return;
+				}
+				if(this.postbody.verify_code == ''){
+					that && that.$Message.warning('验证码不能为空!');
+					return;
+				}
+				if(this.postbody.profession == ''){
+					that && that.$Message.warning('请选择您的身份!');
+					return;
+				}
+				if(this.postbody.ssn == ''){
+					that && that.$Message.warning('请选择是否有SSN!');
+					return;
+				}
+				// console.log(this.postbody)
+				data.commonheader('CarWithAuth/stagingBuyApplication',function(d){
+					console.log(d)
+						if(d.code !== 400){
+							that.$Notice.success({
+								title: '申请成功! ',
+							});
+						}else{
+							var s = '';
+							for(var k in d.data){
+								s = s + d.data[k];
+							}
+							that.$Message.warning(s);
+						}
+				},this.postbody)
+			},
+			getVerifyImg: function(){
+				var that = this;
+				data.common('Misc/verifyCode',function(d){
+					// console.log(d)
+						if(d.code !== 400){
+							that.verifyImg = d.img;
+							that.postbody.verify_code_key = d.key;
+						}else{
+							console.log('请求验证码失败')
+						}
+				})
+			},
 			register: function() {
 				var that = this;
 				if(this.registerdata.username == ''){

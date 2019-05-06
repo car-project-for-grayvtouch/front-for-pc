@@ -1,8 +1,23 @@
+body{
+	background: #F5F5F5;
+}
 .ins-carimg{
 	width: 100%;
+	height: 400px;
+	overflow: hidden;
+	position: relative;
+}
+.ins-carimgg{
+	width: 100%;
+}
+.margin{
+	background-color: white;
+}
+#installment{
+	background: #F5F5F5;
 }
 #installment .service{
-	font-size: 15px;
+	font-size: 13px;
 	margin: 10px 0 10px 0;
 }
 .ins-info{
@@ -13,6 +28,9 @@
 	padding: 20px;
 	box-sizing: border-box;
 }
+li{
+	list-style: none;
+}
 .ins-info li{
 	margin-bottom: 20px;
 }
@@ -21,14 +39,14 @@
 	color: #969696;
 }
 .ins-info .input {
-    font-size: 15px;
+    /* font-size: 15px;
     background-color: #F3F3F3;
     border: 1px solid #E4E4E4;
     width: 100%;
     height: 40px;
     padding: 10px;
     box-sizing: border-box;
-    outline: none;
+    outline: none; */
 }
 .ins-info .checkcode {
     display: flex;
@@ -59,19 +77,26 @@
 	justify-content: space-around;
 	flex-wrap: wrap;
 	font-size: 15px;
-	text-align: center;
 	margin-top: 10px;
 }
 .ins-info .trait .img-item{
 	padding: 10px;
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
 	align-items: center;
 }
+.ins-info .trait .img-item img{
+	width: 70px;
+	margin-right: 20px;
+}
+.ins-info .trait .img-item span{
+	font-size: 25px;
+}
+.ins-info .trait .img-item p{
+    color: #b8b6b7;
+}
 .ins-info .trait .icon{
-	width: 40px;
-	height: 40px;
+	width: 80px;
+	height: 80px;
 	margin-bottom: 10px;
 }
 .ins-info .loan-process .title{
@@ -108,7 +133,7 @@
 	box-sizing: border-box;
 }
 .ins-info .submit {
-    color: #fff;
+    /* color: #fff;
     background: #da2515;
     width: 95%;
     height: 40px;
@@ -117,8 +142,32 @@
     outline: none;
     position: relative;
     left: 2.5%;
-	margin: 10px 0;
+	margin: 10px 0; */
 }
 .img-item{
 	margin-bottom: 20px;
+}
+.ins-post{
+	height: 350px;
+	width: 350px;
+	position: absolute;
+	top: 25px;
+	left: 100px;
+	background-color: white;
+	border-radius: 10px;
+	padding: 20px;
+	box-sizing: border-box;
+	opacity: 0.95;
+}
+.ins-post li{
+	display: flex;
+	margin-bottom: 18px;
+	justify-content: space-between;
+}
+.lprogress{
+	display: flex;
+	align-items: baseline;
+}
+.loan-process{
+	margin-right: 50px;
 }

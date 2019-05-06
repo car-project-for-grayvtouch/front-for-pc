@@ -158,7 +158,7 @@
 					<img src="images/formbannericon2cn.png" >
 				</div>
 				<div class="point-p">
-					<p>已有&nbsp;<span>225</span>&nbsp;人提交了车辆需求</p>
+					<p>已有&nbsp;<span>{{total}}</span>&nbsp;人提交了车辆需求</p>
 					<p>寻找爱车的路上不孤单，留下您的联系方式，我们联系您!</p>
 				</div>
 			</div>
@@ -345,7 +345,8 @@
 				verify_code_key: '',
 				verify_code: '',
 				name: '',
-			}
+			},
+			total: '',
 		},
 		mounted() {
 			if(locale){
@@ -364,8 +365,19 @@
 				this.switchlogin = true;
 			}
 			this.getVerifyImg();
+			this.getTotal()
 		},
 		methods: {
+			getTotal: function() {
+				//提交车辆需求统计人数
+				var that = this;
+// 				var myDate = new Date();
+// 				var time = myDate.toLocaleDateString().split('/').join('-');
+				data.common('Car/countForRecommendationApplication',function(d){
+					that.total = d;
+					console.log(d)
+				})
+			},
 			post: function(){
 				var that = this;
 				if(!localStorage.token){
