@@ -32,6 +32,7 @@ var data = {
 			data: form,
 			success(data) {
 				if(data.code == 200){
+					console.log(data)
 					fun(data.data);
 				}else if(data.code == 400){
 					fun(data);
