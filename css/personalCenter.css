@@ -148,3 +148,10 @@
 .icon-item .right .lookmy{
 	cursor: pointer;
 }
+.right-two{
+	width: 400px;
+	margin-top: 50px;
+}
+.two-space button{
+	margin-right: 80px;
+}

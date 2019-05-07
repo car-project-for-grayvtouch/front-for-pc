@@ -402,7 +402,7 @@
 					return;
 				}
 				// console.log(this.postbody)
-				data.commonheader('CarWithAuth/stagingBuyApplication',function(d){
+				data.common('CarWithAuth/stagingBuyApplication',function(d){
 					console.log(d)
 						if(d.code !== 400){
 							that.$Notice.success({

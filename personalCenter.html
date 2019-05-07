@@ -176,35 +176,27 @@
 						<Icon type="md-cart"></Icon>
 						已购车辆
 					</Menu-Item>
-				</Menu-Group>
-				<Menu-Group title="关注中心">
 					<Menu-Item name="7">
 						<Icon type="md-at"></Icon>
-						我的关注
+						预约车辆
 					</Menu-Item>
+				</Menu-Group>
+				<Menu-Group title="关注中心">
 					<Menu-Item name="8">
 						<Icon type="md-basket"></Icon>
 						我的收藏
 					</Menu-Item>
-					<Menu-Item name="9">
-						<Icon type="md-easel"></Icon>
-						浏览记录
-					</Menu-Item>
-					<Menu-Item name="10">
-						<Icon type="md-chatboxes"></Icon>
-						意见反馈
-					</Menu-Item>
 				</Menu-Group>
 			</i-menu>
 			<div class="user-right">
-				<div class="right-one">
+				<div class="right-one" v-if="leftIndex == 1">
 					<div class="user-info">
 						<div class="head-img">
 							<img src="images/user01.jpg">
 						</div>
 						<div class="user-num">
 							<div class="un1">
-								aflsnfweioafkd
+								{{userinfo.nickname}}
 							</div>
 							<div class="un2">
 								你好
@@ -214,11 +206,11 @@
 							</div>
 						</div>
 						<div class="user-num unr">
-							<div class="un3">注册时间：2018-09-12</div>
-							<div class="un2">最近一次登录时间：2018-09-12</div>
-							<div class="un2">
+							<div class="un3">注册时间：{{userinfo.create_time}}</div>
+							<div class="un2">最近一次登录时间：{{userinfo.last_time}}</div>
+							<div class="un2" v-if="userinfo.phone!==''">
 								<Icon type="md-phone-portrait" ></Icon>
-								<span>17759500581</span>
+								<span>{{userinfo.phone}}</span>
 							</div>
 						</div>
 					</div>
@@ -228,8 +220,26 @@
 								<Icon type="md-at"></Icon>
 							</div>
 							<div class="right">
-								<p>我的关注: <span>0</span></p>
-								<span class="lookmy">查看我的关注 ></span>
+								<p>预约车辆: <span>0</span></p>
+								<span class="lookmy">查看预约车辆 ></span>
+							</div>
+						</div>
+						<div class="icon-item">
+							<div class="icon">
+								<Icon type="md-easel"></Icon>
+							</div>
+							<div class="right">
+								<p>值购记录: <span>0</span></p>
+								<span class="lookmy">查看值购记录 ></span>
+							</div>
+						</div>
+						<div class="icon-item">
+							<div class="icon">
+								<Icon type="md-chatboxes"></Icon>
+							</div>
+							<div class="right">
+								<p>已购车辆: <span>0</span></p>
+								<span class="lookmy">查看已购车辆 ></span>
 							</div>
 						</div>
 						<div class="icon-item">
@@ -241,28 +251,30 @@
 								<span class="lookmy">查看我的收藏 ></span>
 							</div>
 						</div>
-						<div class="icon-item">
-							<div class="icon">
-								<Icon type="md-easel"></Icon>
-							</div>
-							<div class="right">
-								<p>浏览记录: <span>0</span></p>
-								<span class="lookmy">查看浏览记录 ></span>
-							</div>
-						</div>
-						<div class="icon-item">
-							<div class="icon">
-								<Icon type="md-chatboxes"></Icon>
-							</div>
-							<div class="right">
-								<p>意见反馈: <span>0</span></p>
-								<span class="lookmy">查看意见反馈 ></span>
-							</div>
-						</div>
 					</div>
 				</div>
-				<div class="right-tow">
-					
+				<div class="right-two" v-else-if="leftIndex == 2">
+					<i-form ref="formValidate" :model="formValidate" :label-width="80" @submit.native.prevent>
+						<Form-Item label="nickname" prop="nickname">
+							<i-Input v-model="formValidate.nickname" placeholder="Enter your nickname"  size="large"></i-Input >
+						</Form-Item>
+						<Form-Item label="phone" prop="phone">
+							<i-Input v-model="formValidate.area_code" placeholder="Enter your dialling code" size="large"></i-Input>
+						</Form-Item>
+						<Form-Item label="Gender" prop="gender">
+							<Radio-Group v-model="formValidate.sex"  size="large">
+								<Radio label="male">Male</Radio>
+								<Radio label="female">Female</Radio>
+							</Radio-Group>
+						</Form-Item>
+						<Form-Item prop="birthday">
+							<Date-Picker type="date" size="large" placeholder="Select date" format = "yyyy-MM-dd" v-model="formValidate.birthday" @on-change="getdate"></Date-Picker>
+						</Form-Item>
+						<Form-Item class="two-space">
+							<i-Button type="primary" size="large" @click="handleSubmit">Submit</i-Button>
+							<i-Button size="large" @click="handleReset('formValidate')" style="margin-left: 8px">Reset</i-Button>
+						</Form-Item>
+					</i-form>
 				</div>
 			</div>
 			<!-- <button type="button" class="sign-out" v-on:click="signout()">退出登录</button> -->
@@ -349,6 +361,15 @@
 			tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
 			theme3: 'light',
 			sidecur: 1,
+			userinfo: '',
+			formValidate: {
+				nickname: '',
+				area_code: '',
+				sex: '',
+				birthday: '',
+			},
+			birthday: '',
+			leftIndex: 1,
 		},
 		mounted() {
 			if(locale){
@@ -366,11 +387,59 @@
 			}else{
 				this.switchlogin = true;
 			}
-			data.common('User/info',function(d){
-				console.log(d)
-			})
+			this.userInfo();
 		},
 		methods: {
+			getdate (e) {
+				this.formValidate.birthday = e;
+			},
+			handleSubmit (name) {
+				var that = this;
+				if(!localStorage.token){
+					this.$Message.warning('请先登录!');
+					return;
+				}
+				if(this.formValidate.nickname == ''){
+					this.$Message.warning('Please enter your nickname!');
+					return;
+				}
+				if(this.formValidate.area_code == ''){
+					this.$Message.warning('Please enter your dialling code!');
+					return;
+				}
+				if(this.formValidate.sex == ''){
+					this.$Message.warning('Please select gender!');
+					return;
+				}
+				if(this.formValidate.birthday == ''){
+					this.$Message.warning('Please select birthday!');
+					return;
+				}
+				data.common('User/edit',function(d){
+					console.log(d)
+					if(d == 400 || d.code == 400){
+						that && that.$Message.warning('Fail!');
+					}else{
+						that.$Notice.success({
+							title: 'Success to update!',
+						});
+					}
+				},this.formValidate);
+            },
+            handleReset (name) {
+                this.$refs[name].resetFields();
+            },
+			userInfo: function() {
+				var that = this;
+				if(!localStorage.token){
+					this.$Message.warning('请先登录!');
+					return;
+				}
+				data.common('User/info',function(d){
+					console.log(d)
+					that.userinfo = d;
+				})
+			},
 			register: function() {
 				var that = this;
 				if(this.registerdata.username == ''){
@@ -410,7 +479,7 @@
 				})
 			},
 			getIndex: function(e) {
-				console.log(e)
+				this.leftIndex = e;
 			},
 			signout: function() {
 				localStorage.login = false;

@@ -111,15 +111,9 @@ body {
 #search{
 	width: 60%;
 	height: 40px;
-	position: absolute;
-	margin: auto;
 	left: 100px;
-	/* top: 455px; */
-	border-radius: 30px;
-	border: 1px solid #DEDEDE;
-	/* box-shadow: -2px 0 3px -1px #EAEBEC, 0 -2px 3px -1px #EAEBEC, 0 2px 3px -1px #EAEBEC, 2px 0 3px -1px #EAEBEC; */
 }
-#search:before{
+/* #search:before{
 	content: '';
 	background: url(../images/logol.png);
 	background-size: cover;
@@ -132,7 +126,6 @@ body {
 	bottom: 0;
 	margin: auto;
 	border-radius: 10px;	
-	/* z-index: -999; */
 }
 #search input {
 	width: 75%;
@@ -153,7 +146,7 @@ body {
 }
 #search input::-webkit-input-placeholder {
 	color: #aab2bd;
-}
+} */
 #tips{
 	width: 25%;
 	height: 50px;
@@ -344,7 +337,7 @@ body {
 	align-items: center;
 	justify-content: flex-end;
 }
-.search-page{
+/* .search-page{
 	position: absolute;
 	background-color: #f5f7fa;
 	width: 100%;
@@ -419,7 +412,7 @@ body {
 .search-record .clear{
 	border-top: 1px solid #e6e6e6;
 	text-align: center;
-}
+} */
 .record-item{
 	border-top: 1px solid #e6e6e6;
 	text-align: left;

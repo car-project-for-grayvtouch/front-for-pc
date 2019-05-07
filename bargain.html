@@ -417,7 +417,7 @@
 					return;
 				}
 				// console.log(this.postbody)
-				data.commonheader('CarWithAuth/recommendationApplication',function(d){
+				data.common('CarWithAuth/recommendationApplication',function(d){
 					console.log(d)
 						if(d.code !== 400){
 							that.$Notice.success({

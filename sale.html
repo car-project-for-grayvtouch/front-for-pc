@@ -391,7 +391,7 @@
 					return;
 				}
 				// console.log(this.postbody)
-				data.commonheader('CarWithAuth/saleApplication',function(d){
+				data.common('CarWithAuth/saleApplication',function(d){
 					console.log(d)
 						if(d.code !== 400){
 							that.$Notice.success({
