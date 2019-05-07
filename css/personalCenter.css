@@ -155,3 +155,10 @@
 .two-space button{
 	margin-right: 80px;
 }
+.right-three,.right-four{
+	width: 600px;
+	padding: 50px;
+}
+.right-three .ivu-form-item{
+	width: 350px;
+}

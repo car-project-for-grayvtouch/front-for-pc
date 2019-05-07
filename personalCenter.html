@@ -192,7 +192,8 @@
 				<div class="right-one" v-if="leftIndex == 1">
 					<div class="user-info">
 						<div class="head-img">
-							<img src="images/user01.jpg">
+							<img v-if="userinfo.avatar_explain!==''" :src="userinfo.avatar_explain">
+							<img v-else src="images/user01.jpg">
 						</div>
 						<div class="user-num">
 							<div class="un1">
@@ -276,6 +277,40 @@
 						</Form-Item>
 					</i-form>
 				</div>
+				<div class="right-three" v-else-if="leftIndex==3">
+					<i-Form ref="formInline" :model="formInline" :rules="ruleIn" inline @submit.native.prevent>
+						<Form-Item prop="user">
+							<i-Input type="password" v-model="formInline.o_password" size="large" placeholder="Please enter the old password">
+								<Icon type="ios-lock-outline" slot="prepend"></Icon>
+							</i-Input>
+						</Form-Item>
+						<Form-Item prop="password">
+							<i-Input type="password" v-model="formInline.password" size="large" placeholder="Please enter the new password">
+								<Icon type="ios-lock-outline" slot="prepend"></Icon>
+							</i-Input>
+						</Form-Item>
+						<Form-Item prop="confirm_password">
+							<i-Input type="password" v-model="formInline.confirm_password" size="large" placeholder="Please enter the new password again">
+								<Icon type="ios-lock-outline" slot="prepend"></Icon>
+							</i-Input>
+						</Form-Item>
+						<Form-Item>
+							<i-Button type="primary" @click="handleSubmitP('formInline')" size="large">update</i-Button>
+						</FormItem>
+					</i-Form>
+				</div>
+				<div class="right-four" v-else-if="leftIndex==4">
+					<div>
+						<i-Table highlight-row ref="currentRowTable" size="large" :columns="columns3" :data="data1"></i-Table>
+						<i-Button @click="handleClearCurrentRow" size="large">Clear</i-Button>
+					</div>
+				</div>
+				<div class="right-four" v-else-if="leftIndex==5">
+					<div>
+						<i-Table highlight-row ref="currentRowTable" size="large" :columns="columns3" :data="data1"></i-Table>
+						<i-Button @click="handleClearCurrentRow" size="large">Clear</i-Button>
+					</div>
+				</div>
 			</div>
 			<!-- <button type="button" class="sign-out" v-on:click="signout()">退出登录</button> -->
 		</div>
@@ -333,7 +368,7 @@
 	</div>
 	<div class="copy">
 		<span>
-			Copyright@2016 CHAMPION Inc. Privacy Terms
+			Copyright@2019 CHAMPION Inc. Privacy Terms
 		</span>
 	</div>
 	</div>
@@ -370,6 +405,69 @@
 			},
 			birthday: '',
 			leftIndex: 1,
+			formInline: {
+				o_password: '',
+				password: '',
+				confirm_password: ''
+			},
+			ruleIn: {
+				o_password: [
+					{ required: true, message: 'Please fill in the old password', trigger: 'blur' }
+				],
+				password: [
+					{ required: true, message: 'Please fill in the new password.', trigger: 'blur' },
+					{ type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+				],
+				confirm_password: [
+					{ required: true, message: 'Please fill in the new password again.', trigger: 'blur' },
+					{ type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+				],
+			},
+			columns3: [
+				{
+					type: 'index',
+					width: 60,
+					align: 'center'
+				},
+				{
+					title: 'Name',
+					key: 'name'
+				},
+				{
+					title: 'Age',
+					key: 'age'
+				},
+				{
+					title: 'Address',
+					key: 'address'
+				}
+			],
+			data1: [
+				{
+					name: 'John Brown',
+					age: 18,
+					address: 'New York No. 1 Lake Park',
+					date: '2016-10-03'
+				},
+				{
+					name: 'Jim Green',
+					age: 24,
+					address: 'London No. 1 Lake Park',
+					date: '2016-10-01'
+				},
+				{
+					name: 'Joe Black',
+					age: 30,
+					address: 'Sydney No. 1 Lake Park',
+					date: '2016-10-02'
+				},
+				{
+					name: 'Jon Snow',
+					age: 26,
+					address: 'Ottawa No. 2 Lake Park',
+					date: '2016-10-04'
+				}
+			]
 		},
 		mounted() {
 			if(locale){
@@ -390,6 +488,33 @@
 			this.userInfo();
 		},
 		methods: {
+			handleClearCurrentRow () {
+                this.$refs.currentRowTable.clearCurrentRow();
+            },
+			handleSubmitP(name) {
+				var that = this;
+                this.$refs[name].validate((valid) => {
+                    if (valid) {
+						data.common('User/updatePassword',function(d){
+							console.log(d)
+							if(d == 400 || d.code == 400){
+								var notice;
+								for(var k in d.data){
+									notice += d.data[k];
+								}
+								that && that.$Message.warning(notice);
+							}else{
+								that.$Notice.success({
+									title: 'Success to update!',
+									duration: 0
+								});
+							}
+						},this.formInline);
+                    } else {
+                        this.$Message.error('Fail!');
+                    }
+                })
+            },
 			getdate (e) {
 				this.formValidate.birthday = e;
 			},
@@ -423,6 +548,7 @@
 						that.$Notice.success({
 							title: 'Success to update!',
 						});
+						that.userInfo();
 					}
 				},this.formValidate);
             },
