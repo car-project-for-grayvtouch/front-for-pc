@@ -534,3 +534,13 @@ body {
 	position: relative;
 	min-height: 50px;
 }
+.adv1s{
+	position: relative;
+}
+.adv1s span{
+	position: absolute;
+	top: 0;
+	padding: 20px;
+	font-size: 30px;
+	color: white;
+}

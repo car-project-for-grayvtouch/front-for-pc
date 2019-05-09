@@ -2,16 +2,16 @@ var data = {
 	domain: 'http://admin.championcargroup.com/api/pc/',
 	common: function(url,fun,form){
 		var thatdata = this;
-// 		var locale = localStorage.locale;
-// 		if(!locale){
-// 			locale = i18n.locale;
-// 		}
-// 		if(locale == 'zh-cn'){
-// 			locale = 'cn';
-// 		}
-// 		if(form){
-// 			form.language = locale;
-// 		}
+		var locale = localStorage.locale;
+		if(!locale){
+			locale = i18n.locale;
+		}
+		if(locale == 'zh-cn'){
+			locale = 'cn';
+		}
+		if(form){
+			form.language = locale;
+		}
 		console.log(locale)
 		if(!localStorage.token){
 			$.ajax({
