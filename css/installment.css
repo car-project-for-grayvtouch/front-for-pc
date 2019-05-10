@@ -78,6 +78,7 @@ li{
 	flex-wrap: wrap;
 	font-size: 15px;
 	margin-top: 10px;
+	background: linear-gradient(-90deg,#557fbd 16%,#5892c5 34%,#5892c5 42%,#557fbd 84%);
 }
 .ins-info .trait .img-item{
 	padding: 10px;
@@ -90,9 +91,10 @@ li{
 }
 .ins-info .trait .img-item span{
 	font-size: 25px;
+	color: white;
 }
 .ins-info .trait .img-item p{
-    color: #b8b6b7;
+    color: gold;
 }
 .ins-info .trait .icon{
 	width: 80px;
@@ -100,13 +102,13 @@ li{
 	margin-bottom: 10px;
 }
 .ins-info .loan-process .title{
-	font-size: 15px;
+	font-size: 20px;
     height: 40px;
     border-bottom: 1px solid #f3f3f3;
     margin-bottom: 10px;
 }
 .ins-info .loan-process .img-item span{
-	font-size: 15px;
+	font-size: 20px;
 	color: #495056;
 	padding-left: 20px;
 	position: relative;
@@ -144,7 +146,7 @@ li{
     left: 2.5%;
 	margin: 10px 0; */
 }
-.img-item{
+.lprogress .img-item{
 	margin-bottom: 20px;
 }
 .ins-post{
@@ -167,6 +169,7 @@ li{
 .lprogress{
 	display: flex;
 	align-items: baseline;
+	justify-content: center;
 }
 .loan-process{
 	margin-right: 50px;

@@ -39,6 +39,18 @@
 				{"content":'Privacy statement','src':"private.html"},
 				{"content":'Suggestion feedback','src':"feedback.html"},
 				{"content":'Contact us','src':"contactUs.html"}],
+				tipsArr:['Free transfer','A variety of financial loan services','Within a year the national road rescue service','Multiple payment channels (POS machine, WeChat, alipay, etc.)','There is no 100% commission'],
+				wantBuy: 'Search',
+				hotSearch: 'Hot Search',
+				hotsearchArr: [],
+				comment: [],
+				adv1: 'CHAMPION is dedicated to delivering a premium car experience',
+				storyTitle: 'CHAMPION Story',
+				storyDes: 'Buy Car description',
+				froms: 'from ',
+				scom: "'s comment",
+				strongRecom: 'is highly recommended',
+				score: 'score',
 			},
 		    'zh-cn': {
 				header: {
@@ -87,6 +99,18 @@
 					{"content":'隐私声明','src':"private.html"},
 					{"content":'意见反馈','src':"feedback.html"},
 					{"content":'联系我们','src':"contactUs.html"}],
+					tipsArr:['免费代办过户','多种金融贷款服务','一年内全美道路救援服务','多种支付渠道（POS机、微信、支付宝等）多种支付渠道（POS机、微信、支付宝等）','100%无佣金'],
+					wantBuy: '我要买车',
+					hotSearch: '热门搜索',
+					hotsearchArr: [],
+					comment: [],
+					adv1: 'CHAMPION 专为用户带来更加优质的购车体验',
+					storyTitle: 'CHAMPION 故事',
+					storyDes: '购车描述',
+					froms: '来自',
+					scom: '的评价',
+					strongRecom: '强烈推荐',
+					score: '分',
 			}
 		}// 设置地区信息
 	})

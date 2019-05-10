@@ -42,7 +42,7 @@ body {
 	
 }
 .buy-title,.sale-title{
-	width: 100px;
+	width: 150px;
 	font-size: 20px;
 	margin-bottom: 15px;
 }
@@ -88,6 +88,8 @@ body {
     flex-direction: column;
 	box-shadow: 0 0 5px rgba(0, 0, 0, .3);
 	z-index: 98;
+	padding: 15px;
+	text-align: center;
 }
 .circle:hover{
 	cursor: pointer;
@@ -465,7 +467,7 @@ body {
 }
 .com-content .ivu-card-body{
 	/* height: 402px; */
-	margin-bottom: 30px;
+	margin-bottom: 50px;
 }
 .com-content .ivu-card{
 	position: relative;
@@ -482,8 +484,6 @@ body {
 .com-bot{
 	position: absolute;
 	bottom: 10px;
-	display: flex;
-	justify-content: space-between;
 	padding: 20px 0 0 0;
 	color: #969696;
 	box-sizing: border-box;
