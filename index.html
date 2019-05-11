@@ -375,7 +375,7 @@
 					</div>
 						<a href="#" class="deadress">
 							<li>
-								<span>Massachusetts state马塞诸塞州</span>
+								<span>{{$t('address')}}</span>
 								<p>134 east Howard st，Quincy，ma，02169，usa</p>
 							</li>
 						</a>
@@ -572,28 +572,13 @@
 			// 车行推荐默认最新最热数据
 			this.recommonedata(0);
 			
-			this.articled();
 			// 评论
 			this.commontd();
 			// 热门搜索
 			this.searchd();
 			
 			$('.sel-type').find('li').eq(0).addClass('sel').css('border-bottom','1px solid #C21B36');
-			if(locale){
-				i18n.locale = locale;
-				locale == 'zh-cn'?this.enshow = 'english':this.enshow = '中文';
-			}else{
-				(locale = i18n.locale);
-			}
-			var login;
-			 if(localStorage.login){
-				login = JSON.parse(localStorage.login);
-			 }
-			if(login){
-				this.switchlogin = false;
-			}else{
-				this.switchlogin = true;
-			}
+			orifun.initStatu(this);
 			
 		},
 		methods: {
@@ -616,22 +601,35 @@
 			},
 			commontd: function() {
 				var that = this;
-				data.common('Story/listForHome',function(d){
-					// console.log(d)
-					that.$i18n._vm.messages['zh-cn'].comment = d.slice(0, 4);
-				},{language: 'cn'})
-				data.common('Story/listForHome',function(d){
-					// console.log(d)
-					that.$i18n._vm.messages['en'].comment = d.slice(0, 4);
-				},{language: 'en'})
-			},
-			articled: function() {
-				// 文章列表
-				var that = this;
-				data.common('Article/listForHome',function(d){
-					// console.log(d)
-					that.$i18n._vm.messages['zh-cn'].media = d.slice(0, 4);
-					that.$i18n._vm.messages['en'].media = d.slice(0, 4);
+				function story(){
+					return	new Promise((resolve, reject) => {
+						data.common('Story/listForHome',function(d){
+							// console.log(d)
+							that.$i18n._vm.messages['zh-cn'].comment = d.slice(0, 4);
+						},{language: 'cn'})
+						resolve('step1');
+					})
+				}
+				story().then(() => {
+					data.common('Story/listForHome',function(d){
+						// console.log(d)
+						that.$i18n._vm.messages['en'].comment = d.slice(0, 4);
+					},{language: 'en'})
+
+				}).then(() => {
+					//文章
+					data.common('Article/listForHome',function(d){
+						// console.log(d)
+						that.$i18n._vm.messages['en'].media = d.slice(0, 4);
+					},{language: 'en'})
+
+				}).then(() => {
+					//文章
+					data.common('Article/listForHome',function(d){
+						// console.log(d)
+						that.$i18n._vm.messages['zh-cn'].media = d.slice(0, 4);
+					},{language: 'cn'})
+				
 				})
 			},
 			brandd:function() {
@@ -664,20 +662,22 @@
 			},
 			collection: function(index,id) {
 				var that = this;
+				var mes;
 				if(!localStorage.token){
-					this.$Message.warning('请先登录!');
+					mes = orifun.getInfo('Please login first!','请先登录!')
+					this.$Message.warning(mes);
 					return;
 				}
-				var ccol = that.$i18n._vm.messages[localStorage.locale].explain,
-				notice;
+				var ccol = that.$i18n._vm.messages[localStorage.locale].explain;
 				if(ccol[index].collected == 'y'){
 					ccol[index].collected = 'n';
-					notice = '取消收藏成功';
+					mes = orifun.getInfo('Cancel the collection successfully!','取消收藏成功!')
 				}else if(ccol[index].collected == 'n'){
+					mes = orifun.getInfo('Collection of success!','收藏成功!')
 					ccol[index].collected = 'y';
-					notice = '收藏成功';
 				}else{
-					this.$Message.error('等待数据更新!');
+					var notice = orifun.getInfo('Waiting for data update!','等待数据更新!');
+					this.$Message.error(notice);
 					return;
 				}
 				var collectBody = {
@@ -685,16 +685,17 @@
 					collected: ccol[index].collected
 				}
 				data.common('CarWithAuth/collect',function(d){
-						console.log(d);
+						// console.log(d);
 					if(d.code != 400 && d != 'undefined'){
 						that.$Notice.success({
 							title: 'Notification',
-							desc:notice,
+							desc:mes,
 							duration: 4
 						});
 						that.$i18n._vm.messages[localStorage.locale].explain = ccol;
 					}else{
-						that.$Message.error('收藏失败!');
+						mes = orifun.getInfo('Collection of failure!!','收藏失败!')
+						that.$Message.error(mes);
 					}
 					
 				},collectBody);
@@ -816,67 +817,13 @@
 				},form)
 			},
 			login: function() {
-				var that = this;
-				if(this.logindata.username == ''){
-					// alert("请填写用户名!");
-					this.$Message.warning('请填写用户名!');
-					return;
-				}
-				else if(this.logindata.password == ''){
-					// alert("请填写密码!");
-					this.$Message.warning('请填写密码!');
-					return;
-				}
-				data.common('Login/login',function(d){
-					// that.slideArr = d;
-					if(d != 400){
-						// console.log(d)
-						localStorage.token = d;
-						that.switchlogin = !that.switchlogin;
-						that.loginshow = !that.loginshow;
-						that.$Notice.success({
-							title: '登录成功! ',
-						});
-						localStorage.login = true;
-					}else{
-						that.$Message.warning('登录失败,请检查用户名或密码是否正确!');
-					}
-				},this.logindata)
-				
+				orifun.login(this);
 			},
 			register: function() {
-				var that = this;
-				if(this.registerdata.username == ''){
-					// alert("请填写用户名!");
-					this.$Message.warning('请填写用户名!');
-					return;
-				}
-				else if(this.registerdata.password == ''){
-					// alert("请填写密码!");
-					this.$Message.warning('请填写密码!');
-					return;
-				}
-				data.common('Login/register',function(d){
-						if(d == 400 || d.code == 400){
-							that && that.$Message.warning('此用户名已被使用，请更换!');
-						}else{
-							that.$Notice.success({
-								title: '注册成功!去登陆>>',
-							});
-						}
-				},that.registerdata)
+				orifun.register(this);
 			},
 			change :function() {
-				this.enshow = this.enshow == 'english' ? "中文" : "english";
-				var that = this;
-				setTimeout(function(){
-					if(i18n.locale == 'en'){
-						i18n.locale = 'zh-cn';
-					}else if(i18n.locale == 'zh-cn'){
-						i18n.locale = 'en';
-					}
-					localStorage.locale = i18n.locale;
-				},1100)
+				orifun.change(this);
 			},
 			selected:function(e) {
 				var len = e.target.parentNode.children.length;
@@ -893,10 +840,7 @@
 				$('html,body').animate({scrollTop: '0'}, 700);
 			},
 			consult:function(){
-				this.botshow = !this.botshow;
-				setTimeout(function(){
-					alert("功能完善中！")
-				},700)
+				orifun.consult(this);
 			}
 		}
 	}).$mount('#index')
