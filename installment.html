@@ -30,7 +30,7 @@
 					<img class="logor" src="images/logor.png">
 				</div>
 				<div class="person">
-					<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+					<span v-if="switchlogin" v-on:click="loginshow = !loginshow">{{$t('login')}}</span>
 					<a v-else href="personalCenter.html">
 						<svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-yidenglu"></use>
@@ -109,36 +109,36 @@
 									</svg>
 								</div>
 								<Tabs value="name1">
-									<Tab-Pane label="登录" name="name1">
+									<Tab-Pane :label="$t('log')" name="name1">
 										<div class="login-item">
-											<input type="text" class="defa" v-model="logindata.username" placeholder="请输入用户名"/>
+											<input type="text" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
 										</div>
 										<div class="login-item">
-											<input type="text" class="defa" v-model="logindata.password" placeholder="请输入密码"/>
+											<input type="text" class="defa" v-model="logindata.password" :placeholder="$t('ppass')"/>
 										</div>
 										<!-- <div class="login-item">
 											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
 											<input type="button" class="getcode" value="获取验证码" />
 										</div> -->
-										<input type="button" class="btn-login" value="登录" @click="login()">
+										<input type="button" class="btn-login" :value="$t('log')" @click="login()">
 										<div class="login-tips">
-											<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+											<p class="legal">{{$t('loginagree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 										</div>
 									</Tab-Pane>
-									<Tab-Pane label="注册" name="name2">
+									<Tab-Pane :label="$t('register')" name="name2">
 										<div class="login-item">
-											<input type="text" class="defa" v-model="registerdata.username" placeholder="请输入用户名"/>
+											<input type="text" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
 										</div>
 										<div class="login-item">
-											<input type="text" class="defa" v-model="registerdata.password" placeholder="请输入密码"/>
+											<input type="text" class="defa" v-model="registerdata.password" :placeholder="$t('ppass')"/>
 										</div>
 										<!-- <div class="login-item">
 											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
 											<input type="button" class="getcode" value="获取验证码" />
 										</div> -->
-										<input type="button" class="btn-login" value="注册" @click="register()">
+										<input type="button" class="btn-login" :value="$t('register')" @click="register()">
 										<div class="login-tips">
-											<p class="legal">注册即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+											<p class="legal">{{$t('registeragree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 										</div>
 									</Tab-Pane>
 								</Tabs>
@@ -152,39 +152,39 @@
 			<div class="ins-carimg">
 				<img class="ins-carimgg" src="images/install.png" alt="car">
 				<div class="ins-post">
-					<p class="service">请确保您的手机号可用，支持中国，美国手机号</p>
+					<p class="service">{{$t('loan.service')}}</p>
 					<ul>
 						<li>
-							<i-input type="text" v-model="postbody.phone" placeholder="请输入您的手机号"/>
+							<i-input type="text" v-model="postbody.phone" :placeholder="$t('loan.pphone')"/>
 						</li>
 						<li>
-							<i-input type="text" v-model="postbody.weixin" placeholder="请输入您的微信号"/>
+							<i-input type="text" v-model="postbody.weixin" :placeholder="$t('loan.weixin')"/>
 						</li>
 						<li>
 							<div class="">
-								<i-input type="text" v-model="postbody.verify_code" placeholder="请输入您的验证码"/>
+								<i-input type="text" v-model="postbody.verify_code" :placeholder="$t('loan.verifyCode')"/>
 							</div>
 							<img :src="verifyImg" @click="getVerifyImg" >
 						</li>
 						<li>
-							<label>选择你的身份</label>
+							<label>{{$t('loan.identity')}}</label>
 							<div class="choose-radio">
 								<Radio-Group v-model="cprofession" @on-change="changeProfession">
-									<Radio label="工作"></Radio>
-									<Radio label="学生"></Radio>
+									<Radio :label="$t('loan.work')"></Radio>
+									<Radio :label="$t('loan.student')"></Radio>
 								</Radio-Group>
 							</div>
 						</li>
 						<li>
-							<label>是否有SSN</label>
+							<label>{{$t('loan.ssn')}}</label>
 							<div class="choose-radio">
 								<Radio-Group v-model="cssn" @on-change="changeSsn">
-									<Radio label="是"></Radio>
-									<Radio label="否"></Radio>
+									<Radio :label="$t('loan.yes')"></Radio>
+									<Radio :label="$t('loan.no')"></Radio>
 								</Radio-Group>
 							</div>
 						</li>
-						<i-button class="btnsub" type="success" long @click="post">立即申请</i-button>
+						<i-button class="btnsub" type="success" long @click="post">{{$t('loan.apply')}}</i-button>
 					</div>
 			</div>
 			<div class="ins-info">
@@ -193,54 +193,54 @@
 							<div class="img-item">
 								<img src="images/credit-icon1-ed79fe3257.png" >
 								<div class="">
-									<span>低首付</span>
-									<p>首付低至3成</p>
+									<span>{{$t('loan.payment')}}</span>
+									<p>{{$t('loan.paymentc')}}</p>
 								</div>
 							</div>
 							<div class="img-item">
 								<img src="images/credit-icon2-0c04ae4a52.png" >
 								<div class="">
-									<span>放款快</span>
-									<p>98%最快当天放款</p>
+									<span>{{$t('loan.lending')}}</span>
+									<p>{{$t('loan.lendingc')}}</p>
 								</div>
 							</div>
 							<div class="img-item">
 								<img src="images/credit-icon3-15804de960.png" >
-								<div class="">
-									<span>低门槛</span>
-									<p>80%以上通过率</p>
+								<div class="" style="height: 100%;">
+									<span>{{$t('loan.threshold')}}</span>
+									<p>{{$t('loan.thresholdc')}}</p>
 								</div>
 							</div>
 							<div class="img-item">
 								<img src="images/credit-icon4-65c224a633.png" >
 								<div class="">
-									<span>定制化</span>
-									<p>专业客服全程服务</p>
+									<span>{{$t('loan.customized')}}</span>
+									<p>{{$t('loan.customizedc')}}</p>
 								</div>
 							</div>
 						</div>
 					</li>
 					<li class="lprogress">
 						<div class="loan-process">
-							<div class="title">贷款流程</div>
+							<div class="title">{{$t('loan.loanProcess')}}</div>
 							<div class="img-item">
-								<span><div class="step-num">1</div>30秒申请</span>
-								<p>在线填写4项基本信息（姓名、身份证号、储蓄卡号、手机号)，秒出结果</p>
+								<span><div class="step-num">1</div>{{$t('loan.tapply')}}</span>
+								<p>{{$t('loan.tapplyc')}}</p>
 							</div>
 							<div class="img-item">
-								<span><div class="step-num">2</div>电话回访</span>
-								<p>金融专员一对一讲解，定制金融方案</p>
+								<span><div class="step-num">2</div>{{$t('loan.Telephone')}}</span>
+								<p>{{$t('loan.Telephonec')}}</p>
 							</div>
 						</div>
 						<div class="loan-process">
 							<div class="title"><br></div>
 							<div class="img-item">
-								<span><div class="step-num">3</div>线上审批</span>
-								<p>资料提交后立即审批，免流水、免家访，最快30分钟出结果</p>
+								<span><div class="step-num">3</div>{{$t('loan.approval')}}</span>
+								<p>{{$t('loan.approvalc')}}</p>
 							</div>
 							<div class="img-item">
-								<span><div class="step-num">4</div>放款提车</span>
-								<p>CHAM助您完成车辆过户、抵押等手续后，当天放款</p>
+								<span><div class="step-num">4</div>{{$t('loan.pickup')}}</span>
+								<p>{{$t('loan.pickupc')}}</p>
 							</div>
 						</div>
 					</li>
@@ -263,21 +263,21 @@
 							<div class="wx">
 								<a>
 									<img src="images/humacar.png" >
-									<span>CHAMPION</span>
+									<span>{{$t('champion')}}</span>
 								</a>
 							</div>
 							<div class="phone">
 								<a>
 									<img src="images/phone.png" >
-									<span>+1(888)-888-6518</span>
+									<span>{{$t('addressphone')}}</span>
 								</a>
 							</div>
 						</div>
 					</div>
 						<a href="#" class="deadress">
 							<li>
-								<span>Massachusetts state马塞诸塞州</span>
-								<p>134 east Howard st，Quincy，ma，02169，usa</p>
+								<span>{{$t('address')}}</span>
+								<p>{{$t('addressDetail')}}</p>
 							</li>
 						</a>
 				</div>
@@ -344,9 +344,9 @@
 				}
 			},
 			changeSsn: function(){
-				if(this.cssn == "是"){
+				if(this.cssn == "是" || this.cssn == "yes"){
 					this.postbody.ssn = 'y';
-				}else if(this.cssn == "否"){
+				}else if(this.cssn == "否" || this.cssn == "no"){
 					this.postbody.ssn = 'n';
 				}else{
 					this.postbody.ssn = this.cssn;
@@ -355,31 +355,31 @@
 			post: function(){
 				var that = this;
 				if(!localStorage.token){
-					that && that.$Message.warning('请登录后进行申请!');
+					that && that.$Message.warning(orifun.getInfo('Please log in before apply!','请登录后进行申请!'));
 					return;
 				}
 				if(this.postbody.verify_code_key == ''){
-					that && that.$Message.warning('验证码尚未刷新!');
+					that && that.$Message.warning(orifun.getInfo('The verification code has not been refreshed!','验证码尚未刷新!'));
 					return;
 				}
 				if(this.postbody.phone == ''){
-					that && that.$Message.warning('手机号不能为空!');
+					that && that.$Message.warning(orifun.getInfo('The cell phone number cannot be empty!','手机号不能为空!'));
 					return;
 				}
 				if(this.postbody.weixin == ''){
-					that && that.$Message.warning('微信号不能为空!');
+					that && that.$Message.warning(orifun.getInfo('WeChat ID cannot be empty!','微信号不能为空!'));
 					return;
 				}
 				if(this.postbody.verify_code == ''){
-					that && that.$Message.warning('验证码不能为空!');
+					that && that.$Message.warning(orifun.getInfo('The verification code cannot be empty!','验证码不能为空!'));
 					return;
 				}
 				if(this.postbody.profession == ''){
-					that && that.$Message.warning('请选择您的身份!');
+					that && that.$Message.warning(orifun.getInfo('Please select your identity!','请选择您的身份!'));
 					return;
 				}
 				if(this.postbody.ssn == ''){
-					that && that.$Message.warning('请选择是否有SSN!');
+					that && that.$Message.warning(orifun.getInfo('Select whether there is an SSN!','请选择是否有SSN!'));
 					return;
 				}
 				// console.log(this.postbody)
@@ -410,95 +410,24 @@
 						}
 				})
 			},
-			register: function() {
-				var that = this;
-				if(this.registerdata.username == ''){
-					// alert("请填写用户名!");
-					this.$Message.warning('请填写用户名!');
-					return;
-				}
-				else if(this.registerdata.password == ''){
-					// alert("请填写密码!");
-					this.$Message.warning('请填写密码!');
-					return;
-				}
-				data.common('Login/register',function(d){
-						if(d == 400){
-							that && that.$Message.warning('此用户名已被使用，请更换!');
-						}else{
-							that.$Notice.success({
-								title: '注册成功!去登陆>>',
-							});
-						}
-				},that.registerdata)
-			},
 			navTobuy: function(){
-				localStorage.postbody = JSON.stringify({
-					brand_id: '',
-					car_series_id: '',
-					car_type_id: '',
-					price: '',
-					mileage: '',
-					age: '',
-					gearbox: '',
-					color: '',
-					keyword: '',
-					sale_point: '',
-					page: 1,
-					sort: ''
-				})
-			},
-			login: function() {
-				var that = this;
-				if(this.logindata.username == ''){
-					// alert("请填写用户名!");
-					this.$Message.warning('请填写用户名!');
-					return;
-				}
-				else if(this.logindata.password == ''){
-					// alert("请填写密码!");
-					this.$Message.warning('请填写密码!');
-					return;
-				}
-				data.common('Login/login',function(d){
-					// that.slideArr = d;
-					if(d != 400){
-						// console.log(d)
-						localStorage.token = d;
-						that.switchlogin = !that.switchlogin;
-						that.loginshow = !that.loginshow;
-						that.$Notice.success({
-							title: '登录成功! ',
-						});
-						localStorage.login = true;
-					}else{
-						that.$Message.warning('登录失败,请检查用户名或密码是否正确!');
-					}
-				},this.logindata)
-				
-			},
-			change :function() {
-			    this.enshow = this.enshow == 'english' ? "中文" : "english";
-			    var that = this;
-			    setTimeout(function(){
-					if(i18n.locale == 'en'){
-						i18n.locale = 'zh-cn';
-					}else if(i18n.locale == 'zh-cn'){
-						i18n.locale = 'en';
-					}
-					localStorage.locale = i18n.locale;
-			    },1100)
+				orifun.initpostbody();
 			},
 			top:function(){
-				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 700);
+				orifun.top(this);
+			},
+			login: function() {
+				orifun.login(this);
+			},
+			register: function() {
+				orifun.register(this);
+			},
+			change :function() {
+				orifun.change(this);
 			},
 			consult:function(){
-				this.botshow = !this.botshow;
-				setTimeout(function(){
-					alert("功能完善中！")
-				},700)
-			}
+				orifun.consult(this);
+			},
 		}
 	}).$mount('#installment')
 	// 现在应用程序已经准备好了！

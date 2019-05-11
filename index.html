@@ -36,7 +36,7 @@
 					<img class="logor" src="images/logor.png">
 				</div>
 				<div class="person">
-					<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+					<span v-if="switchlogin" v-on:click="loginshow = !loginshow">{{$t('login')}}</span>
 					<a v-else href="personalCenter.html">
 						<svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-yidenglu"></use>
@@ -115,36 +115,36 @@
 									</svg>
 								</div>
 								<Tabs value="name1">
-									<Tab-Pane label="登录" name="name1">
+									<Tab-Pane :label="$t('log')" name="name1">
 										<div class="login-item">
-											<input type="text" class="defa" v-model="logindata.username" placeholder="请输入用户名"/>
+											<input type="text" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
 										</div>
 										<div class="login-item">
-											<input type="text" class="defa" v-model="logindata.password" placeholder="请输入密码"/>
+											<input type="text" class="defa" v-model="logindata.password" :placeholder="$t('ppass')"/>
 										</div>
 										<!-- <div class="login-item">
 											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
 											<input type="button" class="getcode" value="获取验证码" />
 										</div> -->
-										<input type="button" class="btn-login" value="登录" @click="login()">
+										<input type="button" class="btn-login" :value="$t('log')" @click="login()">
 										<div class="login-tips">
-											<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+											<p class="legal">{{$t('loginagree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 										</div>
 									</Tab-Pane>
-									<Tab-Pane label="注册" name="name2">
+									<Tab-Pane :label="$t('register')" name="name2">
 										<div class="login-item">
-											<input type="text" class="defa" v-model="registerdata.username" placeholder="请输入用户名"/>
+											<input type="text" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
 										</div>
 										<div class="login-item">
-											<input type="text" class="defa" v-model="registerdata.password" placeholder="请输入密码"/>
+											<input type="text" class="defa" v-model="registerdata.password" :placeholder="$t('ppass')"/>
 										</div>
 										<!-- <div class="login-item">
 											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
 											<input type="button" class="getcode" value="获取验证码" />
 										</div> -->
-										<input type="button" class="btn-login" value="注册" @click="register()">
+										<input type="button" class="btn-login" :value="$t('register')" @click="register()">
 										<div class="login-tips">
-											<p class="legal">注册即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+											<p class="legal">{{$t('registeragree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 										</div>
 									</Tab-Pane>
 								</Tabs>
@@ -181,11 +181,11 @@
 						</div>
 						
 					</div>
-					<span class="price-title">CAR Price <a href="buy.html">{{ $t("more") }}&nbsp;></a></span>
+					<span class="price-title">{{ $t("carPrice") }} <a href="buy.html">{{ $t("more") }}&nbsp;></a></span>
 					<div class="price-btns">
 						<button class="btn" type="button" v-for="item in $t('price')" style="border: none;"><a @click="navigateTopricebuy(item.id)">{{item.detail}}</a></button>
 					</div>
-					<span class="price-title">CAR brand</span>
+					<span class="price-title">{{ $t("carBrand") }}</span>
 					<div class="cartype-btns">
 						<button type="button" v-for="item in $t('cartype')" @click="navigateToBrandBuy(item.id)">
 							<a href="buy.html">
@@ -215,7 +215,7 @@
 					        <h2 v-else-if="item.type === 'series'">{{item.series?item.series.name:''}}</h2>
 					        <h2 v-else-if="item.type === 'keyword'">{{item.value}}</h2>
 					        <h2 v-else-if="item.type === 'sale_point'">{{item.sale_point}}</h2>
-					        <h2 v-else>其他</h2>
+					        <h2 v-else>{{ $t("other") }}</h2>
 					    </div>
 					</div>
 				</div>
@@ -248,9 +248,9 @@
 											</div>
 										</div>
 										<div class="distance">
-											{{item.mileage}} 英里·{{item.model?item.model.door_count:''}}门·
+											{{item.mileage}} {{$t('miles')}}·{{item.model?item.model.door_count:''}}{{$t('door')}}·
 											{{item.model?item.model.driver_type:''}}·
-											{{item.model?item.model.cylinder_count:''}}缸·
+											{{item.model?item.model.cylinder_count:''}}{{$t('cylinder')}}·
 											{{item.model?item.model.displacement:''}}L·
 											{{item.model?item.model.intake_type:''}}·
 											{{item.model?item.model.gearbox:''}}
@@ -268,12 +268,12 @@
 			</div>
 			<div class="step">
 				<Steps :current="-1">
-					<Step title="步骤一" content="这里是该步骤的描述信息"><img src="images/index_buying_step0cn.png" ></Step>
-					<Step title="步骤二" content="这里是该步骤的描述信息"><img src="images/index_buying_step1cn.png" ></Step>
-					<Step title="步骤三" content="这里是该步骤的描述信息"><img src="images/index_buying_step2cn.png" ></Step>
-					<Step title="步骤四" content="这里是该步骤的描述信息"><img src="images/index_buying_step3cn.png" ></Step>
-					<Step title="步骤五" content="这里是该步骤的描述信息"><img src="images/index_buying_step4cn.png" ></Step>
-					<Step title="步骤六" content="这里是该步骤的描述信息"><img src="images/index_buying_step5cn.png" ></Step>
+					<Step :title="$t('indexstep.step0')" content="这里是该步骤的描述信息"><img src="images/index_buying_step0cn.png" ></Step>
+					<Step :title="$t('indexstep.step1')" content="这里是该步骤的描述信息"><img src="images/index_buying_step1cn.png" ></Step>
+					<Step :title="$t('indexstep.step2')" content="这里是该步骤的描述信息"><img src="images/index_buying_step2cn.png" ></Step>
+					<Step :title="$t('indexstep.step3')" content="这里是该步骤的描述信息"><img src="images/index_buying_step3cn.png" ></Step>
+					<Step :title="$t('indexstep.step4')" content="这里是该步骤的描述信息"><img src="images/index_buying_step4cn.png" ></Step>
+					<Step :title="$t('indexstep.step5')" content="这里是该步骤的描述信息"><img src="images/index_buying_step5cn.png" ></Step>
 				</Steps>
 			</div>
 			<div class="adv2">
@@ -337,7 +337,7 @@
 										{{item.content?item.content.content:''}}
 									</div>
 									<div class="media-more">
-										更多<Icon type="ios-play-outline" />
+										{{$t('more')}}<Icon type="ios-play-outline" />
 									</div>
 								</div>
 							</a>
@@ -362,13 +362,13 @@
 							<div class="wx">
 								<a>
 									<img src="images/humacar.png" >
-									<span>CHAMPION</span>
+									<span>{{$t('champion')}}</span>
 								</a>
 							</div>
 							<div class="phone">
 								<a>
 									<img src="images/phone.png" >
-									<span>+1(888)-888-6518</span>
+									<span>{{$t('addressphone')}}</span>
 								</a>
 							</div>
 						</div>
@@ -376,7 +376,7 @@
 						<a href="#" class="deadress">
 							<li>
 								<span>{{$t('address')}}</span>
-								<p>134 east Howard st，Quincy，ma，02169，usa</p>
+								<p>{{$t('addressDetail')}}</p>
 							</li>
 						</a>
 				</div>
@@ -701,20 +701,7 @@
 				},collectBody);
 			},
 			navTobuy: function(){
-				localStorage.postbody = JSON.stringify({
-					brand_id: '',
-					car_series_id: '',
-					car_type_id: '',
-					price: '',
-					mileage: '',
-					age: '',
-					gearbox: '',
-					color: '',
-					keyword: '',
-					sale_point: '',
-					page: 1,
-					sort: ''
-				})
+				orifun.initpostbody();
 			},
 			navigateToBrandBuy: function(e){
 				localStorage.postbody = JSON.stringify({
@@ -816,15 +803,6 @@
 					that.spinShow = false;
 				},form)
 			},
-			login: function() {
-				orifun.login(this);
-			},
-			register: function() {
-				orifun.register(this);
-			},
-			change :function() {
-				orifun.change(this);
-			},
 			selected:function(e) {
 				var len = e.target.parentNode.children.length;
 				var node = e.target.parentNode.children;
@@ -836,8 +814,16 @@
 				e.target.style.borderBottom = '1px solid #C21B36';
 			},
 			top:function(){
-				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 700);
+				orifun.top(this);
+			},
+			login: function() {
+				orifun.login(this);
+			},
+			register: function() {
+				orifun.register(this);
+			},
+			change :function() {
+				orifun.change(this);
 			},
 			consult:function(){
 				orifun.consult(this);

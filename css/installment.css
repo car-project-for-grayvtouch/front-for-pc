@@ -94,6 +94,7 @@ li{
 	color: white;
 }
 .ins-info .trait .img-item p{
+	width: 150px;
     color: gold;
 }
 .ins-info .trait .icon{
@@ -150,7 +151,6 @@ li{
 	margin-bottom: 20px;
 }
 .ins-post{
-	height: 350px;
 	width: 350px;
 	position: absolute;
 	top: 25px;

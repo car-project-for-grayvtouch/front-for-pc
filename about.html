@@ -27,7 +27,7 @@
 					<img class="logor" src="images/logor.png">
 				</div>
 				<div class="person">
-					<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+					<span v-if="switchlogin" v-on:click="loginshow = !loginshow">{{$t('login')}}</span>
 					<a v-else href="personalCenter.html">
 						<svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-yidenglu"></use>
@@ -106,36 +106,36 @@
 									</svg>
 								</div>
 								<Tabs value="name1">
-									<Tab-Pane label="登录" name="name1">
+									<Tab-Pane :label="$t('log')" name="name1">
 										<div class="login-item">
-											<input type="text" class="defa" v-model="logindata.username" placeholder="请输入用户名"/>
+											<input type="text" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
 										</div>
 										<div class="login-item">
-											<input type="text" class="defa" v-model="logindata.password" placeholder="请输入密码"/>
+											<input type="text" class="defa" v-model="logindata.password" :placeholder="$t('ppass')"/>
 										</div>
 										<!-- <div class="login-item">
 											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
 											<input type="button" class="getcode" value="获取验证码" />
 										</div> -->
-										<input type="button" class="btn-login" value="登录" @click="login()">
+										<input type="button" class="btn-login" :value="$t('log')" @click="login()">
 										<div class="login-tips">
-											<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+											<p class="legal">{{$t('loginagree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 										</div>
 									</Tab-Pane>
-									<Tab-Pane label="注册" name="name2">
+									<Tab-Pane :label="$t('register')" name="name2">
 										<div class="login-item">
-											<input type="text" class="defa" v-model="registerdata.username" placeholder="请输入用户名"/>
+											<input type="text" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
 										</div>
 										<div class="login-item">
-											<input type="text" class="defa" v-model="registerdata.password" placeholder="请输入密码"/>
+											<input type="text" class="defa" v-model="registerdata.password" :placeholder="$t('ppass')"/>
 										</div>
 										<!-- <div class="login-item">
 											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
 											<input type="button" class="getcode" value="获取验证码" />
 										</div> -->
-										<input type="button" class="btn-login" value="注册" @click="register()">
+										<input type="button" class="btn-login" :value="$t('register')" @click="register()">
 										<div class="login-tips">
-											<p class="legal">注册即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+											<p class="legal">{{$t('registeragree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 										</div>
 									</Tab-Pane>
 								</Tabs>
@@ -183,13 +183,13 @@
 							<div class="wx">
 								<a>
 									<img src="images/humacar.png" >
-									<span>CHAMPION</span>
+									<span>{{$t('champion')}}</span>
 								</a>
 							</div>
 							<div class="phone">
 								<a>
 									<img src="images/phone.png" >
-									<span>+1(888)-888-6518</span>
+									<span>{{$t('addressphone')}}</span>
 								</a>
 							</div>
 						</div>
@@ -197,7 +197,7 @@
 						<a href="#" class="deadress">
 							<li>
 								<span>{{$t('address')}}</span>
-								<p>134 east Howard st，Quincy，ma，02169，usa</p>
+								<p>{{$t('addressDetail')}}</p>
 							</li>
 						</a>
 				</div>
@@ -240,94 +240,23 @@
 			orifun.initStatu(this);
 		},
 		methods: {
-			register: function() {
-				var that = this;
-				if(this.registerdata.username == ''){
-					// alert("请填写用户名!");
-					this.$Message.warning('请填写用户名!');
-					return;
-				}
-				else if(this.registerdata.password == ''){
-					// alert("请填写密码!");
-					this.$Message.warning('请填写密码!');
-					return;
-				}
-				data.common('Login/register',function(d){
-						if(d == 400){
-							that && that.$Message.warning('此用户名已被使用，请更换!');
-						}else{
-							that.$Notice.success({
-								title: '注册成功!去登陆>>',
-							});
-						}
-				},that.registerdata)
-			},
 			navTobuy: function(){
-				localStorage.postbody = JSON.stringify({
-					brand_id: '',
-					car_series_id: '',
-					car_type_id: '',
-					price: '',
-					mileage: '',
-					age: '',
-					gearbox: '',
-					color: '',
-					keyword: '',
-					sale_point: '',
-					page: 1,
-					sort: ''
-				})
-			},
-			login: function() {
-				var that = this;
-				if(this.logindata.username == ''){
-					// alert("请填写用户名!");
-					this.$Message.warning('请填写用户名!');
-					return;
-				}
-				else if(this.logindata.password == ''){
-					// alert("请填写密码!");
-					this.$Message.warning('请填写密码!');
-					return;
-				}
-				data.common('Login/login',function(d){
-					// that.slideArr = d;
-					if(d != 400){
-						// console.log(d)
-						localStorage.token = d;
-						that.switchlogin = !that.switchlogin;
-						that.loginshow = !that.loginshow;
-						that.$Notice.success({
-							title: '登录成功! ',
-						});
-						localStorage.login = true;
-					}else{
-						that.$Message.warning('登录失败,请检查用户名或密码是否正确!');
-					}
-				},this.logindata)
-				
-			},
-			change :function() {
-			    this.enshow = this.enshow == 'english' ? "中文" : "english";
-			    var that = this;
-			    setTimeout(function(){
-					if(i18n.locale == 'en'){
-						i18n.locale = 'zh-cn';
-					}else if(i18n.locale == 'zh-cn'){
-						i18n.locale = 'en';
-					}
-					localStorage.locale = i18n.locale;
-			    },1100)
+				orifun.initpostbody();
 			},
 			top:function(){
-				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 700);
+				orifun.top(this);
+			},
+			login: function() {
+				orifun.login(this);
+			},
+			register: function() {
+				orifun.register(this);
+			},
+			change :function() {
+				orifun.change(this);
 			},
 			consult:function(){
-				this.botshow = !this.botshow;
-				setTimeout(function(){
-					alert("功能完善中！")
-				},700)
+				orifun.consult(this);
 			}
 		}
 	}).$mount('#about')

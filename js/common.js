@@ -38,12 +38,12 @@ var orifun = {
 	login: function(obj){
 		if(obj.logindata.username == ''){
 			// alert("请填写用户名!");
-			obj.$Message.warning('请填写用户名!');
+			obj.$Message.warning(orifun.getInfo('Please enter your username!','请填写用户名!'));
 			return;
 		}
 		else if(obj.logindata.password == ''){
 			// alert("请填写密码!");
-			obj.$Message.warning('请填写密码!');
+			obj.$Message.warning(orifun.getInfo('Please enter the password!','请填写密码!'));
 			return;
 		}
 		data.common('Login/login',function(d){
@@ -54,31 +54,31 @@ var orifun = {
 				obj.switchlogin = !obj.switchlogin;
 				obj.loginshow = !obj.loginshow;
 				obj.$Notice.success({
-					title: '登录成功! ',
+					title: orifun.getInfo('Login successful!','登录成功! '),
 				});
 				localStorage.login = true;
 			}else{
-				obj.$Message.warning('登录失败,请检查用户名或密码是否正确!');
+				obj.$Message.warning(orifun.getInfo('Login failed, please check whether the user name or password is correct!','登录失败,请检查用户名或密码是否正确!'));
 			}
 		},obj.logindata)
 	},
 	register:function(obj){
 		if(obj.registerdata.username == ''){
 			// alert("请填写用户名!");
-			obj.$Message.warning('请填写用户名!');
+			obj.$Message.warning(orifun.getInfo('Please enter your username!','请填写用户名!'));
 			return;
 		}
 		else if(obj.registerdata.password == ''){
 			// alert("请填写密码!");
-			obj.$Message.warning('请填写密码!');
+			obj.$Message.warning(orifun.getInfo('Please enter the password!','请填写密码!'));
 			return;
 		}
 		data.common('Login/register',function(d){
 				if(d == 400 || d.code == 400){
-					obj && obj.$Message.warning('此用户名已被使用，请更换!');
+					obj && obj.$Message.warning(orifun.getInfo('This user name is already in use, please change it!','此用户名已被使用，请更换!'));
 				}else{
 					obj.$Notice.success({
-						title: '注册成功!去登陆>>',
+						title: orifun.getInfo('Registration successful!To log in!','注册成功!去登陆>>'),
 					});
 				}
 		},obj.registerdata)
@@ -102,4 +102,24 @@ var orifun = {
 			localStorage.locale = i18n.locale;
 		},1100)
 	},
+	top: function(obj){
+		obj.topshow = !obj.topshow;
+		$('html,body').animate({scrollTop: '0'}, 700);
+	},
+	initpostbody: function(){
+		localStorage.postbody = JSON.stringify({
+			brand_id: '',
+			car_series_id: '',
+			car_type_id: '',
+			price: '',
+			mileage: '',
+			age: '',
+			gearbox: '',
+			color: '',
+			keyword: '',
+			sale_point: '',
+			page: 1,
+			sort: ''
+		})
+	}
 };

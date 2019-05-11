@@ -30,7 +30,7 @@
 					<img class="logor" src="images/logor.png">
 				</div>
 				<div class="person">
-					<span v-if="switchlogin" v-on:click="loginshow = !loginshow">登录</span>
+					<span v-if="switchlogin" v-on:click="loginshow = !loginshow">{{$t('login')}}</span>
 					<a v-else href="personalCenter.html">
 						<svg class="icon" aria-hidden="true">
 							<use xlink:href="#icon-yidenglu"></use>
@@ -109,36 +109,36 @@
 									</svg>
 								</div>
 								<Tabs value="name1">
-									<Tab-Pane label="登录" name="name1">
+									<Tab-Pane :label="$t('log')" name="name1">
 										<div class="login-item">
-											<input type="text" class="defa" v-model="logindata.username" placeholder="请输入用户名"/>
+											<input type="text" class="defa" v-model="logindata.username" :placeholder="$t('pname')"/>
 										</div>
 										<div class="login-item">
-											<input type="text" class="defa" v-model="logindata.password" placeholder="请输入密码"/>
+											<input type="text" class="defa" v-model="logindata.password" :placeholder="$t('ppass')"/>
 										</div>
 										<!-- <div class="login-item">
 											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
 											<input type="button" class="getcode" value="获取验证码" />
 										</div> -->
-										<input type="button" class="btn-login" value="登录" @click="login()">
+										<input type="button" class="btn-login" :value="$t('log')" @click="login()">
 										<div class="login-tips">
-											<p class="legal">登录即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+											<p class="legal">{{$t('loginagree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 										</div>
 									</Tab-Pane>
-									<Tab-Pane label="注册" name="name2">
+									<Tab-Pane :label="$t('register')" name="name2">
 										<div class="login-item">
-											<input type="text" class="defa" v-model="registerdata.username" placeholder="请输入用户名"/>
+											<input type="text" class="defa" v-model="registerdata.username" :placeholder="$t('pname')"/>
 										</div>
 										<div class="login-item">
-											<input type="text" class="defa" v-model="registerdata.password" placeholder="请输入密码"/>
+											<input type="text" class="defa" v-model="registerdata.password" :placeholder="$t('ppass')"/>
 										</div>
 										<!-- <div class="login-item">
 											<input type="number" class="defa getcodeinp" v-model="logindata.checkcode"  placeholder="验证码"/>
 											<input type="button" class="getcode" value="获取验证码" />
 										</div> -->
-										<input type="button" class="btn-login" value="注册" @click="register()">
+										<input type="button" class="btn-login" :value="$t('register')" @click="register()">
 										<div class="login-tips">
-											<p class="legal">注册即为同意<a href="serivceAgreement.html">《用户使用协议》</a>及<a href="private.html">《隐私权条款》</a></p>
+											<p class="legal">{{$t('registeragree')}}<a href="serivceAgreement.html">《{{$t('useragree')}}》</a>{{$t('and')}}<a href="private.html">《{{$t('privacyPolicy')}}》</a></p>
 										</div>
 									</Tab-Pane>
 								</Tabs>
@@ -158,89 +158,89 @@
 					<Icon type="md-happy" ></icon>
 				</div>
 				<div class="point-p">
-					<p>已有&nbsp;<span>{{total}}</span>&nbsp;人提交了车辆需求</p>
-					<p>寻找爱车的路上不孤单，留下您的联系方式，我们联系您!</p>
+					<p>{{$t('bargin.existing')}}&nbsp;<span>{{total}}</span>&nbsp;{{$t('bargin.request')}}</p>
+					<p>{{$t('bargin.find')}}</p>
 				</div>
 			</div>
-			<p class="service"><span>CHAMPION 为您服务</span><br></p>
+			<p class="service"><span>{{$t('bargin.service')}}</span><br></p>
 			<div class="service-con">
 				<ul class="firul">
 					<li>
 						<div class="setw">
-							<i-input type="text" v-model="postbody.name" name="address" placeholder="请输入您心仪的品牌和车型"/>
+							<i-input type="text" v-model="postbody.name" name="address" :placeholder="$t('bargin.brand')"/>
 						</div>
-						<label>例:2016年BMW428i</label>
+						<label>{{$t('bargin.brandc')}}</label>
 					</li>
 					<li>
 						<div class="setw">
-							<i-input type="text" v-model="postbody.price" name="address" placeholder="请输入您的预期价格"/>
+							<i-input type="text" v-model="postbody.price" name="address" :placeholder="$t('bargin.price')"/>
 						</div>
-						<label>例:3w-4.5w</label>
+						<label>{{$t('bargin.pricec')}}</label>
 					</li>
 					<li>
 						<div class="setw">
-							<i-input type="text" v-model="postbody.mileage" name="address" placeholder="请输入您的预期里程"/>
+							<i-input type="text" v-model="postbody.mileage" name="address" :placeholder="$t('bargin.mileage')"/>
 						</div>
-						<label>例:10000-30000(英里)</label>
+						<label>{{$t('bargin.mileagec')}}</label>
 					</li>
-					<li><span class="tip">请确保您的手机号可用，支持中国，美国手机号</span></li>
+					<li><span class="tip">{{$t('bargin.tip')}}</span></li>
 					
 				</ul>
 				<ul class="secul">
 					<li>
-						<label class="remarkcolor">备注*</label>
-						<i-input v-model="postbody.remark" type="textarea" :rows="4" placeholder="请输入您爱车的配置,以便我们对您的车辆有更多的了解。" />
+						<label class="remarkcolor">{{$t('bargin.remark')}}*</label>
+						<i-input v-model="postbody.remark" type="textarea" :rows="4" :placeholder="$t('bargin.remarkc')" />
 					</li>
 				</ul>
 			</div>
 			<ul class="thrul">
 				<li>
-					<i-input type="text" v-model="postbody.phone" name="address" placeholder="请输入您的手机号"/>
+					<i-input type="text" v-model="postbody.phone" name="address" :placeholder="$t('bargin.phone')"/>
 				</li>
 				<li>
-					<i-input type="text" v-model="postbody.weixin" name="address" placeholder="请输入您的微信号"/>
+					<i-input type="text" v-model="postbody.weixin" name="address" :placeholder="$t('bargin.weixin')"/>
 				</li>
 				<li>
 					<div class="checkcode">
 						<div class="setw">
-							<i-input type="text" v-model="postbody.verify_code" name="address" placeholder="请输入您的验证码"/>
+							<i-input type="text" v-model="postbody.verify_code" name="address" :placeholder="$t('bargin.verifyCode')"/>
 						</div>
 						<img  :src="verifyImg" @click="getVerifyImg" >
 					</div>
 				</li>
 			</ul>
 			<div class="btnc">
-				<i-button class="btnsub" type="success" long @click="post">确认提交</i-button>
+				<i-button class="btnsub" type="success" long @click="post">{{$t('bargin.submit')}}</i-button>
 			</div>
-			<label class="remarkcolor service">CHAMPION值购车特点</label>
+			<label class="remarkcolor service">{{$t('bargin.special')}}</label>
 			<ul class="fouul fouulm">
 				<div class="img-item">
-					<p>优质车源批发价</p>
+					<p>{{$t('bargin.specialone')}}</p>
 				</div>
 				<div class="img-item">
-					<p>无需现场看车直接网上购买</p>
+					<p>{{$t('bargin.specialtwo')}}</p>
 				</div>
 				<div class="img-item">
-					<p>ASE认证工程师300+项全车检测</p>
+					<p>{{$t('bargin.specialthree')}}</p>
 				</div>
 				<div class="img-item">
-					<p>全美49个州7日内送达</p>
+					<p>{{$t('bargin.specialfour')}}</p>
 				</div>
 			</ul>
-			<label class="remarkcolor service" style="margin-top: 50px;">CHAMPION值购车流程</label>
-				<ul class="num-list" data-reactid=".0.2.4.2"><li class="num-item" data-reactid=".0.2.4.2.0">1</li><li class="num-item" data-reactid=".0.2.4.2.1">2</li><li class="num-item" data-reactid=".0.2.4.2.2">3</li><li class="num-item" data-reactid=".0.2.4.2.3">4</li></ul>
+			<label class="remarkcolor service" style="margin-top: 50px;">{{$t('bargin.process')}}</label>
+				<ul class="num-list" style="margin-top: 20px;" data-reactid=".0.2.4.2"><li class="num-item" data-reactid=".0.2.4.2.0">1</li><li class="num-item" data-reactid=".0.2.4.2.1">2</li><li class="num-item" data-reactid=".0.2.4.2.2">3</li><li class="num-item" data-reactid=".0.2.4.2.3">4</li></ul>
 			<ul class="fouul fiveul">
 				<div class="img-item">
-					<p>客服会在适当的时间与您联系</p>
+					<p>{{$t('bargin.processone')}}</p>
 				</div>
 				<div class="img-item">
-					<p>CHAM会更精确的帮您选择您的爱车</p>
+					<p>{{$t('bargin.processtwo')}}</p>
 				</div>
 				<div class="img-item">
-					<p>值购车源抢先看</p>
+					<p>{{$t('bargin.processthree')}}</p>
 				</div>
 				<div class="img-item">
-					<p>CHAM及时响应您的需求</p>
+					<p>{{$t('bargin.processfour')}}</p>
 				</div>
 			</ul>
 			</div>
@@ -261,21 +261,21 @@
 							<div class="wx">
 								<a>
 									<img src="images/humacar.png" >
-									<span>CHAMPION</span>
+									<span>{{$t('champion')}}</span>
 								</a>
 							</div>
 							<div class="phone">
 								<a>
 									<img src="images/phone.png" >
-									<span>+1(888)-888-6518</span>
+									<span>{{$t('addressphone')}}</span>
 								</a>
 							</div>
 						</div>
 					</div>
 						<a href="#" class="deadress">
 							<li>
-								<span>Massachusetts state马塞诸塞州</span>
-								<p>134 east Howard st，Quincy，ma，02169，usa</p>
+								<span>{{$t('address')}}</span>
+								<p>{{$t('addressDetail')}}</p>
 							</li>
 						</a>
 				</div>
@@ -339,45 +339,45 @@
 // 				var time = myDate.toLocaleDateString().split('/').join('-');
 				data.common('Car/countForRecommendationApplication',function(d){
 					that.total = d;
-					console.log(d)
+					// console.log(d)
 				})
 			},
 			post: function(){
 				var that = this;
 				if(!localStorage.token){
-					that && that.$Message.warning('请登录后进行申请!');
+					that && that.$Message.warning(orifun.getInfo('Please log in before apply!','请登录后进行申请!'));
 					return;
 				}
 				if(this.postbody.name == ''){
-					that && that.$Message.warning('品牌和车型不能为空!');
+					that && that.$Message.warning(orifun.getInfo('Brands and models cannot be empty!','品牌和车型不能为空!'));
 					return;
 				}
 				if(this.postbody.verify_code_key == ''){
-					that && that.$Message.warning('验证码尚未刷新!');
+					that && that.$Message.warning(orifun.getInfo('The verification code has not been refreshed!','验证码尚未刷新!'));
 					return;
 				}
 				if(this.postbody.price == ''){
-					that && that.$Message.warning('价格不能为空!');
+					that && that.$Message.warning(orifun.getInfo('The price cannot be empty!','价格不能为空!'));
 					return;
 				}
 				if(this.postbody.mileage == ''){
-					that && that.$Message.warning('里程不能为空!');
+					that && that.$Message.warning(orifun.getInfo('Mileage cannot be empty!','里程不能为空!'));
 					return;
 				}
 				if(this.postbody.remark == ''){
-					that && that.$Message.warning('备注留言不能为空!');
+					that && that.$Message.warning(orifun.getInfo('Messages cannot be left blank!','留言不能为空!'));
 					return;
 				}
 				if(this.postbody.phone == ''){
-					that && that.$Message.warning('手机号不能为空!');
+					that && that.$Message.warning(orifun.getInfo('The cell phone number cannot be empty!','手机号不能为空!'));
 					return;
 				}
 				if(this.postbody.weixin == ''){
-					that && that.$Message.warning('微信号不能为空!');
+					that && that.$Message.warning(orifun.getInfo('WeChat ID cannot be empty!','微信号不能为空!'));
 					return;
 				}
 				if(this.postbody.verify_code == ''){
-					that && that.$Message.warning('验证码不能为空!');
+					that && that.$Message.warning(orifun.getInfo('The verification code cannot be empty!','验证码不能为空!'));
 					return;
 				}
 				// console.log(this.postbody)
@@ -385,7 +385,7 @@
 					console.log(d)
 						if(d.code !== 400){
 							that.$Notice.success({
-								title: '车辆需求提交成功! ',
+								title: orifun.getInfo('Vehicle requirements submitted successfully!','车辆需求提交成功! '),
 							});
 						}else{
 							var s = '';
@@ -408,95 +408,25 @@
 						}
 				})
 			},
-			register: function() {
-				var that = this;
-				if(this.registerdata.username == ''){
-					// alert("请填写用户名!");
-					this.$Message.warning('请填写用户名!');
-					return;
-				}
-				else if(this.registerdata.password == ''){
-					// alert("请填写密码!");
-					this.$Message.warning('请填写密码!');
-					return;
-				}
-				data.common('Login/register',function(d){
-						if(d == 400){
-							that && that.$Message.warning('此用户名已被使用，请更换!');
-						}else{
-							that.$Notice.success({
-								title: '注册成功!去登陆>>',
-							});
-						}
-				},that.registerdata)
-			},
 			navTobuy: function(){
-				localStorage.postbody = JSON.stringify({
-					brand_id: '',
-					car_series_id: '',
-					car_type_id: '',
-					price: '',
-					mileage: '',
-					age: '',
-					gearbox: '',
-					color: '',
-					keyword: '',
-					sale_point: '',
-					page: 1,
-					sort: ''
-				})
-			},
-			login: function() {
-				var that = this;
-				if(this.logindata.username == ''){
-					// alert("请填写用户名!");
-					this.$Message.warning('请填写用户名!');
-					return;
-				}
-				else if(this.logindata.password == ''){
-					// alert("请填写密码!");
-					this.$Message.warning('请填写密码!');
-					return;
-				}
-				data.common('Login/login',function(d){
-					// that.slideArr = d;
-					if(d != 400){
-						// console.log(d)
-						localStorage.token = d;
-						that.switchlogin = !that.switchlogin;
-						that.loginshow = !that.loginshow;
-						that.$Notice.success({
-							title: '登录成功! ',
-						});
-						localStorage.login = true;
-					}else{
-						that.$Message.warning('登录失败,请检查用户名或密码是否正确!');
-					}
-				},this.logindata)
-				
-			},
-			change :function() {
-			    this.enshow = this.enshow == 'english' ? "中文" : "english";
-			    var that = this;
-			    setTimeout(function(){
-					if(i18n.locale == 'en'){
-						i18n.locale = 'zh-cn';
-					}else if(i18n.locale == 'zh-cn'){
-						i18n.locale = 'en';
-					}
-					localStorage.locale = i18n.locale;
-			    },1100)
+				orifun.initpostbody();
 			},
 			top:function(){
-				this.topshow = !this.topshow;
-				$('html,body').animate({scrollTop: '0'}, 700);
+				orifun.top(this);
+			},
+			login: function() {
+				orifun.login(this);
+			},
+			register: function() {
+				orifun.register(this);
+			},
+			change :function() {
+				orifun.change(this);
 			},
 			consult:function(){
-				this.botshow = !this.botshow;
-				setTimeout(function(){
-					alert("功能完善中！")
-				},700)
+				orifun.consult(this);
 			}
+			
 		}
 	}).$mount('#bargain')
 	// 现在应用程序已经准备好了！
