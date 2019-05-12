@@ -261,21 +261,22 @@
 										<div class="car-explain">
 											<div class="explain-t">
 												<div class="car-name">
-													{{ item.model?item.model.year:''}}&nbsp;
-													{{item.series?item.series.name:''}}&nbsp;
-													{{item.model?item.model.displacement:''}}L
+													{{ item.model?item.model.year + '&nbsp':''}}
+													{{item.series?item.series.name + '&nbsp':''}}
+													{{item.model?item.model.displacement + 'L':''}}
 												</div>
 												<div class="car-price">
 													{{item.price}}
 												</div>
 											</div>
 											<div class="distance">
-												{{item.mileage}} 英里·{{item.model?item.model.door_count:''}}门·
-												{{item.model?item.model.drive_type:''}}·
-												{{item.model?item.model.cylinder_count:''}}缸·
-												{{item.model?item.model.displacement:''}}L·
-												{{item.model?item.model.intake_type:''}}·
-												{{item.model?item.model.gearbox:''}}
+												{{item.mileage + $t('miles')}}
+												{{item.model?'·' + item.model.door_count + $t('door'):''}}
+												{{item.model?'·' + item.model.driver_type:''}}
+												{{item.model?'·' + item.model.cylinder_count + $t('cylinder'):''}}
+												{{item.model?'·' + item.model.displacement + 'L':''}}
+												{{item.model?'·' + item.model.intake_type:''}}
+												{{item.model?'·' + item.model.gearbox:''}}
 											</div>
 										</div>
 									</a>
@@ -291,9 +292,10 @@
 										<img v-else class="favorite" src="images/favorite.png" @click.stop.prevent="collection(index, item.id)">
 										<div class="car-explain">
 											<div class="explain-t">
-												<div class="car-name">{{ item.model?item.model.year + '&nbsp':''}}
-													{{item.series?item.series.name:''}}&nbsp;
-													{{item.model?item.model.displacement:''}}L
+												<div class="car-name">
+													{{ item.model?item.model.year + '&nbsp':''}}
+													{{item.series?item.series.name + '&nbsp':''}}
+													{{item.model?item.model.displacement + 'L':''}}
 												</div>
 												<Tag color="volcano"  class="car-price">${{item.price}}</Tag>
 												<!-- <div class="car-price">
@@ -303,11 +305,11 @@
 											<div class="distance">
 												<div class="dis-item">
 													<span>Mileage:</span>
-													<span>{{item.mileage}} miles</span>
+													<span>{{item.mileage + $t('miles')}}</span>
 												</div>
 												<div class="dis-item">
 													<span>Door count:</span>
-													<span>{{item.model?item.model.door_count:''}}门</span>
+													<span>{{item.model?item.model.door_count + $t('door'):''}}</span>
 												</div>
 												<div class="dis-item">
 													<span>Drive type:</span>
@@ -315,7 +317,7 @@
 												</div>
 												<div class="dis-item">
 													<span>Cylinder count:</span>
-													<span>{{item.model?item.model.cylinder_count:''}}缸</span>
+													<span>{{item.model?item.model.cylinder_count + $t('cylinder'):''}}</span>
 												</div>
 												<div class="dis-item">
 													<span>Intake type:</span>

@@ -242,21 +242,22 @@
 									<div class="car-explain">
 										<div class="explain-t">
 											<div class="car-name">
-												{{ item.model?item.model.year:''}}&nbsp;
-												{{item.series?item.series.name:''}}&nbsp;
-												{{item.model?item.model.displacement:''}}L
+												{{ item.model?item.model.year + '&nbsp':''}}
+												{{item.series?item.series.name + '&nbsp':''}}
+												{{item.model?item.model.displacement + 'L':''}}
 											</div>
 											<div class="car-price">
 												{{item.price}}
 											</div>
 										</div>
 										<div class="distance">
-											{{item.mileage}} {{$t('miles')}}·{{item.model?item.model.door_count:''}}{{$t('door')}}·
-											{{item.model?item.model.driver_type:''}}·
-											{{item.model?item.model.cylinder_count:''}}{{$t('cylinder')}}·
-											{{item.model?item.model.displacement:''}}L·
-											{{item.model?item.model.intake_type:''}}·
-											{{item.model?item.model.gearbox:''}}
+											{{item.mileage + $t('miles')}}
+											{{item.model?'·' + item.model.door_count + $t('door'):''}}
+											{{item.model?'·' + item.model.driver_type:''}}
+											{{item.model?'·' + item.model.cylinder_count + $t('cylinder'):''}}
+											{{item.model?'·' + item.model.displacement + 'L':''}}
+											{{item.model?'·' + item.model.intake_type:''}}
+											{{item.model?'·' + item.model.gearbox:''}}
 										</div>
 									</div>
 								</a>
