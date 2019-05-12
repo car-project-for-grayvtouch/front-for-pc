@@ -767,6 +767,21 @@
 				// console.log(car.collected)
 				// 顶部图片切换
 				that.slideArr = car.image;
+				// console.log(model)
+				if(!model){
+					// 顶部右侧车辆基础信息
+					that.topinfo.name = ' ' + car.brand.name+ ' ' + car.series.name + ' ';
+					that.topinfo.price = car.price;
+					that.mileage = car.mileage;
+					that.level = '';
+					that.transferRecord = car.transfer_record;
+					//计算贷款方案
+					that.loanfun();
+					//计算贷款方案
+					that.loanfun();
+					that.spinShow = false;
+					return;
+				}
 				// 顶部右侧车辆基础信息
 				that.topinfo.name = model.year + ' ' + car.brand.name+ ' ' + car.series.name + ' ' + model.displacement +'L';
 				that.topinfo.price = car.price;

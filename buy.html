@@ -166,7 +166,7 @@
 				</div>
 				<div class="buy-sel">
 					<row>
-						<i-col span="8">
+						<i-col span="3">
 							<div class="buy-sel-item">
 								<div class="title">
 									品牌
@@ -174,7 +174,7 @@
 								<Cascader class="selin" :data="screeningCondition.brand" trigger="hover" v-model="value1" @on-change='getvaluebrand'></Cascader>
 							</div>
 						</i-col>
-						<i-col span="8">
+						<i-col span="3">
 							<div class="buy-sel-item">
 								<div class="title titler">车系</div>
 								<i-select class="selin" v-model="models[0]" clearable label-in-value @on-clear='getindex(0)'>
@@ -182,7 +182,7 @@
 								</i-select>
 							</div>
 						</i-col>
-						<i-col span="8">
+						<i-col span="3">
 							<div class="buy-sel-item">
 								<div class="title titler">价格</div>
 								<i-select class="selin" v-model="models[1]" clearable label-in-value @on-clear='getindex(1)'>
@@ -190,9 +190,7 @@
 								</i-select>
 							</div>
 						</i-col>
-					</row>
-					<Row>
-						<i-col span="8">
+						<i-col span="3">
 							<div class="buy-sel-item">
 								<div class="title">车型</div>
 								<i-select class="selin" v-model="models[2]" clearable label-in-value @on-clear='getindex(2)'>
@@ -200,7 +198,7 @@
 								</i-select>
 							</div>
 						</i-col>
-						<i-col span="8">
+						<i-col span="3">
 							<div class="buy-sel-item">
 								<div class="title titler">里程</div>
 								<i-select class="selin" v-model="models[3]" clearable label-in-value @on-clear='getindex(3)'>
@@ -208,7 +206,7 @@
 								</i-select>
 							</div>
 						</i-col>
-						<i-col span="8">
+						<i-col span="3">
 							<div class="buy-sel-item">
 								<div class="title titler">车龄</div>
 								<i-select class="selin" v-model="models[4]" clearable label-in-value @on-clear='getindex(4)'>
@@ -216,9 +214,7 @@
 								</i-select>
 							</div>
 						</i-col>
-					</Row>
-					<Row>
-						<i-col span="8">
+						<i-col span="3">
 								<div class="buy-sel-item">
 									<div class="title">颜色</div>
 									<i-select class="selin" v-model="models[6]" clearable label-in-value @on-clear='getindex(6)'>
@@ -226,7 +222,7 @@
 									</i-select>
 								</div>
 						</i-col>
-						<i-col span="8">
+						<i-col span="3">
 							<div class="buy-sel-item">
 								<div class="title titler">变速箱</div>
 								<i-select class="selin" v-model="models[5]" clearable label-in-value @on-clear='getindex(5)'>
@@ -234,51 +230,106 @@
 								</i-select>
 							</div>
 						</i-col>
-					</Row>
+					</row>
 				</div>
 			</div>
 			<div class="recommoned">
 				<div class="order">
 					<ul>
-						<i-Button :size="buttonSize" type="primary" @click="sortdefult">默认排序</i-Button>
-						<i-Button :size="buttonSize" type="primary" @click="sortbyprice">价格排序</i-Button>
-						<i-Button :size="buttonSize" type="primary" @click="sortbyage">车龄排序</i-Button>
-						<i-Button :size="buttonSize" type="primary" @click="sortbydistance">里程排序</i-Button>
+						<i-Button size="large" type="primary" @click="sortdefult">默认排序</i-Button>
+						<i-Button size="large" type="primary" @click="sortbyprice">价格排序</i-Button>
+						<i-Button size="large" type="primary" @click="sortbyage">车龄排序</i-Button>
+						<i-Button size="large" type="primary" @click="sortbydistance">里程排序</i-Button>
 					</ul>
+					<div class="order-right">
+						<Icon type="md-menu" data-menucss = "1" @click="menucss($event)" :style="menucssindex == 1? 'background-color: #2db7f5;color: white;':''"></Icon>
+						<Icon type="md-grid" data-menucss = "2" @click="menucss($event)" :style="menucssindex == 2? 'background-color: #2db7f5;color: white;':''"></Icon>
+					</div>
 				</div>
-				<div class="car-detail">
+				<div>
 					<Spin size="large" fix v-if="spinShow"></Spin>
-					<Row>
-						<i-col span="6" v-for="(item, index) in searchArr" :key='item.id'>
-							<div class="car-item" @click="navigationToDetail(item.id)">
-								<a href="carDetail.html">
-									<img class="bg" :src="item.thumb">
-									<img class="favorite" v-if="item.collected == 'y'" src="images/collected.png" @click.stop.prevent="collection(index, item.id)">
-									<img v-else class="favorite" src="images/favorite.png" @click.stop.prevent="collection(index, item.id)">
-									<div class="car-explain">
-										<div class="explain-t">
-											<div class="car-name">
-												{{ item.model?item.model.year:''}}&nbsp;
-												{{item.series?item.series.name:''}}&nbsp;
-												{{item.model?item.model.displacement:''}}L
+					<div class="car-detail">
+						<Row v-if="compact">
+							<i-col span="6" v-for="(item, index) in searchArr" :key='item.id'>
+								<div class="car-item" @click="navigationToDetail(item.id)">
+									<a href="carDetail.html">
+										<img class="bg" :src="item.thumb">
+										<img class="favorite" v-if="item.collected == 'y'" src="images/collected.png" @click.stop.prevent="collection(index, item.id)">
+										<img v-else class="favorite" src="images/favorite.png" @click.stop.prevent="collection(index, item.id)">
+										<div class="car-explain">
+											<div class="explain-t">
+												<div class="car-name">
+													{{ item.model?item.model.year:''}}&nbsp;
+													{{item.series?item.series.name:''}}&nbsp;
+													{{item.model?item.model.displacement:''}}L
+												</div>
+												<div class="car-price">
+													{{item.price}}
+												</div>
 											</div>
-											<div class="car-price">
-												{{item.price}}
+											<div class="distance">
+												{{item.mileage}} 英里·{{item.model?item.model.door_count:''}}门·
+												{{item.model?item.model.drive_type:''}}·
+												{{item.model?item.model.cylinder_count:''}}缸·
+												{{item.model?item.model.displacement:''}}L·
+												{{item.model?item.model.intake_type:''}}·
+												{{item.model?item.model.gearbox:''}}
 											</div>
 										</div>
-										<div class="distance">
-											{{item.mileage}} 英里·{{item.model?item.model.door_count:''}}门·
-											{{item.model?item.model.drive_type:''}}·
-											{{item.model?item.model.cylinder_count:''}}缸·
-											{{item.model?item.model.displacement:''}}L·
-											{{item.model?item.model.intake_type:''}}·
-											{{item.model?item.model.gearbox:''}}
+									</a>
+								</div>
+							</i-col>
+						</Row>
+						<Row v-else class=" car-menu-new">
+							<i-col span="24" v-for="(item, index) in searchArr" :key='item.id'>
+								<div class="car-item" @click="navigationToDetail(item.id)">
+									<a href="carDetail.html">
+										<img class="bg" :src="item.thumb">
+										<img class="favorite" v-if="item.collected == 'y'" src="images/collected.png" @click.stop.prevent="collection(index, item.id)">
+										<img v-else class="favorite" src="images/favorite.png" @click.stop.prevent="collection(index, item.id)">
+										<div class="car-explain">
+											<div class="explain-t">
+												<div class="car-name">{{ item.model?item.model.year + '&nbsp':''}}
+													{{item.series?item.series.name:''}}&nbsp;
+													{{item.model?item.model.displacement:''}}L
+												</div>
+												<Tag color="volcano"  class="car-price">${{item.price}}</Tag>
+												<!-- <div class="car-price">
+													
+												</div> -->
+											</div>
+											<div class="distance">
+												<div class="dis-item">
+													<span>Mileage:</span>
+													<span>{{item.mileage}} miles</span>
+												</div>
+												<div class="dis-item">
+													<span>Door count:</span>
+													<span>{{item.model?item.model.door_count:''}}门</span>
+												</div>
+												<div class="dis-item">
+													<span>Drive type:</span>
+													<span>{{item.model?item.model.drive_type:''}}</span>
+												</div>
+												<div class="dis-item">
+													<span>Cylinder count:</span>
+													<span>{{item.model?item.model.cylinder_count:''}}缸</span>
+												</div>
+												<div class="dis-item">
+													<span>Intake type:</span>
+													<span>{{item.model?item.model.intake_type:''}}</span>
+												</div>
+												<div class="dis-item">
+													<span>Gearbox:</span>
+													<span>{{item.model?item.model.gearbox:''}}</span>
+												</div>
+											</div>
 										</div>
-									</div>
-								</a>
-							</div>
-						</i-col>
-					</Row>
+									</a>
+								</div>
+							</i-col>
+						</Row>
+					</div>
 					<Alert style="margin-top: 10px;" show-icon v-if='searchArr.length == 0'>
 						提示
 						<Icon type="ios-bulb-outline" slot="icon"></Icon>
@@ -389,6 +440,8 @@
 			},
 			sort: [false,false,false],
 			spinShow: false,
+			compact: false,
+			menucssindex: 1,
 		},
 		mounted() {
 			var that = this;
@@ -511,6 +564,14 @@
 			}
 		},
 		methods: {
+			menucss: function(e){
+				this.menucssindex = e.target.dataset.menucss;
+				if(this.menucssindex == 1){
+					this.compact = false;
+				}else{
+					this.compact = true;
+				}
+			},
 			collection: function(index,id) {
 				var that = this;
 				if(!localStorage.token){

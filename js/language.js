@@ -1,6 +1,6 @@
 // 通过选项创建 VueI18n 实例
 	let i18n = new VueI18n({
-	    locale: localStorage.getItem('locale') || 'zh-cn', // 设置地区
+	    locale: localStorage.getItem('locale') || 'en', // 设置地区
 	    messages: {
 		    en: {
 				//头部导航

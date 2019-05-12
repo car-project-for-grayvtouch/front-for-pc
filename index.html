@@ -294,6 +294,11 @@
 			<div class="comment">
 				<span class="re-title">{{$t('storyTitle')}}</span>
 				<div class="com-content">
+					<Alert style="margin-top: 10px;width: 100%;" show-icon v-if="$t('comment').length == 0">
+						提示
+						<Icon type="ios-bulb-outline" slot="icon"></Icon>
+						<template slot="desc">暂无评论,通知客服上新</template>
+					</Alert>
 					<Card style="width:calc(25% - 10px);margin-right: 10px;"  v-for="item in $t('comment')" v-bind:key="item.id">
 						<p slot="title">
 							{{item.title}}
@@ -322,6 +327,11 @@
 			</div>
 			<div class="recommoned">
 				<span class="re-title">{{ $t("mediaVoice") }}</span>
+				<Alert style="margin-top: 10px;width: 100%;" show-icon v-if="$t('media').length == 0">
+					提示
+					<Icon type="ios-bulb-outline" slot="icon"></Icon>
+					<template slot="desc">暂无文章,通知客服上新</template>
+				</Alert>
 					<div class="media-detail">
 						<div class="media-item" v-for="item in $t('media')" data-id = "item.id">
 							<a href="#">
@@ -612,21 +622,21 @@
 				}
 				story().then(() => {
 					data.common('Story/listForHome',function(d){
-						// console.log(d)
+						console.log(d)
 						that.$i18n._vm.messages['en'].comment = d.slice(0, 4);
 					},{language: 'en'})
 
 				}).then(() => {
 					//文章
 					data.common('Article/listForHome',function(d){
-						// console.log(d)
+						console.log(d)
 						that.$i18n._vm.messages['en'].media = d.slice(0, 4);
 					},{language: 'en'})
 
 				}).then(() => {
 					//文章
 					data.common('Article/listForHome',function(d){
-						// console.log(d)
+						console.log(d)
 						that.$i18n._vm.messages['zh-cn'].media = d.slice(0, 4);
 					},{language: 'cn'})
 				
