@@ -616,8 +616,8 @@
 					this.$Message.warning(orifun.getInfo('Please login first!','请先登录!'));
 					return;
 				}
-				var ccol = that.searchArr,
-				notice;
+				var ccol,notice;
+				ccol = that.$i18n._vm.messages[localStorage.locale].buy.searchArr;
 				if(ccol[index].collected == 'y'){
 					ccol[index].collected = 'n';
 					notice = orifun.getInfo('Cancel the collection successfully!','取消收藏成功!');
@@ -640,7 +640,7 @@
 							desc:notice,
 							duration: 4
 						});
-						searchArr = ccol;
+						that.$i18n._vm.messages[localStorage.locale].buy.searchArr = ccol;
 					}else{
 						that.$Message.error(orifun.getInfo('Collection of failure!!','收藏失败!'));
 					}
