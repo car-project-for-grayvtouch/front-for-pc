@@ -18,8 +18,10 @@
 	<script type="text/javascript" src="js/swiper.min.js"></script>
 	<script type="text/javascript" src="js/common.js"></script>
     <script type="text/javascript" src="dist/iview.min.js"></script>
-	<script type="text/javascript" src="js/language.js"></script>
+	<script type="text/javascript" src="dist/locale/en-US.js"></script>
 	<script type="text/javascript" src="js/screeningCondition.js"></script>
+	<script type="text/javascript" src="js/language.js"></script>
+	<!-- <script type="text/javascript" src="dist/locale/zh-CN.js"></script> -->
 	<script type="text/javascript" src="js/data.js"></script>
 	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
 </head>
@@ -152,7 +154,7 @@
 		<div class="margin">
 			<div class="choose-tag">
 				<div class="choose-top">
-					<span class="title">条件筛选</span>
+					<span class="title">{{$t('buy.conditions')}}：</span>
 					<ul class="tags">
 						<li v-if="value1!=''">
 							<span>{{value1[1]}}</span>
@@ -161,72 +163,72 @@
 							<span>{{item}}</span>
 						</li>
 					</ul>
-					<i-button type="warning" @click='clearall()'>清除所有 <Icon type="md-trash" /></i-button>
-					<i-button type="primary" @click='post'>确定筛选</i-button>
+					<i-button type="warning" @click='clearall()'>{{$t('buy.clearAll')}} <Icon type="md-trash" /></i-button>
+					<i-button type="primary" @click='post' style="margin-left: 10px;">{{$t('buy.Determine')}}</i-button>
 				</div>
 				<div class="buy-sel">
 					<row>
 						<i-col span="3">
 							<div class="buy-sel-item">
 								<div class="title">
-									品牌
+									{{$t('buy.brand')}}
 								</div>
-								<Cascader class="selin" :data="screeningCondition.brand" trigger="hover" v-model="value1" @on-change='getvaluebrand'></Cascader>
+								<Cascader class="selin" :data="$t('buy.screeningCondition.brand')" trigger="hover" v-model="value1" @on-change='getvaluebrand'></Cascader>
 							</div>
 						</i-col>
 						<i-col span="3">
 							<div class="buy-sel-item">
-								<div class="title titler">车系</div>
+								<div class="title titler">{{$t('buy.series')}}</div>
 								<i-select class="selin" v-model="models[0]" clearable label-in-value @on-clear='getindex(0)'>
-									<i-option v-for="item in screeningCondition.carseries" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvalueseries'>{{ item.label }}</i-option>
+									<i-option v-for="item in $t('buy.screeningCondition.carseries')" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvalueseries'>{{ item.label }}</i-option>
 								</i-select>
 							</div>
 						</i-col>
 						<i-col span="3">
 							<div class="buy-sel-item">
-								<div class="title titler">价格</div>
+								<div class="title titler">{{$t('buy.price')}}</div>
 								<i-select class="selin" v-model="models[1]" clearable label-in-value @on-clear='getindex(1)'>
-									<i-option v-for="item in screeningCondition.price" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvalueprice'>{{ item.label }}</i-option>
+									<i-option v-for="item in $t('buy.screeningCondition.price')" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvalueprice'>{{ item.label }}</i-option>
 								</i-select>
 							</div>
 						</i-col>
 						<i-col span="3">
 							<div class="buy-sel-item">
-								<div class="title">车型</div>
+								<div class="title">{{$t('buy.model')}}</div>
 								<i-select class="selin" v-model="models[2]" clearable label-in-value @on-clear='getindex(2)'>
-									<i-option v-for="item in screeningCondition.cartype" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvaluecartype'>{{ item.label }}</i-option>
+									<i-option v-for="item in $t('buy.screeningCondition.cartype')" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvaluecartype'>{{ item.label }}</i-option>
 								</i-select>
 							</div>
 						</i-col>
 						<i-col span="3">
 							<div class="buy-sel-item">
-								<div class="title titler">里程</div>
+								<div class="title titler">{{$t('buy.mileage')}}</div>
 								<i-select class="selin" v-model="models[3]" clearable label-in-value @on-clear='getindex(3)'>
-									<i-option v-for="item in screeningCondition.mileage" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvaluemileage'>{{ item.label }}</i-option>
+									<i-option v-for="item in $t('buy.screeningCondition.mileage')" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvaluemileage'>{{ item.label }}</i-option>
 								</i-select>
 							</div>
 						</i-col>
 						<i-col span="3">
 							<div class="buy-sel-item">
-								<div class="title titler">车龄</div>
+								<div class="title titler">{{$t('buy.age')}}</div>
 								<i-select class="selin" v-model="models[4]" clearable label-in-value @on-clear='getindex(4)'>
-									<i-option v-for="item in screeningCondition.age" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvalueage'>{{ item.label }}</i-option>
+									<i-option v-for="item in $t('buy.screeningCondition.age')" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvalueage'>{{ item.label }}</i-option>
 								</i-select>
 							</div>
 						</i-col>
 						<i-col span="3">
 								<div class="buy-sel-item">
-									<div class="title">颜色</div>
+									<div class="title">{{$t('buy.color')}}</div>
 									<i-select class="selin" v-model="models[6]" clearable label-in-value @on-clear='getindex(6)'>
-										<i-option v-for="item in screeningCondition.color" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvaluecolor'>{{ item.label }}</i-option>
+										<i-option v-for="item in $t('buy.screeningCondition.color')" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvaluecolor'>{{ item.label }}</i-option>
 									</i-select>
 								</div>
 						</i-col>
 						<i-col span="3">
 							<div class="buy-sel-item">
-								<div class="title titler">变速箱</div>
+								<div class="title titler">{{$t('buy.gearbox')}}</div>
 								<i-select class="selin" v-model="models[5]" clearable label-in-value @on-clear='getindex(5)'>
-									<i-option v-for="item in screeningCondition.gearbox" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvaluegearbox'>{{ item.label }}</i-option>
+									<i-option v-for="item in $t('buy.screeningCondition.gearbox')" :value="item.label" :key="item.value" :data-info = "item.value" @click.native='getvaluegearbox'>{{ item.label }}</i-option>
 								</i-select>
 							</div>
 						</i-col>
@@ -236,10 +238,10 @@
 			<div class="recommoned">
 				<div class="order">
 					<ul>
-						<i-Button size="large" type="primary" @click="sortdefult">默认排序</i-Button>
-						<i-Button size="large" type="primary" @click="sortbyprice">价格排序</i-Button>
-						<i-Button size="large" type="primary" @click="sortbyage">车龄排序</i-Button>
-						<i-Button size="large" type="primary" @click="sortbydistance">里程排序</i-Button>
+						<i-Button size="large" type="primary" @click="sortdefult">{{$t('buy.defaultSort')}}</i-Button>
+						<i-Button size="large" type="primary" @click="sortbyprice">{{$t('buy.priceSort')}}</i-Button>
+						<i-Button size="large" type="primary" @click="sortbyage">{{$t('buy.ageSort')}}</i-Button>
+						<i-Button size="large" type="primary" @click="sortbydistance">{{$t('buy.mileageSort')}}</i-Button>
 					</ul>
 					<div class="order-right">
 						<Icon type="md-menu" data-menucss = "1" @click="menucss($event)" :style="menucssindex == 1? 'background-color: #2db7f5;color: white;':''"></Icon>
@@ -250,7 +252,7 @@
 					<Spin size="large" fix v-if="spinShow"></Spin>
 					<div class="car-detail">
 						<Row v-if="compact">
-							<i-col span="6" v-for="(item, index) in searchArr" :key='item.id'>
+							<i-col span="6" v-for="(item, index) in $t('buy.searchArr')" :key='item.id'>
 								<div class="car-item" @click="navigationToDetail(item.id)">
 									<a href="carDetail.html">
 										<img class="bg" :src="item.thumb">
@@ -281,7 +283,7 @@
 							</i-col>
 						</Row>
 						<Row v-else class=" car-menu-new">
-							<i-col span="24" v-for="(item, index) in searchArr" :key='item.id'>
+							<i-col span="24" v-for="(item, index) in $t('buy.searchArr')" :key='item.id'>
 								<div class="car-item" @click="navigationToDetail(item.id)">
 									<a href="carDetail.html">
 										<img class="bg" :src="item.thumb">
@@ -330,10 +332,10 @@
 							</i-col>
 						</Row>
 					</div>
-					<Alert style="margin-top: 10px;" show-icon v-if='searchArr.length == 0'>
-						提示
+					<Alert style="margin-top: 10px;" show-icon v-if="$t('buy.searchArr').length == 0">
+						{{$t('buy.tips')}}
 						<Icon type="ios-bulb-outline" slot="icon"></Icon>
-						<template slot="desc">暂无所选车辆,通知客服上新</template>
+						<template slot="desc">{{$t('buy.tipsc')}}</template>
 					</Alert>
 				</div>
 				<div class="redirectTopage">
@@ -341,7 +343,6 @@
 					:current="page.index" 
 					:total="page.total" 
 					:page-size="page.size"
-					show-elevator 
 					show-total
 					@on-change="currentpage" />
 				</div>
@@ -415,7 +416,7 @@
 				username: '',
 				password: ''
 			},
-			screeningCondition: screeningCondition,
+			screeningCondition: screeningConditioncn,
 			value1: [],
 			models:['','','','','','',''],
 			searchArr: [],
@@ -457,47 +458,65 @@
 			 this.carlistdata(that.postbody);
 			
 			// 品牌可选筛选条件
-			data.common('Brand/all',function(d){
-				// console.log(that)
-				var sb = that.screeningCondition;
-				// console.log(d)
-				
-				// 根据获取到的品牌数据创建符合条件的数据结构
-				if(sb.brand){
-					// console.log('已存在brand数组');
-				}else{
-					sb.brand = [];
-				}
-				for(var k in d){
-					// 查看数组中是否已有符合条件的一级数据,没有自行创建
-					var inarr = false,
-					index;
-					for(var s in sb.brand){
-						// console.log(d[k].letter,sb.brand[s].label)
-						if(d[k].letter == sb.brand[s].label){
-							inarr = true;
-							index = s;
-							// console.log('符合' + s)
+			function brandall(body){
+				data.common('Brand/all',function(d){
+					// console.log(that)
+					var sb;
+					if(body.language == 'cn'){
+						sb = that.$i18n._vm.messages['zh-cn'].buy.screeningCondition;
+					}else{
+						sb = that.$i18n._vm.messages['en'].buy.screeningCondition;
+					}
+					// console.log(d)
+					
+					// 根据获取到的品牌数据创建符合条件的数据结构
+					if(sb.brand){
+						// console.log('已存在brand数组');
+					}else{
+						sb.brand = [];
+					}
+					for(var k in d){
+						// 查看数组中是否已有符合条件的一级数据,没有自行创建
+						var inarr = false,
+						index;
+						for(var s in sb.brand){
+							// console.log(d[k].letter,sb.brand[s].label)
+							if(d[k].letter == sb.brand[s].label){
+								inarr = true;
+								index = s;
+								// console.log('符合' + s)
+							}else{
+								// console.log('不符合')
+							}
+						}
+						// console.log(inarr);
+						if(inarr){
+							sb.brand[index].children.push({id:d[k].id,value:d[k].name,label:d[k].name})
 						}else{
-							// console.log('不符合')
+							// console.log(d[k].letter, d[k].id, d[k].name)
+							sb.brand.push({value: d[k].letter,label: d[k].letter,children: [{id:d[k].id,value:d[k].name,label:d[k].name}]})
 						}
 					}
-					// console.log(inarr);
-					if(inarr){
-						sb.brand[index].children.push({id:d[k].id,value:d[k].name,label:d[k].name})
+					// console.log(sb)
+					if(body.language == 'cn'){
+						that.$i18n._vm.messages['zh-cn'].buy.screeningCondition = sb;
 					}else{
-						// console.log(d[k].letter, d[k].id, d[k].name)
-						sb.brand.push({value: d[k].letter,label: d[k].letter,children: [{id:d[k].id,value:d[k].name,label:d[k].name}]})
+						that.$i18n._vm.messages['en'].buy.screeningCondition = sb;
 					}
-				}
-				// console.log(sb)
-				that.screeningCondition.brand = sb.brand;
-			})
+				},body)
+			} 
+			brandall({language:'en'});
+			brandall({language:'cn'});
 			//车系可筛选条件
-			data.common('CarSeries/all',function(d){
-				that.$nextTick(function(){
+			function carseriesAll(body){
+				data.common('CarSeries/all',function(d){
 					// console.log(d)
-					var sb = that.screeningCondition;
+					var sb;
+					if(body.language == 'cn'){
+						sb = that.$i18n._vm.messages['zh-cn'].buy.screeningCondition;
+					}else{
+						sb = that.$i18n._vm.messages['en'].buy.screeningCondition;
+					}
 					if(sb.carseries){
 						// console.log('已存在carseries数组');
 					}else{
@@ -507,14 +526,25 @@
 						sb.carseries.push({value:d[k].id,label:d[k].name});
 					}
 					// console.log(sb);
-					that.screeningCondition = sb;
-				})
-			})
+					if(body.language == 'cn'){
+						that.$i18n._vm.messages['zh-cn'].buy.screeningCondition = sb;
+					}else{
+						that.$i18n._vm.messages['en'].buy.screeningCondition = sb;
+					}
+				},body)
+			}
+			carseriesAll({language:'en'});
+			carseriesAll({language:'cn'});
 			//车型可筛选条件
-			data.common('CarType/all',function(d){
-				// console.log(d)
-				that.$nextTick(function(){
-					var sb = that.screeningCondition;
+			function cartypeAll(body){
+				data.common('CarType/all',function(d){
+					// console.log(d)
+					var sb;
+					if(body.language == 'cn'){
+						sb = that.$i18n._vm.messages['zh-cn'].buy.screeningCondition;
+					}else{
+						sb = that.$i18n._vm.messages['en'].buy.screeningCondition;
+					}
 					if(sb.cartype){
 						// console.log('已存在cartype数组');
 					}else{
@@ -524,10 +554,16 @@
 						sb.cartype.push({value:d[k].id,label:d[k].name});
 					}
 					// console.log(sb);
-					that.screeningCondition = sb;
+					if(body.language == 'cn'){
+						that.$i18n._vm.messages['zh-cn'].buy.screeningCondition = sb;
+					}else{
+						that.$i18n._vm.messages['en'].buy.screeningCondition = sb;
+					}
 					// console.log(that.screeningCondition)
-				})
-			})
+				},body)
+			}
+			cartypeAll({language:'en'});
+			cartypeAll({language:'cn'});
 		},
 		watch: {
 // 			postbody: {
@@ -575,19 +611,19 @@
 			collection: function(index,id) {
 				var that = this;
 				if(!localStorage.token){
-					this.$Message.warning('请先登录!');
+					this.$Message.warning(orifun.getInfo('Please login first!','请先登录!'));
 					return;
 				}
 				var ccol = that.searchArr,
 				notice;
 				if(ccol[index].collected == 'y'){
 					ccol[index].collected = 'n';
-					notice = '取消收藏成功';
+					notice = orifun.getInfo('Cancel the collection successfully!','取消收藏成功!');
 				}else if(ccol[index].collected == 'n'){
 					ccol[index].collected = 'y';
-					notice = '收藏成功';
+					notice = orifun.getInfo('Collection of success!','收藏成功!');
 				}else{
-					this.$Message.error('等待数据更新!');
+					this.$Message.error(orifun.getInfo('Waiting for data update!','等待数据更新!'));
 					return;
 				}
 				var collectBody = {
@@ -595,7 +631,7 @@
 					collected: ccol[index].collected
 				}
 				data.common('CarWithAuth/collect',function(d){
-						console.log(d);
+						// console.log(d);
 					if(d.code != 400 && d != 'undefined'){
 						that.$Notice.success({
 							title: 'Notification',
@@ -604,7 +640,7 @@
 						});
 						searchArr = ccol;
 					}else{
-						that.$Message.error('收藏失败!');
+						that.$Message.error(orifun.getInfo('Collection of failure!!','收藏失败!'));
 					}
 					
 				},collectBody);
@@ -737,9 +773,16 @@
 			carlistdata:function(form) {
 				var that = this;
 				that.spinShow = true;
+					form.language = 'cn';
 				data.common('Car/list',function(d){
 					// console.log(d)
-					that.searchArr = d.data;
+					that.$i18n._vm.messages['zh-cn'].buy.searchArr = d.data;
+					that.page.total = d.total;
+				},form)
+				form.language = 'en';
+				data.common('Car/list',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['en'].buy.searchArr = d.data;
 					that.page.total = d.total;
 					that.spinShow = false;
 				},form)

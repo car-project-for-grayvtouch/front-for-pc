@@ -2,7 +2,7 @@
 	let i18n = new VueI18n({
 	    locale: localStorage.getItem('locale') || 'en', // 设置地区
 	    messages: {
-		    en: {
+		    en: Object.assign({
 				//头部导航
 				header: {
 				  home: 'HOME',
@@ -30,9 +30,13 @@
 				seltype: ['Latest-hot','ECO-Car','Prospective-new-car','luxury-car'],
 				recom: 'CHAMPION Recommoned',
 				explain: [],
+				extip: 'remind',
+				extipc: 'No comment, please inform customer service',
 				// 媒体声音
 				mediaVoice: 'Media voice',
 				media: [],
+				metip: 'remind',
+				metipc: 'No articles, notice customer service on the new',
 				tipsArr:['Free transfer','A variety of financial loan services','Within a year the national road rescue service','Multiple payment channels (POS machine, WeChat, alipay, etc.)','There is no 100% commission'],
 				wantBuy: 'Search',
 				hotSearch: 'Hot Search',
@@ -155,20 +159,41 @@
 					processtwo: 'CHAM will help you choose your car more accurately',
 					processthree: 'Value of car purchase source look ahead',
 					processfour: 'CHAM is responsive to your needs',
-				}
-			},
-		    'zh-cn': {
-				header: {
-					home: '首页',
-					buy: '我要买车',
-					sale: '我要卖车',
-					bargain: '车行值购',
-					hire: '分期购车',
-					about: '关于车行',
-					center: '个人中心',
-					top: '返回<br>顶部',
-					online: '在线<br>咨询',
 				},
+				buy:{
+					screeningCondition: screeningConditionen,
+					conditions: 'Filter',
+					clearAll: 'Clear all',
+					Determine: 'Determine the screening',
+					brand: 'Brand',
+					series: 'Series',
+					price: 'price',
+					model: 'Model',
+					mileage: 'Mileage',
+					age: 'Age',
+					color: 'Color',
+					gearbox: 'Gearbox',
+					defaultSort: 'The default sort',
+					priceSort: 'The price sorted',
+					ageSort: 'The age sorted',
+					mileageSort: 'The mileage sorted',
+					tips: 'Tips',
+					tipsc: 'There is no selected vehicle at present, please inform the customer service of the new one.',
+					searchArr: [],
+				}
+			},iview.langs['en-US']),
+		    'zh-cn': Object.assign({
+					header: {
+						home: '首页',
+						buy: '我要买车',
+						sale: '我要卖车',
+						bargain: '车行值购',
+						hire: '分期购车',
+						about: '关于车行',
+						center: '个人中心',
+						top: '返回<br>顶部',
+						online: '在线<br>咨询',
+					},
 					search: {
 						place: "此处搜索车型！！！"
 					},
@@ -178,8 +203,12 @@
 					recom: '车行推荐',
 					seltype: ['最新最热','经济实惠','准新车','豪华车'],
 					explain: [],
+					extip: '提示',
+					extipc: '暂无评论，通知客服上新',
 					mediaVoice: '媒体声音',
 					media: [],
+					metip: '提示',
+					metipc: '暂无文章，通知客服上新',
 					misc: [{"content":'服务协议','src':"serivceAgreement.html"},
 					{"content":'隐私声明','src':"private.html"},
 					{"content":'联系我们','src':"contactUs.html"}],
@@ -301,7 +330,29 @@
 						processtwo: 'CHAM会更精确的帮您选择您的爱车',
 						processthree: '值购车源抢先看',
 						processfour: 'CHAM及时响应您的需求',
+					},
+					buy:{
+						screeningCondition:screeningConditioncn,
+						conditions: '条件筛选',
+						clearAll: '清除所有',
+						Determine: '确定筛选',
+						brand: '品牌',
+						series: '车系',
+						price: '价格',
+						model: '车型',
+						mileage: '里程',
+						age: '车龄',
+						color: '颜色',
+						gearbox: '变速箱',
+						defaultSort: '默认排序',
+						priceSort: '价格排序',
+						ageSort: '车龄排序',
+						mileageSort: '里程排序',
+						tips: '提示',
+						tipsc: '暂无所选车辆,通知客服上新',
+						searchArr: [],
 					}
-			}
+				},
+				iview.langs['zh-CN'])
 		}// 设置地区信息
 	})

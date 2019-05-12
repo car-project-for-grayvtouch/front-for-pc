@@ -21,10 +21,12 @@ var orifun = {
 	initStatu: function(obj){
 		if(locale){
 			i18n.locale = locale;
+			
 			locale == 'zh-cn'?obj.enshow = 'english':obj.enshow = '中文';
 		}else{
 			(locale = i18n.locale);
 		}
+		orifun.iviewswitch();
 		var login;
 		 if(localStorage.login){
 			login = JSON.parse(localStorage.login);
@@ -100,6 +102,7 @@ var orifun = {
 				i18n.locale = 'en';
 			}
 			localStorage.locale = i18n.locale;
+			orifun.iviewswitch();
 		},1100)
 	},
 	top: function(obj){
@@ -121,5 +124,12 @@ var orifun = {
 			page: 1,
 			sort: ''
 		})
+	},
+	iviewswitch: function(){
+		if(locale == 'en'){
+			iview.lang('en-US');
+		}else{
+			iview.lang('zh-CN');
+		}
 	}
 };

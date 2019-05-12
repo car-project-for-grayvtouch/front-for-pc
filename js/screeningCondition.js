@@ -1,5 +1,5 @@
 
-var screeningCondition = {
+var screeningConditioncn = {
 	brand: [],
 	carseries: [],
 	cartype: [],
@@ -136,6 +136,146 @@ var screeningCondition = {
 		},{
 			value: '其他',
 			label: '其他'
+		}],
+}
+
+var screeningConditionen = {
+	brand: [],
+	carseries: [],
+	cartype: [],
+	price: [{
+			value: '',
+			label: 'all'
+		},{
+			value: '1',
+			label: 'Under $10,000'
+		},{
+			value: '2',
+			label: '$10,000-$15,000'
+		},{
+			value: '3',
+			label: '$15,000-$20,000'
+		},{
+			value: '4',
+			label: '$20,000-$30,000'
+		},{
+			value: '5',
+			label: '$30,000-$40,000'
+		},{
+			value: '6',
+			label: '$40,000 Over'
+		}],
+	mileage: [{
+			value: '',
+			label: 'all'
+		},{
+			value: '1',
+			label: 'Within 10,000 miles'
+		},{
+			value: '2',
+			label: 'Within 30,000 miles'
+		},{
+			value: '3',
+			label: 'Within 50,000 miles'
+		},{
+			value: '4',
+			label: 'Within 80,000 miles'
+		},{
+			value: '5',
+			label: 'Within 100,000 miles'
+		},{
+			value: '6',
+			label: 'Within 150,000 miles'
+		}],
+	age: [{
+			value: '',
+			label: 'all'
+		},{
+			value: '1',
+			label: 'Within 1 year'
+		},{
+			value: '2',
+			label: 'Within 3 year'
+		},{
+			value: '3',
+			label: 'Within 5 year'
+		},{
+			value: '4',
+			label: 'Within 6 year'
+		},{
+			value: '5',
+			label: 'Within 8 year'
+		},{
+			value: '6',
+			label: 'More than 8 years'
+		}],
+	gearbox: [{
+			value: '',
+			label: 'all'
+		},{
+			value: 'manual',
+			label: 'manual'
+		},{
+			value: 'automatic',
+			label: 'automatic'
+		},{
+			value: 'manual and automatic', 
+			label: 'manual and automatic'
+		},{
+			value: 'Infinitely variable speed',
+			label: 'Infinitely variable speed'
+		},{
+			value: 'Double clutch',
+			label: 'Double clutch'
+		},{
+			value: 'Mechanical automatic transmission',
+			label: 'Mechanical automatic transmission'
+		},{
+			value: 'Direct drive',
+			label: 'Direct drive'
+		}],
+	color: [{
+			value: '',
+			label: 'all'
+		},{
+			value: 'white',
+			label: 'white'
+		},{
+			value: 'black',
+			label: 'black'
+		},{
+			value: 'Silver grey',
+			label: 'Silver grey'
+		},{
+			value: 'grey',
+			label: 'grey'
+		},{
+			value: 'yellow',
+			label: 'yellow'
+		},{
+			value: 'champagne',
+			label: 'champagne'
+		},{
+			value: 'red',
+			label: 'red'
+		},{
+			value: 'pink',
+			label: 'pink'
+		},{
+			value: 'purple',
+			label: 'purple'
+		},{
+			value: 'blue',
+			label: 'blue'
+		},{
+			value: 'green',
+			label: 'green'
+		},{
+			value: 'coffee',
+			label: 'coffee'
+		},{
+			value: 'other',
+			label: 'other'
 		}],
 }
 
