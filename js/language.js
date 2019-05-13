@@ -1,8 +1,10 @@
+	
 // 通过选项创建 VueI18n 实例
 	let i18n = new VueI18n({
 	    locale: localStorage.getItem('locale') || 'en', // 设置地区
+		// silentTranslationWarn: true,
 	    messages: {
-		    en: Object.assign({
+		    en: {
 				//头部导航
 				header: {
 				  home: 'HOME',
@@ -180,9 +182,76 @@
 					tips: 'Tips',
 					tipsc: 'There is no selected vehicle at present, please inform the customer service of the new one.',
 					searchArr: [],
+				},
+				detail:{
+					collect: '',
+					topinfo:{
+						name: '',
+						price: '',
+					},
+					mileage: '',
+					level: 'A',
+					transfer: '',
+					point: [],
+					// 初始配置
+					config: {
+						displacement: '',
+						gearbox: '',
+						cityfuelConsumption: '0.00',
+						speedfuelConsumption: '0.00',
+						type: '',
+						size: '',
+						seat: '0',
+					},
+					// 配置表格一
+					columns: [
+						{
+							title: 'The basic parameters',
+							key: 'name'
+						},{
+							title: 'Engine parameters',
+							key: 'age'
+						},{
+							title: 'Chassis and braking',
+							key: 'address'
+						},
+					],
+					datada: [],
+					// 配置表格二
+					columnss: [
+						{
+							title: 'Security configuration',
+							key: 'name'
+						},{
+							title: 'External configuration',
+							key: 'age'
+						},{
+							title: 'The internal configuration',
+							key: 'address'
+						}
+					],
+					datads: [],
+					// 检测报告
+					reportTime: '',
+					reportresult: [{},{},{},{}],
+					accidentArrone: [],
+					accidentArrtwo: [],
+					facecheck: [],
+					autodeviceone: [],
+					autodevicetwo: [],
+					autodevicethree: [],
+					autodevicefour: [],
+					autodevicefive: [],
+					autodevicesix: [],
+					dirveSysone: [],
+					dirveSystwo: [],
+					dirveSysthree: [],
+					dirveSysfour: [],
+					dirveSysfive: [],
+					carreport: 'true',
 				}
-			},iview.langs['en-US']),
-		    'zh-cn': Object.assign({
+			},
+		    'zh-cn':{
 					header: {
 						home: '首页',
 						buy: '我要买车',
@@ -351,8 +420,74 @@
 						tips: '提示',
 						tipsc: '暂无所选车辆,通知客服上新',
 						searchArr: [],
+					},
+					detail:{
+						collect: '',
+						topinfo:{
+							name: '',
+							price: '',
+						},
+						mileage: '0',
+						level: 'A',
+						transfer: '0',
+						point: [],
+						// 初始配置
+						config: {
+							displacement: '0',
+							gearbox: '',
+							cityfuelConsumption: '0.00',
+							speedfuelConsumption: '0.00',
+							type: '',
+							size: '',
+							seat: '0',
+						},
+						// 配置表格一
+						columns: [
+							{
+								title: '基本参数',
+								key: 'name'
+							},{
+								title: '发动机参数',
+								key: 'age'
+							},{
+								title: '底盘及制动',
+								key: 'address'
+							},
+						],
+						datada: [],
+						// 配置表格二
+						columnss: [
+							{
+								title: '安全配置',
+								key: 'name'
+							},{
+								title: '外部配置',
+								key: 'age'
+							},{
+								title: '内部配置',
+								key: 'address'
+							}
+						],
+						datads: [],
+						// 检测报告
+						reportTime: '',
+						reportresult: [{},{},{},{}],
+						accidentArrone: [],
+						accidentArrtwo: [],
+						facecheck: [],
+						autodeviceone: [],
+						autodevicetwo: [],
+						autodevicethree: [],
+						autodevicefour: [],
+						autodevicefive: [],
+						autodevicesix: [],
+						dirveSysone: [],
+						dirveSystwo: [],
+						dirveSysthree: [],
+						dirveSysfour: [],
+						dirveSysfive: [],
+						carreport: 'true',
 					}
-				},
-				iview.langs['zh-CN'])
+				}
 		}// 设置地区信息
 	})

@@ -236,8 +236,9 @@
     margin-bottom: 5px;
 }
 .point ul li{
-	width: 145px;
+	/* width: 145px; */
 	height: 155px;
+	margin-right: 40px;
 	/* padding: 10px 0px; */
 	display: flex;
 	flex-direction: column;
@@ -367,11 +368,16 @@
 	background: #f3f3f3;
     font-size: 16px;
     color: #555555;
-	line-height: 50px;
+	display: flex;
+	height: 60px;
+	align-items: center;
 	margin: 10px 0;
 }
 .ct-left{
-	display: inline-block;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
     background: #a9162d;
     color: #ffffff;
     font-size: 18px;
@@ -602,7 +608,7 @@
 	background-color: #00C261;
 }
 .autocheck{
-	width: 1112px;
+	width: 1280px;
 	height: 400px;
 	position: relative;
 	margin: 0 auto;
@@ -622,62 +628,68 @@
 	/* text-align: right; */
 }
 .autocheck div span{
-	line-height: 30px;
+	line-height: 20px;
 	font-size: 14px;
 	display: inline-block;
 	color: #555555;
+	word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 .autocheck-cone{
 	top: 368px;
-	right: 840px;
+	right: 922px;
 }
 .autocheck-ctwo{
 	top: 367px;
-    left: 840px;
+    left: 922px;
 }
 .autocheck-cthree:nth-child(4){
 	top: 32px;
-    right: 840px;
+    right: 922px;
 }
 .autocheck-cthree:nth-child(5){
 	top: 82px;
-    right: 840px;
+    right: 922px;
 }
 .autocheck-cthree:nth-child(6){
 	top: 132px;
-    right: 840px;
+    right: 922px;
 }
 .autocheck-cthree:nth-child(7){
 	top: 181px;
-    right: 840px;
+    right: 922px;
 }
 .autocheck-cthree:nth-child(8){
 	top: 231px;
-    right: 840px;
+    right: 922px;
 }
 .autocheck-cfour:nth-child(9){
 	top: 0;
-    right: 485px;
+    right: 568px;
 }
 .autocheck-cfour:nth-child(10){
 	top: 50px;
-    right: 485px;
+    right: 568px;
 }
 .autocheck-cfive:nth-child(11){
 	top: 0px;
-    left: 840px;
+    left: 922px;
 }
 .autocheck-cfive:nth-child(12){
 	top: 50px;
-    left: 840px;
+    left: 922px;
 }
 .autocheck-cfive:nth-child(13){
 	top: 100px;
-    left: 840px;
+    left: 922px;
 }
 .autocheck-csix:nth-child(14){
 	top: 175px;
-    left: 840px;
+    left: 922px;
 }
 .diriveSys{
 	display: flex;

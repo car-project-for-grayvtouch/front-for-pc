@@ -21,7 +21,7 @@
 	<script type="text/javascript" src="dist/locale/en-US.js"></script>
 	<script type="text/javascript" src="js/screeningCondition.js"></script>
 	<script type="text/javascript" src="js/language.js"></script>
-	<!-- <script type="text/javascript" src="dist/locale/zh-CN.js"></script> -->
+	<script type="text/javascript" src="dist/locale/zh-CN.js"></script>
 	<script type="text/javascript" src="js/data.js"></script>
 	<script type="text/javascript" src="http://at.alicdn.com/t/font_1127175_gtx5hh8j6d.js"></script>
 </head>
@@ -400,6 +400,7 @@
 </body>
 <script type="text/javascript">
 	var locale = localStorage.locale;
+	// Vue.locale = () => {};
 	new Vue({
 		i18n,
 		data: {
@@ -448,7 +449,6 @@
 		},
 		mounted() {
 			var that = this;
-			
 			orifun.initStatu(this);
 			$('.order').find('li').click(function(){
 				$(this).css({'background-color':'#DA2515','color':'white'}).siblings().css({'background-color':'white','color':'black'});

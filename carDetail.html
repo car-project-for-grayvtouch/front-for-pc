@@ -170,17 +170,17 @@
 					<div class="default">
 						<div class="default-top">
 							<div class="name">
-								{{topinfo.name}}
+								{{$t("detail.topinfo.name")}}
 							</div>
 							<div class="coll">
-								<img v-if="collect=='y'" src="images/collected.png" @click="collection">
+								<img v-if="$t('detail.collect')=='y'" src="images/collected.png" @click="collection">
 								<img v-else src="images/favorite.png" @click="collection">
 							</div>
 						</div>
 						<div class="default-left">
 							<div class="price">
 								CHAMPION价格
-								<span>${{topinfo.price}}</span>
+								<span>${{$t("detail.topinfo.price")}}</span>
 							</div>
 							<div class="loan">
 								<div class="min">
@@ -255,15 +255,15 @@
 						<div class="level">
 							<div class="level-item">
 								<span>行驶里程</span>
-								<span>{{mileage}}英里</span>
+								<span>{{$t('detail.mileage')}}英里</span>
 							</div>
 							<div class="level-item">
 								<span>复查等级</span>
-								<span>{{level}}</span>
+								<span>{{$t('detail.level')}}</span>
 							</div>
 							<div class="level-item">
 								<span>过户记录</span>
-								<span>{{transferRecord}}次</span>
+								<span>{{$t('detail.transfer')}}次</span>
 							</div>
 						</div>
 					</div>
@@ -274,7 +274,7 @@
 				<div class="point">
 					<div class="title">亮点配置</div>
 					<ul>
-						<li v-for="item in point">
+						<li v-for="item in $t('detail.point')">
 							<img :src="item.image" >
 							<p>{{item.name}}</p>
 						</li>
@@ -288,7 +288,7 @@
 							</svg>
 							<div class="config-r">
 								<p>排量</p>
-								<p>{{config.displacement}}L</p>
+								<p>{{$t('detail.config.displacement')}}L</p>
 							</div>
 						</li>
 						<li>
@@ -297,7 +297,7 @@
 							</svg>
 							<div class="config-r">
 								<p>变速箱</p>
-								<p>{{config.gearbox}}</p>
+								<p>{{$t('detail.config.gearbox')}}</p>
 							</div>
 						</li>
 						<li>
@@ -306,7 +306,7 @@
 							</svg>
 							<div class="config-r">
 								<p>油耗</p>
-								<p>城市：{{config.cityfuelConsumption}}GL/高速：{{config.speedfuelConsumption}}GL</p>
+								<p>城市：{{$t('detail.config.cityfuelConsumption')}}GL/高速：{{$t('detail.config.speedfuelConsumption')}}GL</p>
 							</div>
 						</li>
 						<li>
@@ -315,7 +315,7 @@
 							</svg>
 							<div class="config-r">
 								<p>级别</p>
-								<p>{{config.type}}</p>
+								<p>{{$t('detail.config.type')}}</p>
 							</div>
 						</li>
 						<li>
@@ -324,7 +324,7 @@
 							</svg>
 							<div class="config-r">
 								<p>尺寸</p>
-								<p>{{config.size}}inch</p>
+								<p>{{$t('detail.config.size')}}inch</p>
 							</div>
 						</li>
 						<li>
@@ -333,7 +333,7 @@
 							</svg>
 							<div class="config-r">
 								<p>承载数量</p>
-								<p>{{config.seat}}座</p>
+								<p>{{$t('detail.config.seat')}}座</p>
 							</div>
 						</li>
 						<li>
@@ -343,20 +343,20 @@
 					</ul>
 				</div>
 				<div class="title contitle">车辆配置</div>
-				<i-table stripe :columns="columns" :data="datada"></i-table>
-				<i-table class='allconfig' stripe :columns="columnss" :data="datads"></i-table>
+				<i-table stripe :columns="$t('detail.columns')" :data="$t('detail.datada')"></i-table>
+				<i-table class='allconfig' stripe :columns="$t('detail.columnss')" :data="$t('detail.datads')"></i-table>
 				
-				<div class="report" v-if="carreport">
-					<div class="title">车辆检测报告<span>检测时间：{{reportTime}}</span><span>检测车型：{{topinfo.name}}</span></div>
+				<div class="report" v-if="$t('detail.carreport')=='true'">
+					<div class="title">车辆检测报告<span>检测时间：{{$t("detail.reportTime")}}</span><span>检测车型：{{$t("detail.topinfo.name")}}</span></div>
 					<div class="curtitle">
-						<span class="ct-left">{{reportResult[0].name}}</span>
-						<span class="ct-right">{{reportResult[0].result}}</span>
+						<span class="ct-left">{{$t("detail.reportresult[0].name")}}</span>
+						<span class="ct-right">{{$t("detail.reportresult[0].result")}}</span>
 					</div>
 					<div class="r-content">
 						<img class="report_accident" src="images/report_accident.png" >
 						<div class="table-con">
 							<div class="table table-border">
-								<div class="table-item" v-for="item in accidentArrone">
+								<div class="table-item" v-for="item in $t('detail.accidentArrone')">
 									<div>
 										<span class="t-i-left">{{item.detection_pos_id}}</span>
 										<span class="t-i-center">{{item.name}}</span>
@@ -370,7 +370,7 @@
 								</div>
 							</div>
 							<div class="table tablew">
-								<div class="table-item" v-for="item in accidentArrtwo">
+								<div class="table-item" v-for="item in $t('detail.accidentArrtwo')">
 									<div>
 										<span class="t-i-left" v-if="item.detection_pos_id<17">{{item.detection_pos_id}}</span>
 										<span class="t-i-center">{{item.name}}</span>
@@ -386,8 +386,8 @@
 						</div>
 					</div>
 					<div class="curtitle">
-						<span class="ct-left">{{reportResult[1].name}}</span>
-						<span class="ct-right">{{reportResult[1].result}}</span>
+						<span class="ct-left">{{$t('detail.reportresult[1].name')}}</span>
+						<span class="ct-right">{{$t('detail.reportresult[1].result')}}</span>
 					</div>
 					<div class="r-content facecheck-c">
 						<div class="title">
@@ -410,7 +410,7 @@
 						</div>
 						<div class="facecheck">
 							<img src="images/report_body.png" >
-							<div v-for="item in facecheck">
+							<div v-for="item in $t('detail.facecheck')">
 								<span v-if="item.value == 'one'" style="background-color: #7FD441;"></span>
 								<span v-else-if="item.value == 'two'" style="background-color: #b2cce5;"></span>
 								<span v-if="item.value == 'three'" style="background-color: #ffb2b2;"></span>
@@ -419,41 +419,41 @@
 						</div>
 					</div>
 					<div class="curtitle">
-						<span class="ct-left">{{reportResult[2].name}}</span>
-						<span class="ct-right">{{reportResult[2].result}}</span>
+						<span class="ct-left">{{$t('detail.reportresult[2].name')}}</span>
+						<span class="ct-right">{{$t('detail.reportresult[2].result')}}</span>
 					</div>
 					<div class="r-content">
 						<div class="autocheck">
 							<img src="images/report_turnon.png" >
-							<div class="autocheck-cone" v-for="item in autodeviceone">
+							<div class="autocheck-cone" v-for="item in $t('detail.autodeviceone')">
 								<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
 								<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
 							</div>
-							<div class="autocheck-ctwo" v-for="item in autodevicetwo">
+							<div class="autocheck-ctwo" v-for="item in $t('detail.autodevicetwo')">
 								<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
 								<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
 							</div>
-							<div class="autocheck-cthree" v-for="item in autodevicethree">
+							<div class="autocheck-cthree" v-for="item in $t('detail.autodevicethree')">
 								<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
 								<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
 							</div>
-							<div class="autocheck-cfour" v-for="item in autodevicefour">
+							<div class="autocheck-cfour" v-for="item in $t('detail.autodevicefour')">
 								<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
 								<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
 							</div>
-							<div class="autocheck-cfive" v-for="item in autodevicefive">
+							<div class="autocheck-cfive" v-for="item in $t('detail.autodevicefive')">
 								<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
 								<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
 							</div>
-							<div class="autocheck-csix" v-for="item in autodevicesix">
+							<div class="autocheck-csix" v-for="item in $t('detail.autodevicesix')">
 								<span class="icnormal" v-if="item.value == 'normal'">{{item.desc}}<Icon class="ic" type="ios-checkmark-circle-outline" /></span>
 								<span class="icexception" v-else>{{item.desc}}<Icon type="ios-close-circle-outline" /></span>
 							</div>
 						</div>
 					</div>
 					<div class="curtitle">
-						<span class="ct-left">{{reportResult[3].name}}</span>
-						<span class="ct-right">{{reportResult[3].result}}</span>
+						<span class="ct-left">{{$t('detail.reportresult[3].name')}}</span>
+						<span class="ct-right">{{$t('detail.reportresult[3].result')}}</span>
 					</div>
 					<div class="diriveSys">
 						<div class="table table-border">
@@ -462,7 +462,7 @@
 									<span class="t-i-center">启动</span>
 								</div>
 							</div>
-							<div class="table-item" v-for="item in dirveSysone">
+							<div class="table-item" v-for="item in $t('detail.dirveSysone')">
 								<div>
 									<span class="t-i-center">{{item[0].name}}</span>
 									<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
@@ -480,7 +480,7 @@
 									<span class="t-i-center">起步</span>
 								</div>
 							</div>
-							<div class="table-item" v-for="item in dirveSystwo">
+							<div class="table-item" v-for="item in $t('detail.dirveSystwo')">
 								<div>
 									<span class="t-i-center">{{item[0].name}}</span>
 									<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
@@ -498,7 +498,7 @@
 									<span class="t-i-center">加速</span>
 								</div>
 							</div>
-							<div class="table-item" v-for="item in dirveSysthree">
+							<div class="table-item" v-for="item in $t('detail.dirveSysthree')">
 								<div>
 									<span class="t-i-center">{{item[0].name}}</span>
 									<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
@@ -516,7 +516,7 @@
 									<span class="t-i-center">匀速驾驶</span>
 								</div>
 							</div>
-							<div class="table-item" v-for="item in dirveSysfour">
+							<div class="table-item" v-for="item in $t('detail.dirveSysfour')">
 								<div>
 									<span class="t-i-center">{{item[0].name}}</span>
 									<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
@@ -534,7 +534,7 @@
 									<span class="t-i-center">减速及制动</span>
 								</div>
 							</div>
-							<div class="table-item" v-for="item in dirveSysfive">
+							<div class="table-item" v-for="item in $t('detail.dirveSysfive')">
 								<div>
 									<span class="t-i-center">{{item[0].name}}</span>
 									<span class="t-i-right icnormal" v-if="item[0].value == 'normal'">
@@ -715,7 +715,7 @@
 			datads: [],
 			// 检测报告
 			reportTime: '',
-			reportResult: [{},{},{},{}],
+			reportresult: [{},{},{},{}],
 			accidentArrone: [],
 			accidentArrtwo: [],
 			facecheck: [],
@@ -731,7 +731,7 @@
 			dirveSysfour: [],
 			dirveSysfive: [],
 			spinShow: false,
-			carreport: true,
+			carreport: 'true',
 			// 猜你想看
 			guesswant: [],
 			//预约看车
@@ -752,7 +752,8 @@
 		},
 		mounted() {
 			
-			var that = this;
+			var thatvu = this;
+			
 			orifun.initStatu(this);
 			var goodId;
 			if(localStorage.goodId){
@@ -761,243 +762,479 @@
 				goodId = 2;
 			}
 			// console.log(goodId);
-			that.spinShow = true;
-			data.common('Car/detail',function(d){
-				console.log(d)
-				var car = d.car;
-				var model = car.model;
-				that.collect = car.collected;//保存收藏状态
-				// console.log(car.collected)
-				// 顶部图片切换
-				that.slideArr = car.image;
-				// console.log(model)
-				if(!model){
-					// 顶部右侧车辆基础信息
-					that.topinfo.name = ' ' + car.brand.name+ ' ' + car.series.name + ' ';
-					that.topinfo.price = car.price;
-					that.mileage = car.mileage;
-					that.level = '';
-					that.transferRecord = car.transfer_record;
-					//计算贷款方案
-					that.loanfun();
-					//计算贷款方案
-					that.loanfun();
-					that.spinShow = false;
-				}else{
-					// 顶部右侧车辆基础信息
-					that.topinfo.name = model.year + ' ' + car.brand.name+ ' ' + car.series.name + ' ' + model.displacement +'L';
-					that.topinfo.price = car.price;
-					that.mileage = car.mileage;
-					that.level = model.level;
-					that.transferRecord = car.transfer_record;
-					//计算贷款方案
-					that.loanfun();
-					//亮点配置
-					that.point = model.configuration;
-					that.config.displacement = model.displacement;
-					that.config.gearbox = model.gearbox;
-					that.config.cityfuelConsumption = model.city_fuel_consumption;
-					that.config.speedfuelConsumption = model.high_speed_fuel_consumption;
-					that.config.type = model.car_type.name;
-					that.config.size = model.size;
-					that.config.seat = model.seat_count;
+			thatvu.spinShow = true;
+			function cardetail(lang){
+				data.common('Car/detail',function(d){
+					console.log(d)
+					var car = d.car;
+					var model = car.model;
 					
-					//车辆配置
-					// 配置表格一
-					// console.log(that.reportResult)
-					var datada =[
-						{
-							name: '厂商：' + model.company,
-							age: '发动机：' + model.engine + '马力',
-							address: '驱动方式：' + model.driver_type,
-						},{
-							name: '级别：' + model.level,
-							age: '排量(L)：' + model.displacement + 'L',
-							address: '助力类型：' + model.assist_type,
-						},{
-							name: '变速箱：' + model.gearbox,
-							age: '进气类型：' + model.intake_type,
-							address: '前悬挂类型：' + model.front_suspension_type,
-						},{
-							name: '车门数量：' + model.door_count,
-							age: '气缸：' + model.cylinder_count,
-							address: '后悬挂类型：' + model.back_suspension_type,
-						},{
-							name: '长*宽*高(inch)：'+ model.size,
-							age: '最大马力(Ps)：' + model.maximum_horsepower,
-							address: '前制动类型：' + model.front_brake_type,
-						},{
-							name: '轴距(inch)：' + model.wheelbase,
-							age: '最大扭矩(N*m)：' + model.maximum_torque,
-							address: '后制动类型：' + model.back_brake_type,
-						},{
-							name: '高速油耗(GL)：' + model.high_speed_fuel_consumption + 'GL',
-							age: '燃料类型：' + model.fuel_type,
-							address: '轮胎描述：' + model.tire_desc,
-						},{
-							name: '城市油耗(GL)：' + model.city_fuel_consumption + 'GL',
-							age: '发动机防盗系统：' + model.engine_anti_theft_system,
-							address: '',
-						}
-					];
-					that.datada = datada;
-					// 配置表格二
-					var configone = d.configuration,
-					configtwo = model.configuration;
-					// 添加has属性
-					for(var k in configone){
-						var cd = configone[k].data;
-						for(var s in cd){
-							for(var p in configtwo){
-								if(cd[s].name == configtwo[p].name){
-									configone[k].data[s].has = true;
-								}else{
-									if(configone[k].data[s].has){
-										// 不用再次操作
-									}else{
-										configone[k].data[s].has = false;
+					thatvu.slideArr = car.image;
+					if(lang == 'en'){
+						that = thatvu.$i18n._vm.messages['en'].detail;
+						that.collect = car.collected;
+						if(!model){
+							// 顶部右侧车辆基础信息
+							that.topinfo.name = ' ' + car.brand.name+ ' ' + car.series.name + ' ';
+							that.topinfo.price = car.price;
+							that.mileage = car.mileage;
+							that.level = '';
+							that.transfer = '' + car.transfer_record;
+							//计算贷款方案
+							thatvu.loanfun();
+							thatvu.spinShow = false;
+						}else{
+							// 顶部右侧车辆基础信息
+							that.topinfo.name = model.year + ' ' + car.brand.name+ ' ' + car.series.name + ' ' + model.displacement +'L';
+							that.topinfo.price = car.price;
+							that.mileage = car.mileage;
+							that.level = model.level;
+							that.transfer = '' + car.transfer_record;
+							//计算贷款方案
+							thatvu.loanfun();
+							//亮点配置
+							that.point = model.configuration;
+							that.displacement = model.displacement;
+							that.gearbox = model.gearbox;
+							that.cityfuelConsumption = model.city_fuel_consumption;
+							that.speedfuelConsumption = model.high_speed_fuel_consumption;
+							that.type = model.car_type.name;
+							that.size = model.size;
+							that.config.seat = '' + model.seat_count;
+							
+							//车辆配置
+							// 配置表格一
+							// console.log(that.reportResult)
+							var datada =[
+								{
+									name: 'vendor：' + model.company,
+									age: 'The engine：' + model.engine + 'horsepower',
+									address: 'Drive way：' + model.driver_type,
+								},{
+									name: 'level：' + model.level,
+									age: 'displacement(L)：' + model.displacement + 'L',
+									address: 'Power type：' + model.assist_type,
+								},{
+									name: 'transmission：' + model.gearbox,
+									age: 'Inlet type：' + model.intake_type,
+									address: 'Front suspension type：' + model.front_suspension_type,
+								},{
+									name: 'The door number：' + model.door_count,
+									age: 'cylinder：' + model.cylinder_count,
+									address: 'Rear suspension type：' + model.back_suspension_type,
+								},{
+									name: 'Length * width * height(inch)：'+ model.size,
+									age: 'Maximum horsepower(Ps)：' + model.maximum_horsepower,
+									address: 'Front brake type：' + model.front_brake_type,
+								},{
+									name: 'The wheelbase(inch)：' + model.wheelbase,
+									age: 'Maximum torque(N*m)：' + model.maximum_torque,
+									address: 'Rear braking type：' + model.back_brake_type,
+								},{
+									name: 'High fuel consumption(GL)：' + model.high_speed_fuel_consumption + 'GL',
+									age: 'Fuel type：' + model.fuel_type,
+									address: 'Tire description：' + model.tire_desc,
+								},{
+									name: 'Urban fuel consumption(GL)：' + model.city_fuel_consumption + 'GL',
+									age: 'Engine anti-theft system：' + model.engine_anti_theft_system,
+									address: '',
+								}
+							];
+							that.datada = datada;
+							// 配置表格二
+							var configone = d.configuration,
+							configtwo = model.configuration;
+							// 添加has属性
+							for(var k in configone){
+								var cd = configone[k].data;
+								for(var s in cd){
+									for(var p in configtwo){
+										if(cd[s].name == configtwo[p].name){
+											configone[k].data[s].has = true;
+										}else{
+											if(configone[k].data[s].has){
+												// 不用再次操作
+											}else{
+												configone[k].data[s].has = false;
+											}
+										}
+										// console.log(configtwo[s])
 									}
 								}
-								// console.log(configtwo[s])
 							}
-						}
-					}
-					// console.log(configone)
-					// 整理数据结构
-					var datads = [{},{},{},{},{},{},{},{},{},{},];
-					for(var r in configone){
-						var cd = configone[r].data;
-						for(var e in cd){
-							if(r == 0){
-								datads[e].name = cd[e].name + '：' + (cd[e].has?'有':'无');
-							}else if(r == 1){
-								datads[e].age = cd[e].name + '：' + (cd[e].has?'有':'无');
-							}else{
-								datads[e].address = cd[e].name + '：' + (cd[e].has?'有':'无');
+							// console.log(configone)
+							// 整理数据结构
+							var datads = [{},{},{},{},{},{},{},{},{},{},];
+							for(var r in configone){
+								var cd = configone[r].data;
+								for(var e in cd){
+									if(r == 0){
+										datads[e].name = cd[e].name + '：' + (cd[e].has?'exist':'without');
+									}else if(r == 1){
+										datads[e].age = cd[e].name + '：' + (cd[e].has?'exist':'without');
+									}else{
+										datads[e].address = cd[e].name + '：' + (cd[e].has?'exist':'without');
+									}
+								}
 							}
-						}
-					}
-					// console.log(datads)
-					that.datads = datads;
-				}
-				
-				//车辆检测报告
-				if(car.report){
-					let find = function(rm, id, value) {
-						for(var k in rm){
-							// console.log(rm[k][id], value)
-							if (rm[k][id] == value) {
-								return rm[k];
-							}
-							
-						}
-					};
-					// 检测报告四条title
-					var report = car.report;
-					that.reportTime = report.update_time;
-					var rm = report.module;
-					
-					var accident,
-					facecheck,
-					autodevice,
-					dirveSys;
-					for(var k in rm){
-						var f = find(rm, 'detection_module_id', Number(k) + 1);
-						that.reportResult[k].result = f.result;
-						that.reportResult[k].name = f.name;
-					}
-					accident = find(rm, 'detection_module_id', 1).position;
-					facecheck = find(rm, 'detection_module_id', 2).position;
-					autodevice = find(rm, 'detection_module_id', 3).position;
-					dirveSys = find(rm, 'detection_module_id', 4).position;
-					
-					// console.log(accident)
-					// 事故排查
-					for(var k in accident){
-						if(k < 14){
-							that.accidentArrone.push(accident[k]);
-						}else if(k >= 14){
-							that.accidentArrtwo.push(accident[k]);
+							// console.log(datads)
+							that.datads = datads;
 						}
 						
-					}
-					// 外观内饰
-					var facecheckArr = [
-						{
-							value: find(facecheck, 'name' ,'1')?find(facecheck, 'name' ,'1').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'2')?find(facecheck, 'name' ,'2').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'3')?find(facecheck, 'name' ,'3').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'4')?find(facecheck, 'name' ,'4').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'5')?find(facecheck, 'name' ,'5').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'6')?find(facecheck, 'name' ,'6').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'7')?find(facecheck, 'name' ,'7').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'8')?find(facecheck, 'name' ,'8').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'9')?find(facecheck, 'name' ,'9').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'10')?find(facecheck, 'name' ,'10').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'11')?find(facecheck, 'name' ,'11').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'12')?find(facecheck, 'name' ,'12').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'13')?find(facecheck, 'name' ,'13').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'14')?find(facecheck, 'name' ,'14').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'15')?find(facecheck, 'name' ,'15').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'16')?find(facecheck, 'name' ,'16').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'17')?find(facecheck, 'name' ,'17').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'18')?find(facecheck, 'name' ,'18').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'19')?find(facecheck, 'name' ,'19').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'20')?find(facecheck, 'name' ,'20').item[0].value:'one'
-						},{
-							value: find(facecheck, 'name' ,'21')?find(facecheck, 'name' ,'21').item[0].value:'one'
-						}
-					];
-					that.facecheck = facecheckArr;
-					
-					//启动设备检测
-					// console.log(autodevice)
-					that.autodeviceone = find(autodevice, 'name' ,'2')?find(autodevice, 'name' ,'2').item.slice(0, 1): [{value:'normal',desc:'车辆排气正常'}];
-					that.autodevicethree = find(autodevice, 'name' ,'3')?find(autodevice, 'name' ,'3').item.slice(0, 5): [{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警'},{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警 各类灯光调节功能正常'},{value:'normal',desc:'空调系统运转正常'},{value:'normal',desc:'泊车辅助系统工作正常'},{value:'normal',desc:'方向盘自由行程转角小于15度'}];
-					that.autodevicetwo = find(autodevice, 'name' ,'4')?find(autodevice, 'name' ,'4').item.slice(0, 1): [{value:'normal',desc:'脚踏板功能正常'}];
-					that.autodevicefour = find(autodevice, 'name' ,'5')?find(autodevice, 'name' ,'5').item.slice(0, 2): [{value:'normal',desc:'原地打转向时,转向机、转向柱、方向系统正常'},{value:'normal',desc:'变速箱换挡功能正常'}];
-					that.autodevicefive = find(autodevice, 'name' ,'6')?find(autodevice, 'name' ,'6').item.slice(0, 3): [{value:'normal',desc:'怠速运转时发动机运转稳定'},{value:'normal',desc:"空挡提速时发动机运转稳定"},{value:'normal',desc:" 驻车制动器工作正常"}];
-					that.autodevicesix = find(autodevice, 'name' ,'7')?find(autodevice, 'name' ,'7').item.slice(0, 1): [{value:'normal',desc:"车辆启动顺畅"}];
-					
-					//驾驶系统检测
-					// console.log(dirveSys)
-					for(var k in dirveSys){
-						if(dirveSys[k].detection_group_id == 1){
-							that.dirveSysone.push(dirveSys[k].item);
-						}else if(dirveSys[k].detection_group_id == 2){
-							that.dirveSystwo.push(dirveSys[k].item);
-						}else if(dirveSys[k].detection_group_id == 3){
-							that.dirveSysthree.push(dirveSys[k].item);
-						}else if(dirveSys[k].detection_group_id == 4){
-							that.dirveSysfour.push(dirveSys[k].item);
+						//车辆检测报告
+						if(car.report){
+							let find = function(rm, id, value) {
+								for(var k in rm){
+									// console.log(rm[k][id], value)
+									if (rm[k][id] == value) {
+										return rm[k];
+									}
+									
+								}
+							};
+							// 检测报告四条title
+							var report = car.report;
+							that.reportTime = '' + report.update_time;
+							var rm = report.module;
+							
+							var accident,
+							facecheck,
+							autodevice,
+							dirveSys;
+							for(var k in rm){
+								var f = find(rm, 'detection_module_id', Number(k) + 1);
+								that.reportresult[k].result = '' + f.result;
+								that.reportresult[k].name = '' + f.name;
+							}
+							accident = find(rm, 'detection_module_id', 1).position;
+							facecheck = find(rm, 'detection_module_id', 2).position;
+							console.log(facecheck)
+							autodevice = find(rm, 'detection_module_id', 3).position;
+							dirveSys = find(rm, 'detection_module_id', 4).position;
+							
+							// console.log(accident)
+							// 事故排查
+							for(var k in accident){
+								if(k < 14){
+									that.accidentArrone.push(accident[k]);
+								}else if(k >= 14){
+									that.accidentArrtwo.push(accident[k]);
+								}
+								
+							}
+							// 外观内饰
+							var facecheckArr = [
+								{
+									value: find(facecheck, 'name' ,'1')?find(facecheck, 'name' ,'1').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'2')?find(facecheck, 'name' ,'2').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'3')?find(facecheck, 'name' ,'3').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'4')?find(facecheck, 'name' ,'4').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'5')?find(facecheck, 'name' ,'5').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'6')?find(facecheck, 'name' ,'6').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'7')?find(facecheck, 'name' ,'7').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'8')?find(facecheck, 'name' ,'8').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'9')?find(facecheck, 'name' ,'9').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'10')?find(facecheck, 'name' ,'10').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'11')?find(facecheck, 'name' ,'11').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'12')?find(facecheck, 'name' ,'12').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'13')?find(facecheck, 'name' ,'13').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'14')?find(facecheck, 'name' ,'14').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'15')?find(facecheck, 'name' ,'15').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'16')?find(facecheck, 'name' ,'16').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'17')?find(facecheck, 'name' ,'17').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'18')?find(facecheck, 'name' ,'18').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'19')?find(facecheck, 'name' ,'19').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'20')?find(facecheck, 'name' ,'20').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'21')?find(facecheck, 'name' ,'21').item[0].value:'one'
+								}
+							];
+							that.facecheck = facecheckArr;
+							
+							//启动设备检测
+							// console.log(autodevice)
+							that.autodeviceone = find(autodevice, 'name' ,'2')?find(autodevice, 'name' ,'2').item.slice(0, 1): [{value:'normal',desc:'车辆排气正常'}];
+							that.autodevicethree = find(autodevice, 'name' ,'3')?find(autodevice, 'name' ,'3').item.slice(0, 5): [{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警'},{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警 各类灯光调节功能正常'},{value:'normal',desc:'空调系统运转正常'},{value:'normal',desc:'泊车辅助系统工作正常'},{value:'normal',desc:'方向盘自由行程转角小于15度'}];
+							that.autodevicetwo = find(autodevice, 'name' ,'4')?find(autodevice, 'name' ,'4').item.slice(0, 1): [{value:'normal',desc:'脚踏板功能正常'}];
+							that.autodevicefour = find(autodevice, 'name' ,'5')?find(autodevice, 'name' ,'5').item.slice(0, 2): [{value:'normal',desc:'原地打转向时,转向机、转向柱、方向系统正常'},{value:'normal',desc:'变速箱换挡功能正常'}];
+							that.autodevicefive = find(autodevice, 'name' ,'6')?find(autodevice, 'name' ,'6').item.slice(0, 3): [{value:'normal',desc:'怠速运转时发动机运转稳定'},{value:'normal',desc:"空挡提速时发动机运转稳定"},{value:'normal',desc:" 驻车制动器工作正常"}];
+							that.autodevicesix = find(autodevice, 'name' ,'7')?find(autodevice, 'name' ,'7').item.slice(0, 1): [{value:'normal',desc:"车辆启动顺畅"}];
+							
+							//驾驶系统检测
+							// console.log(dirveSys)
+							for(var k in dirveSys){
+								if(dirveSys[k].detection_group_id == 1){
+									that.dirveSysone.push(dirveSys[k].item);
+								}else if(dirveSys[k].detection_group_id == 2){
+									that.dirveSystwo.push(dirveSys[k].item);
+								}else if(dirveSys[k].detection_group_id == 3){
+									that.dirveSysthree.push(dirveSys[k].item);
+								}else if(dirveSys[k].detection_group_id == 4){
+									that.dirveSysfour.push(dirveSys[k].item);
+								}else{
+									that.dirveSysfive.push(dirveSys[k].item);
+								}
+							}
 						}else{
-							that.dirveSysfive.push(dirveSys[k].item);
+							that.carreport = 'false';
+						}
+					}else{
+						that = thatvu.$i18n._vm.messages['zh-cn'].detail;
+						that.collect = car.collected;
+						if(!model){
+							// 顶部右侧车辆基础信息
+							that.topinfo.name = ' ' + car.brand.name+ ' ' + car.series.name + ' ';
+							that.topinfo.price = car.price;
+							that.mileage = car.mileage;
+							that.level = '';
+							that.transfer = '' + car.transfer_record;
+							//计算贷款方案
+							thatvu.loanfun();
+							thatvu.spinShow = false;
+						}else{
+							// 顶部右侧车辆基础信息
+							that.topinfo.name = model.year + ' ' + car.brand.name+ ' ' + car.series.name + ' ' + model.displacement +'L';
+							that.topinfo.price = car.price;
+							that.mileage = car.mileage;
+							that.level = model.level;
+							that.transfer = '' + car.transfer_record;
+							//计算贷款方案
+							thatvu.loanfun();
+							//亮点配置
+							that.point = model.configuration;
+							that.config.displacement = model.displacement;
+							that.config.gearbox = model.gearbox;
+							that.config.cityfuelConsumption = model.city_fuel_consumption;
+							that.config.speedfuelConsumption = model.high_speed_fuel_consumption;
+							that.config.type = model.car_type.name;
+							that.config.size = model.size;
+							that.config.seat = '' + model.seat_count;
+							
+							//车辆配置
+							// 配置表格一
+							// console.log(that.reportResult)
+							var datada =[
+								{
+									name: '厂商：' + model.company,
+									age: '发动机：' + model.engine + '马力',
+									address: '驱动方式：' + model.driver_type,
+								},{
+									name: '级别：' + model.level,
+									age: '排量(L)：' + model.displacement + 'L',
+									address: '助力类型：' + model.assist_type,
+								},{
+									name: '变速箱：' + model.gearbox,
+									age: '进气类型：' + model.intake_type,
+									address: '前悬挂类型：' + model.front_suspension_type,
+								},{
+									name: '车门数量：' + model.door_count,
+									age: '气缸：' + model.cylinder_count,
+									address: '后悬挂类型：' + model.back_suspension_type,
+								},{
+									name: '长*宽*高(inch)：'+ model.size,
+									age: '最大马力(Ps)：' + model.maximum_horsepower,
+									address: '前制动类型：' + model.front_brake_type,
+								},{
+									name: '轴距(inch)：' + model.wheelbase,
+									age: '最大扭矩(N*m)：' + model.maximum_torque,
+									address: '后制动类型：' + model.back_brake_type,
+								},{
+									name: '高速油耗(GL)：' + model.high_speed_fuel_consumption + 'GL',
+									age: '燃料类型：' + model.fuel_type,
+									address: '轮胎描述：' + model.tire_desc,
+								},{
+									name: '城市油耗(GL)：' + model.city_fuel_consumption + 'GL',
+									age: '发动机防盗系统：' + model.engine_anti_theft_system,
+									address: '',
+								}
+							];
+							that.datada = datada;
+							// 配置表格二
+							var configone = d.configuration,
+							configtwo = model.configuration;
+							// 添加has属性
+							for(var k in configone){
+								var cd = configone[k].data;
+								for(var s in cd){
+									for(var p in configtwo){
+										if(cd[s].name == configtwo[p].name){
+											configone[k].data[s].has = true;
+										}else{
+											if(configone[k].data[s].has){
+												// 不用再次操作
+											}else{
+												configone[k].data[s].has = false;
+											}
+										}
+										// console.log(configtwo[s])
+									}
+								}
+							}
+							// console.log(configone)
+							// 整理数据结构
+							var datads = [{},{},{},{},{},{},{},{},{},{},];
+							for(var r in configone){
+								var cd = configone[r].data;
+								for(var e in cd){
+									if(r == 0){
+										datads[e].name = cd[e].name + '：' + (cd[e].has?'有':'无');
+									}else if(r == 1){
+										datads[e].age = cd[e].name + '：' + (cd[e].has?'有':'无');
+									}else{
+										datads[e].address = cd[e].name + '：' + (cd[e].has?'有':'无');
+									}
+								}
+							}
+							// console.log(datads)
+							that.datads = datads;
+						}
+						
+						//车辆检测报告
+						if(car.report){
+							let find = function(rm, id, value) {
+								for(var k in rm){
+									// console.log(rm[k][id], value)
+									if (rm[k][id] == value) {
+										return rm[k];
+									}
+									
+								}
+							};
+							// 检测报告四条title
+							var report = car.report;
+							that.reportTime = report.update_time;
+							var rm = report.module;
+							
+							var accident,
+							facecheck,
+							autodevice,
+							dirveSys;
+							for(var k in rm){
+								var f = find(rm, 'detection_module_id', Number(k) + 1);
+								that.reportresult[k].result = '' + f.result;
+								that.reportresult[k].name = '' + f.name;
+							}
+							accident = find(rm, 'detection_module_id', 1).position;
+							facecheck = find(rm, 'detection_module_id', 2).position;
+							autodevice = find(rm, 'detection_module_id', 3).position;
+							dirveSys = find(rm, 'detection_module_id', 4).position;
+							
+							// console.log(accident)
+							// 事故排查
+							for(var k in accident){
+								if(k < 14){
+									that.accidentArrone.push(accident[k]);
+								}else if(k >= 14){
+									that.accidentArrtwo.push(accident[k]);
+								}
+								
+							}
+							// 外观内饰
+							var facecheckArr = [
+								{
+									value: find(facecheck, 'name' ,'1')?find(facecheck, 'name' ,'1').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'2')?find(facecheck, 'name' ,'2').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'3')?find(facecheck, 'name' ,'3').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'4')?find(facecheck, 'name' ,'4').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'5')?find(facecheck, 'name' ,'5').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'6')?find(facecheck, 'name' ,'6').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'7')?find(facecheck, 'name' ,'7').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'8')?find(facecheck, 'name' ,'8').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'9')?find(facecheck, 'name' ,'9').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'10')?find(facecheck, 'name' ,'10').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'11')?find(facecheck, 'name' ,'11').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'12')?find(facecheck, 'name' ,'12').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'13')?find(facecheck, 'name' ,'13').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'14')?find(facecheck, 'name' ,'14').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'15')?find(facecheck, 'name' ,'15').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'16')?find(facecheck, 'name' ,'16').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'17')?find(facecheck, 'name' ,'17').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'18')?find(facecheck, 'name' ,'18').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'19')?find(facecheck, 'name' ,'19').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'20')?find(facecheck, 'name' ,'20').item[0].value:'one'
+								},{
+									value: find(facecheck, 'name' ,'21')?find(facecheck, 'name' ,'21').item[0].value:'one'
+								}
+							];
+							that.facecheck = facecheckArr;
+							
+							//启动设备检测
+							// console.log(autodevice)
+							that.autodeviceone = find(autodevice, 'name' ,'2')?find(autodevice, 'name' ,'2').item.slice(0, 1): [{value:'normal',desc:'车辆排气正常'}];
+							that.autodevicethree = find(autodevice, 'name' ,'3')?find(autodevice, 'name' ,'3').item.slice(0, 5): [{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警'},{value:'normal',desc:'仪表盘指示灯显示正常,无故障报警 各类灯光调节功能正常'},{value:'normal',desc:'空调系统运转正常'},{value:'normal',desc:'泊车辅助系统工作正常'},{value:'normal',desc:'方向盘自由行程转角小于15度'}];
+							that.autodevicetwo = find(autodevice, 'name' ,'4')?find(autodevice, 'name' ,'4').item.slice(0, 1): [{value:'normal',desc:'脚踏板功能正常'}];
+							that.autodevicefour = find(autodevice, 'name' ,'5')?find(autodevice, 'name' ,'5').item.slice(0, 2): [{value:'normal',desc:'原地打转向时,转向机、转向柱、方向系统正常'},{value:'normal',desc:'变速箱换挡功能正常'}];
+							that.autodevicefive = find(autodevice, 'name' ,'6')?find(autodevice, 'name' ,'6').item.slice(0, 3): [{value:'normal',desc:'怠速运转时发动机运转稳定'},{value:'normal',desc:"空挡提速时发动机运转稳定"},{value:'normal',desc:" 驻车制动器工作正常"}];
+							that.autodevicesix = find(autodevice, 'name' ,'7')?find(autodevice, 'name' ,'7').item.slice(0, 1): [{value:'normal',desc:"车辆启动顺畅"}];
+							
+							//驾驶系统检测
+							// console.log(dirveSys)
+							for(var k in dirveSys){
+								if(dirveSys[k].detection_group_id == 1){
+									that.dirveSysone.push(dirveSys[k].item);
+								}else if(dirveSys[k].detection_group_id == 2){
+									that.dirveSystwo.push(dirveSys[k].item);
+								}else if(dirveSys[k].detection_group_id == 3){
+									that.dirveSysthree.push(dirveSys[k].item);
+								}else if(dirveSys[k].detection_group_id == 4){
+									that.dirveSysfour.push(dirveSys[k].item);
+								}else{
+									that.dirveSysfive.push(dirveSys[k].item);
+								}
+							}
+						}else{
+							that.carreport = 'false';
 						}
 					}
-				}else{
-					that.carreport = false;
-				}
-				that.spinShow = false;
-			},{id:goodId})
+					// that.collect = car.collected;//保存收藏状态
+					// console.log(car.collected)
+					// 顶部图片切换
+					// console.log(model)
+					
+					thatvu.spinShow = false;
+				},{id:goodId,language:lang})
+			}
+			cardetail('en');
+			cardetail('cn');
+			console.log(thatvu.$i18n._vm.messages['en'].detail);
 			// 猜你想看
 			this.guesswantinfo();
 			//获取验证码
@@ -1054,7 +1291,7 @@
 					this.$Message.warning('请先登录!');
 					return;
 				}
-				var ccol = this.collect,
+				var ccol = this.$i18n._vm.messages[localStorage.locale].detail.collect,
 				notice;
 				if(ccol == 'y'){
 					ccol = 'n';
@@ -1078,7 +1315,7 @@
 							desc:notice,
 							duration: 4
 						});
-						that.collect = ccol;
+						that.$i18n._vm.messages[localStorage.locale].detail.collect = ccol;
 						that.guesswantinfo();
 					}else{
 						that.$Message.error('收藏失败!');
@@ -1177,9 +1414,11 @@
 			//计算贷款方案
 			loanfun: function() {
 				for(var k in this.loanarr){
-					this.defaultloanarr[k] = Math.ceil((1 - this.loanarr[k]) * this.topinfo.price/60);
+					var totalrepay = (1 - this.loanarr[k]) * Number(this.$i18n._vm.messages[localStorage.locale].detail.topinfo.price);
+					this.defaultloanarr[k] = Math.ceil((totalrepay * 0.099 + totalrepay)/48);
 				}
-				this.min = Math.ceil((1 - this.loanarr[this.loanarr.length-1]) * this.topinfo.price/60);
+				var dmin = (1 - this.loanarr[this.loanarr.length-1]) * Number(this.$i18n._vm.messages[localStorage.locale].detail.topinfo.price);
+				this.min = Math.ceil((dmin * 0.099 + dmin)/48);
 			},
 			//贷款方案弹窗
 			instance (type) {
@@ -1205,7 +1444,7 @@
 							</div>\
 							<div class = "lpubib"\
 								<label>车辆价格：</label>\
-								<span>$'+ this.topinfo.price +'</span>\
+								<span>$'+ this.$i18n._vm.messages[localStorage.locale].detail.topinfo.price +'</span>\
 							</div>\
 						</div>\
 						<div class = "lpub-item">\
@@ -1215,7 +1454,7 @@
 							</div>\
 							<div class = "lpubib"\
 								<label>还款期限：</label>\
-								<span>60个月</span>\
+								<span>48个月</span>\
 							</div>\
 						</div>\
 					</div>\
