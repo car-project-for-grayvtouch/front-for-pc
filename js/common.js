@@ -24,7 +24,7 @@ var orifun = {
 			
 			locale == 'zh-cn'?obj.enshow = 'english':obj.enshow = '中文';
 		}else{
-			(locale = i18n.locale);
+			localStorage.locale = locale = i18n.locale;
 		}
 		orifun.iviewswitch();
 		var login;

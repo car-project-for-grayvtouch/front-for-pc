@@ -762,12 +762,13 @@
 				goodId = 2;
 			}
 			// console.log(goodId);
-			thatvu.spinShow = true;
 			function cardetail(lang){
+				thatvu.spinShow = true;
 				data.common('Car/detail',function(d){
 					console.log(d)
 					var car = d.car;
 					var model = car.model;
+					
 					
 					thatvu.slideArr = car.image;
 					if(lang == 'en'){
@@ -782,7 +783,6 @@
 							that.transfer = '' + car.transfer_record;
 							//计算贷款方案
 							thatvu.loanfun();
-							thatvu.spinShow = false;
 						}else{
 							// 顶部右侧车辆基础信息
 							that.topinfo.name = model.year + ' ' + car.brand.name+ ' ' + car.series.name + ' ' + model.displacement +'L';
@@ -1009,7 +1009,6 @@
 							that.transfer = '' + car.transfer_record;
 							//计算贷款方案
 							thatvu.loanfun();
-							thatvu.spinShow = false;
 						}else{
 							// 顶部右侧车辆基础信息
 							that.topinfo.name = model.year + ' ' + car.brand.name+ ' ' + car.series.name + ' ' + model.displacement +'L';
@@ -1228,8 +1227,9 @@
 					// console.log(car.collected)
 					// 顶部图片切换
 					// console.log(model)
-					
-					thatvu.spinShow = false;
+					thatvu.$nextTick(function(){
+						thatvu.spinShow = false;
+					})
 				},{id:goodId,language:lang})
 			}
 			cardetail('en');
