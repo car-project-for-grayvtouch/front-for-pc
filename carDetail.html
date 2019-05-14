@@ -179,26 +179,26 @@
 						</div>
 						<div class="default-left">
 							<div class="price">
-								CHAMPION价格
+								{{$t("detail.championprice")}}
 								<span>${{$t("detail.topinfo.price")}}</span>
 							</div>
 							<div class="loan">
 								<div class="min">
-									最低贷款
+									{{$t("detail.minloan")}}
 									<span>${{min}}</span>
 								</div>
 								<div class="look" @click="instance('info')">
-									查看贷款方案 >
+									{{$t("detail.proposal")}} >
 								</div>
 							</div>
 							<div class="pbtn">
-								<button type="button" @click="preorder">预约看车</button>
-								<button type="button">在线咨询</button>
+								<button type="button" @click="preorder">{{$t("detail.appointment")}}</button>
+								<button type="button">{{$t("detail.consultant")}}</button>
 							</div>
 							<div class="to-preorder">
 								<Modal
 									v-model="modal1"
-									title="预约看车"
+									:title="$t('detail.appointment')"
 									@on-ok="ok"
 									@on-cancel="cancel"
 									:loading ="loading"
@@ -206,13 +206,13 @@
 									<Row>
 										<i-col span="12">
 											<div class="">
-												选择日期：
+												{{$t("detail.date")}}：
 											</div>
 											<Date-Picker type="date" style="width: 200px" size="large" placeholder="Select date" @on-change="getdate"></Date-Picker>
 										</i-col>
 										<i-col span="12">
 											<div class="">
-												选择时间：
+												{{$t("detail.time")}}：
 											</div>
 											<Time-Picker type="time" style="width: 200px" size="large" format="HH:mm" placeholder="Select time" style="width: 168px" @on-change="gettime"></Time-Picker>
 										</i-col>
@@ -220,13 +220,13 @@
 									<Row>
 										<i-col span="12">
 											<div class="">
-												手机号：
+												{{$t("detail.phone")}}：
 											</div>
 											<i-input style="width: 200px;" v-model="value1" size="large" placeholder="enter the phone number" />
 										</i-col>
 										<i-col span="12">
 											<div class="">
-												微信号：
+												{{$t("detail.weixin")}}：
 											</div>
 											<i-input style="width: 200px;" v-model="value3" size="large" placeholder="enter the WeChat ID" />
 										</i-col>
@@ -234,7 +234,7 @@
 									<Row>
 										<i-col span="12">
 											<div class="">
-												验证码：
+												{{$t("detail.verifycode")}}：
 											</div>
 											<i-input style="width: 200px;" v-model="value2" size="large" placeholder="enter the verification code" />
 										</i-col>
@@ -248,22 +248,22 @@
 						<div class="tips">
 							<img src="images/zhigou.png" >
 							<div class="tipsp">
-								<p>海量车源、定制需求！您可以选择CHAMPIONAUTO值购</p>
-								<a href="bargain.html">点击查看</a>
+								<p>{{$t("detail.tipsp")}}</p>
+								<a href="bargain.html">{{$t("detail.cv")}}</a>
 							</div>
 						</div>
 						<div class="level">
 							<div class="level-item">
-								<span>行驶里程</span>
-								<span>{{$t('detail.mileage')}}英里</span>
+								<span>{{$t("detail.td")}}</span>
+								<span>{{$t('detail.mileage')}}{{$t('detail.mile')}}</span>
 							</div>
 							<div class="level-item">
-								<span>复查等级</span>
+								<span>{{$t("detail.reviewlevel")}}</span>
 								<span>{{$t('detail.level')}}</span>
 							</div>
 							<div class="level-item">
-								<span>过户记录</span>
-								<span>{{$t('detail.transfer')}}次</span>
+								<span>{{$t("detail.tranferRecord")}}</span>
+								<span>{{$t('detail.transfer')}}{{$t('detail.degr')}}</span>
 							</div>
 						</div>
 					</div>
@@ -272,7 +272,7 @@
 			
 			<div class="car-info">
 				<div class="point">
-					<div class="title">亮点配置</div>
+					<div class="title">{{$t('detail.Highlight')}}</div>
 					<ul>
 						<li v-for="item in $t('detail.point')">
 							<img :src="item.image" >
@@ -287,8 +287,8 @@
 								<use xlink:href="#icon-socar_displacement_icon"></use>
 							</svg>
 							<div class="config-r">
-								<p>排量</p>
-								<p>{{$t('detail.config.displacement')}}L</p>
+								<p>{{$t('detail.displace')}}</p>
+								<p>{{$t('detail.config.displacement') + 'L'}}</p>
 							</div>
 						</li>
 						<li>
@@ -296,7 +296,7 @@
 								<use xlink:href="#icon-item-gear-box"></use>
 							</svg>
 							<div class="config-r">
-								<p>变速箱</p>
+								<p>{{$t('detail.gear')}}</p>
 								<p>{{$t('detail.config.gearbox')}}</p>
 							</div>
 						</li>
@@ -305,8 +305,8 @@
 								<use xlink:href="#icon-youhao"></use>
 							</svg>
 							<div class="config-r">
-								<p>油耗</p>
-								<p>城市：{{$t('detail.config.cityfuelConsumption')}}GL/高速：{{$t('detail.config.speedfuelConsumption')}}GL</p>
+								<p>{{$t('detail.fuel')}}</p>
+								<p>{{$t('detail.ci') + '：'}}{{$t('detail.config.cityfuelConsumption')}}GL/{{$t('detail.hs')}}：{{$t('detail.config.speedfuelConsumption')}}GL</p>
 							</div>
 						</li>
 						<li>
@@ -314,7 +314,7 @@
 								<use xlink:href="#icon-cf-c64"></use>
 							</svg>
 							<div class="config-r">
-								<p>级别</p>
+								<p>{{$t('detail.le')}}</p>
 								<p>{{$t('detail.config.type')}}</p>
 							</div>
 						</li>
@@ -323,8 +323,8 @@
 								<use xlink:href="#icon-chicun"></use>
 							</svg>
 							<div class="config-r">
-								<p>尺寸</p>
-								<p>{{$t('detail.config.size')}}inch</p>
+								<p>{{$t('detail.si')}}</p>
+								<p>{{$t('detail.config.size') + 'inch'}}</p>
 							</div>
 						</li>
 						<li>
@@ -332,8 +332,8 @@
 								<use xlink:href="#icon-zuoweishu-shi"></use>
 							</svg>
 							<div class="config-r">
-								<p>承载数量</p>
-								<p>{{$t('detail.config.seat')}}座</p>
+								<p>{{$t('detail.sc')}}</p>
+								<p>{{$t('detail.config.seat') + ' '}}{{$t('detail.c')}}</p>
 							</div>
 						</li>
 						<li>
@@ -342,12 +342,12 @@
 						</li>
 					</ul>
 				</div>
-				<div class="title contitle">车辆配置</div>
+				<div class="title contitle">{{$t("detail.vd")}}</div>
 				<i-table stripe :columns="$t('detail.columns')" :data="$t('detail.datada')"></i-table>
 				<i-table class='allconfig' stripe :columns="$t('detail.columnss')" :data="$t('detail.datads')"></i-table>
 				
 				<div class="report" v-if="$t('detail.carreport')=='true'">
-					<div class="title">车辆检测报告<span>检测时间：{{$t("detail.reportTime")}}</span><span>检测车型：{{$t("detail.topinfo.name")}}</span></div>
+					<div class="title">{{$t("detail.vtr")}}<span>{{$t("detail.dt") + '：'}}{{$t("detail.reportTime")}}</span><span>{{$t("detail.dm") + '：'}}{{$t("detail.topinfo.name")}}</span></div>
 					<div class="curtitle">
 						<span class="ct-left">{{$t("detail.reportresult[0].name")}}</span>
 						<span class="ct-right">{{$t("detail.reportresult[0].result")}}</span>
@@ -393,19 +393,19 @@
 						<div class="title">
 							<div class="title-item">
 								<div class="normal"></div>
-								<span class="texts">正常</span>
+								<span class="texts">{{$t('detail.normal')}}</span>
 							</div>
 							<div class="title-item">
 								<div class="repair"></div>
-								<span class="texts">曾有钣金修复</span>
+								<span class="texts">{{$t('detail.repair')}}</span>
 							</div>
 							<div class="title-item">
 								<div class="update"></div>
-								<span class="texts">曾有覆盖件更换</span>
+								<span class="texts">{{$t('detail.update')}}</span>
 							</div>
 							<div class="title-item">
 								<div class="norepair"></div>
-								<span class="texts">轻微瑕疵，尚未修复</span>
+								<span class="texts">{{$t('detail.norepair')}}</span>
 							</div>
 						</div>
 						<div class="facecheck">
@@ -459,7 +459,7 @@
 						<div class="table table-border">
 							<div class="table-item">
 								<div>
-									<span class="t-i-center">启动</span>
+									<span class="t-i-center">{{$t('detail.launch')}}</span>
 								</div>
 							</div>
 							<div class="table-item" v-for="item in $t('detail.dirveSysone')">
@@ -477,7 +477,7 @@
 						<div class="table table-border">
 							<div class="table-item">
 								<div>
-									<span class="t-i-center">起步</span>
+									<span class="t-i-center">{{$t('detail.starting')}}</span>
 								</div>
 							</div>
 							<div class="table-item" v-for="item in $t('detail.dirveSystwo')">
@@ -495,7 +495,7 @@
 						<div class="table table-border">
 							<div class="table-item">
 								<div>
-									<span class="t-i-center">加速</span>
+									<span class="t-i-center">{{$t('detail.speedup')}}</span>
 								</div>
 							</div>
 							<div class="table-item" v-for="item in $t('detail.dirveSysthree')">
@@ -513,7 +513,7 @@
 						<div class="table table-border">
 							<div class="table-item">
 								<div>
-									<span class="t-i-center">匀速驾驶</span>
+									<span class="t-i-center">{{$t('detail.constant')}}</span>
 								</div>
 							</div>
 							<div class="table-item" v-for="item in $t('detail.dirveSysfour')">
@@ -531,7 +531,7 @@
 						<div class="table tablew">
 							<div class="table-item">
 								<div>
-									<span class="t-i-center">减速及制动</span>
+									<span class="t-i-center">{{$t('detail.dab')}}</span>
 								</div>
 							</div>
 							<div class="table-item" v-for="item in $t('detail.dirveSysfive')">
@@ -549,22 +549,22 @@
 					</div>
 				</div>
 				<Alert style="margin-top: 10px;" show-icon v-else>
-					提示
+					{{$t('detail.tips')}}
 					<Icon type="ios-bulb-outline" slot="icon"></Icon>
-					<template slot="desc">暂无车辆报告,等待检测</template>
+					<template slot="desc">{{$t('detail.tipsc')}}</template>
 				</Alert>
 			</div>
 			<div class="recommoned buy-process" style="margin-top: 20px;">
-				<div class="title" style="margin-bottom: 20px;">购车流程</div>
+				<div class="title" style="margin-bottom: 20px;">{{$t('detail.wp')}}</div>
 				<div class="car-detail">
 					<img class="process_cn" src="images/process_cn.png" >
 				</div>
 			</div>
 			<div class="recommoned" style="margin: 20px 0;">
-				<div class="title">猜你想看</div>
+				<div class="title">{{$t('detail.sw')}}</div>
 				<div class="car-detail">
 					<Row>
-						<i-col span="6" v-for="(item, index) in guesswant" :key='item.id'>
+						<i-col span="6" v-for="(item, index) in $t('detail.guesswant')" :key='item.id'>
 							<div @click = "navigatorToDetail(item.id)" class="car-item">
 								<a>
 									<img class="bg" :src="item.thumb">
@@ -573,21 +573,22 @@
 									<div class="car-explain">
 										<div class="explain-t">
 											<div class="car-name">
-												{{ item.model?item.model.year:''}}&nbsp;
-												{{item.series?item.series.name:''}}&nbsp;
-												{{item.model?item.model.displacement:''}}L
+												{{ item.model?item.model.year + '&nbsp':''}}
+												{{item.series?item.series.name + '&nbsp':''}}
+												{{item.model?item.model.displacement + 'L':''}}
 											</div>
 											<div class="car-price">
 												{{item.price}}
 											</div>
 										</div>
 										<div class="distance">
-											{{item.mileage}} 英里·{{item.model?item.model.door_count:''}}门·
-											{{item.model?item.model.driver_type:''}}·
-											{{item.model?item.model.cylinder_count:''}}缸·
-											{{item.model?item.model.displacement:''}}L·
-											{{item.model?item.model.intake_type:''}}·
-											{{item.model?item.model.gearbox:''}}
+											{{item.mileage + $t('miles')}}
+											{{item.model?'·' + item.model.door_count + $t('door'):''}}
+											{{item.model?'·' + item.model.driver_type:''}}
+											{{item.model?'·' + item.model.cylinder_count + $t('cylinder'):''}}
+											{{item.model?'·' + item.model.displacement + 'L':''}}
+											{{item.model?'·' + item.model.intake_type:''}}
+											{{item.model?'·' + item.model.gearbox:''}}
 										</div>
 									</div>
 								</a>
@@ -663,11 +664,6 @@
 				remember: 'y'
 			},
 			slideArr: [],
-			//顶部右侧车辆基础信息
-			topinfo:{
-				name: '',
-				price: 0,
-			},
 			loanarr: [0.3,0.4,0.5,0.6,0.7],
 			defaultloanarr:[],
 			mileage: 0,
@@ -675,65 +671,8 @@
 			transferRecord: 0,
 			point: [],
 			min: 0,
-			// 初始配置
-			config: {
-				displacement: 0,
-				gearbox: '',
-				cityfuelConsumption: '0.00',
-				speedfuelConsumption: '0.00',
-				type: '',
-				size: '',
-				seat: 0,
-			},
-			// 配置表格一
-			columns: [
-				{
-					title: '基本参数',
-					key: 'name'
-				},{
-					title: '发动机参数',
-					key: 'age'
-				},{
-					title: '底盘及制动',
-					key: 'address'
-				},
-			],
-			datada: [],
-			// 配置表格二
-			columnss: [
-				{
-					title: '安全配置',
-					key: 'name'
-				},{
-					title: '外部配置',
-					key: 'age'
-				},{
-					title: '内部配置',
-					key: 'address'
-				}
-			],
-			datads: [],
-			// 检测报告
-			reportTime: '',
-			reportresult: [{},{},{},{}],
-			accidentArrone: [],
-			accidentArrtwo: [],
-			facecheck: [],
-			autodeviceone: [],
-			autodevicetwo: [],
-			autodevicethree: [],
-			autodevicefour: [],
-			autodevicefive: [],
-			autodevicesix: [],
-			dirveSysone: [],
-			dirveSystwo: [],
-			dirveSysthree: [],
-			dirveSysfour: [],
-			dirveSysfive: [],
 			spinShow: false,
 			carreport: 'true',
-			// 猜你想看
-			guesswant: [],
 			//预约看车
 			modal1: false,
 			verifyCode: '',
@@ -794,12 +733,12 @@
 							thatvu.loanfun();
 							//亮点配置
 							that.point = model.configuration;
-							that.displacement = model.displacement;
-							that.gearbox = model.gearbox;
-							that.cityfuelConsumption = model.city_fuel_consumption;
-							that.speedfuelConsumption = model.high_speed_fuel_consumption;
-							that.type = model.car_type.name;
-							that.size = model.size;
+							that.config.displacement = model.displacement;
+							that.config.gearbox = model.gearbox;
+							that.config.cityfuelConsumption = model.city_fuel_consumption;
+							that.config.speedfuelConsumption = model.high_speed_fuel_consumption;
+							that.config.type = model.car_type.name;
+							that.config.size = model.size;
 							that.config.seat = '' + model.seat_count;
 							
 							//车辆配置
@@ -1245,25 +1184,29 @@
 				var that = this;
 				data.common('Car/recommendation',function(d){
 					// console.log(d)
-					that.guesswant = d.slice(0,4);
-				})
+					that.$i18n._vm.messages['en'].detail.guesswant = d.slice(0,4);
+				},{language:'en'})
+				data.common('Car/recommendation',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['zh-cn'].detail.guesswant = d.slice(0,4);
+				},{language:'cn'})
 			},
 			guesswantCollection: function(index,id) {
 				var that = this;
 				if(!localStorage.token){
-					this.$Message.warning('请先登录!');
+					this.$Message.warning(orifun.getInfo('Please login first!','请先登录!'));
 					return;
 				}
-				var ccol = this.guesswant,
+				var ccol = this.$i18n._vm.messages[localStorage.locale].detail.guesswant,
 				notice;
 				if(ccol[index].collected == 'y'){
 					ccol[index].collected = 'n';
-					notice = '取消收藏成功';
+					notice = orifun.getInfo('Cancel the collection successfully!','取消收藏成功!');
 				}else if(ccol[index].collected == 'n'){
 					ccol[index].collected = 'y';
-					notice = '收藏成功';
+					notice = orifun.getInfo('Collection of success!','收藏成功!');
 				}else{
-					this.$Message.error('等待数据更新!');
+					this.$Message.error(orifun.getInfo('Waiting for data update!','等待数据更新!'));
 					return;
 				}
 				var collectBody = {
@@ -1278,9 +1221,10 @@
 							desc:notice,
 							duration: 4
 						});
-						that.guesswant = ccol;
+						that.$i18n._vm.messages['en'].detail.guesswant[index].collected = ccol[index].collected;
+						that.$i18n._vm.messages['zh-cn'].detail.guesswant[index].collected = ccol[index].collected;
 					}else{
-						that.$Message.error('收藏失败!');
+						that.$Message.error(orifun.getInfo('Collection of failure!!','收藏失败!'));
 					}
 					
 				},collectBody);
@@ -1288,19 +1232,19 @@
 			collection: function() {
 				var that = this;
 				if(!localStorage.token){
-					this.$Message.warning('请先登录!');
+					this.$Message.warning(orifun.getInfo('Please login first!','请先登录!'));
 					return;
 				}
 				var ccol = this.$i18n._vm.messages[localStorage.locale].detail.collect,
 				notice;
 				if(ccol == 'y'){
 					ccol = 'n';
-					notice = '取消收藏成功';
+					notice = orifun.getInfo('Cancel the collection successfully!','取消收藏成功!');
 				}else if(ccol == 'n'){
 					ccol = 'y';
-					notice = '收藏成功';
+					notice = orifun.getInfo('Collection of success!','收藏成功!');
 				}else{
-					this.$Message.error('等待数据更新!');
+					this.$Message.error(orifun.getInfo('Waiting for data update!','等待数据更新!'));
 					return;
 				}
 				var collectBody = {
@@ -1315,10 +1259,11 @@
 							desc:notice,
 							duration: 4
 						});
-						that.$i18n._vm.messages[localStorage.locale].detail.collect = ccol;
+						that.$i18n._vm.messages['en'].detail.collect = ccol;
+						that.$i18n._vm.messages['zh-cn'].detail.collect = ccol;
 						that.guesswantinfo();
 					}else{
-						that.$Message.error('收藏失败!');
+						that.$Message.error(orifun.getInfo('Collection of failure!!','收藏失败!'));
 					}
 					
 				},collectBody);
@@ -1332,7 +1277,7 @@
 			preorder: function() {
 				this.modal1 = true;
 				if(!localStorage.token){
-					this.$Message.warning('请先登录!');
+					this.$Message.warning(orifun.getInfo('Please login first!','请先登录!'));
 				}
 			},
 			tranverifyCode: function() {
@@ -1346,32 +1291,32 @@
 			ok: function() {
 				var that = this;
 				if(!localStorage.token){
-					this.$Message.warning('请先登录!');
+					this.$Message.warning(orifun.getInfo('Please login first!','请先登录!'));
 					this.loading = false;
 					return;
 				}
 				if(this.date == ''){
-					this.$Message.info('请选择日期!');
+					this.$Message.info(orifun.getInfo('Please select date!','请选择日期!'));
 					this.loading = false;
 					return;
 				}
 				if(this.time == ''){
-					this.$Message.info('请选择时间!');
+					this.$Message.info(orifun.getInfo('Please select time!','请选择时间!'));
 					this.loading = false;
 					return;
 				}
 				if(this.value1 == ''){
-					this.$Message.info('请填写手机号!');
+					this.$Message.info(orifun.getInfo('Please fill in your mobile phone number!','请填写手机号!'));
 					this.loading = false;
 					return;
 				}
 				if(this.value2 == ''){
-					this.$Message.info('请填写验证码!');
+					this.$Message.info(orifun.getInfo('Please fill in the verification code!','请填写验证码!'));
 					this.loading = false;
 					return;
 				}
 				if(this.value3 == ''){
-					this.$Message.info('请填写微信号!');
+					this.$Message.info(orifun.getInfo('Please fill in WeChat ID!','请填写微信号!'));
 					this.loading = false;
 					return;
 				}
@@ -1390,12 +1335,12 @@
 						// console.log(d);
 						that.$Notice.success({
 							title: 'Notification',
-							desc:'预约成功,等待通知!',
+							desc:orifun.getInfo('Reservation successful, waiting for notification!','预约成功,等待通知!'),
 							duration: 0
 						});
 						that.modal1 = false;
 					}else{
-						that.$Message.error('预约失败!');
+						that.$Message.error(orifun.getInfo('Make an appointment to failure!','预约失败!'));
 						that.loading = false;
 					}
 					
@@ -1422,39 +1367,39 @@
 			},
 			//贷款方案弹窗
 			instance (type) {
-                const title = '贷款方案';
+                const title = orifun.getInfo('Loan scheme','贷款方案');
                 const content = '\
 				<div class = "loan-pop-up">\
-					<p class = "ptor">首付30%</p>\
-					<p class = "pbor">月还款金额<span>$'+ this.defaultloanarr[0] +'</span></p>\
-					<p class = "ptor">首付40%</p>\
-					<p class = "pbor">月还款金额<span>$'+ this.defaultloanarr[1] +'</span></p>\
-					<p class = "ptor">首付50%</p>\
-					<p class = "pbor">月还款金额<span>$'+ this.defaultloanarr[2]+'</span></p>\
-					<p class = "ptor">首付60%</p>\
-					<p class = "pbor">月还款金额<span>$'+ this.defaultloanarr[3] +'</span></p>\
-					<p class = "ptor">首付70%</p>\
-					<p class = "pbor">月还款金额<span>$'+ this.defaultloanarr[4] +'</span></p>\
-					<div class="lptp">该方案仅供参考,实际请与CHAMPION金融专员沟通后确认</div>\
+					<p class = "ptor">' + orifun.getInfo('A down payment ','首付 ') + '30%</p>\
+					<p class = "pbor">' + orifun.getInfo('Monthly repayment amount','月还款金额') + '<span>$'+ this.defaultloanarr[0] +'</span></p>\
+					<p class = "ptor">' + orifun.getInfo('A down payment ','首付 ') + '40%</p>\
+					<p class = "pbor">' + orifun.getInfo('Monthly repayment amount','月还款金额') + '<span>$'+ this.defaultloanarr[1] +'</span></p>\
+					<p class = "ptor">' + orifun.getInfo('A down payment ','首付 ') + '50%</p>\
+					<p class = "pbor">' + orifun.getInfo('Monthly repayment amount','月还款金额') + '<span>$'+ this.defaultloanarr[2]+'</span></p>\
+					<p class = "ptor">' + orifun.getInfo('A down payment ','首付 ') + '60%</p>\
+					<p class = "pbor">' + orifun.getInfo('Monthly repayment amount','月还款金额') + '<span>$'+ this.defaultloanarr[3] +'</span></p>\
+					<p class = "ptor">' + orifun.getInfo('A down payment ','首付 ') + '70%</p>\
+					<p class = "pbor">' + orifun.getInfo('Monthly repayment amount','月还款金额') + '<span>$'+ this.defaultloanarr[4] +'</span></p>\
+					<div class="lptp">' + orifun.getInfo('This scheme is only for reference. In fact, please confirm with CHAMPION financial commissioner after communication','该方案仅供参考,实际请与CHAMPION金融专员沟通后确认') + '</div>\
 					<div class = "lpub">\
 						<div class = "lpub-item">\
 							<div class = "lpubit"\
-								<label>支持人群：</label>\
-								<span>学生</span>\
+								<label>' + orifun.getInfo('Support groups','支持人群') + '：</label>\
+								<span>' + orifun.getInfo('students','学生') + '</span>\
 							</div>\
 							<div class = "lpubib"\
-								<label>车辆价格：</label>\
+								<label>' + orifun.getInfo('Vehicle prices','车辆价格') + '：</label>\
 								<span>$'+ this.$i18n._vm.messages[localStorage.locale].detail.topinfo.price +'</span>\
 							</div>\
 						</div>\
 						<div class = "lpub-item">\
 							<div class = "lpubit"\
-								<label>证件类型：</label>\
+								<label>' + orifun.getInfo('Document type','证件类型') + '：</label>\
 								<span>SSN</span>\
 							</div>\
 							<div class = "lpubib"\
-								<label>还款期限：</label>\
-								<span>48个月</span>\
+								<label>' + orifun.getInfo('Reimbursement deadline','还款期限') + '：</label>\
+								<span>' + orifun.getInfo('48 months','48个月') + '</span>\
 							</div>\
 						</div>\
 					</div>\

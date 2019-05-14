@@ -640,7 +640,8 @@
 							desc:notice,
 							duration: 4
 						});
-						that.$i18n._vm.messages[localStorage.locale].buy.searchArr = ccol;
+						that.$i18n._vm.messages['en'].buy.searchArr[index].collected = ccol[index].collected;
+						that.$i18n._vm.messages['zh-cn'].buy.searchArr[index].collected = ccol[index].collected;
 					}else{
 						that.$Message.error(orifun.getInfo('Collection of failure!!','收藏失败!'));
 					}

@@ -706,7 +706,8 @@
 							desc:mes,
 							duration: 4
 						});
-						that.$i18n._vm.messages[localStorage.locale].explain = ccol;
+						that.$i18n._vm.messages['en'].explain[index].collected = ccol[index].collected;
+						that.$i18n._vm.messages['zh-cn'].explain[index].collected = ccol[index].collected;
 					}else{
 						mes = orifun.getInfo('Collection of failure!!','收藏失败!')
 						that.$Message.error(mes);
