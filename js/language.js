@@ -80,8 +80,8 @@
 				{"content":'Contact us','src':"contactUs.html"}],
 				address: 'Massachusetts state',
 				other: 'other',
-				champion: 'CHAMPION',
-				addressphone: '+1(888)-888-6518',
+				champion: 'CHAMPION WXchat',
+				addressphone: '617-481-7697',
 				addressDetail: '134 east Howard st，Quincy，ma，02169，usa',
 				// 卖车页
 				sale: {
@@ -364,8 +364,8 @@
 					// 页面footer
 					address: '马塞诸萨州',
 					other: '其他',
-					champion: 'CHAMPION',
-					addressphone: '+1(888)-888-6518',
+					champion: 'CHAMPION WXchat',
+					addressphone: '617-481-7697',
 					addressDetail: '134 east Howard st，Quincy，ma，02169，usa',
 					sale:{
 						personPosi: '请输入您的所在地',
