@@ -650,11 +650,11 @@
 				var that = this;
 				data.common('Brand/all',function(d){
 					// console.log(d);
-					that.$i18n._vm.messages['zh-cn'].cartype = d;
+					that.$i18n._vm.messages['zh-cn'].cartype = d.slice(0,13);
 				},{language: 'cn'})
 				data.common('Brand/all',function(d){
 					// console.log(d);
-					that.$i18n._vm.messages['en'].cartype = d;
+					that.$i18n._vm.messages['en'].cartype = d.slice(0,13);
 				},{language: 'en'})
 			},
 			searchGo: function(e) {

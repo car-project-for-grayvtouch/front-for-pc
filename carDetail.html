@@ -274,7 +274,7 @@
 				<div class="point">
 					<div class="title">{{$t('detail.Highlight')}}</div>
 					<ul>
-						<li v-for="item in $t('detail.point')">
+						<li v-for="item in $t('detail.point')" v-if="item.image">
 							<img :src="item.image" >
 							<p>{{item.name}}</p>
 						</li>
@@ -305,7 +305,6 @@
 								<use xlink:href="#icon-youhao"></use>
 							</svg>
 							<div class="config-r">
-								<p>{{$t('detail.fuel')}}</p>
 								<p>{{$t('detail.ci') + '：'}}{{$t('detail.config.cityfuelConsumption')}}GL/{{$t('detail.hs')}}：{{$t('detail.config.speedfuelConsumption')}}GL</p>
 							</div>
 						</li>
