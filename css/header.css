@@ -189,6 +189,7 @@ ul{
 	height: 100%;
 	position: fixed;
 	z-index: 999;
+	left: 0;
 }
 .login-page .loginMask{
 	position: fixed;
