@@ -732,3 +732,6 @@
 	bottom: 0;
 	margin-top: 21px;
 }
+.margin{
+	position: relative;
+}
