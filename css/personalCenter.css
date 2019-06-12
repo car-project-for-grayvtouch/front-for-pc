@@ -44,8 +44,7 @@
 	align-items: center;
 }
 .un3{
-	height: 36px;
-	line-height: 36px;
+	line-height: 30px;
 }
 .unr{
 	color: #757575;
@@ -89,10 +88,10 @@
 	background-color: white;
 }
 .icons{
-	width: 700px;
+	width: 800px;
 	display: flex;
 	padding: 25px;
-	justify-content: space-around;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 }
 .icons .icon{
@@ -105,12 +104,12 @@
 	border-radius: 50%;
 	color: white;
 	margin-bottom: 20px;
+	margin-right: 20px;
 }
 .icon-item{
 	width: 50%;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
 	align-items: center;
 	margin-bottom: 40px;
 }
@@ -161,4 +160,15 @@
 }
 .right-three .ivu-form-item{
 	width: 350px;
+}
+.right-five{
+	width: 1100px;
+	padding: 50px;
+}
+.car-item{
+	width: 300px;
+	margin: 0;
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
 }

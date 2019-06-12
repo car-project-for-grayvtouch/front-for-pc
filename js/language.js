@@ -297,7 +297,62 @@
 				},
 				about: {'Championa what kind of company is that？':'CHIMPON in North America is a integration of offline quality resources O2O auto service platform, we provide the user with car rental, student driver, purchases, loans, localization services such as maintenance of one-stop Chinese car platform, let each user, save money at ease purchase good car.',
 				'What is the process of buying a car？':'1. Call the car number/make an appointment online.<br>2. The consultant calls to confirm and pick you up to see the car.<br>3. Selected vehicles, after 300 tests.<br>4. Select your car and help you with all the formalities.<br>',
-				'What materials are needed to sell a car？':'You only need to fill in the complete information in the online car sales department, and our staff will contact you and arrange a comprehensive test for your car offline.'}
+				'What materials are needed to sell a car？':'You only need to fill in the complete information in the online car sales department, and our staff will contact you and arrange a comprehensive test for your car offline.'
+				},
+				perc: {
+					dinfo: 'The basic information',
+					uinfo: 'User information',
+					pcinfo: 'Perfect information',
+					sellapply: 'To apply for to sell cars',
+					updateps: 'Change the password',
+					barecord: 'Value and purchasing',
+					av: 'Installment application',
+					preorder: 'Reserve a vehicle',
+					coll: 'My collection',
+					garage: 'My garage',
+					focus: 'Focus on center',
+					hello: 'hello',
+					toadd: '<span>No phone num information, to add ></span>',
+					rd: 'registration date',
+					lastl: 'Last login time',
+					vrv: 'View reserved vehicles',
+					vpr: 'View the value purchase record',
+					via: 'View installment application',
+					vmc: 'View my collection',
+				},
+				proveInfo: {
+					nick: 'Nickname',
+					nickc: 'Enter your nickname',
+					phone: 'Phone',
+					phonec: 'Enter your dialling code',
+					gender: 'Gender',
+					male: 'Male',
+					female: 'Female',
+					birthday: 'Birthday',
+					birthdayc: 'Select date',
+					submit: 'Submit',
+					reset: 'Reset'
+				},
+				updatePs: {
+					op: 'old password',
+					opc: 'Please enter the old password',
+					np: 'new password',
+					npc: 'Please enter the new password',
+					npcc: 'Please enter the new password again',
+					update: 'Update'
+				},
+				sellApply: {
+					data: []
+				},
+				barginRecord: {
+					data: []
+				},
+				installmentRecord: {
+					data: []
+				},
+				collectionList: [],
+				collectionRe: 'Remind',
+				collectionRec: 'You have not collected vehicles'
 			},
 		    'zh-cn':{
 					header: {
@@ -583,7 +638,62 @@
 					},
 					about: {'CHAMPION是一家怎样的公司呢？':'CHIMPON是北美一家整合线下优质资源的O2O汽车服务平台，我们为用户提供租车、学车、购车、贷款、维修保养等本地化服务的一站式中文汽车平台，让每一个用户，省钱安心购好车。',
 					'购车流程是怎样的？':'1. 拨打看车电话/在线预约<br>2. 顾问电话确认并接你看车<br>3. 严选车辆，经过 300 项检测<br>4. 选定爱车，帮你代办一切手续<br>',
-					'卖车需要准备什么材料？':'您只需在线上卖车处填写完整的信息，我们的工作人员会联系您并安排线下给您的爱车做全面的检测'}
+					'卖车需要准备什么材料？':'您只需在线上卖车处填写完整的信息，我们的工作人员会联系您并安排线下给您的爱车做全面的检测',
+					},
+					perc: {
+						dinfo: '基本信息',
+						uinfo: '用户信息',
+						pcinfo: '完善信息',
+						updateps: '修改密码',
+						garage: '我的车库',
+						sellapply: '卖车申请',
+						barecord: '值购记录',
+						av: '分期申请',
+						preorder: '预约车辆',
+						focus: '关注中心',
+						coll: '我的收藏',
+						hello: '你好',
+						toadd: '<span>无手机号信息，去添加 ></span>',
+						rd: '注册时间',
+						lastl: '最近一次登录时间',
+						vrv: '查看预约车辆',
+						vpr: '查看值购记录',
+						via: '查看分期申请',
+						vmc: '查看我的收藏',
+					},
+					proveInfo: {
+						nick: '昵称',
+						nickc: '输入您的昵称',
+						phone: '手机号',
+						phonec: '输入手机区号，例如+86',
+						gender: '性别',
+						male: '男',
+						female: '女',
+						birthday: '生日',
+						birthdayc: '选择日期',
+						submit: '提交',
+						reset: '重置'
+					},
+					updatePs: {
+						op: '旧密码',
+						opc: '请输入旧密码',
+						np: '新密码',
+						npc: '请输入新密码',
+						npcc: '请再次输入新密码',
+						update: '更新'
+					},
+					sellApply: {
+						data: []
+					},
+					barginRecord: {
+						data: []
+					},
+					installmentRecord: {
+						data: []
+					},
+					collectionList: [],
+					collectionRe: 'Remind',
+					collectionRec: 'You have not collected vehicles'
 				}
 		}// 设置地区信息
 	})

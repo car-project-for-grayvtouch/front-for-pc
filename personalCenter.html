@@ -153,42 +153,42 @@
 		</div>
 		<div class="margin">
 			<i-menu :theme="theme3" active-name="1" @on-select="getIndex">
-				<Menu-Group title="基本信息">
+				<Menu-Group :title="$t('perc.dinfo')">
 					<Menu-Item name="1">
 						<Icon type="md-person"></Icon>
-						用户信息
+						{{$t('perc.uinfo')}}
 					</Menu-Item>
 					<Menu-Item name="2">
 						<Icon type="md-person-add"></Icon>
-						完善信息
+						{{$t('perc.pcinfo')}}
 					</Menu-Item>
 					<Menu-Item name="3">
 						<Icon type="md-keypad"></Icon>
-						修改密码
+						{{$t('perc.updateps')}}
 					</Menu-Item>
 				</Menu-Group>
-				<Menu-Group title="我的车库">
+				<Menu-Group :title="$t('perc.garage')">
 					<Menu-Item name="4">
 						<Icon type="md-clock"></Icon>
-						卖车申请
+						{{$t('perc.sellapply')}}
 					</Menu-Item>
 					<Menu-Item name="5">
 						<Icon type="md-clipboard"></Icon>
-						值购记录
+						{{$t('perc.barecord')}}
 					</Menu-Item>
 					<Menu-Item name="6">
 						<Icon type="md-cart"></Icon>
-						已购车辆
+						{{$t('perc.av')}}
 					</Menu-Item>
 					<Menu-Item name="7">
 						<Icon type="md-at"></Icon>
-						预约车辆
+						{{$t('perc.preorder')}}
 					</Menu-Item>
 				</Menu-Group>
-				<Menu-Group title="关注中心">
+				<Menu-Group :title="$t('perc.focus')">
 					<Menu-Item name="8">
 						<Icon type="md-basket"></Icon>
-						我的收藏
+						{{$t('perc.coll')}}
 					</Menu-Item>
 				</Menu-Group>
 			</i-menu>
@@ -196,23 +196,22 @@
 				<div class="right-one" v-if="leftIndex == 1">
 					<div class="user-info">
 						<div class="head-img">
-							<img v-if="userinfo.avatar_explain!==''" :src="userinfo.avatar_explain">
+							<img v-if="userinfo.avatar_explain" :src="userinfo.avatar_explain">
 							<img v-else src="images/user01.jpg">
 						</div>
 						<div class="user-num">
 							<div class="un1">
-								{{userinfo.nickname}}
+								{{userinfo.nickname?userinfo.nickname:'xxx'}}
 							</div>
 							<div class="un2">
-								你好
+								{{$t('perc.hello')}}
 							</div>
-							<div class="un2 update">
-								修改个人信息>
+							<div class="un2 update" v-html="userinfo.phone?userinfo.phone:$t('perc.toadd')">
 							</div>
 						</div>
 						<div class="user-num unr">
-							<div class="un3">注册时间：{{userinfo.create_time}}</div>
-							<div class="un2">最近一次登录时间：{{userinfo.last_time}}</div>
+							<div class="un3">{{$t('perc.rd')}}：{{userinfo.create_time}}</div>
+							<div class="un2">{{$t('perc.lastl')}}：{{userinfo.last_time}}</div>
 							<div class="un2" v-if="userinfo.phone!==''">
 								<Icon type="md-phone-portrait" ></Icon>
 								<span>{{userinfo.phone}}</span>
@@ -225,8 +224,8 @@
 								<Icon type="md-at"></Icon>
 							</div>
 							<div class="right">
-								<p>预约车辆: <span>0</span></p>
-								<span class="lookmy">查看预约车辆 ></span>
+								<p>{{$t('perc.preorder')}}: <span>0</span></p>
+								<span class="lookmy">{{$t('perc.vrv')}} ></span>
 							</div>
 						</div>
 						<div class="icon-item">
@@ -234,8 +233,8 @@
 								<Icon type="md-easel"></Icon>
 							</div>
 							<div class="right">
-								<p>值购记录: <span>0</span></p>
-								<span class="lookmy">查看值购记录 ></span>
+								<p>{{$t('perc.barecord')}}: <span>0</span></p>
+								<span class="lookmy">{{$t('perc.vpr')}} ></span>
 							</div>
 						</div>
 						<div class="icon-item">
@@ -243,8 +242,8 @@
 								<Icon type="md-chatboxes"></Icon>
 							</div>
 							<div class="right">
-								<p>已购车辆: <span>0</span></p>
-								<span class="lookmy">查看已购车辆 ></span>
+								<p>{{$t('perc.av')}}: <span>0</span></p>
+								<span class="lookmy">{{$t('perc.via')}} ></span>
 							</div>
 						</div>
 						<div class="icon-item">
@@ -252,67 +251,113 @@
 								<Icon type="md-basket"></Icon>
 							</div>
 							<div class="right">
-								<p>我的收藏: <span>0</span></p>
-								<span class="lookmy">查看我的收藏 ></span>
+								<p>{{$t('perc.coll')}}: <span>0</span></p>
+								<span class="lookmy">{{$t('perc.vmc')}} ></span>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="right-two" v-else-if="leftIndex == 2">
-					<i-form ref="formValidate" :model="formValidate" :label-width="80" @submit.native.prevent>
-						<Form-Item label="nickname" prop="nickname">
-							<i-Input v-model="formValidate.nickname" placeholder="Enter your nickname"  size="large"></i-Input >
+					<i-form ref="formValidate" :label-width="80" @submit.native.prevent>
+						<Form-Item :label="$t('proveInfo.nick')" prop="nickname">
+							<i-Input v-model="formValidate.nickname" :placeholder="$t('proveInfo.nickc')"  size="large"></i-Input >
 						</Form-Item>
-						<Form-Item label="phone" prop="phone">
-							<i-Input v-model="formValidate.area_code" placeholder="Enter your dialling code" size="large"></i-Input>
+						<Form-Item :label="$t('proveInfo.phone')" prop="phone">
+							<i-Input v-model="formValidate.area_code" :placeholder="$t('proveInfo.phonec')" size="large"></i-Input>
 						</Form-Item>
-						<Form-Item label="Gender" prop="gender">
+						<Form-Item :label="$t('proveInfo.gender')" prop="gender">
 							<Radio-Group v-model="formValidate.sex"  size="large">
-								<Radio label="male">Male</Radio>
-								<Radio label="female">Female</Radio>
+								<Radio label="male">{{$t('proveInfo.male')}}</Radio>
+								<Radio label="female">{{$t('proveInfo.female')}}</Radio>
 							</Radio-Group>
 						</Form-Item>
-						<Form-Item prop="birthday">
-							<Date-Picker type="date" size="large" placeholder="Select date" format = "yyyy-MM-dd" v-model="formValidate.birthday" @on-change="getdate"></Date-Picker>
+						<Form-Item :label="$t('proveInfo.birthday')" prop="birthday">
+							<Date-Picker style="width: 100%;" type="date" size="large" :placeholder="$t('proveInfo.birthdayc')" format = "yyyy-MM-dd" v-model="formValidate.birthday" @on-change="getdate"></Date-Picker>
 						</Form-Item>
 						<Form-Item class="two-space">
-							<i-Button type="primary" size="large" @click="handleSubmit">Submit</i-Button>
-							<i-Button size="large" @click="handleReset('formValidate')" style="margin-left: 8px">Reset</i-Button>
+							<i-Button type="primary" size="large" @click="handleSubmit">{{$t('proveInfo.submit')}}</i-Button>
+							<i-Button size="large" @click="handleReset('formValidate')" style="margin-left: 8px">{{$t('proveInfo.reset')}}</i-Button>
 						</Form-Item>
 					</i-form>
 				</div>
 				<div class="right-three" v-else-if="leftIndex==3">
 					<i-Form ref="formInline" :model="formInline" :rules="ruleIn" inline @submit.native.prevent>
-						<Form-Item prop="user">
-							<i-Input type="password" v-model="formInline.o_password" size="large" placeholder="Please enter the old password">
+						<Form-Item style="display: block;" :label="$t('updatePs.op')" prop="o_password">
+							<i-Input type="password" v-model="formInline.o_password" size="large" :placeholder="$t('updatePs.opc')">
 								<Icon type="ios-lock-outline" slot="prepend"></Icon>
 							</i-Input>
 						</Form-Item>
-						<Form-Item prop="password">
-							<i-Input type="password" v-model="formInline.password" size="large" placeholder="Please enter the new password">
+						<Form-Item style="display: block;" :label="$t('updatePs.np')" prop="password">
+							<i-Input type="password" v-model="formInline.password" size="large" :placeholder="$t('updatePs.npc')">
 								<Icon type="ios-lock-outline" slot="prepend"></Icon>
 							</i-Input>
 						</Form-Item>
-						<Form-Item prop="confirm_password">
-							<i-Input type="password" v-model="formInline.confirm_password" size="large" placeholder="Please enter the new password again">
+						<Form-Item style="display: block;" :label="$t('updatePs.np')" prop="confirm_password">
+							<i-Input type="password" v-model="formInline.confirm_password" size="large" :placeholder="$t('updatePs.npcc')">
 								<Icon type="ios-lock-outline" slot="prepend"></Icon>
 							</i-Input>
 						</Form-Item>
-						<Form-Item>
-							<i-Button type="primary" @click="handleSubmitP('formInline')" size="large">update</i-Button>
-						</FormItem>
+						<Form-Item style="display: block;">
+							<i-Button style="width: 100%;" type="primary" @click="handleSubmitP('formInline')" size="large">{{$t('updatePs.update')}}</i-Button>
+						</Form-Item>
 					</i-Form>
 				</div>
-				<div class="right-four" v-else-if="leftIndex==4">
+				<div class="right-five" v-else-if="leftIndex==4">
+					<i-Table border highlight-row ref="currentRowTable" size="large" :columns="columns3" :data="$t('sellApply.data')"></i-Table>
+				</div>
+				<div class="" v-else-if="leftIndex==5">
 					<div>
-						<i-Table highlight-row ref="currentRowTable" size="large" :columns="columns3" :data="data1"></i-Table>
-						<i-Button @click="handleClearCurrentRow" size="large">Clear</i-Button>
+						<i-Table width="100%" border highlight-row ref="currentRowTable" size="large" :columns="columns4" :data="$t('barginRecord.data')"></i-Table>
 					</div>
 				</div>
-				<div class="right-four" v-else-if="leftIndex==5">
+				<div class="" v-else-if="leftIndex==6">
 					<div>
-						<i-Table highlight-row ref="currentRowTable" size="large" :columns="columns3" :data="data1"></i-Table>
-						<i-Button @click="handleClearCurrentRow" size="large">Clear</i-Button>
+						<i-Table width="100%" border highlight-row ref="currentRowTable" size="large" :columns="columns5" :data="$t('installmentRecord.data')"></i-Table>
+					</div>
+				</div>
+				<div class="" v-else-if="leftIndex==7">
+					<div>
+						<i-Table width="100%" border highlight-row ref="currentRowTable" size="large" :columns="columns6" :data="data1"></i-Table>
+					</div>
+				</div>
+				<div class="" v-else-if="leftIndex==8">
+					<div class="recommoned">
+						<div class="car-detail">
+							<Spin size="large" fix v-if="spinShow"></Spin>
+							<Alert style="margin-top: 10px;width: 100%;" show-icon v-if="$t('collectionList').length == 0">
+								{{ $t("collectionRe") }}
+								<Icon type="ios-bulb-outline" slot="icon"></Icon>
+								<template slot="desc">{{ $t("collectionRec") }}</template>
+							</Alert>
+							<div class="car-item" v-else v-for="(item, index) in $t('collectionList')" :key='item.id'>
+								<a :data-id = "item.id" @click = "navigatorToDetail(item.car_id)" >
+									<img class="bg" :src="item.car?item.car.thumb:''">
+									<!-- <img class="favorite" v-if="item.collected == 'y'" src="images/collected.png" @click.stop.prevent="collection(index, item.id)">
+									<img v-else class="favorite" src="images/favorite.png" @click.stop.prevent="collection(index, item.id)"> -->
+									<div class="car-explain">
+										<div class="explain-t">
+											<div class="car-name">
+												{{ item.car.model?item.car.model.year + '&nbsp':''}}
+												{{item.car.series?item.car.series.name + '&nbsp':''}}
+												{{item.car.model?item.car.model.displacement + 'L':''}}
+											</div>
+											<div class="car-price">
+												{{'$' + item.car.price}}
+											</div>
+										</div>
+										<div class="distance">
+											{{item.car.mileage + $t('miles')}}
+											{{item.car.model?'·' + item.car.model.door_count + $t('door'):''}}
+											{{item.car.model?'·' + item.car.model.driver_type:''}}
+											{{item.car.model?'·' + item.car.model.cylinder_count + $t('cylinder'):''}}
+											{{item.car.model?'·' + item.car.model.displacement + 'L':''}}
+											{{item.car.model?'·' + item.car.model.intake_type:''}}
+											{{item.car.model?'·' + item.car.model.gearbox:''}}
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -385,7 +430,7 @@
 				username: '',
 				password: ''
 			},
-			enshow: "english",
+			enshow: "ENGLISH",
 			theme3: 'light',
 			sidecur: 1,
 			userinfo: '',
@@ -422,50 +467,228 @@
 					align: 'center'
 				},
 				{
-					title: 'Name',
-					key: 'name'
-				},
-				{
-					title: 'Age',
-					key: 'age'
-				},
-				{
 					title: 'Address',
-					key: 'address'
-				}
+					key: 'address',
+					width: 100,
+				},
+				{
+					title: 'Color',
+					key: 'color',
+					width: 120,
+				},
+				{
+					title: 'Interior color',
+					key: 'interior_color',
+					width: 125,
+				},
+				{
+					title: 'Phone',
+					key: 'phone',
+					width: 125,
+				},{
+					title: 'Price',
+					key: 'price',
+					width: 125,
+				},{
+					title: 'Leave word',
+					key: 'remark',
+					width: 125,
+				},
+				{
+					title: 'Mileage',
+					key: 'mileage',
+					width: 100,
+				},{
+					title: 'Vin',
+					key: 'vin',
+					width: 100,
+				},{
+					title: 'WECHAT',
+					key: 'weixin',
+					width: 100,
+				},{
+					title: 'Status',
+					key: 'status',
+					width: 80,					
+				},
 			],
-			data1: [
+			form: {
+				page: 1,
+				limit: 100
+			},
+			columns4: [
 				{
-					name: 'John Brown',
-					age: 18,
-					address: 'New York No. 1 Lake Park',
-					date: '2016-10-03'
+					type: 'index',
+					width: 60,
+					align: 'center'
 				},
 				{
-					name: 'Jim Green',
-					age: 24,
-					address: 'London No. 1 Lake Park',
-					date: '2016-10-01'
+					title: 'Name',
+					key: 'name',
+					width: 100,
 				},
 				{
-					name: 'Joe Black',
-					age: 30,
-					address: 'Sydney No. 1 Lake Park',
-					date: '2016-10-02'
+					title: 'Phone',
+					key: 'phone',
+					width: 125,
+				},{
+					title: 'Price',
+					key: 'price',
+					width: 125,
+				},{
+					title: 'Leave word',
+					key: 'remark',
+					width: 125,
 				},
 				{
-					name: 'Jon Snow',
-					age: 26,
-					address: 'Ottawa No. 2 Lake Park',
-					date: '2016-10-04'
-				}
-			]
+					title: 'Mileage',
+					key: 'mileage',
+					width: 100,
+				},{
+					title: 'WECHAT',
+					key: 'weixin',
+					width: 120,
+				},{
+					title: 'Status',
+					key: 'status',
+					width: 120
+				},
+			],
+			columns5: [
+				{
+					type: 'index',
+					width: 60,
+					align: 'center'
+				},
+				{
+					title: 'Phone',
+					key: 'phone',
+					width: 125,
+				},{
+					title: 'Profession',
+					key: 'profession',
+					width: 125,
+				},{
+					title: 'SSN',
+					key: 'ssn',
+					width: 125,
+				},
+				{
+					title: 'WECHAT',
+					key: 'weixin',
+					width: 125,
+				},{
+					title: 'Status',
+					key: 'status',
+					width: 125
+				},
+			],
+			columns6: [
+				{
+					type: 'index',
+					width: 60,
+					align: 'center'
+				},
+				{
+					title: 'Phone',
+					key: 'phone',
+					width: 125,
+				},{
+					title: 'Appointment time',
+					key: 'appointment',
+					width: 170,
+				},
+				{
+					title: 'WECHAT',
+					key: 'weixin',
+					width: 120,
+				},{
+					title: 'Status',
+					key: 'status',
+					width: 120
+				},
+			],
+			data1: [],
 		},
 		mounted() {
 			orifun.initStatu(this);
 			this.userInfo();
+			this.getApplyRecord();
+			this.getBarginRecord();
+			this.getInstallmentRecord();
+			this.getPreorder();
+			this.getCollection();
 		},
 		methods: {
+			getCollection() {
+				var that = this;
+				this.form.language = 'cn';
+				data.common('CarWithAuth/collectionForCar',function(d){
+					console.log(d)
+					that.$i18n._vm.messages['zh-cn'].collectionList = d.data;
+				},this.form);
+				
+				this.form.language = 'en';
+				data.common('CarWithAuth/collectionForCar',function(d){
+					console.log(d)
+					that.$i18n._vm.messages['en'].collectionList = d.data;
+					that.spinShow = false;
+				},this.form);
+            },
+			getPreorder() {
+				var that = this;
+				this.form.language = 'cn';
+				data.common('CarWithAuth/reservationList',function(d){
+					console.log(d)
+					that.data1 = d.data;
+					that.spinShow = false;
+				},this.form);
+            },
+			getInstallmentRecord() {
+				var that = this;
+				this.form.language = 'cn';
+				data.common('CarWithAuth/stagingBuyApplicationList',function(d){
+					console.log(d)
+					that.$i18n._vm.messages['zh-cn'].installmentRecord.data = d.data;
+				},this.form);
+				
+				this.form.language = 'en';
+				data.common('CarWithAuth/stagingBuyApplicationList',function(d){
+					console.log(d)
+					that.$i18n._vm.messages['en'].installmentRecord.data = d.data;
+					that.spinShow = false;
+				},this.form);
+            },
+			getBarginRecord() {
+				var that = this;
+				this.form.language = 'cn';
+				data.common('CarWithAuth/recommendationApplicationList',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['zh-cn'].barginRecord.data = d.data;
+				},this.form);
+				
+				this.form.language = 'en';
+				data.common('CarWithAuth/recommendationApplicationList',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['en'].barginRecord.data = d.data;
+					that.spinShow = false;
+				},this.form);
+            },
+			getApplyRecord() {
+				var that = this;
+				this.form.language = 'cn';
+				data.common('CarWithAuth/saleApplicationList',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['zh-cn'].sellApply.data = d.data;
+				},this.form);
+				
+				this.form.language = 'en';
+				data.common('CarWithAuth/saleApplicationList',function(d){
+					// console.log(d)
+					that.$i18n._vm.messages['en'].sellApply.data = d.data;
+					that.spinShow = false;
+				},this.form);
+            },
 			handleClearCurrentRow () {
                 this.$refs.currentRowTable.clearCurrentRow();
             },
@@ -540,7 +763,7 @@
 					return;
 				}
 				data.common('User/info',function(d){
-					console.log(d)
+					// console.log(d)
 					that.userinfo = d;
 				})
 			},
