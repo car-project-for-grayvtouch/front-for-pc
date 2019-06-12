@@ -37,7 +37,7 @@ var orifun = {
 				window.location.href="http://www.championcargroup.com";
 			}
 		}
-		// browserRedirect();
+		browserRedirect();
 		
 		if(locale){
 			i18n.locale = locale;
