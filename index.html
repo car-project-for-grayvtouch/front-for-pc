@@ -600,14 +600,14 @@
 				var that = this;
 				data.common('SearchLog/hot',function(d){
 					// console.log(d)
-					that.$i18n._vm.messages['zh-cn'].hotsearchArr = d;
+					that.$i18n._vm.messages['zh-cn'].hotsearchArr = d.splice(0,12);
 					that.$nextTick(function(){
 						userTags.init();
 					})
 				},{language: 'cn'})
 				data.common('SearchLog/hot',function(d){
 					// console.log(d)
-					that.$i18n._vm.messages['en'].hotsearchArr = d;
+					that.$i18n._vm.messages['en'].hotsearchArr = d.splice(0,12);
 					that.$nextTick(function(){
 						userTags.init();
 					})
