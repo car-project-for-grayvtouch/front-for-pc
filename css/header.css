@@ -85,11 +85,12 @@ ul{
 	box-shadow: 0 0 5px rgba(0, 0, 0, .5);
 }
 .header .language-switch{
-	background-color: white;
-	bottom: 140px;
+	background-color: #C21B36;
+	bottom: 70px;
+	color: white;
 }
 .header .back-to-top{
-	bottom: 220px;
+	bottom: 160px;
 	background-color: white;
 	color: #C21B36;
 }

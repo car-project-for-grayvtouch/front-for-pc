@@ -56,6 +56,26 @@ var orifun = {
 		}else{
 			obj.switchlogin = true;
 		}
+		//客服
+		var identifier = '0hGFPPyf7Bnu3gnF';
+		var unique_code = '';
+		var platform = 'pc';
+		var websocket = 'ws://47.252.80.36:9300';
+		var websocketUrl = 'http://47.252.80.36:9301';
+		
+		var c = new Communication(document.body , {
+			// 项目标识符
+			identifier: identifier ,
+			// 唯一码
+			unique_code: unique_code ,
+			// pc | andorid | ios | unknow
+			platform: platform ,
+			// websocket 地址
+			websocket: websocket ,
+	
+			// web 服务器域名
+			host: websocketUrl ,
+		});
 	},
 	login: function(obj){
 		if(obj.logindata.username == ''){
@@ -107,25 +127,7 @@ var orifun = {
 	},
 	consult:function(obj){
 		obj.botshow = !obj.botshow;
-		var identifier = '0hGFPPyf7Bnu3gnF';
-			var unique_code = '';
-			var platform = 'pc';
-			var websocket = 'ws://47.252.80.36:9300';
-			var websocketUrl = 'http://47.252.80.36:9301';
-			
-			var c = new Communication(document.body , {
-				// 项目标识符
-				identifier: identifier ,
-				// 唯一码
-				unique_code: unique_code ,
-				// pc | andorid | ios | unknow
-				platform: platform ,
-				// websocket 地址
-				websocket: websocket ,
 		
-				// web 服务器域名
-				host: websocketUrl ,
-			});
 		// setTimeout(function(){
 		// 	obj.$Notice.info({
 		// 		title: orifun.getInfo('Fully functional!','功能完善中!'),

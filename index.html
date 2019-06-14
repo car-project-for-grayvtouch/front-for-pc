@@ -198,9 +198,9 @@
 				<transition name="fadel" mode="out-in">
 				<button class="language-switch" :key="enshow" v-on:click='change()'>{{enshow}}</button>
 				</transition>
-				<transition name="fadeo" mode="out-in">
+				<!-- <transition name="fadeo" mode="out-in">
 						<button class="online-consultation" :key="botshow" v-on:click='consult()' v-html="$t('header.online')"></button>
-				</transition>
+				</transition> -->
 						<div class="nav-menu">
 							<ul>
 								<li>
@@ -378,8 +378,7 @@
 				</div>
 				<div class="car-detail">
 					<Spin size="large" fix v-if="spinShow"></Spin>
-					<Row>
-						<i-col span="6" v-for="(item, index) in $t('explain')" :key='item.id'>
+						<div class="car-item-c" v-for="(item, index) in $t('explain')" :key='item.id'>
 							<div :data-id = "item.id" @click = "navigatorToDetail(item.id)" class="car-item">
 								<a>
 									<img class="bg" :src="item.thumb">
@@ -408,8 +407,7 @@
 									</div>
 								</a>
 							</div>
-						</i-col>
-					</Row>
+						</div>
 				</div>
 			</div>
 			<div class="adv1s">

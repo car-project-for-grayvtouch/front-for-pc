@@ -216,7 +216,6 @@ body {
 .price-btns{
 	margin: 12px 0;
 	display: flex;
-	justify-content: space-between;
 	flex-wrap: wrap;
 }
 .price-btns .btn{
@@ -533,6 +532,8 @@ body {
 .car-detail{
 	position: relative;
 	min-height: 50px;
+	display: flex;
+	flex-wrap: wrap;
 }
 .adv1s{
 	position: relative;
@@ -543,4 +544,12 @@ body {
 	padding: 20px;
 	font-size: 30px;
 	color: white;
+}
+.car-item-c{
+	width: 295px;
+	margin: 0;
+	margin-right: 20px;
+}
+.car-item-c:nth-child(4){
+	margin-right: 0;
 }
