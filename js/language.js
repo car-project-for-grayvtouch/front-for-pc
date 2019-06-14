@@ -352,7 +352,16 @@
 				},
 				collectionList: [],
 				collectionRe: 'Remind',
-				collectionRec: 'You have not collected vehicles'
+				collectionRec: 'You have not collected vehicles',
+				consult: {
+					load: 'loading',
+					over: "It's all over",
+					sf: 'sending failure',
+					pe: 'Please enter...',
+					send: 'Send',
+					ss: 'Please select session',
+					pc: 'Platform consulting'
+				}
 			},
 		    'zh-cn':{
 					header: {
@@ -693,7 +702,16 @@
 					},
 					collectionList: [],
 					collectionRe: 'Remind',
-					collectionRec: 'You have not collected vehicles'
+					collectionRec: 'You have not collected vehicles',
+				consult: {
+					load: '加载中',
+					over: "已经到底了",
+					sf: '发送失败',
+					pe: '请输入...',
+					send: '发送',
+					ss: '请选择会话',
+					pc: '平台咨询'
 				}
+			}
 		}// 设置地区信息
 	})

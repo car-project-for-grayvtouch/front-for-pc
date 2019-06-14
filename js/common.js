@@ -107,11 +107,30 @@ var orifun = {
 	},
 	consult:function(obj){
 		obj.botshow = !obj.botshow;
-		setTimeout(function(){
-			obj.$Notice.info({
-				title: orifun.getInfo('Fully functional!','功能完善中!'),
+		var identifier = '0hGFPPyf7Bnu3gnF';
+			var unique_code = '';
+			var platform = 'pc';
+			var websocket = 'ws://47.252.80.36:9300';
+			var websocketUrl = 'http://47.252.80.36:9301';
+			
+			var c = new Communication(document.body , {
+				// 项目标识符
+				identifier: identifier ,
+				// 唯一码
+				unique_code: unique_code ,
+				// pc | andorid | ios | unknow
+				platform: platform ,
+				// websocket 地址
+				websocket: websocket ,
+		
+				// web 服务器域名
+				host: websocketUrl ,
 			});
-		},700)
+		// setTimeout(function(){
+		// 	obj.$Notice.info({
+		// 		title: orifun.getInfo('Fully functional!','功能完善中!'),
+		// 	});
+		// },700)
 	},
 	change :function(obj) {
 		obj.enshow = obj.enshow == 'ENGLISH' ? "中文" : "ENGLISH";
