@@ -166,6 +166,11 @@ var orifun = {
 			sort: ''
 		})
 	},
+	signout: function(){
+		localStorage.login = false;
+		localStorage.token = '';
+		window.location.href = "index.html";
+	},
 	iviewswitch: function(){
 		if(locale == 'en'){
 			iview.lang('en-US');

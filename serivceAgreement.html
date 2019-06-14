@@ -180,11 +180,18 @@
 				</div>
 				<div class="person">
 					<span v-if="switchlogin" v-on:click="loginshow = !loginshow">{{$t('login')}}</span>
-					<a v-else href="personalCenter.html">
-						<svg class="icon" aria-hidden="true">
-							<use xlink:href="#icon-yidenglu"></use>
-						</svg>
-					</a>
+					<Dropdown v-else >
+						<a href="javascript:void(0)">
+							<svg class="icon" aria-hidden="true">
+								<use xlink:href="#icon-yidenglu"></use>
+							</svg>
+							<Icon type="ios-arrow-down"></Icon>
+						</a>
+						<Dropdown-Menu slot="list">
+							<Dropdown-Item><a href="personalCenter.html">{{$t('percen')}}</a></Dropdown-Item>
+							<Dropdown-Item><div @click="signout">{{$t('signout')}}</div></Dropdown-Item>
+						</Dropdown-Menu>
+					</Dropdown>
 				</div>
 				<transition name="fade" mode="out-in">
 						<button class="back-to-top" :key="topshow" v-on:click='top()' v-html="$t('header.top')"></button>
@@ -395,6 +402,9 @@
 			},
 			consult:function(){
 				orifun.consult(this);
+			},
+			signout:function() {
+				orifun.signout(this);
 			},
 		}
 	}).$mount('#serviceA')

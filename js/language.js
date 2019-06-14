@@ -603,6 +603,8 @@
 				<p>9.1【The applicable law】The conclusion, effectiveness, interpretation, amendment, supplement, termination, execution and dispute resolution of this agreement shall be governed by the laws of mainland China.Refer to business practices and/or industry practices in the absence of relevant legal provisions.</p>\
 				<p>9.2【Under the jurisdiction of】Any dispute arising from the use of the service of CHAMPION platform and related to the service of CHAMPION platform shall be settled by the CHAMPION platform through negotiation with you.If no agreement can be reached through negotiation, either party may bring a lawsuit to the people's court that has jurisdiction over the place where the CHAMPION company is located.</p>\
 				<p>9.3【separability】Any provision of this agreement shall be deemed void, invalid or unenforceable and shall be deemed divisible without prejudice to the validity and enforceability of the remaining provisions of this agreement.</p>",
+				percen: 'Personal Center',
+				signout: 'Sign Out'
 			},
 		    'zh-cn':{
 					header: {
@@ -1194,6 +1196,8 @@
 					<p>9.1【法律适用】本协议之订立、生效、解释、修订、补充、终止、执行与争议解决均适用中华人民共和国大陆地区法律；如法律无相关规定的，参照商业惯例及/或行业惯例。</p>\
 					<p>9.2【管辖】您因使用CHAMPION平台服务所产生及与CHAMPION平台服务有关的争议，由CHAMPION平台与您协商解决。协商不成时，任何一方均可向CHAMPION公司所在地有管辖权的人民法院提起诉讼。</p>\
 					<p>9.3【可分性】本协议任一条款被视为废止、无效或不可执行，该条应视为可分的且并不影响本协议其余条款的有效性及可执行性。</p>",
+					percen: '个人中心',
+					signout: '退出登录'
 			}
 		}// 设置地区信息
 	})

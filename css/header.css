@@ -53,7 +53,7 @@ ul{
 }
 .header .person{
     position: absolute;
-    right: 25px;
+    right: 15px;
     top: 0px;
     bottom: 0;
     margin: auto;
@@ -276,7 +276,7 @@ ul{
 	top: 250px;
 	bottom: 0;
 	margin: auto;
-    background-color: #C21B36;
+    background-color: #C21B36 !important;
     height: 40px;
     text-align: center;
     border-radius: 10px;
@@ -288,7 +288,7 @@ ul{
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 300px;
+	top: 250px;
 	bottom: 0;
 	margin: auto;
 }
